@@ -1,0 +1,27 @@
+% This file makes a web version of the blueprint
+% It should include all the \usepackage needed for this version.
+% The template includes standard AMS packages.
+% It is otherwise a very minimal preamble (you should probably at least
+% add cleveref and tikz-cd).
+
+\documentclass{report}
+
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{hyperref}
+\usepackage[showmore, dep_graph]{blueprint}
+
+
+\input{macros/common}
+\input{macros/web}
+
+\home{https://nwsrnbr.github.io/classification-root-system}
+\github{https://github.com/nwsrnbr/classification-root-system}
+\dochome{https://nwsrnbr.github.io/classification-root-system/docs}
+
+\title{Classification of root systems}
+\author{Noboru Nawashiro}
+
+\begin{document}
+\maketitle
+\input{content}
+\end{document}
