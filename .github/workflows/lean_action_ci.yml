@@ -35,14 +35,16 @@ jobs:
             build
           key: ${{ runner.os }}-lake-${{ hashFiles('lakefile.toml') }}
 
-      # ④ mathlib 事前ビルド取得（最重要）
+      # ④ Lean環境セットアップ（ここが先！）
+      - name: Setup Lean
+        uses: leanprover/lean-action@v1
+        with:
+          build: false   # ここ重要（まだbuildしない）
+
+      # ⑤ mathlib cache取得
       - name: Get mathlib cache
         run: lake exe cache get
 
-      # ⑤ Lean build（軽量）
+      # ⑥ build
       - name: Build project
-        uses: leanprover/lean-action@v1
-        with:
-          build: true
-          lint: false
-          mk_all-check: false
+        run: lake build
