@@ -69,6 +69,7 @@ lemma topLeftBlock_DRev (n : ℕ) :
     (DRev (n + 1)).submatrix Fin.castSucc Fin.castSucc = DRev n := by
   ext i j; simp +decide [ DRev ] ;
   simp +decide [ Fin.ext_iff ]
+  grind
 
 /-
 The distance-1 recurrence for determinants (general, not specific to DRev).
