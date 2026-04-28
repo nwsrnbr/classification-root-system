@@ -151,6 +151,22 @@ lemma det_E₅ : E₅.det = 4 := by
     <;> fin_cases j
     <;> simp
 
+def rev (X : Matrix (Fin n) (Fin n) R) := Matrix.of fun i j : Fin n ↦ X (i.rev) (j.rev)
+
+lemma det_rev (X : Matrix (Fin n) (Fin n) R) : (rev X).det = X.det := by
+  let e := Equiv.ofBijective (fun i : Fin n ↦ i.rev) Fin.rev_bijective
+  have : rev X = (reindex e e) X := by
+    ext i j
+    simp [rev, reindex, e, Equiv.ofBijective, Function.surjInv]
+    grind
+  simp [this]
+
+omit [CommRing R]
+lemma rev_isSymm {X : Matrix (Fin n) (Fin n) R} (h : X.IsSymm) : (rev X).IsSymm := by
+  ext i j
+  dsimp [rev]
+  rw [IsSymm.apply h]
+
 def D_rev (n : ℕ) : Matrix (Fin n) (Fin n) ℤ :=
   Matrix.of fun i j : Fin n ↦
     if i = j then 2
@@ -158,25 +174,11 @@ def D_rev (n : ℕ) : Matrix (Fin n) (Fin n) ℤ :=
         else(if i = (0 : ℕ) ∧ j = (1 : ℕ) ∨ j = (0 : ℕ) ∧ i = (1 : ℕ) then 0
           else (if (j : ℕ) + 1 = i ∨ (i : ℕ) + 1 = j then -1 else 0)))
 
-def D_rev' (n : ℕ) :=
-  Matrix.of fun i j : Fin n ↦ D n (i.rev) (j.rev)
-
-lemma D_rev_eq (n : ℕ) : D_rev n = D_rev' n := by
+lemma D_rev_eq (n : ℕ) : D_rev n = rev (D n) := by
   ext i j
-  simp [D_rev, D_rev', D, Fin.rev]
+  simp [D_rev, rev, D, Fin.rev]
   split_ifs
   <;> grind
-
-lemma D_rev_eq' (n : ℕ) : D_rev' n =
-    let e := Equiv.ofBijective (fun i : Fin n ↦ i.rev) Fin.rev_bijective
-  (reindex e e) (D n) := by
-  ext i j
-  simp [D_rev', reindex, Equiv.ofBijective, Function.surjInv]
-  grind
-
-@[simp]
-lemma det_D_rev (n : ℕ) : det (D_rev n) = det (D n) := by
-  simp [D_rev_eq, D_rev_eq']
 
 end Preliminaries
 
@@ -232,29 +234,28 @@ theorem det_D (n : ℕ) : det (D n) =
   else if n = 1 then 2
   else 4 :=
     Nat.strong_induction_on n fun n ih => by
-  rw [← det_D_rev]
   cases n with
   | zero => simp
   | succ n =>
     cases n with
-    | zero => simp[D_rev]
+    | zero => simp
     | succ n =>
       have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
       have h2 := ih (n+1) (Nat.lt_succ_self _)
       by_cases hn : n = 0
       · rw [hn]
-        simp [D_two]
+        decide
       by_cases hn' : n = 1
       · rw [hn']
-        simp
-        simp [D_three, Matrix.det_fin_three]
+        decide
       · have : ¬n < 2 := by omega
+        rw [← det_rev, ← D_rev_eq]
         rw [ind_det (D_rev (n + 1 + 1)) (D_rev (n + 1)) (D_rev n) (-1) (-1)]
-        · simp [h1, h2]
+        · simp [D_rev_eq, det_rev, h1, h2]
           split_ifs
           norm_num
         · ext i j
-          simp [ind_matrix, D_rev , Fin.castLT]
+          simp [ind_matrix, D_rev, Fin.castLT]
           grind
         · ext i j
           simp [isTopLeftBlock, D_rev, Fin.castSucc, Fin.castAdd, Fin.castLE]

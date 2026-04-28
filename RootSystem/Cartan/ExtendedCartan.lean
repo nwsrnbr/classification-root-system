@@ -2,6 +2,7 @@ import Mathlib.LinearAlgebra.Matrix.Notation
 import Mathlib.LinearAlgebra.Matrix.Symmetric
 import Mathlib.Data.Matrix.Cartan
 import RootSystem.Cartan.Determinant
+import RootSystem.SymmMatrix.Determinant
 
 namespace CartanMatrix
 
@@ -9,20 +10,8 @@ open Matrix
 
 variable (n : ℕ)
 
-def C_rev := Matrix.of fun i j : Fin n ↦ C n (i.rev) (j.rev)
-
-lemma C_rev_eq (n : ℕ) : C_rev n =
-    let e := Equiv.ofBijective (fun i : Fin n ↦ i.rev) Fin.rev_bijective
-  (reindex e e) (C n) := by
-  ext i j
-  simp [C_rev, reindex, Equiv.ofBijective, Function.surjInv]
-  grind
-
-lemma det_C_rev : (C_rev n).det = (C n).det := by
-  simp [C_rev_eq]
-
---lemma det_SymmMatrix_C_rev : (SymmMatrix (C_rev n))
-
+lemma det_C_rev : (rev (C n)).det = (C n).det := by
+  simp [det_rev]
 
 /-- The Cartan matrix of type \widetilde{A}ₙ.
 
@@ -67,7 +56,7 @@ The corresponding Coxeter-Dynkin diagram is:
 -/
 def C_tilda : Matrix (Fin (n + 1)) (Fin (n + 1)) ℤ :=
   Matrix.of fun i j : Fin (n + 1) ↦
-    if h : i < n ∧ j < n then (C_rev n) (i.castLT h.1) (j.castLT h.2)
+    if h : i < n ∧ j < n then (rev (C n)) (i.castLT h.1) (j.castLT h.2)
     else if i = j then 2
     else if (j : ℕ) + 1 = i then -1
     else if (i : ℕ) + 1 = j then -2
@@ -86,7 +75,7 @@ The corresponding Coxeter-Dynkin diagram is:
 -/
 def D_tilda : Matrix (Fin (n + 1)) (Fin (n + 1)) ℤ :=
   Matrix.of fun i j : Fin (n + 1) ↦
-    if h : i < n ∧ j < n then (D n) (i.castLT h.1) (j.castLT h.2)
+    if h : i < n ∧ j < n then (D_rev n) (i.castLT h.1) (j.castLT h.2)
     else if i = j then 2
     else if (j : ℕ) + 2 = i then -1
     else if (i : ℕ) + 2 = j then -1

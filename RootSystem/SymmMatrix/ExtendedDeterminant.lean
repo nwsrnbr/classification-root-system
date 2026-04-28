@@ -13,10 +13,11 @@ import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
 import Mathlib.GroupTheory.Coxeter.Matrix
 import Mathlib.Tactic.FinCases
 
-set_option maxHeartbeats 1000000
+--set_option maxHeartbeats 500000
 
-variable {ι E F : Type*} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E] [SeminormedAddCommGroup F]
-  [InnerProductSpace ℝ F] (Φ : RootPairing ι ℝ E F) [Φ.IsRootSystem] [Φ.IsReduced]
+variable {ι E F : Type*} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [SeminormedAddCommGroup F] [InnerProductSpace ℝ F]
+  (Φ : RootPairing ι ℝ E F) [Φ.IsRootSystem] [Φ.IsReduced]
 
 variable [Φ.IsCrystallographic]
 
@@ -35,13 +36,24 @@ section Preliminaries
 
 variable (n : ℕ)
 
+theorem det_SymmMatrix_C_rev : (SymmMatrix (rev (C n))).det = (SymmMatrix (C n)).det := by
+  have : (SymmMatrix (rev (C n))) = rev (SymmMatrix (C n)) := by
+    ext i j
+    simp [SymmMatrix, rev]
+  rw [this, det_rev]
+
 theorem det_SymmMatrix_D_rev : (SymmMatrix (D_rev n)).det = (SymmMatrix (D n)).det := by
-  rw [det_SymmMatrix_eq (D n) (D_isSymm n) (D_diag n) (D_off_diag_nonpos n), ← det_D_rev]
-  rw [Int.cast_det]
-  congr
-  ext i j
-  simp [SymmMatrix, D_rev]
-  grind
+  rw [det_SymmMatrix_eq (D n) (D_isSymm n) (D_diag n) (D_off_diag_nonpos n)]
+  rw [D_rev_eq, det_SymmMatrix_eq]
+  · rw [det_rev]
+  · apply rev_isSymm (D_isSymm n)
+  · intro _
+    dsimp [rev]
+    rw [D_diag]
+  · intro _ _ _
+    dsimp [rev]
+    apply D_off_diag_nonpos
+    simpa
 
 end Preliminaries
 
@@ -53,7 +65,10 @@ def a' : Matrix (Fin (n + 1)) (Fin (n + 1)) ℤ :=
       else (if (j : ℕ) + 1 = i ∨ (i : ℕ) + 1 = j then -1
         else (if i = (0 : ℕ) ∧ j = n ∨ j = (0 : ℕ) ∧ i = n then -1 else 0))
 
-theorem det_SymmMatrix_a' : (SymmMatrix (a' n)).det = if n = 0 then 2 else if n = 1 then 3 else 0 := by
+theorem det_SymmMatrix_a' : (SymmMatrix (a' n)).det =
+    if n = 0 then 2
+    else if n = 1 then 3
+    else 0 := by
   sorry
   /-
   by_cases h0 : n = 0
@@ -107,7 +122,10 @@ theorem det_SymmMatrix_a' : (SymmMatrix (a' n)).det = if n = 0 then 2 else if n 
 
 
 
-theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det = if n = 0 ∨ n = 1 then 2 else if n = 2 then 4 else 0 := by
+theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det =
+    if n = 0 ∨ n = 1 then 2
+    else if n = 2 then 4
+    else 0 := by
   induction' n using Nat.strongRec with n ih
   cases n with
   | zero => simp [SymmMatrix]
@@ -127,14 +145,15 @@ theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det = if n = 0 ∨ n =
       by_cases hn : n = 0
       · rw [hn]
         have : SymmMatrix (B_tilda 2) = !![2, 0, 0; 0, 2, -√2; 0, -√2, 2] := by
-          simp [SymmMatrix, B_tilda, D_rev]
+          dsimp [SymmMatrix, B_tilda, D_rev]
           ext i j
           fin_cases i
           <;> fin_cases j
           <;> simp
         simp [this, Matrix.det_fin_three]
         grind
-      · rw [ind_det (SymmMatrix (B_tilda (n + 1 + 1))) (SymmMatrix (D_rev (n  + 1 + 1))) (SymmMatrix (D_rev (n + 1))) (-√2 : ℝ) (-√2 : ℝ)]
+      · rw [ind_det (SymmMatrix (B_tilda (n + 1 + 1))) (SymmMatrix (D_rev (n + 1 + 1)))
+            (SymmMatrix (D_rev (n + 1))) (-√2 : ℝ) (-√2 : ℝ)]
         · simp [det_SymmMatrix_D_rev, det_SymmMatrix_D]
           aesop
         · ext i j
@@ -151,15 +170,20 @@ theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det = if n = 0 ∨ n =
             have : i = n + 1 + 1 := by omega
             split_ifs
             <;> grind
-        · simp [isTopLeftBlock, SymmMatrix, D_rev]
-          aesop
+        · ext i j
+          simp [isTopLeftBlock, SymmMatrix, D_rev]
+          split_ifs
+          <;> simp
 
-theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det = if n = 0 ∨ n = 1 then 2 else 0 := by
-  sorry
-  /-
-  induction' n using Nat.strongRec with n ih
+#eval C_tilda 5
+#eval ind_matrix ((rev (C (3 + 1 + 1)))) (-1) (-2)
+
+theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det =
+    if n = 0 ∨ n = 1 then 2
+    else 0 :=
+    Nat.strong_induction_on n fun n ih => by
   cases n with
-  | zero => simp [SymmMatrix]
+  | zero => simp [SymmMatrix, C_tilda]
   | succ n =>
     cases n with
     | zero =>
@@ -173,32 +197,23 @@ theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det = if n = 0 ∨ n =
     | succ n =>
       have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
       have h2 := ih (n+1) (Nat.lt_succ_self _)
-      by_cases hn : n = 0
-      · rw [hn]
-        have : SymmMatrix (C_tilda 2) = !![2, -√2, 0; -√2, 2, -√2; 0, -√2, 2] := by
-          simp [SymmMatrix, C_tilda, C]
-          ext i j
-          fin_cases i
-          <;> fin_cases j
-          <;> simp
-        simp [this, Matrix.det_fin_three]
-        grind
-      · rw [ind_det (SymmMatrix (C_tilda (n + 1 + 1))) (SymmMatrix (C_rev (n  + 1 + 1))) (SymmMatrix (C_rev (n + 1))) (-√2 : ℝ) (-√2 : ℝ)]
-        · simp [det_SymmMatrix_C_rev]
-        · ext i j
-          simp [SymmMatrix, ind_matrix, C_tilda, Fin.castLT]
-          by_cases hi : i ≤ n + 1
-          by_cases hj : j ≤ n + 1
-          · simp [hi, hj]
-            grind
-          · have : j = n + 1 + 1 := by omega
-            simp [hi, hj]
-            split_ifs
-            <;> grind
-          · simp [hi]
-            have : i = n + 1 + 1 := by omega
-            split_ifs
-            <;> grind
-        · simp [isTopLeftBlock, SymmMatrix, C]
+      rw [ind_det (SymmMatrix (C_tilda (n + 1 + 1))) (SymmMatrix (rev (C (n + 1 + 1))))
+          (SymmMatrix (rev (C (n + 1)))) (-√2) (-√2)]
+      · simp [det_SymmMatrix_C_rev, det_SymmMatrix_C]
+      · ext i j
+        simp [SymmMatrix, ind_matrix, C_tilda, Fin.castLT]
+        by_cases hi : i ≤ n + 1
+        by_cases hj : j ≤ n + 1
+        · simp [hi, hj]
           grind
-  -/
+        · have : j = n + 1 + 1 := by omega
+          simp [hi, hj]
+          split_ifs
+          <;> grind
+        · simp [hi]
+          have : i = n + 1 + 1 := by omega
+          split_ifs
+          <;> grind
+      · ext i j
+        simp [isTopLeftBlock, SymmMatrix, rev, C]
+        grind
