@@ -35,7 +35,286 @@
 <span class="author">Noboru Nawashiro</span>
 </p>
 </div>
-<p>test </p>
+<h1 id="a0000000002">0.1 Sylvesterの判定法</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:sylvester_criterion">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.1</span>
+    <span class="theorem_thmtitle">Sylvesterの判定法</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:sylvester_criterion">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/sylvester_criterion" class="lean_decl">sylvester_criterion</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(R\)上\(n \times n\)エルミート行列\(M\)に対し，次は同値である： </p>
+<ol class="enumerate">
+  <li><p>\(M\)は正定値行列である． </p>
+</li>
+  <li><p>任意の\(0 {\lt} k \le n\)に対し，\(M\)の\(k\)次主小行列(左上\(k \times k\)をとった行列)の行列式は正である． </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<p>以下，\(M \in \operatorname {M}_n(\mathbb {R})\)とし，\(I = \{ 1, 2, \ldots , n\} \)とする(Lean内では\(0, 1, \ldots , n - 1\)であることに注意)． これを示すために，いくつか定義と補題を用意する： </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:Matrix.leadingSubmatrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:Matrix.leadingSubmatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/Matrix.leadingSubmatrix" class="lean_decl">Matrix.leadingSubmatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(M_k\)と書き，\(M\)の\(k\)次主小行列を表す． </p>
+
+  </div>
+</div>
+<p>\(X\)を任意の添字集合で\(|X| = m\)，\(e : X \rightarrow I\)を写像とする． 行列\(M_{e, e} \in \operatorname {M}_m(\mathbb {R})\)を </p>
+<div class="equation" id="a0000000003">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (M_{e, e})_{ij} := M_{e(i),\  e(j)} \end{equation}
+  </div>
+  <span class="equation_label">1</span>
+</p>
+</div>
+<p> となるように定める． </p>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IsHermitian.submatrix_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.3</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:IsHermitian.submatrix_injective">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsHermitian.submatrix_injective" class="lean_decl">IsHermitian.submatrix_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  エルミート行列\(M\)に対し，\(M_{e, e}\)もまたエルミートである． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:PosDef.submatrix_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.4</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:PosDef.submatrix_injective">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000004"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/PosDef.submatrix_injective" class="lean_decl">PosDef.submatrix_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  写像\(e\)は単射であるとする． 正定値行列\(M\)に対し，\(M_{e, e}\)もまた正定値である． つまり，正定値行列の部分行列もまた正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000004">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>部分行列がエルミートであることは上の補題&#160;<a href="index.html#lem:IsHermitian.submatrix_injective">0.1.3</a>から従う． </p>
+<p>\( 0 \ne x := {}^t\! (x_1, \ldots , x_m) \in \mathbb {R}^m\)とする． </p>
+<div class="equation" id="a0000000005">
+<p>
+  <div class="equation_content">
+    \begin{equation}  y_i := \begin{cases}  x_j, &  e(j) = i,\\ 0, &  \mathrm{otherwise} \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">2</span>
+</p>
+</div>
+<p> とし，ベクトル\(y \in \mathbb {R}^n\)を\(y := {}^t\! (y_1, \ldots , y_n)\)と定める． すると，それぞれの二次形式は一致する： </p>
+<div class="equation" id="<plasTeX.TeXFragment object at 0x11a5f7410>">
+<p>
+  <div class="equation_content">
+    \begin{equation}  x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy} \end{equation}
+  </div>
+  <span class="equation_label">5</span>
+</p>
+</div>
+<p> \(y = 0\)ならば\(x = 0\)なので，対偶をとれば\(y \ne 0\)がわかる． \(M\)の正定値性より，式&#160;??は正であるから，\(M_{e,e}\)の正定値性が示せた． </p>
+
+  </div>
+</div>
+<p>Sylvesterの判定法の\(\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_det}\)を示す： </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:posDef_leading_minors_pos">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.5</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:posDef_leading_minors_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000006"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_leading_minors_pos" class="lean_decl">posDef_leading_minors_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>  \(M\)が正定値行列であるとき，任意の\(k \le n\)に対し，\(\det M_k {\gt} 0\)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000006">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>正定値行列の行列式は正であるので，\(M_k\)が正定値であることを言えば十分である． 補題&#160;<a href="index.html#lem:PosDef.submatrix_injective">0.1.4</a>より\(M_k\)は正定値であるから，定理の主張が従う． </p>
+
+  </div>
+</div>
 
 </div> <!--main-text -->
 </div> <!-- content-wrapper -->

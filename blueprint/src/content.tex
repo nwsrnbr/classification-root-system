@@ -6,4 +6,81 @@
 % the current file can be a simple sequence of \input. Otherwise It
 % can start with a \section or \chapter for instance.
 
-test
+\section{Sylvesterの判定法}
+
+\begin{theorem}[Sylvesterの判定法]
+  \label{thm:sylvester_criterion}
+  \lean{sylvester_criterion}
+  \leanok
+  $R$上$n \times n$エルミート行列$M$に対し，次は同値である：
+  \begin{enumerate}
+    \item $M$は正定値行列である．\label{enu:Sylvester_posdef}
+    \item 任意の$0 < k \le n$に対し，$M$の$k$次主小行列(左上$k \times k$をとった行列)の行列式は正である．\label{enu:Sylvester_det}
+  \end{enumerate}
+\end{theorem}
+
+以下，$M \in \M_n(\R)$とし，$I = \{1, 2, \ldots, n\}$とする(Lean内では$0, 1, \ldots, n - 1$であることに注意)．
+これを示すために，いくつか定義と補題を用意する：
+
+\begin{definition}
+  \label{def:Matrix.leadingSubmatrix}
+  \lean{Matrix.leadingSubmatrix}
+  \leanok
+  $M_k$と書き，$M$の$k$次主小行列を表す．
+\end{definition}
+
+$X$を任意の添字集合で$|X| = m$，$e : \map{X}{I}$を写像とする．
+行列$M_{e, e} \in \M_m(\R)$を
+\begin{equation}
+  (M_{e, e})_{ij} := M_{e(i),\ e(j)}
+\end{equation}
+となるように定める．
+
+\begin{lemma}
+  \label{lem:IsHermitian.submatrix_injective}
+  \lean{IsHermitian.submatrix_injective}
+  \leanok
+  エルミート行列$M$に対し，$M_{e, e}$もまたエルミートである．
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:PosDef.submatrix_injective}
+  \lean{PosDef.submatrix_injective}
+  \leanok
+  写像$e$は単射であるとする．
+  正定値行列$M$に対し，$M_{e, e}$もまた正定値である．
+  つまり，正定値行列の部分行列もまた正定値である．
+\end{lemma}
+
+\begin{proof}
+  部分行列がエルミートであることは上の補題~\ref{lem:IsHermitian.submatrix_injective}から従う．
+
+  $ 0 \ne x := \transpose{(x_1, \ldots, x_m)} \in \R^m$とする．
+  \begin{equation}
+    y_i := \begin{cases}
+      x_j, & e(j) = i,\\
+      0, & \mathrm{otherwise}
+    \end{cases}
+  \end{equation}
+  とし，ベクトル$y \in \R^n$を$y := \transpose{(y_1, \ldots, y_n)}$と定める．
+  すると，それぞれの二次形式は一致する：
+  \begin{equation}
+    x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy}
+  \end{equation}
+  $y = 0$ならば$x = 0$なので，対偶をとれば$y \ne 0$がわかる．
+  $M$の正定値性より，式~\eqref{eq:quad_form_xy}は正であるから，$M_{e,e}$の正定値性が示せた．
+\end{proof}
+
+Sylvesterの判定法の$\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_det}$を示す：
+
+\begin{theorem}
+  \label{thm:posDef_leading_minors_pos}
+  \lean{posDef_leading_minors_pos}
+  \leanok
+  $M$が正定値行列であるとき，任意の$k \le n$に対し，$\det M_k > 0$である．
+\end{theorem}
+
+\begin{proof}
+  正定値行列の行列式は正であるので，$M_k$が正定値であることを言えば十分である．
+  補題~\ref{lem:PosDef.submatrix_injective}より$M_k$は正定値であるから，定理の主張が従う．
+\end{proof}

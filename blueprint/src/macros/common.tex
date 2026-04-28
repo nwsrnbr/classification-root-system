@@ -9,10 +9,45 @@
 % (this is what the [theorem] arguments mean) and never resets it.
 % If you want for instance to number them within chapters then you can add
 % [chapter] at the end of the next line.
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\st}{\ \text{s.t.}\ }
+\newcommand{\map}[2]{#1 \rightarrow #2}
+\newcommand{\set}[2]{\left\lbrace #1 \mathrel{} \middle| \mathrel{} #2 \right\rbrace}
+\newcommand{\ddv}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\dpdv}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\dsum}{\displaystyle \sum}
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\transpose}[1]{{}^t\!#1}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\operatorname{M}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\Fix}{\operatorname{Fix}}
+
+% 数式番号を参照されたもののみ表示
+\mathtoolsset{showonlyrefs=true}

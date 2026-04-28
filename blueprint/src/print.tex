@@ -10,16 +10,18 @@
 % It is otherwise a very minimal preamble (you should probably at least
 % add cleveref and tikz-cd).
 
-\documentclass[a4paper]{report}
+\documentclass[xelatex, a4paper, ja=standard]{bxjsarticle}
+% \documentclass[a4paper]{report}
 
 \usepackage{geometry}
 
 \usepackage{expl3}
 
-\usepackage{amssymb, amsthm, mathtools}
+\usepackage{wrapfig}
+\usepackage{amsmath,amssymb,amsthm,mathcomp,empheq,bm,enumitem,url,color,tcolorbox,listings,newverbs,hhline,multirow,comment}
 \usepackage[unicode,colorlinks=true,linkcolor=blue,urlcolor=magenta, citecolor=blue]{hyperref}
 
-\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+%\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 
 \input{macros/common}
 \input{macros/print}
@@ -29,5 +31,6 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 \input{content}
 \end{document}
