@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Tactic
+import Mathlib.LinearAlgebra.Matrix.Hermitian
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.Analysis.Matrix.PosDef
 
 open Matrix
 open Finset

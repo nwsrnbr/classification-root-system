@@ -1,4 +1,3 @@
-import Mathlib
 import RootSystem.SylvesterCriterion.SylvesterForward
 
 open Matrix

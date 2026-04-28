@@ -1,4 +1,3 @@
-import Mathlib
 import RootSystem.SylvesterCriterion.SylvesterForward
 import RootSystem.SylvesterCriterion.SchurComplement
 
