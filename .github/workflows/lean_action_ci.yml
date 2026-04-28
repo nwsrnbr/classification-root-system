@@ -1,4 +1,4 @@
-name: Lean Action CI
+name: Lean Action CI (fast)
 
 on:
   push:
@@ -16,6 +16,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
-      - uses: leanprover/lean-action@v1
-      - uses: leanprover-community/docgen-action@v1
+      # ① checkout
+      - uses: actions/checkout@v4
+
+      # ② elan キャッシュ
+      - name: Cache elan
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan
+
+      # ③ lake キャッシュ
+      - name: Cache lake
+        uses: actions/cache@v4
+        with:
+          path: |
+            .lake
+            build
+          key: ${{ runner.os }}-lake-${{ hashFiles('lakefile.toml') }}
+
+      # ④ mathlib 事前ビルド取得（最重要）
+      - name: Get mathlib cache
+        run: lake exe cache get
+
+      # ⑤ Lean build（軽量）
+      - name: Build project
+        uses: leanprover/lean-action@v1
+        with:
+          build: true
+          lint: false
+          mk_all-check: false

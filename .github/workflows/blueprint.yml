@@ -52,3 +52,6 @@ jobs:
         with:
           blueprint: true
           homepage: home_page
+      
+      - name: Get mathlib cache
+        run: lake exe cache get
