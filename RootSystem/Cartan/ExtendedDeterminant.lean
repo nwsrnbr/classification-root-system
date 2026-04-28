@@ -16,47 +16,6 @@ def D_tilda_remove_last (n : ℕ) (h : 2 ≤ n) : Matrix (Fin n) (Fin n) ℤ :=
 lemma det_D_tilda_remove_last (n : ℕ) (h : 2 ≤ n) : (D_tilda_remove_last n h).det = (D n).det := by
   simp [D_tilda_remove_last, D_rev_eq, det_rev]
 
-
-
-/-
-D_tilda 6 =
-!![2, 0, -1, 0, 0, 0, 0;
-  0, 2, -1, 0, 0, 0, 0;
-  -1, -1, 2, -1, 0, 0, 0;
-  0, 0, -1, 2, 0, -1, 0;
-  0, 0, 0, 0, 2, -1, 0;
-  0, 0, 0, -1, -1, 2, -1;
-  0, 0, 0, 0, 0, -1, 2]
-
-D_tilda 6 の左上 6 x 6 =
-!![2, 0, -1, 0, 0, 0;
-  0, 2, -1, 0, 0, 0;
-  -1, -1, 2, -1, 0, 0;
-  0, 0, -1, 2, 0, -1;
-  0, 0, 0, 0, 2, -1;
-  0, 0, 0, -1, -1, 2;]
-
-D_tilda 6 の左上 5 x 5 =
-!![2, 0, -1, 0, 0;
-  0, 2, -1, 0, 0;
-  -1, -1, 2, -1, 0;
-  0, 0, -1, 2, 0;
-  0, 0, 0, 0, 2]
-
--/
-
--- def D_tilda_remove_last_two (n : ℕ) (h : 1 ≤ n) : Matrix (Fin n) (Fin n) ℤ :=
---   ((Matrix.fromBlocks
---     (D_rev (n-1))
---     (0 : Matrix (Fin (n-1)) (Fin 1) ℤ)
---     (0 : Matrix (Fin 1) (Fin (n-1)) ℤ)
---     (fun _ _ => (2 : ℤ))).reindex
---       (finSumFinEquiv (m := n-1) (n := 1))
---       (finSumFinEquiv (m := n-1) (n := 1))).reindex
---         (by aesop)
---         (by aesop)
-
-
 def D_tilda_remove_last_two (n : ℕ) :=
   Matrix.fromBlocks
     (D_rev (n-1))
@@ -64,20 +23,9 @@ def D_tilda_remove_last_two (n : ℕ) :=
     (0 : Matrix (Fin 1) (Fin (n-1)) ℤ)
     (fun _ _ => (2 : ℤ))
 
-@[simp]
 lemma det_D_tilda_remove_last_two (n : ℕ) :
     (D_tilda_remove_last_two n).det = (D (n - 1)).det * 2 := by
   simp [D_tilda_remove_last_two, D_rev_eq, det_rev]
-
-
-def E_tilda₆' : Matrix (Fin 7) (Fin 7) ℤ :=
-  !![2, -1, 0, 0, 0, 0, 0;
-    -1, 2, 0, 0, -1, 0, 0;
-    0, 0, 2, -1, 0, 0, 0;
-    0, 0, -1, 2, -1, 0, 0;
-    0, -1, 0, -1, 2, -1, 0;
-    0, 0, 0, 0, -1, 2, -1;
-    0, 0, 0, 0, 0, -1, 2]
 
 /-- The principal submatrix of order 6 of \widetilde{E}₆. -/
 def E_tilda₅ : Matrix (Fin 6) (Fin 6) ℤ :=
@@ -119,8 +67,6 @@ lemma det_E_tilda₅ : E_tilda₅.det = 3 := by
 
 end Preliminaries
 
-#eval (D_tilda 4).det
-
 theorem det_D_tilda (n : ℕ) : (D_tilda n).det =
   if n = 0 then 2
   else if n = 1 then 3
@@ -136,18 +82,80 @@ theorem det_D_tilda (n : ℕ) : (D_tilda n).det =
     | succ n =>
       have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
       have h2 := ih (n+1) (Nat.lt_succ_self _)
-      by_cases hn : n = 0
-      · rw [hn]
+      by_cases hn0 : n = 0
+      · rw [hn0]
         decide
-      by_cases hn' : n = 1
-      · rw [hn']
+      by_cases hn1 : n = 1
+      · rw [hn1]
         decide
+      by_cases hn2 : n = 2
+      · rw [hn2]
+        have : D_tilda 4 =
+            (Matrix.fromBlocks
+              (fun _ _ => (2 : ℤ))
+              (0 : Matrix (Fin 1) (Fin 4) ℤ)
+              (0 : Matrix (Fin 4) (Fin 1) ℤ)
+              (D_rev 4)).reindex
+              (finSumFinEquiv (m := 1) (n := 4)) (finSumFinEquiv (m := 1) (n := 4)) := by
+          ext i j
+          fin_cases i
+          <;> fin_cases j
+          <;> decide
+        simp [this, D_rev_eq, det_rev, det_D]
       · rw [ind_det (D_tilda (n + 1 + 1)) (D_tilda_remove_last (n + 1 + 1) (by omega))
-            ((D_tilda_remove_last_two (n + 1)).reindex (finSumFinEquiv (m := n) (n := 1)) (finSumFinEquiv (m := n) (n := 1)))
+            ((D_tilda_remove_last_two (n + 1)).reindex
+              (finSumFinEquiv (m := n) (n := 1)) (finSumFinEquiv (m := n) (n := 1)))
             (-1) (-1)]
-        · sorry
-        · sorry
-        · sorry
+        · simp [det_D_tilda_remove_last]
+          change 2 * (D (n + 1 + 1)).det - (D_tilda_remove_last_two (n + 1)).det = _
+          rw [det_D_tilda_remove_last_two (n + 1)]
+          simp only [det_D]
+          omega
+        · ext i j
+          simp [D_tilda, ind_matrix, D_tilda_remove_last, Equiv.swap_apply_def, Fin.castLT]
+          by_cases hi : i < n
+          have hi' : i ≤ n + 1 := by omega
+          by_cases hj : j < n
+          · have hj' : j ≤ n + 1 := by omega
+            simp [hi, hj, hi', hj']
+            grind
+          · have hj' : j = n ∨ j = n + 1 ∨ j = n + 2 := by omega
+            rcases hj' with (hj' | hj' | hj')
+            <;> simp [hi, hi', hj', D_rev]
+            <;> grind
+          · have hi' : i = n ∨ i = n + 1 ∨ i = n + 2 := by omega
+            rcases hi' with (hi' | hi' | hi')
+            <;> simp [hi', D_rev]
+            <;> grind
+        · ext i j
+          simp [isTopLeftBlock, D_tilda_remove_last, D_tilda_remove_last_two]
+          simp [Equiv.swap_apply_def, finSumFinEquiv]
+          simp [Fin.castSucc, Fin.castAdd, Fin.castLE, Fin.addCases, Fin.castLT]
+          rcases i with ⟨i, hi⟩
+          rcases j with ⟨j, hj⟩
+          have hni1 : ¬i = n + 1 := by omega
+          have hni2 : ¬n + 1 + 1 = i := by omega
+          have hnj1 : ¬j = n + 1 := by omega
+          have hnj2 : ¬n + 1 + 1 = j := by omega
+          by_cases hi : i < n
+          <;> by_cases hj : j < n
+          · have hni0 : ¬i = n := by omega
+            have hnj0 : ¬j = n := by omega
+            simp [hi, hj, hni0, hni1, hnj0, hnj1, D_rev]
+          · have hni0 : ¬i = n := by omega
+            have hnj0 : j = n := by omega
+            simp [hi, hni0, hni1, hnj0, D_rev]
+            simp [hn0, hn1, hni2]
+            rfl
+          · have hni0 : i = n := by omega
+            have hnj0 : ¬j = n := by omega
+            have hnj1' : ¬n + 1 = j := by omega
+            simp [hj, hni0, hnj1, hnj0, D_rev]
+            simp [hn0, hn1, hnj1', hnj2]
+            rfl
+          · have hni0 : i = n := by omega
+            have hnj0 : j = n := by omega
+            simp [hni0, hnj0, D_rev]
 
 theorem det_E_tilda₆ : (E_tilda₆).det = 0 := by
   rw [ind_det E_tilda₆ E_tilda₅ E_tilda₄ (-1) (-1)]

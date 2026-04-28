@@ -10,9 +10,6 @@ open Matrix
 
 variable (n : ℕ)
 
-lemma det_C_rev : (rev (C n)).det = (C n).det := by
-  simp [det_rev]
-
 /-- The Cartan matrix of type \widetilde{A}ₙ.
 
 The corresponding Coxeter-Dynkin diagram is:

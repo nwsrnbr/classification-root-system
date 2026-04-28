@@ -191,6 +191,23 @@ theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det =
         simp [isTopLeftBlock, SymmMatrix, rev, C]
         grind
 
+theorem det_SymmMatrix_D_tilda (n : ℕ) : (SymmMatrix (D_tilda n)).det =
+    if n = 0 then 2
+    else if n = 1 then 3
+    else if n = 2 ∨ n = 3 then 4
+    else if n = 4 then 8
+    else 0 := by
+  rw [det_SymmMatrix_eq (D_tilda n)]
+  · simp [det_D_tilda];
+  · ext i j
+    simp [D_tilda, D_rev, Fin.castLT]
+    grind
+  · intro i
+    simp [D_tilda, D_rev, Fin.castLT]
+  · intro i j h
+    simp [D_tilda, D_rev, Fin.castLT]
+    grind
+
 theorem det_SymmMatrix_E_tilda₆ : (SymmMatrix E_tilda₆).det = 0 := by
   rw [det_SymmMatrix_eq E_tilda₆]
   · simp [det_E_tilda₆]
