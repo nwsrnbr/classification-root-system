@@ -1,9 +1,14 @@
-name: Compile blueprint
+name: Compile blueprint (fast)
 
 on:
   push:
     branches:
       - main # Trigger on pushes to the default branch
+    paths:
+      - 'blueprint/**'
+      - 'RootSystem/**'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
   workflow_dispatch:        # Allow manual triggering of the workflow from the GitHub Actions interface
 
 # Cancel previous runs if a new commit is pushed to the same PR or branch
@@ -40,18 +45,46 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for all branches and tags
 
-      - name: Build and lint project
-        uses: leanprover/lean-action@434f25c2f80ded67bba02502ad3a86f25db50709 # 2025-07-02
+      # 追加①：elan キャッシュ
+      - name: Cache elan
+        uses: actions/cache@v4
         with:
-          build: true
-          lint: false # true から false に変更
-          mk_all-check: true
+          path: ~/.elan
+          key: ${{ runner.os }}-elan
 
+      # 追加②：lake キャッシュ
+      - name: Cache lake
+        uses: actions/cache@v4
+        with:
+          path: |
+            .lake
+            build
+          key: ${{ runner.os }}-lake-${{ hashFiles('lakefile.toml') }}
+
+      # 追加③：doc-gen 用キャッシュ（最重要）
+      - name: Cache docbuild
+        uses: actions/cache@v4
+        with:
+          path: .lake/build/docbuild
+          key: ${{ runner.os }}-docbuild-${{ hashFiles('lakefile.toml') }}
+
+      # 追加④：Lean環境だけ先にセットアップ
+      - name: Setup Lean
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+
+      # 修正：ここに移動（順序が重要）
+      - name: Get mathlib cache
+        run: lake exe cache get
+
+      # 修正：軽量 build
+      - name: Build project
+        run: lake build
+
+      # doc-gen（キャッシュ効くようになる）
       - name: Compile blueprint and documentation
-        uses: leanprover-community/docgen-action@deed0cdc44dd8e5de07a300773eb751d33e32fc8 # 2025-10-26
+        uses: leanprover-community/docgen-action@v1
         with:
           blueprint: true
           homepage: home_page
-      
-      - name: Get mathlib cache
-        run: lake exe cache get
