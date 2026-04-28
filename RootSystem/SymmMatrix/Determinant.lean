@@ -1,25 +1,10 @@
 import Mathlib.Tactic
-import Mathlib.LinearAlgebra.RootSystem.Defs
-import Mathlib.LinearAlgebra.RootSystem.Base
-import Mathlib.LinearAlgebra.RootSystem.CartanMatrix
 import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Matrix.PosDef
 import RootSystem.Cartan.Determinant
 import Mathlib.Data.Matrix.Cartan
-import Mathlib.Combinatorics.SimpleGraph.Basic
-import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
-import Mathlib.GroupTheory.Coxeter.Matrix
 import Mathlib.Tactic.FinCases
 
-set_option maxHeartbeats 1000000
-
-variable {ι E F : Type*} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E] [SeminormedAddCommGroup F]
-  [InnerProductSpace ℝ F] (Φ : RootPairing ι ℝ E F) [Φ.IsRootSystem] [Φ.IsReduced]
-
-variable [Φ.IsCrystallographic]
-
-variable {ι R M N : Type*} [CommRing R] [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
-variable (P : RootPairing ι R M N) [P.IsCrystallographic] {b : P.Base}
+--set_option maxHeartbeats 1000000
 
 universe u
 
@@ -44,12 +29,13 @@ lemma SymmMatrix_trans_rfl (C : Matrix (Fin n) (Fin n) ℤ) : (SymmMatrix C).IsS
   simp [SymmMatrix, mul_comm]
   aesop
 
-lemma det_SymmMatrix_eq (C : Matrix (Fin n) (Fin n) ℤ) (hs : C.IsSymm) (hd : ∀ i, C i i = 2) (hn : ∀ i j, ¬i = j → C i j ≤ 0) :
+lemma det_SymmMatrix_eq (C : Matrix (Fin n) (Fin n) ℤ) (hs : C.IsSymm)
+    (hd : ∀ i, C i i = 2) (hn : ∀ i j, ¬i = j → C i j ≤ 0) :
     (SymmMatrix C).det = C.det := by
   rw [Int.cast_det]
   congr
   ext i j
-  simp [SymmMatrix]
+  dsimp [SymmMatrix]
   split_ifs with h'
   · rw [h', hd]
     simp
@@ -61,14 +47,11 @@ end Preliminaries
 variable (n : ℕ)
 
 theorem det_SymmMatrix_A : (SymmMatrix (A n)).det = (n : ℝ) + 1 := by
-  rw [det_SymmMatrix_eq (A n) (A_isSymm n) _ (A_apply_le_zero_of_ne n)]
+  rw [det_SymmMatrix_eq (A n) (A_isSymm n) (by simp [A, Matrix.of_apply]) (A_apply_le_zero_of_ne n)]
   simp [det_A]
-  intro i
-  rw [← diag_apply (A n), A_diag]
-  simp
 
-theorem det_SymmMatrix_B : (SymmMatrix (B n)).det = if n = 0 then 1 else 2 := by
-  induction' n using Nat.strongRec with n ih
+theorem det_SymmMatrix_B : (SymmMatrix (B n)).det = if n = 0 then 1 else 2 :=
+    Nat.strong_induction_on n fun n ih => by
   cases n with
   | zero => simp
   | succ n =>
@@ -77,7 +60,8 @@ theorem det_SymmMatrix_B : (SymmMatrix (B n)).det = if n = 0 then 1 else 2 := by
     | succ n =>
       have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
       have h2 := ih (n+1) (Nat.lt_succ_self _)
-      rw [ind_det (SymmMatrix (B (n + 1 + 1))) (SymmMatrix (A (n + 1))) (SymmMatrix (A n)) (-√2 : ℝ) (-√2 : ℝ)]
+      rw [ind_det (SymmMatrix (B (n + 1 + 1))) (SymmMatrix (A (n + 1)))
+          (SymmMatrix (A n)) (-√2) (-√2)]
       · simp [det_SymmMatrix_A]; ring
       · ext i j
         simp [SymmMatrix, ind_matrix, A, B, Fin.castLT]
@@ -120,24 +104,30 @@ theorem det_SymmMatrix_F₄ : (SymmMatrix F₄).det = 1 := by
   · simp [det_SymmMatrix_A, det_SymmMatrix_B]
     norm_num
   · ext i j
-    simp [SymmMatrix, ind_matrix, F₄, B, Fin.castLT]
+    simp only [SymmMatrix, ind_matrix, F₄, B, Fin.castLT]
     fin_cases i
     <;> fin_cases j
     <;> simp
   · ext i j
-    simp [isTopLeftBlock, SymmMatrix, B, A]
+    simp only [isTopLeftBlock, SymmMatrix, B, A]
     fin_cases i
     <;> fin_cases j
     <;> simp
 
 theorem det_SymmMatrix_G₂ : (SymmMatrix G₂).det = 1 := by
   have : SymmMatrix G₂ = !![2, -√3; -√3, 2] := by
-    simp [G₂, SymmMatrix]
+    simp only [G₂, SymmMatrix]
     ext i j
     fin_cases i
     <;> fin_cases j
     <;> simp
   rw [this]
   simp; norm_num
+
+section Extended
+
+
+
+end Extended
 
 end CartanMatrix

@@ -1,30 +1,12 @@
 import Mathlib.Tactic
-import Mathlib.LinearAlgebra.RootSystem.Defs
-import Mathlib.LinearAlgebra.RootSystem.Base
-import Mathlib.LinearAlgebra.RootSystem.CartanMatrix
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Matrix.PosDef
 import RootSystem.Cartan.Determinant
 import RootSystem.Cartan.ExtendedCartan
+import RootSystem.Cartan.ExtendedDeterminant
 import RootSystem.SymmMatrix.Determinant
 import Mathlib.Data.Matrix.Cartan
-import Mathlib.Combinatorics.SimpleGraph.Basic
-import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
-import Mathlib.GroupTheory.Coxeter.Matrix
 import Mathlib.Tactic.FinCases
 
 --set_option maxHeartbeats 500000
-
-variable {ι E F : Type*} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E]
-  [SeminormedAddCommGroup F] [InnerProductSpace ℝ F]
-  (Φ : RootPairing ι ℝ E F) [Φ.IsRootSystem] [Φ.IsReduced]
-
-variable [Φ.IsCrystallographic]
-
-variable {ι R M N : Type*} [CommRing R] [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
-variable (P : RootPairing ι R M N) [P.IsCrystallographic] {b : P.Base}
-
-universe u
 
 namespace CartanMatrix
 
@@ -61,9 +43,9 @@ variable (n : ℕ)
 
 def a' : Matrix (Fin (n + 1)) (Fin (n + 1)) ℤ :=
   Matrix.of fun i j : Fin (n + 1) ↦
-    if i = j then 2
-      else (if (j : ℕ) + 1 = i ∨ (i : ℕ) + 1 = j then -1
-        else (if i = (0 : ℕ) ∧ j = n ∨ j = (0 : ℕ) ∧ i = n then -1 else 0))
+  if i = j then 2
+  else (if (j : ℕ) + 1 = i ∨ (i : ℕ) + 1 = j then -1
+  else (if i = (0 : ℕ) ∧ j = n ∨ j = (0 : ℕ) ∧ i = n then -1 else 0))
 
 theorem det_SymmMatrix_a' : (SymmMatrix (a' n)).det =
     if n = 0 then 2
@@ -116,24 +98,18 @@ theorem det_SymmMatrix_a' : (SymmMatrix (a' n)).det =
       grind
   -/
 
-
-
-
-
-
-
 theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det =
     if n = 0 ∨ n = 1 then 2
     else if n = 2 then 4
-    else 0 := by
-  induction' n using Nat.strongRec with n ih
+    else 0 :=
+    Nat.strong_induction_on n fun n ih => by
   cases n with
   | zero => simp [SymmMatrix]
   | succ n =>
     cases n with
     | zero =>
       have : SymmMatrix (B_tilda 1) = !![2, -√2; -√2, 2] := by
-        simp [SymmMatrix, B_tilda]
+        simp only [SymmMatrix, B_tilda]
         ext i j
         fin_cases i
         <;> fin_cases j
@@ -175,9 +151,6 @@ theorem det_SymmMatrix_B_tilda : (SymmMatrix (B_tilda n)).det =
           split_ifs
           <;> simp
 
-#eval C_tilda 5
-#eval ind_matrix ((rev (C (3 + 1 + 1)))) (-1) (-2)
-
 theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det =
     if n = 0 ∨ n = 1 then 2
     else 0 :=
@@ -188,7 +161,7 @@ theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det =
     cases n with
     | zero =>
       have : SymmMatrix (C_tilda 1) = !![2, -√2; -√2, 2] := by
-        simp [SymmMatrix, C_tilda]
+        simp only [SymmMatrix, C_tilda]
         ext i j
         fin_cases i
         <;> fin_cases j
@@ -217,3 +190,77 @@ theorem det_SymmMatrix_C_tilda : (SymmMatrix (C_tilda n)).det =
       · ext i j
         simp [isTopLeftBlock, SymmMatrix, rev, C]
         grind
+
+theorem det_SymmMatrix_E_tilda₆ : (SymmMatrix E_tilda₆).det = 0 := by
+  rw [det_SymmMatrix_eq E_tilda₆]
+  · simp [det_E_tilda₆]
+  · ext i j
+    fin_cases i
+    <;> fin_cases j
+    <;> decide
+  · intro i
+    fin_cases i
+    <;> decide
+  · intro i j h
+    simp only [E_tilda₆]
+    fin_cases i
+    <;> fin_cases j
+    <;> aesop
+
+theorem det_SymmMatrix_E_tilda₇ : (SymmMatrix E_tilda₇).det = 0 := by
+  rw [det_SymmMatrix_eq E_tilda₇]
+  · simp [det_E_tilda₇]
+  · ext i j
+    fin_cases i
+    <;> fin_cases j
+    <;> decide
+  · intro i
+    fin_cases i
+    <;> decide
+  · intro i j h
+    simp only [E_tilda₇]
+    fin_cases i
+    <;> fin_cases j
+    <;> aesop
+
+theorem det_SymmMatrix_E_tilda₈ : (SymmMatrix E_tilda₈).det = 0 := by
+  rw [det_SymmMatrix_eq E_tilda₈]
+  · simp [det_E_tilda₈]
+  · ext i j
+    fin_cases i
+    <;> fin_cases j
+    <;> decide
+  · intro i
+    fin_cases i
+    <;> decide
+  · intro i j h
+    simp only [E_tilda₈]
+    fin_cases i
+    <;> fin_cases j
+    <;> aesop
+
+theorem det_SymmMatrix_F_tilda₄ : (SymmMatrix F_tilda₄).det = 0 := by
+  rw [ind_det (SymmMatrix F_tilda₄) (SymmMatrix F₄) (SymmMatrix (B 3)) (-1) (-1)]
+  · simp [det_SymmMatrix_F₄, det_SymmMatrix_B]
+  · ext i j
+    simp only [SymmMatrix, ind_matrix, F_tilda₄, F₄, Fin.castLT]
+    fin_cases i
+    <;> fin_cases j
+    <;> simp
+  · ext i j
+    simp only [SymmMatrix, isTopLeftBlock, F₄, B]
+    fin_cases i
+    <;> fin_cases j
+    <;> simp
+
+theorem det_SymmMatrix_G_tilda₂ : (SymmMatrix G_tilda₂).det = 0 := by
+  have : SymmMatrix G_tilda₂ = !![2, -√3, 0; -√3, 2, -1; 0, -1, 2] := by
+    simp only [G_tilda₂, SymmMatrix]
+    ext i j
+    fin_cases i
+    <;> fin_cases j
+    <;> simp
+  simp [this, det_fin_three]
+  norm_num
+
+end CartanMatrix

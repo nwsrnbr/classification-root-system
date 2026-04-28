@@ -75,10 +75,10 @@ The corresponding Coxeter-Dynkin diagram is:
 -/
 def D_tilda : Matrix (Fin (n + 1)) (Fin (n + 1)) ℤ :=
   Matrix.of fun i j : Fin (n + 1) ↦
-    if h : i < n ∧ j < n then (D_rev n) (i.castLT h.1) (j.castLT h.2)
+    if h : i < n - 2 ∧ j < n - 2 then (D_rev n) (i.castLT (by omega)) (j.castLT (by omega))
     else if i = j then 2
-    else if (j : ℕ) + 2 = i then -1
-    else if (i : ℕ) + 2 = j then -1
+    else if i.val + 1 = n ∧ (j.val + 3 = n ∨ j.val + 2 = n ∨ j.val = n) then -1
+    else if j.val + 1 = n ∧ (i.val + 3 = n ∨ i.val + 2 = n ∨ i.val = n) then -1
     else 0
 
 /-- The Cartan matrix of type \widetilde{E}₆.
@@ -94,11 +94,11 @@ o --- o --- o --- o --- o
 -/
 def E_tilda₆ : Matrix (Fin 7) (Fin 7) ℤ :=
   !![2, -1, 0, 0, 0, 0, 0;
-    -1, 2, -1, 0, 0, 0, 0;
-    0, -1, 2, -1, 0, -1, 0;
+    -1, 2, 0, 0, -1, 0, 0;
+    0, 0, 2, -1, 0, 0, 0;
     0, 0, -1, 2, -1, 0, 0;
-    0, 0, 0, -1, 2, 0, 0;
-    0, 0, -1, 0, 0, 2, -1;
+    0, -1, 0, -1, 2, -1, 0;
+    0, 0, 0, 0, -1, 2, -1;
     0, 0, 0, 0, 0, -1, 2]
 
 /-- The Cartan matrix of type \widetilde{E}₇.
@@ -115,9 +115,9 @@ def E_tilda₇ : Matrix (Fin 8) (Fin 8) ℤ :=
     -1, 2, -1, 0, 0, 0, 0, 0;
     0, -1, 2, -1, 0, 0, 0, 0;
     0, 0, -1, 2, -1, -1, 0, 0;
-    0, 0, 0, -1, 2, 0, 0, 0;
-    0, 0, 0, -1, 0, 2, -1, 0;
-    0, 0, 0, 0, 0, -1, 2, -1;
+    0, 0, 0, -1, 2, 0, -1, 0;
+    0, 0, 0, -1, 0, 2, 0, 0;
+    0, 0, 0, 0, -1, 0, 2, -1;
     0, 0, 0, 0, 0, 0, -1, 2]
 
 /-- The Cartan matrix of type \widetilde{E}₈.
@@ -130,15 +130,15 @@ o --- o --- o --- o --- o --- o --- o --- o
 ```
 -/
 def E_tilda₈ : Matrix (Fin 9) (Fin 9) ℤ :=
-  !![2, -1, 0, 0, 0, 0, 0, 0, 0;
-    -1, 2, -1, 0, 0, 0, 0, 0, 0;
-    0, -1, 2, -1, -1, 0, 0, 0, 0;
-    0, 0, -1, 2, 0, 0, 0, 0, 0;
-    0, 0, -1, 0, 2, -1, 0, 0, 0;
-    0, 0, 0, 0, -1, 2, -1, 0, 0;
-    0, 0, 0, 0, 0, -1, 2, -1, 0;
-    0, 0, 0, 0, 0, 0, -1, 2, -1;
-    0, 0, 0, 0, 0, 0, 0, -1, 2]
+  !![ 2,  0, -1,  0,  0,  0,  0,  0,  0;
+      0,  2,  0, -1,  0,  0,  0,  0,  0;
+     -1,  0,  2, -1,  0,  0,  0,  0,  0;
+      0, -1, -1,  2, -1,  0,  0,  0,  0;
+      0,  0,  0, -1,  2, -1,  0,  0,  0;
+      0,  0,  0,  0, -1,  2, -1,  0,  0;
+      0,  0,  0,  0,  0, -1,  2, -1,  0;
+      0,  0,  0,  0,  0,  0, -1,  2, -1;
+      0,  0,  0,  0,  0,  0,  0, -1,  2]
 
 /-- The Cartan matrix of type \widetilde{F}₄.
 
