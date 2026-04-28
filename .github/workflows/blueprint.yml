@@ -43,30 +43,21 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
-          fetch-depth: 0 # Fetch all history for all branches and tags
+          fetch-depth: 1
 
-      # 追加①：elan キャッシュ
+      # elan キャッシュ
       - name: Cache elan
         uses: actions/cache@v4
         with:
           path: ~/.elan
-          key: ${{ runner.os }}-elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
 
-      # 追加②：lake キャッシュ
-      - name: Cache lake
-        uses: actions/cache@v4
-        with:
-          path: |
-            .lake
-            build
-          key: ${{ runner.os }}-lake-${{ hashFiles('lakefile.toml') }}
-
-      # 追加③：doc-gen 用キャッシュ（最重要）
+      # doc-gen 用キャッシュ（最重要）
       - name: Cache docbuild
         uses: actions/cache@v4
         with:
           path: .lake/build/docbuild
-          key: ${{ runner.os }}-docbuild-${{ hashFiles('lakefile.toml') }}
+          key: ${{ runner.os }}-docbuild-${{ hashFiles('**/*.lean', 'blueprint/**') }}
 
       # 追加④：Lean環境だけ先にセットアップ
       - name: Setup Lean
@@ -80,7 +71,7 @@ jobs:
 
       # 修正：軽量 build
       - name: Build project
-        run: lake build
+        run: lake build RootSystem
 
       # doc-gen（キャッシュ効くようになる）
       - name: Compile blueprint and documentation
