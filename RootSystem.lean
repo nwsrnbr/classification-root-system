@@ -1,6 +1,3 @@
-import RootSystem.Aristotle.A_tilda
-import RootSystem.Aristotle.D_tilda
-import RootSystem.Aristotle.D_tilda_inductive
 import RootSystem.Basic
 import RootSystem.Cartan
 import RootSystem.Cartan.Determinant

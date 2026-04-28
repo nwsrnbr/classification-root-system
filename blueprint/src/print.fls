@@ -367,12 +367,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT ./print.toc
 INPUT ./print.toc
 INPUT print.toc
-OUTPUT print.toc
-INPUT ./content.tex
-INPUT ./content.tex
-INPUT ./content.tex
-INPUT ./content.tex
-INPUT content.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
@@ -396,6 +390,12 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcbx1000.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcbx0700.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcbx0500.tfm
+OUTPUT print.toc
+INPUT ./content.tex
+INPUT ./content.tex
+INPUT ./content.tex
+INPUT ./content.tex
+INPUT content.tex
 INPUT print.aux
 INPUT ./print.out
 INPUT ./print.out

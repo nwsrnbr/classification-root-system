@@ -20,7 +20,11 @@
 \end{theorem}
 
 以下，$M \in \M_n(\R)$とし，$I = \{1, 2, \ldots, n\}$とする(Lean内では$0, 1, \ldots, n - 1$であることに注意)．
-これを示すために，いくつか定義と補題を用意する：
+これを示すために，いくつか定義と補題を用意する．
+
+
+
+\subsection{Sylvesterの判定法1}
 
 \begin{definition}
   \label{def:Matrix.leadingSubmatrix}
@@ -57,7 +61,7 @@ $X$を任意の添字集合で$|X| = m$，$e : \map{X}{I}$を写像とする．
 
   $ 0 \ne x := \transpose{(x_1, \ldots, x_m)} \in \R^m$とする．
   \begin{equation}
-    y_i := \begin{cases}
+    y_i = \begin{cases}
       x_j, & e(j) = i,\\
       0, & \mathrm{otherwise}
     \end{cases}
@@ -84,3 +88,44 @@ Sylvesterの判定法の$\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_
   正定値行列の行列式は正であるので，$M_k$が正定値であることを言えば十分である．
   補題~\ref{lem:PosDef.submatrix_injective}より$M_k$は正定値であるから，定理の主張が従う．
 \end{proof}
+
+
+
+\subsection{Sylvesterの判定法2}
+
+このsubsectionでは$M \in \M_{n+1}(\R)$とする．
+
+\begin{definition}
+  \label{def:lastCol}
+  \lean{lastCol}
+  \leanok
+  ベクトル$b := (b_1, \ldots, b_n) \in \R^n$を$b_i = M_{i\ n+1}$で定める．
+  すなわち，$b$は$M$の最後の列から一番下の行を除いた縦ベクトルである．
+\end{definition}
+
+\begin{definition}
+  \label{def:lastEntry}
+  \lean{lastEntry}
+  \leanok
+  定数$c \in \R$を$c = M_{n+1\ n+1}$で定める．
+  すなわち，$c$は$M$の一番右下の成分である．
+\end{definition}
+
+\begin{definition}
+  \label{def:schurComplement}
+  \lean{schurComplement}
+  \leanok
+  $s = c - \transpose{b} A^{-1} b$を\textbf{Schur complement}という．
+  ただし，
+  \begin{equation}
+    M = \left(
+      \begin{array}{ccc|c}
+        & & & \\
+        \multicolumn{3}{c|}{A} & b \\
+        & & & \\ \hline
+        & \transpose{b} & & c
+      \end{array}
+    \right)
+  \end{equation}
+  である．
+\end{definition}

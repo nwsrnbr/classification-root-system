@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1777407400.61752 "/Users/noboru/Documents/classification-root-system/blueprint/src/print.tex" "print.pdf" "print" 1777407401.53634 0
+["pdflatex"] 1777411186.36885 "/Users/noboru/Documents/classification-root-system/blueprint/src/print.tex" "print.pdf" "print" 1777411187.20275 0
   "/Users/noboru/Documents/classification-root-system/blueprint/src/print.tex" 1777404878.14515 1320 9bafe5defbf4f83a2612c4a08748a1de ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -210,13 +210,13 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1741887487 5639808 88659873777613024dacbafd6c4030eb ""
   "/usr/local/texlive/2025/texmf.cnf" 1741887365.46517 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "content.tex" 1777407400.40164 3342 8114d36d8e0cdc081b12c9145c76feea ""
+  "content.tex" 1777411186.21198 4380 4a5fe7507874ac08454e575da406c7fd ""
   "macros/common.tex" 1777406948.35102 2099 d3ec254201bf0cf855893bae13194b2d ""
   "macros/print.tex" 1777290059.86115 1101 87627b2ec24fef68edc71c13f43f7bab ""
-  "print.aux" 1777407401.27415 851 e35fcd1fd79da9e66ba72fbef50f76b1 "pdflatex"
-  "print.out" 1777407401.27446 120 a4199839ea3e3f646591efe2884dac50 "pdflatex"
+  "print.aux" 1777411186.94269 1270 e5bc6841c3cc95958b39683b0da0f3ac "pdflatex"
+  "print.out" 1777411186.94304 398 32df3564bd18932c5fe0c19cb8b4f996 "pdflatex"
   "print.tex" 1777404878.14515 1320 9bafe5defbf4f83a2612c4a08748a1de ""
-  "print.toc" 1777407401.27461 77 1b58f74058b62143eba21849a4abeb2b "pdflatex"
+  "print.toc" 1777411186.94316 253 c25b5eba8140d98bc028a01332c30fbf "pdflatex"
   (generated)
   "print.aux"
   "print.log"
