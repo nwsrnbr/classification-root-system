@@ -84,7 +84,7 @@ jobs:
 
       # doc-gen（キャッシュ効くようになる）
       - name: Compile blueprint and documentation
-        uses: leanprover-community/docgen-action@v1
+        uses: leanprover-community/docgen-action@v4.29.0
         with:
           blueprint: true
           homepage: home_page
