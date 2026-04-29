@@ -86,7 +86,8 @@
 
   </div>
 </div>
-<p>以下，\(M \in \operatorname {M}_n(\mathbb {R})\)とし，\(I = \{ 1, 2, \ldots , n\} \)とする(Lean内では\(0, 1, \ldots , n - 1\)であることに注意)． これを示すために，いくつか定義と補題を用意する： </p>
+<p>以下，\(M \in \operatorname {M}_n(\mathbb {R})\)とし，\(I = \{ 1, 2, \ldots , n\} \)とする(Lean内では\(0, 1, \ldots , n - 1\)であることに注意)． これを示すために，いくつか定義と補題を用意する． </p>
+<h2 id="a0000000003">0.1.1 Sylvesterの判定法1</h2>
 <div class="definition_thmwrapper theorem-style-definition" id="def:Matrix.leadingSubmatrix">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -131,7 +132,7 @@
   </div>
 </div>
 <p>\(X\)を任意の添字集合で\(|X| = m\)，\(e : X \rightarrow I\)を写像とする． 行列\(M_{e, e} \in \operatorname {M}_m(\mathbb {R})\)を </p>
-<div class="equation" id="a0000000003">
+<div class="equation" id="a0000000004">
 <p>
   <div class="equation_content">
     \begin{equation}  (M_{e, e})_{ij} := M_{e(i),\  e(j)} \end{equation}
@@ -196,7 +197,7 @@
 
     <a class="icon proof" href="index.html#lem:PosDef.submatrix_injective">#</a>
     
-    <a class="icon proof" href="index.html#a0000000004"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000005"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -227,7 +228,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000004">
+<div class="proof_wrapper" id="a0000000005">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -237,16 +238,16 @@
   <div class="proof_content">
   <p>部分行列がエルミートであることは上の補題&#160;<a href="index.html#lem:IsHermitian.submatrix_injective">0.1.3</a>から従う． </p>
 <p>\( 0 \ne x := {}^t\! (x_1, \ldots , x_m) \in \mathbb {R}^m\)とする． </p>
-<div class="equation" id="a0000000005">
+<div class="equation" id="a0000000006">
 <p>
   <div class="equation_content">
-    \begin{equation}  y_i := \begin{cases}  x_j, &  e(j) = i,\\ 0, &  \mathrm{otherwise} \end{cases} \end{equation}
+    \begin{equation}  y_i = \begin{cases}  x_j, &  e(j) = i,\\ 0, &  \mathrm{otherwise} \end{cases} \end{equation}
   </div>
   <span class="equation_label">2</span>
 </p>
 </div>
 <p> とし，ベクトル\(y \in \mathbb {R}^n\)を\(y := {}^t\! (y_1, \ldots , y_n)\)と定める． すると，それぞれの二次形式は一致する： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x11a5f7410>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x11fa873b0>">
 <p>
   <div class="equation_content">
     \begin{equation}  x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy} \end{equation}
@@ -272,7 +273,7 @@
 
     <a class="icon proof" href="index.html#thm:posDef_leading_minors_pos">#</a>
     
-    <a class="icon proof" href="index.html#a0000000006"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000007"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -303,7 +304,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000006">
+<div class="proof_wrapper" id="a0000000007">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -312,6 +313,535 @@
   </div>
   <div class="proof_content">
   <p>正定値行列の行列式は正であるので，\(M_k\)が正定値であることを言えば十分である． 補題&#160;<a href="index.html#lem:PosDef.submatrix_injective">0.1.4</a>より\(M_k\)は正定値であるから，定理の主張が従う． </p>
+
+  </div>
+</div>
+<h2 id="a0000000008">0.1.2 Sylvesterの判定法2</h2>
+<p>このsubsectionでは\(M \in \operatorname {M}_{n+1}(\mathbb {R})\)とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:lastCol">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.6</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:lastCol">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/lastCol" class="lean_decl">lastCol</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  ベクトル\(b := (b_1, \ldots , b_n) \in \mathbb {R}^n\)を\(b_i = M_{i\  n+1}\)で定める． すなわち，\(b\)は\(M\)の最後の列から一番下の行を除いた縦ベクトルである． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:lastEntry">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.7</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:lastEntry">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/lastEntry" class="lean_decl">lastEntry</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  定数\(c \in \mathbb {R}\)を\(c = M_{n+1\  n+1}\)で定める． すなわち，\(c\)は\(M\)の一番右下の成分である． </p>
+
+  </div>
+</div>
+<p>これらの定義を踏まえて，以下 </p>
+<div class="equation" id="a0000000009">
+<p>
+  <div class="equation_content">
+    \begin{equation}  M = \left( \begin{array}{ccc|c}\multicolumn{3}{c|}{A} &  b \\ \hline &  {}^t\! b & &  c \end{array} \right) \end{equation}
+  </div>
+  <span class="equation_label">6</span>
+</p>
+</div>
+<p> とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:schurComplement">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.8</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:schurComplement">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/schurComplement" class="lean_decl">schurComplement</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  次の定数\(s \in \mathbb {R}\)を\(M\)の<b class="bfseries">Schur complement</b>という： </p>
+<div class="equation" id="a0000000010">
+<p>
+  <div class="equation_content">
+    \begin{equation}  s = c - {}^t\! b A^{-1} b. \end{equation}
+  </div>
+  <span class="equation_label">7</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:quadratic_form_decomp">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.9</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:quadratic_form_decomp">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/quadratic_form_decomp" class="lean_decl">quadratic_form_decomp</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(M\)はエルミートであるとする． 任意のベクトル\(v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し， </p>
+<div class="equation" id="a0000000011">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! x A x + 2t({}^t\! bx) + ct^2 \end{equation}
+  </div>
+  <span class="equation_label">8</span>
+</p>
+</div>
+<p> が成り立つ． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:quadratic_form_complete_square">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.10</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:quadratic_form_complete_square">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/quadratic_form_complete_square" class="lean_decl">quadratic_form_complete_square</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(M\)はエルミートであるとする． 上の補題&#160;<a href="index.html#lem:quadratic_form_decomp">0.1.9</a>を平方完成すると以下のようになる： </p>
+<div class="equation" id="a0000000012">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
+  </div>
+  <span class="equation_label">9</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:schur_complement_pos">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.11</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:schur_complement_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000013"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/schur_complement_pos" class="lean_decl">schur_complement_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(M\)はエルミートであるとする． また，\(A\)は正定値，\(\det M {\gt} 0\)であるとする． このとき，\(M\)のSchur complement \(s\)は正である： </p>
+<div class="equation" id="a0000000014">
+<p>
+  <div class="equation_content">
+    \begin{equation}  0 {\lt} s = c - {}^t\! b A^{-1} b. \end{equation}
+  </div>
+  <span class="equation_label">10</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000013">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\det M = (\det A) \cdot s\)である． また，仮定より\(A\)は正定値，すなわち\(\det A {\gt} 0\)であり，\(\det M {\gt} 0\)でもあるので，\(s {\gt} 0\)が従う． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:posDef_dotProduct_nonneg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.12</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:posDef_dotProduct_nonneg">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_dotProduct_nonneg" class="lean_decl">posDef_dotProduct_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(A \in \operatorname {M}_k(\mathbb {R})\)を正定値行列とする． また，\(x \in \mathbb {R}^k\)とする． このとき，\({}^t\! x A x \ge 0\)である． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:posDef_of_leading_submatrix_posDef_and_det_pos">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.13</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:posDef_of_leading_submatrix_posDef_and_det_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000015"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_of_leading_submatrix_posDef_and_det_pos" class="lean_decl">posDef_of_leading_submatrix_posDef_and_det_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>  \(M\)はエルミートであるとする． また，\(A\)は正定値，\(\det M {\gt} 0\)であるとする． このとき，\(M\)は正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000015">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>任意の\(0 \ne v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し，\({}^t\! v M v {\gt} 0\)を示す． </p>
+<p>\(t = 0\)のとき，\(A\)の正定値性から </p>
+<div class="equation" id="a0000000016">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! x A x {\gt} 0 \end{equation}
+  </div>
+  <span class="equation_label">11</span>
+</p>
+</div>
+<p> であるからよい． </p>
+<p>\(t \ne 0\)のとき，補題&#160;<a href="index.html#lem:quadratic_form_complete_square">0.1.10</a>より </p>
+<div class="equation" id="a0000000017">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
+  </div>
+  <span class="equation_label">12</span>
+</p>
+</div>
+<p> である． 右辺の第1項目は\(A\)の正定値性より非負，第2項目は補題&#160;<a href="index.html#lem:schur_complement_pos">0.1.11</a>より\(s {\gt} 0\)であるから正である． よって，この場合でも\({}^t\! v M v {\gt} 0\)である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:leadingSubmatrix_leadingSubmatrix">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.14</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:leadingSubmatrix_leadingSubmatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/leadingSubmatrix_leadingSubmatrix" class="lean_decl">leadingSubmatrix_leadingSubmatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(j \le k \le n\)とする． \(M\)の\(k\)次主小行列の\(j\)次主小行列は，\(M\)の\(j\)次主小行列である： </p>
+<div class="equation" id="a0000000018">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (M_k)_j = M_j \end{equation}
+  </div>
+  <span class="equation_label">13</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:leading_minors_pos_implies_posDef">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.15</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:leading_minors_pos_implies_posDef">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/leading_minors_pos_implies_posDef" class="lean_decl">leading_minors_pos_implies_posDef</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>  \(M \in \operatorname {M}_n(\mathbb {R})\)はエルミートであるとする． また，任意の\(k \le n\)に対し，\(0 {\lt} k\)ならば\(0 {\lt} M_k\)であるとする． このとき，\(M\)は正定値である． </p>
 
   </div>
 </div>

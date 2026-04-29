@@ -111,21 +111,123 @@ Sylvesterの判定法の$\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_
   すなわち，$c$は$M$の一番右下の成分である．
 \end{definition}
 
+これらの定義を踏まえて，以下
+\begin{equation}
+  M = \left(
+    \begin{array}{ccc|c}
+      & & & \\
+      \multicolumn{3}{c|}{A} & b \\
+      & & & \\ \hline
+      & \transpose{b} & & c
+    \end{array}
+  \right)
+\end{equation}
+とする．
+
 \begin{definition}
   \label{def:schurComplement}
   \lean{schurComplement}
   \leanok
-  $s = c - \transpose{b} A^{-1} b$を\textbf{Schur complement}という．
-  ただし，
+  次の定数$s \in \R$を$M$の\textbf{Schur complement}という：
   \begin{equation}
-    M = \left(
-      \begin{array}{ccc|c}
-        & & & \\
-        \multicolumn{3}{c|}{A} & b \\
-        & & & \\ \hline
-        & \transpose{b} & & c
-      \end{array}
-    \right)
+    s = c - \transpose{b} A^{-1} b.
+  \end{equation}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:quadratic_form_decomp}
+  \lean{quadratic_form_decomp}
+  \leanok
+  $M$はエルミートであるとする．
+  任意のベクトル$v := (x_1, \ldots, x_n, t) \in \R^{n+1}$に対し，
+  \begin{equation}
+    \transpose{v} M v
+    = \transpose{x} A x + 2t(\transpose{b}x) + ct^2
+  \end{equation}
+  が成り立つ．
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:quadratic_form_complete_square}
+  \lean{quadratic_form_complete_square}
+  \leanok
+  $M$はエルミートであるとする．
+  上の補題~\ref{lem:quadratic_form_decomp}を平方完成すると以下のようになる：
+  \begin{equation}
+    \transpose{v} M v
+    = \transpose{(x + t A^{-1} b)} A (x + t A^{-1} b) + st^2
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:schur_complement_pos}
+  \lean{schur_complement_pos}
+  \leanok
+  $M$はエルミートであるとする．
+  また，$A$は正定値，$\det M > 0$であるとする．
+  このとき，$M$のSchur complement $s$は正である：
+  \begin{equation}
+    0 < s = c - \transpose{b} A^{-1} b.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $\det M = (\det A) \cdot s$である．
+  また，仮定より$A$は正定値，すなわち$\det A > 0$であり，$\det M > 0$でもあるので，$s > 0$が従う．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:posDef_dotProduct_nonneg}
+  \lean{posDef_dotProduct_nonneg}
+  \leanok
+  $A \in \M_k(\R)$を正定値行列とする．
+  また，$x \in \R^k$とする．
+  このとき，$\transpose{x} A x \ge 0$である．
+\end{lemma}
+
+\begin{theorem}
+  \label{thm:posDef_of_leading_submatrix_posDef_and_det_pos}
+  \lean{posDef_of_leading_submatrix_posDef_and_det_pos}
+  \leanok
+  $M$はエルミートであるとする．
+  また，$A$は正定値，$\det M > 0$であるとする．
+  このとき，$M$は正定値である．
+\end{theorem}
+
+\begin{proof}
+  任意の$0 \ne v := (x_1, \ldots, x_n, t) \in \R^{n+1}$に対し，$\transpose{v} M v > 0$を示す．
+
+  $t = 0$のとき，$A$の正定値性から
+  \begin{equation}
+    \transpose{v} M v = \transpose{x} A x > 0
+  \end{equation}
+  であるからよい．
+
+  $t \ne 0$のとき，補題~\ref{lem:quadratic_form_complete_square}より
+  \begin{equation}
+    \transpose{v} M v = \transpose{(x + t A^{-1} b)} A (x + t A^{-1} b) + st^2
   \end{equation}
   である．
-\end{definition}
+  右辺の第1項目は$A$の正定値性より非負，第2項目は補題~\ref{lem:schur_complement_pos}より$s > 0$であるから正である．
+  よって，この場合でも$\transpose{v} M v > 0$である．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:leadingSubmatrix_leadingSubmatrix}
+  \lean{leadingSubmatrix_leadingSubmatrix}
+  \leanok
+  $j \le k \le n$とする．
+  $M$の$k$次主小行列の$j$次主小行列は，$M$の$j$次主小行列である：
+  \begin{equation}
+    (M_k)_j = M_j
+  \end{equation}
+\end{lemma}
+
+\begin{theorem}
+  \label{thm:leading_minors_pos_implies_posDef}
+  \lean{leading_minors_pos_implies_posDef}
+  \leanok
+  $M \in \M_n(\R)$はエルミートであるとする．
+  また，任意の$k \le n$に対し，$0 < k$ならば$0 < M_k$であるとする．
+  このとき，$M$は正定値である．
+\end{theorem}

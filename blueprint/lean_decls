@@ -3,3 +3,13 @@ Matrix.leadingSubmatrix
 IsHermitian.submatrix_injective
 PosDef.submatrix_injective
 posDef_leading_minors_pos
+lastCol
+lastEntry
+schurComplement
+quadratic_form_decomp
+quadratic_form_complete_square
+schur_complement_pos
+posDef_dotProduct_nonneg
+posDef_of_leading_submatrix_posDef_and_det_pos
+leadingSubmatrix_leadingSubmatrix
+leading_minors_pos_implies_posDef

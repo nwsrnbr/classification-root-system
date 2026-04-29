@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  29 APR 2026 06:19
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  29 APR 2026 13:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -944,9 +944,11 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
 
 [1
 
-])
+]
 
-[2] (./print.aux)
+[2])
+
+[3] (./print.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -959,12 +961,12 @@ Package rerunfilecheck Info: File `print.out' has not changed.
 (rerunfilecheck)             Checksum: 32DF3564BD18932C5FE0C19CB8B4F996;398.
  ) 
 Here is how much of TeX's memory you used:
- 30490 strings out of 473832
- 640623 string characters out of 5729481
- 1055411 words of memory out of 5000000
- 53025 multiletter control sequences out of 15000+600000
+ 30497 strings out of 473832
+ 640872 string characters out of 5729481
+ 1055613 words of memory out of 5000000
+ 53032 multiletter control sequences out of 15000+600000
  575886 words of font info for 118 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
  116i,7n,121p,607b,485s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on print.pdf (2 pages).
+Output written on print.pdf (3 pages).
