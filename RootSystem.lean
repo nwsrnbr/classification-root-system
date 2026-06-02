@@ -1,14 +1,4 @@
-import RootSystem.Basic
 import RootSystem.Cartan
-import RootSystem.Cartan.Determinant
-import RootSystem.Cartan.ExtendedCartan
+import RootSystem.Classification
 import RootSystem.SylvesterCriterion
-import RootSystem.SylvesterCriterion.Main
-import RootSystem.SylvesterCriterion.SchurComplement
-import RootSystem.SylvesterCriterion.SylvesterBackward
-import RootSystem.SylvesterCriterion.SylvesterCriterion
-import RootSystem.SylvesterCriterion.SylvesterForward
 import RootSystem.SymmMatrix
-import RootSystem.SymmMatrix.Determinant
-import RootSystem.SymmMatrix.ExtendedDeterminant
-import RootSystem.SymmMatrix.PosDef

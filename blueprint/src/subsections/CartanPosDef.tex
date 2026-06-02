@@ -1,0 +1,46 @@
+\subsection{Cartan行列の正定値性}
+
+\begin{theorem}
+  \label{thm:CartanMatrix.A_isPosDef}
+  \lean{CartanMatrix.A_isPosDef}
+  \leanok
+  \uses{thm:sylvester_criterion, lem:SymmMatrix_leadingSubmatrix_comm, lem:CartanMatrix.A_leadingSubmatrix, thm:CartanMatrix.det_SymmMatrix_A}
+  表~\ref{table:CartanMatrix.det_A}の各$A_n, B_n, \ldots, G_2$に対し，それを対称化した行列$S(A_n), S(B_n), \ldots, S(G_2)$はいずれも正定値である．
+\end{theorem}
+
+\begin{proof}
+  例として$A_n$の場合を示す．
+  定理~\ref{thm:sylvester_criterion} (Sylvesterの判定法)より，任意の主小行列式が正であることを言えば良い．
+  補題~\ref{lem:SymmMatrix_leadingSubmatrix_comm}, \ref{lem:CartanMatrix.A_leadingSubmatrix}と定理~\ref{thm:CartanMatrix.det_SymmMatrix_A}より
+  \begin{equation}
+    \det (S(A_n))_k
+    = \det S((A_n)_k)
+    = \det S(A_k)
+    = k + 1
+    > 0
+  \end{equation}
+  となる．
+  他も全く同様である．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:CCartanMatrix.A_tilda_isNotPosDef}
+  \lean{CartanMatrix.A_tilda_isNotPosDef}
+  \leanok
+  \uses{thm:sylvester_criterion, thm:CartanMatrix.det_SymmMatrix_A_tilda}
+  表~\ref{table:CartanMatrix.det_A_tilda}の各$\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$に対し，それを対称化した行列$S(\widetilde{A}_n), S(\widetilde{B}_n), \ldots, S(\widetilde{G}_2)$はいずれも正定値でない．
+\end{theorem}
+
+\begin{proof}
+  例として$\widetilde{A}_n$の場合を示す．
+  定理~\ref{thm:sylvester_criterion} (Sylvesterの判定法)より，$k$次主小行列式が非正となる$k$が$1$つでもあればよい．
+  $k = n + 1$とすると，定理~\ref{thm:CartanMatrix.det_SymmMatrix_A_tilda}より
+  \begin{equation}
+    \det (S(\widetilde{A}_n))_{n+1}
+    = \det S(\widetilde{A}_n)
+    = 0
+    \le 0
+  \end{equation}
+  となる．
+  他も全く同様である．
+\end{proof}

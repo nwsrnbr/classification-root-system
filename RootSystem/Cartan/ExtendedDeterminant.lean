@@ -9,42 +9,6 @@ open Matrix
 
 section Preliminaries
 
-def D_tilda_remove_last (n : ℕ) (h : 2 ≤ n) : Matrix (Fin n) (Fin n) ℤ :=
-  let e := Equiv.swap ⟨n-2, by omega⟩ ⟨n-1, by omega⟩
-  (reindex e e) (D_rev n)
-
-lemma det_D_tilda_remove_last (n : ℕ) (h : 2 ≤ n) : (D_tilda_remove_last n h).det = (D n).det := by
-  simp [D_tilda_remove_last, D_rev_eq, det_rev]
-
-def D_tilda_remove_last_two (n : ℕ) :=
-  Matrix.fromBlocks
-    (D_rev (n-1))
-    (0 : Matrix (Fin (n-1)) (Fin 1) ℤ)
-    (0 : Matrix (Fin 1) (Fin (n-1)) ℤ)
-    (fun _ _ => (2 : ℤ))
-
-lemma det_D_tilda_remove_last_two (n : ℕ) :
-    (D_tilda_remove_last_two n).det = (D (n - 1)).det * 2 := by
-  simp [D_tilda_remove_last_two, D_rev_eq, det_rev]
-
-/-- The principal submatrix of order 6 of \widetilde{E}₆. -/
-def E_tilda₅ : Matrix (Fin 6) (Fin 6) ℤ :=
-  !![2, -1, 0, 0, 0, 0;
-    -1, 2, 0, 0, -1, 0;
-    0, 0, 2, -1, 0, 0;
-    0, 0, -1, 2, -1, 0;
-    0, -1, 0, -1, 2, -1;
-    0, 0, 0, 0, -1, 2]
-
-def E_tilda₄ : Matrix (Fin 5) (Fin 5) ℤ :=
-  (A 5).reindex c[2, 4] c[2, 4]
-
-def E_tilda₃ : Matrix (Fin 4) (Fin 4) ℤ :=
-  !![2, -1, 0, 0;
-    -1, 2, 0, 0;
-    0, 0, 2, -1;
-    0, 0, -1, 2]
-
 lemma det_E_tilda₃ : E_tilda₃.det = 9 := by decide
 
 lemma det_E_tilda₄ : E_tilda₄.det = 6 := by
@@ -64,8 +28,123 @@ lemma det_E_tilda₅ : E_tilda₅.det = 3 := by
     <;> fin_cases j
     <;> decide
 
-
 end Preliminaries
+
+theorem det_A_tilda (n : ℕ) : (A_tilda n).det =
+    if n = 0 then 2
+    else if n = 1 then 3
+    else 0 := by
+  by_cases h0 : n = 0
+  · rw [h0]
+    simp
+  by_cases h1 : n = 1
+  · rw [h1]
+    decide
+  · simp [h0, h1]
+    rw [← Matrix.exists_mulVec_eq_zero_iff]
+    let v : Fin (n + 1) → ℤ := fun _ ↦ 1
+    use v
+    split_ands
+    · apply ne_zero_of_eq_one rfl
+    · ext i
+      simp [Matrix.mulVec, dotProduct, v]
+      simp [A_tilda]
+      -- i < n なら ∑ x , (A n) i x に関する式
+      -- 第 0 行目と第 n - 1 行目の各成分の合計が特殊
+      by_cases hi : i.val < n
+      <;> simp [hi]
+      · by_cases hi' : i.val = 0
+        <;> by_cases hi'' : i.val = n - 1
+        <;> simp [Fin.sum_univ_castSucc]
+        · -- i = 0 ∧ i = n - 1
+          omega
+        · -- i = 0
+          rcases n with ( _ | _ | n )
+          <;> simp_all [Fin.sum_univ_succ, A, Fin.castLT, Fin.succ]
+        · -- i = n - 1
+          simp [A, Fin.castLT]
+          rcases n with ( _ | _ | n )
+          <;> simp_all [Fin.ext_iff]
+          rw [Finset.sum_ite]
+          norm_num
+          rw [Finset.sum_eq_single ⟨n, by linarith⟩]
+          <;> norm_num
+          · ring_nf
+            simp [neg_add_eq_zero]
+            rw [Finset.card_eq_one]
+            use ⟨n + 1, by omega⟩
+            grind
+          · grind
+        · -- i ≠ 0 ∧ i ≠ n - 1 のときは各成分の和が 0
+          split_ifs
+          · grind
+          · grind
+          · simp [A, Fin.castLT]
+            simp [Finset.sum_ite]
+            rw [add_comm, neg_add_eq_zero]
+            rw [Finset.card_eq_two.mpr]
+            · simp [Finset.card_eq_one]
+              use ⟨i, by omega⟩
+              grind
+            · refine' ⟨ ⟨ i + 1, by omega ⟩, ⟨ i - 1, by omega ⟩, _, _ ⟩
+              <;> grind
+      · have hi' : i = n := by omega
+        simp [hi']
+        simp [Finset.sum_ite]
+        rw [add_comm, neg_add_eq_zero]
+        rw [Finset.card_eq_two.mpr]
+        · simp [Finset.card_eq_one]
+          use i
+          grind
+        · refine' ⟨ ⟨0, by omega ⟩, ⟨ n - 1, by omega ⟩, _, _ ⟩
+          <;> grind
+
+
+theorem det_B_tilda (n : ℕ) : (B_tilda n).det =
+  if n = 0 ∨ n = 1 then 2
+  else if n = 2 then 4
+  else 0 :=
+    Nat.strong_induction_on n fun n ih => by
+  cases n with
+  | zero => decide
+  | succ n =>
+    cases n with
+    | zero => decide
+    | succ n =>
+      have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
+      have h2 := ih (n+1) (Nat.lt_succ_self _)
+      by_cases hn0 : n = 0
+      · rw [hn0]
+        decide
+      · rw [ind_det (B_tilda (n + 1 + 1)) (D_rev (n + 1 + 1)) (D_rev (n + 1)) (-1) (-2)]
+        · simp [D_rev_eq, det_rev, det_D]
+          omega
+        · ext i j
+          simp [ind_matrix, B_tilda, D_rev, Fin.castLT]
+        · rw [D_rev_isTopLeftBlock]
+
+theorem det_C_tilda (n : ℕ) : (C_tilda n).det =
+  if n = 0 ∨ n = 1 then 2
+  else 0 :=
+    Nat.strong_induction_on n fun n ih => by
+  cases n with
+  | zero => decide
+  | succ n =>
+    cases n with
+    | zero => decide
+    | succ n =>
+      have h1 := ih (n) (Nat.lt_succ_of_lt (Nat.lt_succ_self _))
+      have h2 := ih (n+1) (Nat.lt_succ_self _)
+      by_cases hn0 : n = 0
+      · rw [hn0]
+        decide
+      · rw [ind_det (C_tilda (n + 1 + 1)) (rev (C (n + 1 + 1))) (rev (C (n + 1))) (-2) (-1)]
+        · simp [det_rev, det_C]
+        · ext i j
+          simp [ind_matrix, C_tilda, C, Fin.castLT]
+        · ext i j
+          simp [isTopLeftBlock, rev, C]
+          grind
 
 theorem det_D_tilda (n : ℕ) : (D_tilda n).det =
   if n = 0 then 2
@@ -193,11 +272,7 @@ theorem det_E_tilda₈ : (E_tilda₈).det = 0 := by
     fin_cases i
     <;> fin_cases j
     <;> simp
-  · ext i j
-    simp only [isTopLeftBlock, E₈, E₇]
-    fin_cases i
-    <;> fin_cases j
-    <;> decide
+  · rw [← E, ← E, E_isTopLeftBlock (by linarith)]
 
 theorem det_F_tilda₄ : (F_tilda₄).det = 0 := by
   rw [ind_det F_tilda₄ F₄ (B 3) (-1) (-1)]
@@ -207,11 +282,7 @@ theorem det_F_tilda₄ : (F_tilda₄).det = 0 := by
     fin_cases i
     <;> fin_cases j
     <;> simp
-  · ext i j
-    simp only [isTopLeftBlock, F₄, B]
-    fin_cases i
-    <;> fin_cases j
-    <;> decide
+  · rw [F₄_isTopLeftBlock]
 
 theorem det_G_tilda₂ : (G_tilda₂).det = 0 := by decide
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  29 APR 2026 13:07
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  19 MAY 2026 18:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1142,24 +1142,35 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
 \openout6 = `print.toc'.
 
 
-(./content.tex
+(./content/SylvesterCriterion.tex
 
 LaTeX Font Warning: Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/it' undefin
 ed
 (Font)              using `TU/HaranoAjiMincho-Regular.otf(0)/m/n' instead on in
-put line 15.
+put line 8.
 
 LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 27.
+(Font)              scaled to size 11.09656pt on input line 20.
 
 
 [1
 
 ]
 
-[2])
+[2]) (./content/Determinant.tex)
+File: graphics/positive_definite_graph.pdf Graphic file (type pdf)
+<use graphics/positive_definite_graph.pdf>
+LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/n' will be
+(Font)              scaled to size 8.32242pt on input line 43.
+File: graphics/non-positive_definite_graph.pdf Graphic file (type pdf)
+<use graphics/non-positive_definite_graph.pdf>
+
 
 [3]
+
+[4]
+
+[5]
 (/Users/noboru/Documents/classification-root-system/blueprint/print/print.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
@@ -1170,16 +1181,16 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: 32DF3564BD18932C5FE0C19CB8B4F996;398.
+(rerunfilecheck)             Checksum: A4B53DCC70DEE9C45588557998780FB8;659.
  ) 
 Here is how much of TeX's memory you used:
- 30497 strings out of 473832
- 641540 string characters out of 5729481
- 1055613 words of memory out of 5000000
- 53032 multiletter control sequences out of 15000+600000
- 575886 words of font info for 118 fonts, out of 8000000 for 9000
+ 30536 strings out of 473832
+ 643013 string characters out of 5729481
+ 1056009 words of memory out of 5000000
+ 53061 multiletter control sequences out of 15000+600000
+ 575902 words of font info for 120 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
- 116i,7n,121p,542b,485s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,9n,121p,542b,459s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/noboru/Documents/classification-root-system/blueprint/
-print/print.pdf (3 pages).
+print/print.pdf (5 pages).

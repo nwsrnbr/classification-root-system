@@ -15,11 +15,11 @@ set_option maxHeartbeats 800000
 A positive definite matrix has positive leading principal minors.
 -/
 
-variable {n : ℕ}
+variable {n : ℕ} {R : Type*} [CommRing R]
 
 /-- The leading principal submatrix of order k, i.e., the upper-left k×k submatrix. -/
-noncomputable def Matrix.leadingSubmatrix (M : Matrix (Fin n) (Fin n) ℝ) (k : ℕ) (hk : k ≤ n) :
-    Matrix (Fin k) (Fin k) ℝ :=
+noncomputable def Matrix.leadingSubmatrix (M : Matrix (Fin n) (Fin n) R) (k : ℕ) (hk : k ≤ n) :
+    Matrix (Fin k) (Fin k) R :=
   M.submatrix (Fin.castLE hk) (Fin.castLE hk)
 
 /-

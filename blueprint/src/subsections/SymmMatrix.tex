@@ -1,0 +1,88 @@
+\subsection{対称化行列}
+
+以下$C \in \M_n(\Z)$とする．
+
+\begin{definition}
+  \label{def:SymmMatrix}
+  \lean{SymmMatrix}
+  \leanok
+  次のような行列$S(C)$を定める：
+  \begin{equation}
+    S(C)_{ij} = \begin{cases}
+      2, & i = j, \\
+      -\sqrt{C_{ij} C_{ji}}, & i \ne j.
+    \end{cases}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  \label{def:Matrix.IsSimplyLaced}
+  \lean{Matrix.IsSimplyLaced}
+  \leanok
+  $C$の任意の非対角成分が$0$か$-1$のとき，$C$は\textbf{simply laced}であるという．
+\end{definition}
+
+\begin{lemma}
+  \label{lem:SymmMatrix_eq_rfl}
+  \lean{SymmMatrix_eq_rfl}
+  \leanok
+  $C$はsimply laced，任意の対角成分は$2$，対称行列であるとする．
+  このとき，次が成り立つ：
+  \begin{equation}
+    S(C) = C.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:det_SymmMatrix_eq_rfl}
+  \lean{det_SymmMatrix_eq_rfl}
+  \leanok
+  \uses{lem:SymmMatrix_eq_rfl}
+  $C$が補題~\ref{lem:SymmMatrix_eq_rfl}の仮定を満たすとき，次が成り立つ：
+  \begin{equation}
+    \det S(C) = \det C.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:SymmMatrix_leadingSubmatrix_comm}
+  \lean{SymmMatrix_leadingSubmatrix_comm}
+  \leanok
+  対称化$S(*)$と$k \le n$次主小行列$*_k$をとる操作は可換である：
+  \begin{equation}
+    (S(C))_k = S(C_k).
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:CartanMatrix.SymmMatrix_A_isTopLeftBlock}
+  \lean{CartanMatrix.SymmMatrix_A_isTopLeftBlock}
+  \leanok
+  \uses{lem:SymmMatrix_leadingSubmatrix_comm, lem:CartanMatrix.A_leadingSubmatrix}
+  対称化しても表~\ref{table:CartanMatrix.A_leadingSubmatrix}の関係は変わらない．
+\end{lemma}
+
+\begin{theorem}
+  \label{thm:CartanMatrix.det_SymmMatrix_A}
+  \lean{CartanMatrix.det_SymmMatrix_A}
+  \leanok
+  \uses{lem:det_SymmMatrix_eq_rfl, lem:CartanMatrix.ind_det}
+  表~\ref{table:CartanMatrix.det_A}の各$A_n, B_n, \ldots, G_2$に対し，対称化しても行列式は変わらない．
+\end{theorem}
+
+\begin{proof}
+  $A_n, D_n, E_n$に関しては，simply lacedであるから補題~\ref{lem:det_SymmMatrix_eq_rfl}から従う．
+  その他に関しては，補題~\ref{lem:CartanMatrix.ind_det}を使って全く同様に帰納法で示せる．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:CartanMatrix.det_SymmMatrix_A_tilda}
+  \lean{CartanMatrix.det_SymmMatrix_A_tilda}
+  \leanok
+  \uses{lem:det_SymmMatrix_eq_rfl, lem:CartanMatrix.ind_det}
+  表~\ref{table:CartanMatrix.det_A_tilda}の各$\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$に対し，対称化しても行列式は変わらない．
+\end{theorem}
+
+\begin{proof}
+  上の定理~\ref{thm:CartanMatrix.det_SymmMatrix_A}と全く同様である．
+\end{proof}

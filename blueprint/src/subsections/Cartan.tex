@@ -1,0 +1,62 @@
+\subsection{Cartan行列}
+
+Cartan行列$A_n, B_n, \ldots, G_2$の行列式を求める．
+これらの定義はMathlibに存在する：
+
+\begin{definition}
+  \label{def:CartanMatrix.A}
+  \lean{CartanMatrix.A}
+  \leanok
+  Cartan行列$A_n \in \M_n(\Z)$を次のように定義する(例えば$A_n$)：
+  \begin{equation}
+    A_n = \begin{pmatrix}
+      2  & -1 & 0  & 0  & \cdots & 0 \\
+      -1 & 2  & -1 & 0  & \cdots & 0 \\
+      0  & -1 & 2  & -1 & \cdots & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+      0  & 0  & 0  & 0  & \cdots & 2
+    \end{pmatrix}
+  \end{equation}
+\end{definition}
+
+なお，各定義からCoxeter-Dynkin図形を描くと図~\ref{fig:positive_definite_graph}のようになる．
+特に，$E_8$の$6, 7$次主小行列はそれぞれ$E_6, E_7$と一致する．
+より一般に，$E_n$を定義しておく：
+
+\begin{definition}
+  \label{def:CartanMatrix.E}
+  \lean{CartanMatrix.E}
+  \leanok
+  $E_n$と書き，$E_8$の$n$次主小行列を表す．
+\end{definition}
+
+\begin{theorem}
+  \label{thm:CartanMatrix.det_A}
+  \lean{CartanMatrix.det_A}
+  \leanok
+  \uses{lem:CartanMatrix.ind_det, lem:CartanMatrix.A_leadingSubmatrix}
+  各Cartan行列$X_n\ (n \ne 0)$に対し，行列式は表~\ref{table:CartanMatrix.det_A}のようになる：
+  \begin{table}[htbp]
+    \centering
+    \caption{Cartan行列の行列式}
+    \label{table:CartanMatrix.det_A}
+    \begin{tabular}{c|ccccccccc}
+      $X_n$ & $A_n$ & $B_n$ & $C_n$ & $D_{n \ge 2}$ & $E_{n \ge 3}$ & $F_4$ & $G_2$ \\ \hline
+      $\det X_n$ & $n+1$ & $2$ & $2$ & $4$ & $9-n$ & $1$ & $1$
+    \end{tabular}
+  \end{table}
+\end{theorem}
+
+\begin{proof}
+  図~\ref{fig:positive_definite_graph}を見ると，$X_n \in \{A_n, B_n, C_n, \rev D_n, E_5, \ldots, E_8, F_4, G_2\}$の頂点$n$は頂点$n-1$以外と繋がっていないことがわかる．
+  すなわち，$X_n = \ind((X_n)_{n-1}, a, b)$という形をしているから補題~\ref{lem:CartanMatrix.ind_det}が使える．
+  例として，$\det A_n$を求める．
+
+  $A_n$の$n-1, n-2$次主小行列はそれぞれ$A_{n-1}, A_{n-2}$であるから，$X = A_n,\ Y = A_{n-1},\ Z = A_{n-2},\ a = b = -1$とすれば補題~\ref{lem:CartanMatrix.ind_det}の仮定を満たす．
+  よって，
+  \begin{equation}
+    \det A_n = 2 \det A_{n-1} - (-1) (-1) \det A_{n-2}
+  \end{equation}
+  である．
+  これを解くと，$\det A_n = n - 1$が得られる．
+\end{proof}

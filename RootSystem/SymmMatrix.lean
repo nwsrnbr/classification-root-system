@@ -1,3 +1,4 @@
+import RootSystem.SymmMatrix.Basic
 import RootSystem.SymmMatrix.Determinant
 import RootSystem.SymmMatrix.ExtendedDeterminant
 import RootSystem.SymmMatrix.PosDef

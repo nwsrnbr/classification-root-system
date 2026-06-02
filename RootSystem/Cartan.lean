@@ -1,2 +1,5 @@
+import RootSystem.Cartan.Auxiliary
 import RootSystem.Cartan.Determinant
 import RootSystem.Cartan.ExtendedCartan
+import RootSystem.Cartan.ExtendedDeterminant
+import RootSystem.Cartan.LeadingSubmatrix

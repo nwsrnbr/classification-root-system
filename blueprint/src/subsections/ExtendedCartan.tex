@@ -1,0 +1,73 @@
+\subsection{拡大Cartan行列}
+
+拡大Cartan行列$\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$の行列式を求める．
+これらの定義はMathlibに存在しないため，自分で定義した(例えば$\widetilde{A}_n$)：
+
+\begin{definition}
+  \label{def:CartanMatrix.A_tilda}
+  \lean{CartanMatrix.A_tilda}
+  \leanok
+  \begin{equation}
+    \widetilde{A}_n = \begin{pmatrix}
+      2  & -1 & 0  & 0  & \cdots & 0  & -1 \\
+      -1 & 2  & -1 & 0  & \cdots & 0  & 0 \\
+      0  & -1 & 2  & -1 & \cdots & 0  & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+      0  & 0  & 0  & 0  & \cdots & 2  & -1 \\
+      -1 & 0  & 0  & 0  & \cdots & -1 & 2
+    \end{pmatrix}
+  \end{equation}
+\end{definition}
+
+なお，各定義からCoxeter-Dynkin図形を描くと図~\ref{fig:non-positive_definite_graph}のようになる．
+
+\begin{theorem}
+  \label{thm:CartanMatrix.det_A_tilda}
+  \lean{CartanMatrix.det_A_tilda}
+  \leanok
+  \uses{lem:CartanMatrix.ind_det, lem:CartanMatrix.A_leadingSubmatrix}
+  各拡大Cartan行列$\widetilde{X}_n\ (n \ne 0)$に対し，行列式は表~\ref{table:CartanMatrix.det_A_tilda}のようになる：
+  \begin{table}[htbp]
+    \centering
+    \caption{Cartan行列の行列式}
+    \label{table:CartanMatrix.det_A_tilda}
+    \begin{tabular}{c|ccccccccc}
+      $\widetilde{X}_n$ & $\widetilde{A}_{n \ge 2}$ & $\widetilde{B}_{n \ge 3}$ & $\widetilde{C}_{n \ge 2}$ & $\widetilde{D}_{n \ge 5}$ & $\widetilde{E}_{n \ge 6}$ & $\widetilde{F}_4$ & $\widetilde{G}_2$ \\ \hline
+      $\det \widetilde{X}_n$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$
+    \end{tabular}
+  \end{table}
+\end{theorem}
+
+\begin{proof}
+  $\widetilde{A}_n$以外は，定理~\ref{thm:CartanMatrix.det_A}と同様に$\ind(\widetilde{X}_n, a, b)$を用いて求められる．
+  $\widetilde{A}_n$は，各$i$行目のすべての成分を足すと$0$であるから$\det \widetilde{A}_n = 0$がわかる．
+
+  Leanでの求め方を簡単に述べる．$i$を固定する．
+  $i, j \le n$に関しては$(\widetilde{A}_n)_{ij} = (A_n)_{ij}$であるから
+  \begin{equation}
+    \sum_{j = 1}^{n + 1} (\widetilde{A}_n)_{ij}
+    = \sum_{j = 1}^{n} (\widetilde{A}_n)_{ij} + (\widetilde{A}_n)_{i\ n+1}
+  \end{equation}
+  と分ける．
+
+  $2 \le i \le n-1$のとき
+  \begin{equation}
+    \sum_{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum_{j = 1}^{n} (A_n)_{ij} = 0, \qquad
+    (\widetilde{A}_n)_{i\ n+1} = 0
+  \end{equation}
+  である．
+
+  $i = 1 \lor i = n$のとき
+  \begin{equation}
+    \sum_{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum_{j = 1}^{n} (A_n)_{ij} = 1, \qquad
+    (\widetilde{A}_n)_{i\ n+1} = -1
+  \end{equation}
+  である．
+
+  $i = n + 1$のとき
+  \begin{equation}
+    \sum_{j = 1}^{n} (\widetilde{A}_n)_{ij} = -2, \qquad
+    (\widetilde{A}_n)_{i\ n+1} = 2
+  \end{equation}
+  である．
+\end{proof}

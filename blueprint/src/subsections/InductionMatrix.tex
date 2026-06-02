@@ -1,0 +1,87 @@
+\subsection{帰納法の準備}
+
+$R$は可換環とする．
+
+\begin{definition}
+  \label{def:CartanMatrix.rev}
+  \lean{CartanMatrix.rev}
+  \leanok
+  $X \in \M_n(R)$に対し，$\rev X$で$X$の$(i, j)$成分と$(n - i + 1, n - j + 1)$成分を入れ替えた行列を表す．
+\end{definition}
+
+\begin{definition}
+  \label{def:CartanMatrix.ind_matrix}
+  \lean{CartanMatrix.ind_matrix}
+  \leanok
+  $Y \in \M_n(R),\ a, b \in R$に対し，$\ind(Y, a, b) \in \M_{n+1}(R)$を以下のように定める：
+  \begin{equation}
+    \ind(Y, a, b)
+    = \left(
+      \begin{array}{cccc|c}
+        & & & & 0 \\
+        & Y & & & \vdots \\
+        & & & & 0 \\
+        & & & & b \\ \hline
+        0 & \cdots & 0 & a & 2
+      \end{array}
+    \right).
+  \end{equation}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:CartanMatrix.ind_det}
+  \lean{CartanMatrix.ind_det}
+  \leanok
+  $X \in \M_{n+2}(R),\ Y \in \M_{n+1}(R),\ Z \in \M_n(R),\ a, b \in R$とし，$X = \ind(Y, a, b),\ Y_{n-1} = Z$とする．
+  すなわち，以下が成り立っているとする：
+  \begin{equation}
+    X
+    =\left(
+      \begin{array}{cccc|c}
+        & & & & 0 \\
+        & Y & & & \vdots \\
+        & & & & 0 \\
+        & & & & b \\ \hline
+        0 & \cdots & 0 & a & 2
+      \end{array}
+    \right)
+    = \left(
+      \begin{array}{ccc|c|c}
+        & & & & 0 \\
+        & Z & & * & \vdots \\
+        & & & & 0 \\ \hline
+        & * & & * & b \\ \hline
+        0 & \cdots & 0 & a & 2
+      \end{array}
+    \right).
+  \end{equation}
+  このとき，以下の関係式が成り立つ：
+  \begin{equation}
+    \det X = 2 \det Y - ab \det Z.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  余因子展開すれば得られる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:CartanMatrix.A_leadingSubmatrix}
+  \lean{CartanMatrix.A_leadingSubmatrix}
+  \leanok
+  各Cartan行列$X_n$に対し，$k < n$次主小行列$(X_n)_k$は表~\ref{table:CartanMatrix.A_leadingSubmatrix}のようになる：
+  \begin{table}[htbp]
+    \centering
+    \caption{Cartan行列の主小行列}
+    \label{table:CartanMatrix.A_leadingSubmatrix}
+    \begin{tabular}{c|ccccccccc}
+      $X_n$ & $A_n$ & $B_n$ & $C_n$ & $D_n$ & $\rev D_n$ & $E_{n \le 8}$ & $F_4$ \\ \hline
+      $(X_n)_k$ & $A_k$ & $A_k$ & $A_k$ & $A_k$ & $\rev D_k$ & $E_k$ & $B_3, A_{k \ne 3}$
+    \end{tabular}
+  \end{table}
+\end{lemma}
+
+\begin{proof}
+  Lean内では各$(i, j)$成分に関して，定義を展開して確かめている．
+  人が確かめるには，$X_n$の$k$次主小行列は，$X_n$のCoxeter-Dynkin図形から頂点$k+1, \ldots, n$を取り除いたグラフであるから，図~\ref{fig:positive_definite_graph}を見ればよい．
+\end{proof}

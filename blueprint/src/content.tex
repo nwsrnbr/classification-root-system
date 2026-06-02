@@ -1,17 +1,10 @@
-% In this file you should put the actual content of the blueprint.
-% It will be used both by the web and the print version.
-% It should *not* include the \begin{document}
-%
-% If you want to split the blueprint content into several files then
-% the current file can be a simple sequence of \input. Otherwise It
-% can start with a \section or \chapter for instance.
-
 \section{Sylvesterの判定法}
 
 \begin{theorem}[Sylvesterの判定法]
   \label{thm:sylvester_criterion}
   \lean{sylvester_criterion}
   \leanok
+  \uses{thm:posDef_leading_minors_pos, thm:leading_minors_pos_implies_posDef}
   $R$上$n \times n$エルミート行列$M$に対し，次は同値である：
   \begin{enumerate}
     \item $M$は正定値行列である．\label{enu:Sylvester_posdef}
@@ -22,212 +15,35 @@
 以下，$M \in \M_n(\R)$とし，$I = \{1, 2, \ldots, n\}$とする(Lean内では$0, 1, \ldots, n - 1$であることに注意)．
 これを示すために，いくつか定義と補題を用意する．
 
+\input{subsections/SylvesterCriterion1.tex}
+\input{subsections/SylvesterCriterion2.tex}
 
+\section{行列式}
+\input{subsections/InductionMatrix.tex}
+\input{subsections/Cartan.tex}
+\input{subsections/ExtendedCartan.tex}
+\input{subsections/SymmMatrix.tex}
 
-\subsection{Sylvesterの判定法1}
+\section{正定値性}
+\input{subsections/CartanPosDef.tex}
+\input{subsections/SubGraph.tex}
 
-\begin{definition}
-  \label{def:Matrix.leadingSubmatrix}
-  \lean{Matrix.leadingSubmatrix}
-  \leanok
-  $M_k$と書き，$M$の$k$次主小行列を表す．
-\end{definition}
+\section{ルート系}
+\input{subsections/RootPairing.tex}
+\input{subsections/RootPairingCartanPosDef.tex}
 
-$X$を任意の添字集合で$|X| = m$，$e : \map{X}{I}$を写像とする．
-行列$M_{e, e} \in \M_m(\R)$を
-\begin{equation}
-  (M_{e, e})_{ij} := M_{e(i),\ e(j)}
-\end{equation}
-となるように定める．
+\newpage
+\section{付録}
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics{graphics/positive_definite_graph.pdf}
+  \end{center}
+  \caption{正定値グラフ\label{fig:positive_definite_graph}}
+\end{figure}
 
-\begin{lemma}
-  \label{lem:IsHermitian.submatrix_injective}
-  \lean{IsHermitian.submatrix_injective}
-  \leanok
-  エルミート行列$M$に対し，$M_{e, e}$もまたエルミートである．
-\end{lemma}
-
-\begin{lemma}
-  \label{lem:PosDef.submatrix_injective}
-  \lean{PosDef.submatrix_injective}
-  \leanok
-  写像$e$は単射であるとする．
-  正定値行列$M$に対し，$M_{e, e}$もまた正定値である．
-  つまり，正定値行列の部分行列もまた正定値である．
-\end{lemma}
-
-\begin{proof}
-  部分行列がエルミートであることは上の補題~\ref{lem:IsHermitian.submatrix_injective}から従う．
-
-  $ 0 \ne x := \transpose{(x_1, \ldots, x_m)} \in \R^m$とする．
-  \begin{equation}
-    y_i = \begin{cases}
-      x_j, & e(j) = i,\\
-      0, & \mathrm{otherwise}
-    \end{cases}
-  \end{equation}
-  とし，ベクトル$y \in \R^n$を$y := \transpose{(y_1, \ldots, y_n)}$と定める．
-  すると，それぞれの二次形式は一致する：
-  \begin{equation}
-    x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy}
-  \end{equation}
-  $y = 0$ならば$x = 0$なので，対偶をとれば$y \ne 0$がわかる．
-  $M$の正定値性より，式~\eqref{eq:quad_form_xy}は正であるから，$M_{e,e}$の正定値性が示せた．
-\end{proof}
-
-Sylvesterの判定法の$\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_det}$を示す：
-
-\begin{theorem}
-  \label{thm:posDef_leading_minors_pos}
-  \lean{posDef_leading_minors_pos}
-  \leanok
-  $M$が正定値行列であるとき，任意の$k \le n$に対し，$\det M_k > 0$である．
-\end{theorem}
-
-\begin{proof}
-  正定値行列の行列式は正であるので，$M_k$が正定値であることを言えば十分である．
-  補題~\ref{lem:PosDef.submatrix_injective}より$M_k$は正定値であるから，定理の主張が従う．
-\end{proof}
-
-
-
-\subsection{Sylvesterの判定法2}
-
-このsubsectionでは$M \in \M_{n+1}(\R)$とする．
-
-\begin{definition}
-  \label{def:lastCol}
-  \lean{lastCol}
-  \leanok
-  ベクトル$b := (b_1, \ldots, b_n) \in \R^n$を$b_i = M_{i\ n+1}$で定める．
-  すなわち，$b$は$M$の最後の列から一番下の行を除いた縦ベクトルである．
-\end{definition}
-
-\begin{definition}
-  \label{def:lastEntry}
-  \lean{lastEntry}
-  \leanok
-  定数$c \in \R$を$c = M_{n+1\ n+1}$で定める．
-  すなわち，$c$は$M$の一番右下の成分である．
-\end{definition}
-
-これらの定義を踏まえて，以下
-\begin{equation}
-  M = \left(
-    \begin{array}{ccc|c}
-      & & & \\
-      \multicolumn{3}{c|}{A} & b \\
-      & & & \\ \hline
-      & \transpose{b} & & c
-    \end{array}
-  \right)
-\end{equation}
-とする．
-
-\begin{definition}
-  \label{def:schurComplement}
-  \lean{schurComplement}
-  \leanok
-  次の定数$s \in \R$を$M$の\textbf{Schur complement}という：
-  \begin{equation}
-    s = c - \transpose{b} A^{-1} b.
-  \end{equation}
-\end{definition}
-
-\begin{lemma}
-  \label{lem:quadratic_form_decomp}
-  \lean{quadratic_form_decomp}
-  \leanok
-  $M$はエルミートであるとする．
-  任意のベクトル$v := (x_1, \ldots, x_n, t) \in \R^{n+1}$に対し，
-  \begin{equation}
-    \transpose{v} M v
-    = \transpose{x} A x + 2t(\transpose{b}x) + ct^2
-  \end{equation}
-  が成り立つ．
-\end{lemma}
-
-\begin{lemma}
-  \label{lem:quadratic_form_complete_square}
-  \lean{quadratic_form_complete_square}
-  \leanok
-  $M$はエルミートであるとする．
-  上の補題~\ref{lem:quadratic_form_decomp}を平方完成すると以下のようになる：
-  \begin{equation}
-    \transpose{v} M v
-    = \transpose{(x + t A^{-1} b)} A (x + t A^{-1} b) + st^2
-  \end{equation}
-\end{lemma}
-
-\begin{lemma}
-  \label{lem:schur_complement_pos}
-  \lean{schur_complement_pos}
-  \leanok
-  $M$はエルミートであるとする．
-  また，$A$は正定値，$\det M > 0$であるとする．
-  このとき，$M$のSchur complement $s$は正である：
-  \begin{equation}
-    0 < s = c - \transpose{b} A^{-1} b.
-  \end{equation}
-\end{lemma}
-
-\begin{proof}
-  $\det M = (\det A) \cdot s$である．
-  また，仮定より$A$は正定値，すなわち$\det A > 0$であり，$\det M > 0$でもあるので，$s > 0$が従う．
-\end{proof}
-
-\begin{lemma}
-  \label{lem:posDef_dotProduct_nonneg}
-  \lean{posDef_dotProduct_nonneg}
-  \leanok
-  $A \in \M_k(\R)$を正定値行列とする．
-  また，$x \in \R^k$とする．
-  このとき，$\transpose{x} A x \ge 0$である．
-\end{lemma}
-
-\begin{theorem}
-  \label{thm:posDef_of_leading_submatrix_posDef_and_det_pos}
-  \lean{posDef_of_leading_submatrix_posDef_and_det_pos}
-  \leanok
-  $M$はエルミートであるとする．
-  また，$A$は正定値，$\det M > 0$であるとする．
-  このとき，$M$は正定値である．
-\end{theorem}
-
-\begin{proof}
-  任意の$0 \ne v := (x_1, \ldots, x_n, t) \in \R^{n+1}$に対し，$\transpose{v} M v > 0$を示す．
-
-  $t = 0$のとき，$A$の正定値性から
-  \begin{equation}
-    \transpose{v} M v = \transpose{x} A x > 0
-  \end{equation}
-  であるからよい．
-
-  $t \ne 0$のとき，補題~\ref{lem:quadratic_form_complete_square}より
-  \begin{equation}
-    \transpose{v} M v = \transpose{(x + t A^{-1} b)} A (x + t A^{-1} b) + st^2
-  \end{equation}
-  である．
-  右辺の第1項目は$A$の正定値性より非負，第2項目は補題~\ref{lem:schur_complement_pos}より$s > 0$であるから正である．
-  よって，この場合でも$\transpose{v} M v > 0$である．
-\end{proof}
-
-\begin{lemma}
-  \label{lem:leadingSubmatrix_leadingSubmatrix}
-  \lean{leadingSubmatrix_leadingSubmatrix}
-  \leanok
-  $j \le k \le n$とする．
-  $M$の$k$次主小行列の$j$次主小行列は，$M$の$j$次主小行列である：
-  \begin{equation}
-    (M_k)_j = M_j
-  \end{equation}
-\end{lemma}
-
-\begin{theorem}
-  \label{thm:leading_minors_pos_implies_posDef}
-  \lean{leading_minors_pos_implies_posDef}
-  \leanok
-  $M \in \M_n(\R)$はエルミートであるとする．
-  また，任意の$k \le n$に対し，$0 < k$ならば$0 < M_k$であるとする．
-  このとき，$M$は正定値である．
-\end{theorem}
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics{graphics/non-positive_definite_graph.pdf}
+  \end{center}
+  \caption{非正定値グラフ\label{fig:non-positive_definite_graph}}
+\end{figure}

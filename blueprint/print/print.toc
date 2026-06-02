@@ -1,3 +1,6 @@
 \contentsline {section}{\numberline {1}Sylvesterの判定法}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Sylvesterの判定法1}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Sylvesterの判定法2}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}行列式}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Cartan行列の行列式}{3}{subsection.2.1}%
+\contentsline {section}{\numberline {3}付録}{3}{section.3}%

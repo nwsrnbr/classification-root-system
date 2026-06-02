@@ -1,0 +1,77 @@
+\subsection{部分グラフ}
+
+\begin{definition}
+  \label{def:CartanMatrix.LowerLabel}
+  \lean{CartanMatrix.LowerLabel}
+  \leanok
+  次のような行列$C_L$を定める：
+  \begin{equation}
+    (C_L)_{ij} = \begin{cases}
+      2, & i = j, \\
+      -1, & C_{ij} = -1, \\
+      -1, & C_{ij} = -2, \\
+      -2, & C_{ij} = -3.
+    \end{cases}
+  \end{equation}
+  $*_L$と$*_k$の操作を組み合わせてできる行列を\textbf{部分グラフ}という．
+  Coxeter-Dynkin図形の言葉で言えば，辺の本数を減らす，頂点を減らす操作の組み合わせである．
+\end{definition}
+
+正定値の部分グラフもまた正定値である．
+
+\begin{theorem}
+  \label{thm:CartanMatrix.sub_of_pos_def}
+  \lean{CartanMatrix.sub_of_pos_def}
+  \leanok
+  \uses{lem:SymmMatrix_leadingSubmatrix_comm, lem:PosDef.submatrix_injective}
+  $S(C)$が正定値ならば，$S(C_k)$も正定値である．
+\end{theorem}
+
+\begin{proof}
+  補題~\ref{lem:SymmMatrix_leadingSubmatrix_comm}より
+  \begin{equation}
+    S(C_k)
+    = (S(C))_k
+  \end{equation}
+  であり，補題~\ref{lem:PosDef.submatrix_injective}より正定値行列の部分行列は正定値であるから従う．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:CartanMatrix.sub_of_pos_def'}
+  \lean{CartanMatrix.sub_of_pos_def'}
+  \leanok
+  \uses{}
+  $S(C)$が正定値ならば，$S(C_L)$も正定値である．
+\end{theorem}
+
+\begin{proof}
+  対偶を示す．
+  $S(C_L)$が正定値でないとき，$y \in \R^n$で
+  \begin{equation}
+    y \ne 0, \qquad \sum_{i, j} y_i \cdot (S(C))_{ij} \cdot y_j \le 0
+  \end{equation}
+  なるものがあることを示せばよい．
+  $S(C_L)$が正定値でないから$0 \ne x \in \R^n$で
+  \begin{equation}
+    \sum_{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \le 0
+  \end{equation}
+  なるものがある．
+  \begin{equation}
+    y = \transpose{(|x_1|, \ldots, |x_n|)}
+  \end{equation}
+  とする．
+
+  $y \ne 0$を示す．
+  $y = 0$とすると，任意の$i$に対し$y_i = |x_i| = 0$，すなわち$x_i = 0$であるが，これは矛盾する．
+
+  また，
+  \begin{align}
+    \sum_{i, j} y_i \cdot (S(C))_{ij} \cdot y_j
+    &= \sum_{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\
+    &\le \sum_{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\
+    &= \sum_{i, j} (S(C_L))_{ij} \cdot |x_i x_j| \\
+    &= \sum_{i, j} (S(C_L))_{ij} \cdot x_i x_j \\
+    &= \sum_{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \\
+    &\le 0.
+  \end{align}
+\end{proof}

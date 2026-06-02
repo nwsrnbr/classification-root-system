@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  27 APR 2026 20:49
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  19 MAY 2026 19:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -220,6 +220,28 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip57
 ) (./blueprint.sty) (./macros/common.tex
 \c@theorem=\count293
+
+./macros/common.tex:53: Undefined control sequence.
+l.53 \mathtoolsset
+                  {showonlyrefs=true}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./macros/common.tex:53: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.53 \mathtoolsset{s
+                    howonlyrefs=true}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 ) (./macros/web.tex)
 /Users/noboru/Documents/classification-root-system/blueprint/src/web.tex:17: Undefined control sequence.
 l.17 \home
@@ -316,13 +338,2197 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-[1] (./content.tex)
+[1] (./content.tex (./content/SylvesterCriterion.tex
+Missing character: There is no の (U+306E) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 判 (U+5224) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 法 (U+6CD5) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 判 (U+5224) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 法 (U+6CD5) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:5: Undefined control sequence.
+l.5   \lean
+           {sylvester_criterion}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-[1] (./web.aux)
+./content/SylvesterCriterion.tex:5: Missing $ inserted.
+<inserted text> 
+                $
+l.5   \lean{sylvester_
+                      criterion}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:5: Extra }, or forgotten $.
+l.5   \lean{sylvester_criterion}
+                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:6: Undefined control sequence.
+l.6   \leanok
+             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:7: Undefined control sequence.
+l.7   \uses
+           {thm:posDef_leading_minors_pos, thm:leading_minors_pos_implies_po...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 上 ("4E0A) in font cmr10!
+./content/SylvesterCriterion.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8   $R$上$n \times
+                    n$エルミート行列$M$に対し，次は同値である：
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no エ (U+30A8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 同 (U+540C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (196.23853pt too wide) in paragraph at lines 5--9
+[]\TU/lmr/bx/n/10 Theorem 0.1.1 \TU/lmr/m/n/10 (Sylvesterの判定法)\TU/lmr/bx/n/10 . \TU/lmr/m/it/10 sylvester$[]\OML/cmm/m/it/10 riterion[]$\TU/lmr/m/it/10 R$$n
+ []
+
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 任 (U+4EFB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 小 (U+5C0F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 左 (U+5DE6) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 上 (U+4E0A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no っ (U+3063) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:13: Missing } inserted.
+<inserted text> 
+                }
+l.13 \end{theorem}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 以 (U+4EE5) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 内 (U+5185) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 注 (U+6CE8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 示 (U+793A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no く (U+304F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no つ (U+3064) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 義 (U+7FA9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 補 (U+88DC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 題 (U+984C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 用 (U+7528) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+
+Overfull \hbox (6.50311pt too wide) in paragraph at lines 15--17
+[]\TU/lmr/m/n/10 以下，$\OML/cmm/m/it/10 M \OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\U/msb/m/n/10 R\OT1/cmr/m/n/10 )$\TU/lmr/m/n/10 とし，$\OML/cmm/m/it/10 I \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ; [] ; n\OMS/cmsy/m/n/10 g$\TU/lmr/m/n/10 とする(Lean内では$\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1$\TU/lmr/m/n/10 であることに注意)． これを示すために，いくつか定義と補題を用意する． 
+ []
+
+Missing character: There is no の (U+306E) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 判 (U+5224) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 法 (U+6CD5) in font [lmroman12-bold]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:24: Undefined control sequence.
+l.24   \lean
+            {Matrix.leadingSubmatrix}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:25: Undefined control sequence.
+l.25   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 書 (U+66F8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 小 (U+5C0F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 表 (U+8868) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 任 (U+4EFB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 添 (U+6DFB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 字 (U+5B57) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 集 (U+96C6) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 合 (U+5408) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 写 (U+5199) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 像 (U+50CF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:38: Undefined control sequence.
+l.38   \lean
+            {IsHermitian.submatrix_injective}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38   \lean{IsHermitian.submatrix_
+                                   injective}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:38: Extra }, or forgotten $.
+l.38   \lean{IsHermitian.submatrix_injective}
+                                             
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:39: Undefined control sequence.
+l.39   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no エ ("30A8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+Missing character: There is no ミ ("30DF) in font cmmi10!
+Missing character: There is no ー ("30FC) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no 行 ("884C) in font cmr10!
+Missing character: There is no 列 ("5217) in font cmr10!
+Missing character: There is no に ("306B) in font cmmi10!
+Missing character: There is no 対 ("5BFE) in font cmr10!
+Missing character: There is no し ("3057) in font cmmi10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+./content/SylvesterCriterion.tex:40: Missing $ inserted.
+<inserted text> 
+                $
+l.40   エルミート行列$M$に対し，$M_
+                        {e, e}$もまたエルミートである．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no も (U+3082) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no エ (U+30A8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:41: Missing } inserted.
+<inserted text> 
+                }
+l.41 \end{lemma}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/SylvesterCriterion.tex:45: Undefined control sequence.
+l.45   \lean
+            {PosDef.submatrix_injective}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:45: Missing $ inserted.
+<inserted text> 
+                $
+l.45   \lean{PosDef.submatrix_
+                              injective}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:45: Extra }, or forgotten $.
+l.45   \lean{PosDef.submatrix_injective}
+                                        
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:46: Undefined control sequence.
+l.46   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:47: Undefined control sequence.
+l.47   \uses
+            {lem:IsHermitian.submatrix_injective}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 写 ("5199) in font cmr10!
+Missing character: There is no 像 ("50CF) in font cmr10!
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no 単 ("5358) in font cmr10!
+Missing character: There is no 射 ("5C04) in font cmr10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ． ("FF0E) in font cmr10!
+Missing character: There is no 正 ("6B63) in font cmr10!
+Missing character: There is no 定 ("5B9A) in font cmr10!
+Missing character: There is no 値 ("5024) in font cmr10!
+Missing character: There is no 行 ("884C) in font cmr10!
+Missing character: There is no 列 ("5217) in font cmr10!
+Missing character: There is no に ("306B) in font cmmi10!
+Missing character: There is no 対 ("5BFE) in font cmr10!
+Missing character: There is no し ("3057) in font cmmi10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+./content/SylvesterCriterion.tex:49: Missing $ inserted.
+<inserted text> 
+                $
+l.49   正定値行列$M$に対し，$M_
+                      {e, e}$もまた正定値である．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no も (U+3082) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no つ (U+3064) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 部 (U+90E8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 分 (U+5206) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no も (U+3082) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (76.10254pt too wide) in paragraph at lines 45--51
+[]\TU/lmr/bx/n/10 Lemma 0.1.4. \TU/lmr/m/it/10 PosDef.submatrix$[]\OML/cmm/m/it/10 njective[]$\TU/lmr/m/it/10 e$$M$$M$[]$もまた正定値である．
+ []
+
+./content/SylvesterCriterion.tex:51: Missing } inserted.
+<inserted text> 
+                }
+l.51 \end{lemma}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 部 (U+90E8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 分 (U+5206) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no エ (U+30A8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 上 (U+4E0A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 補 (U+88DC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 題 (U+984C) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `lem:IsHermitian.submatrix_injective' on page 1 undefined on input line 54.
+
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 従 (U+5F93) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ベ (U+30D9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ク (U+30AF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no そ (U+305D) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ぞ (U+305E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 二 (U+4E8C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 形 (U+5F62) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 一 (U+4E00) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 致 (U+81F4) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ば (U+3070) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 偶 (U+5076) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ば (U+3070) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no わ (U+308F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 性 (U+6027) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `eq:quad_form_xy' on page 1 undefined on input line 69.
+
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 性 (U+6027) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 示 (U+793A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no せ (U+305B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 判 (U+5224) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 法 (U+6CD5) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `enu:Sylvester_posdef' on page 1 undefined on input line 72.
+
+
+LaTeX Warning: Reference `enu:Sylvester_det' on page 1 undefined on input line 72.
+
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 示 (U+793A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:76: Undefined control sequence.
+l.76   \lean
+            {posDef_leading_minors_pos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:76: Missing $ inserted.
+<inserted text> 
+                $
+l.76   \lean{posDef_
+                    leading_minors_pos}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:76: Extra }, or forgotten $.
+l.76   \lean{posDef_leading_minors_pos}
+                                       
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:77: Undefined control sequence.
+l.77   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:78: Undefined control sequence.
+l.78   \uses
+            {lem:PosDef.submatrix_injective}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no が ("304C) in font cmmi10!
+Missing character: There is no 正 ("6B63) in font cmr10!
+Missing character: There is no 定 ("5B9A) in font cmr10!
+Missing character: There is no 値 ("5024) in font cmr10!
+Missing character: There is no 行 ("884C) in font cmr10!
+Missing character: There is no 列 ("5217) in font cmr10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no き ("304D) in font cmmi10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+Missing character: There is no 任 ("4EFB) in font cmr10!
+Missing character: There is no 意 ("610F) in font cmr10!
+Missing character: There is no の ("306E) in font cmmi10!
+./content/SylvesterCriterion.tex:79: Missing $ inserted.
+<inserted text> 
+                $
+l.79   $M$が正定値行列であるとき，任意の$k \le
+                                n$に対し，$\det M_k > 0$である．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no に (U+306B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (3.87852pt too wide) in paragraph at lines 76--80
+[]\TU/lmr/bx/n/10 Theorem 0.1.5. \TU/lmr/m/it/10 posDef$[]\OML/cmm/m/it/10 eading[]inors[]os[]$\TU/lmr/m/it/10 M$$k
+ []
+
+./content/SylvesterCriterion.tex:80: Missing } inserted.
+<inserted text> 
+                }
+l.80 \end{theorem}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 言 (U+8A00) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no え (U+3048) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ば (U+3070) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 十 (U+5341) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 分 (U+5206) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 補 (U+88DC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 題 (U+984C) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `lem:PosDef.submatrix_injective' on page 1 undefined on input line 84.
+
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 理 (U+7406) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 張 (U+5F35) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 従 (U+5F93) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 判 (U+5224) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 法 (U+6CD5) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:95: Undefined control sequence.
+l.95   \lean
+            {lastCol}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:96: Undefined control sequence.
+l.96   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ベ (U+30D9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ク (U+30AF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no わ (U+308F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ち (U+3061) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 最 (U+6700) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 後 (U+5F8C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 一 (U+4E00) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 番 (U+756A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 除 (U+9664) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 縦 (U+7E26) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ベ (U+30D9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ク (U+30AF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+
+Overfull \hbox (49.35286pt too wide) in paragraph at lines 95--99
+[]\TU/lmr/bx/n/10 Definition 0.1.6. \TU/lmr/m/n/10 lastCol ベクトル$\OML/cmm/m/it/10 b \OT1/cmr/m/n/10 := (\OML/cmm/m/it/10 b[]; [] ; b[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[]$\TU/lmr/m/n/10 を$\OML/cmm/m/it/10 b[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 M[]$\TU/lmr/m/n/10 で定める． すなわち，$\OML/cmm/m/it/10 b$\TU/lmr/m/n/10 は$\OML/cmm/m/it/10 M$\TU/lmr/m/n/10 の最後の列から一番下の行を除いた縦ベクトルである． 
+ []
+
+./content/SylvesterCriterion.tex:103: Undefined control sequence.
+l.103   \lean
+             {lastEntry}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:104: Undefined control sequence.
+l.104   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 数 (U+6570) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no わ (U+308F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ち (U+3061) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 一 (U+4E00) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 番 (U+756A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 右 (U+53F3) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 成 (U+6210) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 分 (U+5206) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 義 (U+7FA9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 踏 (U+8E0F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no え (U+3048) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no て (U+3066) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 以 (U+4EE5) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+
+
+[1]
+./content/SylvesterCriterion.tex:124: Undefined control sequence.
+l.124   \lean
+             {schurComplement}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:125: Undefined control sequence.
+l.125   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 次 (U+6B21) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 数 (U+6570) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:134: Undefined control sequence.
+l.134   \lean
+             {quadratic_form_decomp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:134: Missing $ inserted.
+<inserted text> 
+                $
+l.134   \lean{quadratic_
+                        form_decomp}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:134: Extra }, or forgotten $.
+l.134   \lean{quadratic_form_decomp}
+                                    
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:135: Undefined control sequence.
+l.135   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no エ ("30A8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+Missing character: There is no ミ ("30DF) in font cmmi10!
+Missing character: There is no ー ("30FC) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ． ("FF0E) in font cmr10!
+Missing character: There is no 任 ("4EFB) in font cmr10!
+Missing character: There is no 意 ("610F) in font cmr10!
+Missing character: There is no の ("306E) in font cmmi10!
+Missing character: There is no ベ ("30D9) in font cmmi10!
+Missing character: There is no ク ("30AF) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+./content/SylvesterCriterion.tex:137: Missing $ inserted.
+<inserted text> 
+                $
+l.137   任意のベクトル$v := (x_
+                        1, \ldots, x_n, t) \in \R^{n+1}$に対し，
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no に (U+306B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 成 (U+6210) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 立 (U+7ACB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no つ (U+3064) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:143: Missing } inserted.
+<inserted text> 
+                }
+l.143 \end{lemma}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/SylvesterCriterion.tex:147: Undefined control sequence.
+l.147   \lean
+             {quadratic_form_complete_square}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:147: Missing $ inserted.
+<inserted text> 
+                $
+l.147   \lean{quadratic_
+                        form_complete_square}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:147: Extra }, or forgotten $.
+l.147   \lean{quadratic_form_complete_square}
+                                             
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:148: Undefined control sequence.
+l.148   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:149: Undefined control sequence.
+l.149   \uses
+             {lem:quadratic_form_decomp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `lem:quadratic_form_decomp' on page 2 undefined on input line 151.
+
+
+./content/SylvesterCriterion.tex:152: LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152   \begin{equation}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./content/SylvesterCriterion.tex:155: You can't use `\eqno' in math mode.
+\veqno ->\@kernel@eqno 
+                       \aftergroup \ignorespaces 
+l.155   \end{equation}
+                      
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./content/SylvesterCriterion.tex:155: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.155   \end{equation}
+                      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no エ ("30A8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+Missing character: There is no ミ ("30DF) in font cmmi10!
+Missing character: There is no ー ("30FC) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ． ("FF0E) in font cmr10!
+Missing character: There is no 上 ("4E0A) in font cmr10!
+Missing character: There is no の ("306E) in font cmmi10!
+Missing character: There is no 補 ("88DC) in font cmr10!
+Missing character: There is no 題 ("984C) in font cmr10!
+Missing character: There is no を ("3092) in font cmmi10!
+Missing character: There is no 平 ("5E73) in font cmr10!
+Missing character: There is no 方 ("65B9) in font cmr10!
+Missing character: There is no 完 ("5B8C) in font cmr10!
+Missing character: There is no 成 ("6210) in font cmr10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no 以 ("4EE5) in font cmr10!
+Missing character: There is no 下 ("4E0B) in font cmr10!
+Missing character: There is no の ("306E) in font cmmi10!
+Missing character: There is no よ ("3088) in font cmmi10!
+Missing character: There is no う ("3046) in font cmmi10!
+Missing character: There is no に ("306B) in font cmmi10!
+Missing character: There is no な ("306A) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ： ("FF1A) in font cmr10!
+
+./content/SylvesterCriterion.tex:155: LaTeX Error: \begin{lemma} on input line 145 ended by \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155   \end{equation}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./content/SylvesterCriterion.tex:155: Missing $ inserted.
+<inserted text> 
+                $
+l.155   \end{equation}
+                      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/SylvesterCriterion.tex:155: Missing } inserted.
+<inserted text> 
+                }
+l.155   \end{equation}
+                      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (42.23776pt too wide) in paragraph at lines 147--156
+[]\TU/lmr/bx/n/10 Lemma 0.1.10. \TU/lmr/m/it/10 quadratic$[]\OML/cmm/m/it/10 orm[]omplete[]quare[]$\TU/lmr/m/it/10 M$ [][][][][][] \OML/cmm/m/it/10 vMv \OT1/cmr/m/n/10 =
+ []
+
+
+./content/SylvesterCriterion.tex:156: LaTeX Error: \begin{document} ended by \end{lemma}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \end{lemma}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./content/SylvesterCriterion.tex:156: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.156 \end{lemma}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+./content/SylvesterCriterion.tex:160: Undefined control sequence.
+l.160   \lean
+             {schur_complement_pos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:160: Missing $ inserted.
+<inserted text> 
+                $
+l.160   \lean{schur_
+                    complement_pos}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:160: Extra }, or forgotten $.
+l.160   \lean{schur_complement_pos}
+                                   
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:161: Undefined control sequence.
+l.161   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no エ ("30A8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+Missing character: There is no ミ ("30DF) in font cmmi10!
+Missing character: There is no ー ("30FC) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ． ("FF0E) in font cmr10!
+Missing character: There is no ま ("307E) in font cmmi10!
+Missing character: There is no た ("305F) in font cmmi10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no 正 ("6B63) in font cmr10!
+Missing character: There is no 定 ("5B9A) in font cmr10!
+Missing character: There is no 値 ("5024) in font cmr10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+./content/SylvesterCriterion.tex:163: Missing $ inserted.
+<inserted text> 
+                $
+l.163   また，$A$は正定値，$\det
+                         M > 0$であるとする．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-italic]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:168: Missing } inserted.
+<inserted text> 
+                }
+l.168 \end{lemma}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 仮 (U+4EEE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no わ (U+308F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ち (U+3061) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no も (U+3082) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 従 (U+5F93) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:177: Undefined control sequence.
+l.177   \lean
+             {posDef_dotProduct_nonneg}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:177: Missing $ inserted.
+<inserted text> 
+                $
+l.177   \lean{posDef_
+                     dotProduct_nonneg}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:177: Extra }, or forgotten $.
+l.177   \lean{posDef_dotProduct_nonneg}
+                                       
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:178: Undefined control sequence.
+l.178   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:179: Missing $ inserted.
+<inserted text> 
+                $
+l.179   $A \in
+               \M_k(\R)$を正定値行列とする．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no を (U+3092) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (17.73846pt too wide) in paragraph at lines 177--182
+[]\TU/lmr/bx/n/10 Lemma 0.1.12. \TU/lmr/m/it/10 posDef$[]\OML/cmm/m/it/10 otProduct[]onneg$\TU/lmr/m/it/10 A $\OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\U/msb/m/n/10 R\OT1/cmr/m/n/10 )$\TU/lmr/m/it/10 を正定値行列とする． また，$\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[]$\TU/lmr/m/it/10 とする． このとき，$[][] \OML/cmm/m/it/10 xAx \OMS/cmsy/m/n/10 ^^U
+ []
+
+./content/SylvesterCriterion.tex:182: Missing } inserted.
+<inserted text> 
+                }
+l.182 \end{lemma}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/SylvesterCriterion.tex:186: Undefined control sequence.
+l.186   \lean
+             {posDef_of_leading_submatrix_posDef_and_det_pos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:186: Missing $ inserted.
+<inserted text> 
+                $
+l.186   \lean{posDef_
+                     of_leading_submatrix_posDef_and_det_pos}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:186: Extra }, or forgotten $.
+l.186 ..._of_leading_submatrix_posDef_and_det_pos}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:187: Undefined control sequence.
+l.187   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:188: Undefined control sequence.
+l.188   \uses
+             {lem:schur_complement_pos, lem:posDef_dotProduct_nonneg}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no エ ("30A8) in font cmmi10!
+Missing character: There is no ル ("30EB) in font cmmi10!
+Missing character: There is no ミ ("30DF) in font cmmi10!
+Missing character: There is no ー ("30FC) in font cmmi10!
+Missing character: There is no ト ("30C8) in font cmmi10!
+Missing character: There is no で ("3067) in font cmmi10!
+Missing character: There is no あ ("3042) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no と ("3068) in font cmmi10!
+Missing character: There is no す ("3059) in font cmmi10!
+Missing character: There is no る ("308B) in font cmmi10!
+Missing character: There is no ． ("FF0E) in font cmr10!
+Missing character: There is no ま ("307E) in font cmmi10!
+Missing character: There is no た ("305F) in font cmmi10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+Missing character: There is no は ("306F) in font cmmi10!
+Missing character: There is no 正 ("6B63) in font cmr10!
+Missing character: There is no 定 ("5B9A) in font cmr10!
+Missing character: There is no 値 ("5024) in font cmr10!
+Missing character: There is no ， ("FF0C) in font cmr10!
+./content/SylvesterCriterion.tex:190: Missing $ inserted.
+<inserted text> 
+                $
+l.190   また，$A$は正定値，$\det
+                         M > 0$であるとする．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (245.86229pt too wide) in paragraph at lines 186--192
+[]\TU/lmr/bx/n/10 Theorem 0.1.13. \TU/lmr/m/it/10 posDef$[]\OML/cmm/m/it/10 f[]eading[]ubmatrix[]osDef[]nd[]et[]os[]$\TU/lmr/m/it/10 M$$A$$$[] \OML/cmm/m/it/10 M >
+ []
+
+./content/SylvesterCriterion.tex:192: Missing } inserted.
+<inserted text> 
+                }
+l.192 \end{theorem}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 任 (U+4EFB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 示 (U+793A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 性 (U+6027) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 補 (U+88DC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 題 (U+984C) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `lem:quadratic_form_complete_square' on page 2 undefined on input line 203.
+
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 右 (U+53F3) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 辺 (U+8FBA) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 第 (U+7B2C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 項 (U+9805) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 目 (U+76EE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 性 (U+6027) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 非 (U+975E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 負 (U+8CA0) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 第 (U+7B2C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 項 (U+9805) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 目 (U+76EE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 補 (U+88DC) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 題 (U+984C) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `lem:schur_complement_pos' on page 2 undefined on input line 208.
+
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no っ (U+3063) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no て (U+3066) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 場 (U+5834) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 合 (U+5408) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no も (U+3082) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+./content/SylvesterCriterion.tex:214: Undefined control sequence.
+l.214   \lean
+             {leadingSubmatrix_leadingSubmatrix}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:214: Missing $ inserted.
+<inserted text> 
+                $
+l.214   \lean{leadingSubmatrix_
+                               leadingSubmatrix}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:214: Extra }, or forgotten $.
+l.214   \lean{leadingSubmatrix_leadingSubmatrix}
+                                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:215: Undefined control sequence.
+l.215   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:216: Missing $ inserted.
+<inserted text> 
+                $
+l.216   $j \le
+               k \le n$とする．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 小 (U+5C0F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 小 (U+5C0F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 主 (U+4E3B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 小 (U+5C0F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (44.63766pt too wide) in paragraph at lines 214--218
+[]\TU/lmr/bx/n/10 Lemma 0.1.14. \TU/lmr/m/it/10 leadingSubmatrix$[]\OML/cmm/m/it/10 eadingSubmatrix$\TU/lmr/m/it/10 j $\OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 n$\TU/lmr/m/it/10 とする． $\OML/cmm/m/it/10 M$\TU/lmr/m/it/10 の$\OML/cmm/m/it/10 k$\TU/lmr/m/it/10 次主小行列の$\OML/cmm/m/it/10 j$\TU/lmr/m/it/10 次主小行列は，$\OML/cmm/m/it/10 M$\TU/lmr/m/it/10 の$\OML/cmm/m/it/10 j$\TU/lmr/m/it/10 次主小行列である： 
+ []
+
+./content/SylvesterCriterion.tex:221: Missing } inserted.
+<inserted text> 
+                }
+l.221 \end{lemma}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/SylvesterCriterion.tex:225: Undefined control sequence.
+l.225   \lean
+             {leading_minors_pos_implies_posDef}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:225: Missing $ inserted.
+<inserted text> 
+                $
+l.225   \lean{leading_
+                      minors_pos_implies_posDef}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/SylvesterCriterion.tex:225: Extra }, or forgotten $.
+l.225   \lean{leading_minors_pos_implies_posDef}
+                                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/SylvesterCriterion.tex:226: Undefined control sequence.
+l.226   \leanok
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:227: Undefined control sequence.
+l.227   \uses
+             {thm:posDef_of_leading_submatrix_posDef_and_det_pos, lem:IsHerm...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/SylvesterCriterion.tex:228: Missing $ inserted.
+<inserted text> 
+                $
+l.228   $M \in
+               \M_n(\R)$はエルミートであるとする．
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no エ (U+30A8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ト (U+30C8) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ま (U+307E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no た (U+305F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 任 (U+4EFB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 意 (U+610F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ば (U+3070) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no き (U+304D) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no で (U+3067) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no あ (U+3042) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (481.71375pt too wide) in paragraph at lines 225--231
+[]\TU/lmr/bx/n/10 Theorem 0.1.15. \TU/lmr/m/it/10 leading$[]\OML/cmm/m/it/10 inors[]os[]mplies[]osDef[]$\TU/lmr/m/it/10 M
+ []
+
+./content/SylvesterCriterion.tex:231: Missing } inserted.
+<inserted text> 
+                }
+l.231 \end{theorem}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+) (./content/Determinant.tex
+Missing character: There is no 行 (U+884C) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 式 (U+5F0F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 求 (U+6C42) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no こ (U+3053) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 義 (U+7FA9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 存 (U+5B58) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 在 (U+5728) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+
+
+[2]
+./content/Determinant.tex:10: Undefined control sequence.
+l.10   \lean
+            {CartanMatrix.A}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/Determinant.tex:11: Undefined control sequence.
+l.11   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 行 (U+884C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 列 (U+5217) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 義 (U+7FA9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no お (U+304A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 各 (U+5404) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 義 (U+7FA9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no か (U+304B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ら (U+3089) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 図 (U+56F3) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 形 (U+5F62) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 描 (U+63CF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no く (U+304F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 図 (U+56F3) in font [lmroman10-regular]:mapping=tex-text;!
+
+LaTeX Warning: Reference `fig:positive_definite_graph' on page 3 undefined on input line 24.
+
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 以 (U+4EE5) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no は (U+306F) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 可 (U+53EF) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 換 (U+63DB) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 環 (U+74B0) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-regular]:mapping=tex-text;!
+./content/Determinant.tex:30: Undefined control sequence.
+l.30   \lean
+            {CartanMatrix.ind_matrix}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/Determinant.tex:30: Missing $ inserted.
+<inserted text> 
+                $
+l.30   \lean{CartanMatrix.ind_
+                              matrix}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/Determinant.tex:30: Extra }, or forgotten $.
+l.30   \lean{CartanMatrix.ind_matrix}
+                                     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/Determinant.tex:31: Undefined control sequence.
+l.31   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/Determinant.tex:32: Missing $ inserted.
+<inserted text> 
+                $
+l.32   $Y \in
+              \M_n(R),\ a, b \in R$に対し，$M_{\operatorname{ind}}(Y, a, b) \in ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 対 (U+5BFE) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no を (U+3092) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 以 (U+4EE5) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no よ (U+3088) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no う (U+3046) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no め (U+3081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-regular]:mapping=tex-text;!
+
+Overfull \hbox (10.33449pt too wide) in paragraph at lines 30--33
+[]\TU/lmr/bx/n/10 Definition 0.2.2. \TU/lmr/m/n/10 CartanMatrix.ind$[]\OML/cmm/m/it/10 atrix$\TU/lmr/m/n/10 Y $\OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  a; b \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 R$\TU/lmr/m/n/10 に対し，$\OML/cmm/m/it/10 M[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Y; a; b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
+ []
+
+./content/Determinant.tex:45: Missing } inserted.
+<inserted text> 
+                }
+l.45 \end{definition}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./content/Determinant.tex:49: Undefined control sequence.
+l.49   \lean
+            {CartanMatrix.ind_det}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/Determinant.tex:49: Missing $ inserted.
+<inserted text> 
+                $
+l.49   \lean{CartanMatrix.ind_
+                              det}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content/Determinant.tex:49: Extra }, or forgotten $.
+l.49   \lean{CartanMatrix.ind_det}
+                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./content/Determinant.tex:50: Undefined control sequence.
+l.50   \leanok
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content/Determinant.tex:51: Missing $ inserted.
+<inserted text> 
+                $
+l.51   $X \in
+              \M_{n+2}(R),\ Y \in \M_{n+1}(R),\ Z \in \M_n(R),\ a, b \in R$と...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no し (U+3057) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ． (U+FF0E) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no な (U+306A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no わ (U+308F) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ち (U+3061) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ， (U+FF0C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 以 (U+4EE5) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 下 (U+4E0B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no が (U+304C) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 成 (U+6210) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no り (U+308A) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no 立 (U+7ACB) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no っ (U+3063) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no て (U+3066) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no い (U+3044) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no と (U+3068) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no す (U+3059) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no る (U+308B) in font [lmroman10-italic]:mapping=tex-text;!
+Missing character: There is no ： (U+FF1A) in font [lmroman10-italic]:mapping=tex-text;!
+
+Overfull \hbox (28.64076pt too wide) in paragraph at lines 49--53
+[]\TU/lmr/bx/n/10 Lemma 0.2.3. \TU/lmr/m/it/10 CartanMatrix.ind$[]\OML/cmm/m/it/10 et$\TU/lmr/m/it/10 X $\OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  Y \OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  Z \OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  a; b \OMS/cmsy/m/n/10 2
+ []
+
+./content/Determinant.tex:74: Missing } inserted.
+<inserted text> 
+                }
+l.74 \end{lemma}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+Missing character: There is no 付 (U+4ED8) in font [lmroman12-bold]:mapping=tex-text;!
+Missing character: There is no 録 (U+9332) in font [lmroman12-bold]:mapping=tex-text;!
+./content.tex:8: Undefined control sequence.
+l.8     \includegraphics
+                        {graphics/positive_definite_graph.pdf}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8     \includegraphics{graphics/positive_
+                                           definite_graph.pdf}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content.tex:8: Extra }, or forgotten $.
+l.8 ...phics{graphics/positive_definite_graph.pdf}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./content.tex:9: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9   \end{center}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./content.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9   \end{center}
+                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content.tex:9: Missing } inserted.
+<inserted text> 
+                }
+l.9   \end{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no グ (U+30B0) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ラ (U+30E9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no フ (U+30D5) in font [lmroman10-regular]:mapping=tex-text;!
+./content.tex:15: Undefined control sequence.
+l.15     \includegraphics
+                         {graphics/non-positive_definite_graph.pdf}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./content.tex:15: Missing $ inserted.
+<inserted text> 
+                $
+l.15     \includegraphics{graphics/non-positive_
+                                                definite_graph.pdf}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content.tex:15: Extra }, or forgotten $.
+l.15 ...{graphics/non-positive_definite_graph.pdf}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./content.tex:16: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16   \end{center}
+                   
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./content.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16   \end{center}
+                   
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./content.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16   \end{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no 非 (U+975E) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 正 (U+6B63) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no グ (U+30B0) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ラ (U+30E9) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no フ (U+30D5) in font [lmroman10-regular]:mapping=tex-text;!
+)
+
+[3]
+
+[4] (./web.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
 Package rerunfilecheck Warning: File `web.out' has changed.
@@ -331,15 +2537,15 @@ Package rerunfilecheck Warning: File `web.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `web.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             After:  EB31C0163FF6B239765D002D41E6BC0A;677.
  ) 
 Here is how much of TeX's memory you used:
- 8992 strings out of 473832
- 136940 string characters out of 5729481
- 522660 words of memory out of 5000000
- 31973 multiletter control sequences out of 15000+600000
- 563866 words of font info for 58 fonts, out of 8000000 for 9000
+ 9123 strings out of 473832
+ 139902 string characters out of 5729481
+ 538937 words of memory out of 5000000
+ 32076 multiletter control sequences out of 15000+600000
+ 565653 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,6n,79p,605b,346s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,9n,79p,605b,402s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on web.pdf (3 pages).
+Output written on web.pdf (6 pages).

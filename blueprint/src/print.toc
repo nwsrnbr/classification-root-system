@@ -1,3 +1,15 @@
 \contentsline {section}{\numberline {1}Sylvesterの判定法}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Sylvesterの判定法1}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.1}Sylvesterの判定法1}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Sylvesterの判定法2}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}行列式}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}帰納法の準備}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Cartan行列}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}拡大Cartan行列}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}対称化行列}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}正定値性}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Cartan行列の正定値性}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}部分グラフ}{7}{subsection.3.2}%
+\contentsline {section}{\numberline {4}ルート系}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}定義と性質}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}ルート系から定まるCartan行列}{9}{subsection.4.2}%
+\contentsline {section}{\numberline {5}付録}{10}{section.5}%
