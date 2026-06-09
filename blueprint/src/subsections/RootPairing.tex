@@ -1,8 +1,5 @@
 \subsection{定義と性質}
 
-$R$をcommutative ring, $M$を$R$-moduleとする．
-さらに，$\iota$を(有限とは限らない)添え字集合，$N$を$R$-moduleとする．
-
 \begin{definition}
   \label{def:RootPairing}
   \lean{RootPairing}
@@ -11,18 +8,28 @@ $R$をcommutative ring, $M$を$R$-moduleとする．
   すなわち，bilinear map $B : \map{M \times N}{R}$が与えられていて，片方の変数を固定して単にlinear mapと見たとき，それぞれがbijectiveであるとする．
   このとき，$\Phi := \set{\alpha_i \in M}{i \in \iota},\ \Phi^\vee := \set{\alpha^\vee_i \in N}{i \in \iota}$が次を満たすとき，$P := (\Phi, \Phi^\vee)$を\textbf{root pairing}という：
   \begin{enumerate}[label=(\roman*)]
-    \item $\forall i,\ B(\alpha_i, \alpha^\vee_i) = 2$ \label{defi:RootPairing_EqTwo}
-    \item $\forall i j,\ \exists k,\ \alpha_j - B(\alpha_j, \alpha^\vee_i) \alpha_i = \alpha_k$
-    \item $\forall i j,\ \exists k,\ \alpha^\vee_j - B(\alpha_i, \alpha^\vee_j) \alpha^\vee_i = \alpha^\vee_k$
+    \item 任意の$i$に対し，$\ B(\alpha_i, \alpha^\vee_i) = 2$である． \label{def:RootPairing_EqTwo}
+    \item 任意の$i, j$に対し，$\alpha_j - B(\alpha_j, \alpha^\vee_i) \alpha_i = \alpha_k$を満たす$k$が存在する．
+    \item 任意の$i, j$に対し，$\alpha^\vee_j - B(\alpha_i, \alpha^\vee_j) \alpha^\vee_i = \alpha^\vee_k$を満たす$k$が存在する．
   \end{enumerate}
 \end{definition}
+
+\begin{remark}
+  慣れ親しんだ実ベクトル空間でのルート系の定義における標準内積$\inner{\cdot}{\cdot}$は，root pairingの定義における$B(\cdot, \cdot)$に相当する．
+  \begin{equation}
+  \inner{\alpha_j}{\alpha_i^\vee} = 2 \frac{\inner{\alpha_i}{\alpha_j}}{\inner{\alpha_i}{\alpha_i}},\qquad
+  s_{\alpha_i}(\alpha_j) = \alpha_j - \inner{\alpha_j}{\alpha_i^\vee} \alpha_i
+  \end{equation}
+  であったから，確かに定義\ref{def:RootPairing}の条件はルート系の定義を一般化したものになっている．
+  
+\end{remark}
 
 \begin{definition}
   \label{def:RootPairing.IsCrystallographic}
   \lean{RootPairing.IsCrystallographic}
   \leanok
-  $P$をroot pairingとする．
-  $\forall i, j,\ B(\alpha_i, \alpha^\vee_j) \in \Z$のとき，$P$は\textbf{crystallographic}であるという．
+  $P$はroot pairingとする．
+  任意の$i, j$に対し，$B(\alpha_i, \alpha^\vee_j) \in \Z$であるとき，$P$は\textbf{crystallographic}であるという．
 \end{definition}
 
 \begin{definition}
@@ -31,8 +38,8 @@ $R$をcommutative ring, $M$を$R$-moduleとする．
   \leanok
   $R$-加群$M, N$に関するroot pairing $P$が次を満たすとき，$P$は\textbf{irreducible}であるという：
   \begin{enumerate}[label=(\roman*)]
-    \item $M$は非自明である，すなわち$M \ne 0$.
-    \item $N$は非自明である，すなわち$N \ne 0$.
+    \item $M$は非自明である，すなわち$M \ne 0$である．
+    \item $N$は非自明である，すなわち$N \ne 0$である．
     \item $M$の部分加群$q$が，任意のreflectionで不変(i.e., $s_i(q) \subseteq q$)で，$q \ne 0$であれば，$q = M$である．
     \item $N$の部分加群$q$が，任意のcoreflectionで不変で，$q \ne 0$であれば，$q = N$である．
   \end{enumerate}

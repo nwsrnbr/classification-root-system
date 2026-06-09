@@ -1,4 +1,6 @@
 import RootSystem.Classification.Basic
 import RootSystem.Classification.Branch.Basic
-import RootSystem.Classification.Branch.LeThree
+import RootSystem.Classification.Branch.NumOfBranchLeOne
+import RootSystem.Classification.DynkinGraph
+import RootSystem.Classification.GCM
 import RootSystem.Classification.Subgraph

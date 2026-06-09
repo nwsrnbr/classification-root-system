@@ -34,7 +34,4086 @@
 <p class="authors">
 <span class="author">Noboru Nawashiro</span>
 </p>
-</div> 
+</div><h1 id="a0000000002">0.1 Sylvesterの判定法</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:sylvester_criterion">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.1</span>
+    <span class="theorem_thmtitle">Sylvesterの判定法</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:sylvester_criterion">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#thm:posDef_leading_minors_pos">Theorem 0.1.5</a></li>
+          
+          <li><a href="index.html#thm:leading_minors_pos_implies_posDef">Theorem 0.1.15</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/sylvester_criterion" class="lean_decl">sylvester_criterion</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    \(R\)上\(n \times n\)エルミート行列\(M\)に対し，次は同値である： </p>
+<ol class="enumerate">
+  <li><p>\(M\)は正定値行列である． </p>
+</li>
+  <li><p>任意の\(0 {\lt} k \le n\)に対し，\(M\)の\(k\)次主小行列(左上\(k \times k\)をとった行列)の行列式は正である． </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<p>以下，\(M \in \operatorname {M}_n(\mathbb {R})\)とし，\(I = \{ 1, 2, \ldots , n\} \)とする(Lean内では\(0, 1, \ldots , n - 1\)であることに注意)． これを示すために，いくつか定義と補題を用意する． </p>
+<h2 id="a0000000003">0.1.1 Sylvesterの判定法1</h2>
+<div class="definition_thmwrapper theorem-style-definition" id="def:Matrix.leadingSubmatrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:Matrix.leadingSubmatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/Matrix.leadingSubmatrix" class="lean_decl">Matrix.leadingSubmatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(M_k\)と書き，\(M\)の\(k\)次主小行列を表す． </p>
+
+  </div>
+</div>
+<p>\(X\)を任意の添字集合で\(|X| = m\)，\(e : X \rightarrow I\)を写像とする． 行列\(M_{e, e} \in \operatorname {M}_m(\mathbb {R})\)を </p>
+<div class="equation" id="a0000000004">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (M_{e, e})_{ij} := M_{e(i),\  e(j)} \end{equation}
+  </div>
+  <span class="equation_label">1</span>
+</p>
+</div>
+<p> となるように定める． </p>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IsHermitian.submatrix_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.3</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:IsHermitian.submatrix_injective">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsHermitian.submatrix_injective" class="lean_decl">IsHermitian.submatrix_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  エルミート行列\(M\)に対し，\(M_{e, e}\)もまたエルミートである． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:PosDef.submatrix_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.4</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:PosDef.submatrix_injective">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000005"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:IsHermitian.submatrix_injective">Lemma 0.1.3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/PosDef.submatrix_injective" class="lean_decl">PosDef.submatrix_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   写像\(e\)は単射であるとする． 正定値行列\(M\)に対し，\(M_{e, e}\)もまた正定値である． つまり，正定値行列の部分行列もまた正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000005">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>部分行列がエルミートであることは上の補題&#160;<a href="index.html#lem:IsHermitian.submatrix_injective">0.1.3</a>から従う． </p>
+<p>\( 0 \ne x := {}^t\! (x_1, \ldots , x_m) \in \mathbb {R}^m\)とする． </p>
+<div class="equation" id="a0000000006">
+<p>
+  <div class="equation_content">
+    \begin{equation}  y_i = \begin{cases}  x_j, &  e(j) = i,\\ 0, &  \mathrm{otherwise} \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">2</span>
+</p>
+</div>
+<p> とし，ベクトル\(y \in \mathbb {R}^n\)を\(y := {}^t\! (y_1, \ldots , y_n)\)と定める． すると，それぞれの二次形式は一致する： </p>
+<div class="equation" id="<plasTeX.TeXFragment object at 0x11aa7f530>">
+<p>
+  <div class="equation_content">
+    \begin{equation}  x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy} \end{equation}
+  </div>
+  <span class="equation_label">5</span>
+</p>
+</div>
+<p> \(y = 0\)ならば\(x = 0\)なので，対偶をとれば\(y \ne 0\)がわかる． \(M\)の正定値性より，式&#160;??は正であるから，\(M_{e,e}\)の正定値性が示せた． </p>
+
+  </div>
+</div>
+<p>Sylvesterの判定法の\(\ref{enu:Sylvester_posdef} \implies \ref{enu:Sylvester_det}\)を示す： </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:posDef_leading_minors_pos">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.5</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:posDef_leading_minors_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000007"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:PosDef.submatrix_injective">Lemma 0.1.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_leading_minors_pos" class="lean_decl">posDef_leading_minors_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(M\)が正定値行列であるとき，任意の\(k \le n\)に対し，\(\det M_k {\gt} 0\)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000007">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>正定値行列の行列式は正であるので，\(M_k\)が正定値であることを言えば十分である． 補題&#160;<a href="index.html#lem:PosDef.submatrix_injective">0.1.4</a>より\(M_k\)は正定値であるから，定理の主張が従う． </p>
+
+  </div>
+</div>
+<h2 id="a0000000008">0.1.2 Sylvesterの判定法2</h2>
+<p>このsubsectionでは\(M \in \operatorname {M}_{n+1}(\mathbb {R})\)とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:lastCol">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.6</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:lastCol">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/lastCol" class="lean_decl">lastCol</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  ベクトル\(b := (b_1, \ldots , b_n) \in \mathbb {R}^n\)を\(b_i = M_{i\  n+1}\)で定める． すなわち，\(b\)は\(M\)の最後の列から一番下の行を除いた縦ベクトルである． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:lastEntry">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.7</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:lastEntry">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/lastEntry" class="lean_decl">lastEntry</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  定数\(c \in \mathbb {R}\)を\(c = M_{n+1\  n+1}\)で定める． すなわち，\(c\)は\(M\)の一番右下の成分である． </p>
+
+  </div>
+</div>
+<p>これらの定義を踏まえて，以下 </p>
+<div class="equation" id="a0000000009">
+<p>
+  <div class="equation_content">
+    \begin{equation}  M = \left( \begin{array}{ccc|c}&  A & &  b \\ \hline &  {}^t\! b & &  c \end{array} \right) \end{equation}
+  </div>
+  <span class="equation_label">6</span>
+</p>
+</div>
+<p> とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:schurComplement">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.1.8</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:schurComplement">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/schurComplement" class="lean_decl">schurComplement</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  次の定数\(s \in \mathbb {R}\)を\(M\)の<b class="bfseries">Schur complement</b>という： </p>
+<div class="equation" id="a0000000010">
+<p>
+  <div class="equation_content">
+    \begin{equation}  s = c - {}^t\! b A^{-1} b. \end{equation}
+  </div>
+  <span class="equation_label">7</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:quadratic_form_decomp">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.9</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:quadratic_form_decomp">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/quadratic_form_decomp" class="lean_decl">quadratic_form_decomp</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(M\)はエルミートであるとする． 任意のベクトル\(v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し， </p>
+<div class="equation" id="a0000000011">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! x A x + 2t({}^t\! bx) + ct^2 \end{equation}
+  </div>
+  <span class="equation_label">8</span>
+</p>
+</div>
+<p> が成り立つ． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:quadratic_form_complete_square">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.10</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:quadratic_form_complete_square">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:quadratic_form_decomp">Lemma 0.1.9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/quadratic_form_complete_square" class="lean_decl">quadratic_form_complete_square</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(M\)はエルミートであるとする． 上の補題&#160;<a href="index.html#lem:quadratic_form_decomp">0.1.9</a>を平方完成すると以下のようになる： </p>
+<div class="equation" id="a0000000012">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
+  </div>
+  <span class="equation_label">9</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:schur_complement_pos">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.11</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:schur_complement_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000013"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/schur_complement_pos" class="lean_decl">schur_complement_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(M\)はエルミートであるとする． また，\(A\)は正定値，\(\det M {\gt} 0\)であるとする． このとき，\(M\)のSchur complement \(s\)は正である： </p>
+<div class="equation" id="a0000000014">
+<p>
+  <div class="equation_content">
+    \begin{equation}  0 {\lt} s = c - {}^t\! b A^{-1} b. \end{equation}
+  </div>
+  <span class="equation_label">10</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000013">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\det M = (\det A) \cdot s\)である． また，仮定より\(A\)は正定値，すなわち\(\det A {\gt} 0\)であり，\(\det M {\gt} 0\)でもあるので，\(s {\gt} 0\)が従う． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:posDef_dotProduct_nonneg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.12</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:posDef_dotProduct_nonneg">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_dotProduct_nonneg" class="lean_decl">posDef_dotProduct_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(A \in \operatorname {M}_k(\mathbb {R})\)を正定値行列とする． また，\(x \in \mathbb {R}^k\)とする． このとき，\({}^t\! x A x \ge 0\)である． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:posDef_of_leading_submatrix_posDef_and_det_pos">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.13</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:posDef_of_leading_submatrix_posDef_and_det_pos">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000015"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:schur_complement_pos">Lemma 0.1.11</a></li>
+          
+          <li><a href="index.html#lem:posDef_dotProduct_nonneg">Lemma 0.1.12</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/posDef_of_leading_submatrix_posDef_and_det_pos" class="lean_decl">posDef_of_leading_submatrix_posDef_and_det_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(M\)はエルミートであるとする． また，\(A\)は正定値，\(\det M {\gt} 0\)であるとする． このとき，\(M\)は正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000015">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>任意の\(0 \ne v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し，\({}^t\! v M v {\gt} 0\)を示す． </p>
+<p>\(t = 0\)のとき，\(A\)の正定値性から </p>
+<div class="equation" id="a0000000016">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! x A x {\gt} 0 \end{equation}
+  </div>
+  <span class="equation_label">11</span>
+</p>
+</div>
+<p> であるからよい． </p>
+<p>\(t \ne 0\)のとき，補題&#160;<a href="index.html#lem:quadratic_form_complete_square">0.1.10</a>より </p>
+<div class="equation" id="a0000000017">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
+  </div>
+  <span class="equation_label">12</span>
+</p>
+</div>
+<p> である． 右辺の第1項目は\(A\)の正定値性より非負，第2項目は補題&#160;<a href="index.html#lem:schur_complement_pos">0.1.11</a>より\(s {\gt} 0\)であるから正である． よって，この場合でも\({}^t\! v M v {\gt} 0\)である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:leadingSubmatrix_leadingSubmatrix">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.1.14</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:leadingSubmatrix_leadingSubmatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/leadingSubmatrix_leadingSubmatrix" class="lean_decl">leadingSubmatrix_leadingSubmatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(j \le k \le n\)とする． \(M\)の\(k\)次主小行列の\(j\)次主小行列は，\(M\)の\(j\)次主小行列である： </p>
+<div class="equation" id="a0000000018">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (M_k)_j = M_j. \end{equation}
+  </div>
+  <span class="equation_label">13</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:leading_minors_pos_implies_posDef">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.1.15</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:leading_minors_pos_implies_posDef">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#thm:posDef_of_leading_submatrix_posDef_and_det_pos">Theorem 0.1.13</a></li>
+          
+          <li><a href="index.html#lem:IsHermitian.submatrix_injective">Lemma 0.1.3</a></li>
+          
+          <li><a href="index.html#lem:leadingSubmatrix_leadingSubmatrix">Lemma 0.1.14</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/leading_minors_pos_implies_posDef" class="lean_decl">leading_minors_pos_implies_posDef</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(M \in \operatorname {M}_n(\mathbb {R})\)はエルミートであるとする． また，任意の\(k \le n\)に対し，\(0 {\lt} k\)ならば\(0 {\lt} M_k\)であるとする． このとき，\(M\)は正定値である． </p>
+
+  </div>
+</div>
+<h1 id="a0000000019">0.2 行列式</h1>
+<h2 id="a0000000020">0.2.1 帰納法の準備</h2>
+<p>\(R\)は可換環とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.rev">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.rev">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.rev" class="lean_decl">CartanMatrix.rev</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(X \in \operatorname {M}_n(R)\)に対し，\(\operatorname {rev}X\)で\(X\)の\((i, j)\)成分と\((n - i + 1, n - j + 1)\)成分を入れ替えた行列を表す． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.ind_matrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.ind_matrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.ind_matrix" class="lean_decl">CartanMatrix.ind_matrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(Y \in \operatorname {M}_n(R),\  a, b \in R\)に対し，\(M_{\operatorname {ind}}(Y, a, b) \in \operatorname {M}_{n+1}(R)\)を以下のように定める： </p>
+<div class="equation" id="a0000000021">
+<p>
+  <div class="equation_content">
+    \begin{equation}  M_{\operatorname {ind}}(Y, a, b) = \left( \begin{array}{cccc|c}& & & &  0 \\ &  Y & & &  \vdots \\ & & & &  0 \\ & & & &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right). \end{equation}
+  </div>
+  <span class="equation_label">14</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CartanMatrix.ind_det">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.3</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:CartanMatrix.ind_det">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000022"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.ind_det" class="lean_decl">CartanMatrix.ind_det</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(X \in \operatorname {M}_{n+2}(R),\  Y \in \operatorname {M}_{n+1}(R),\  Z \in \operatorname {M}_n(R),\  a, b \in R\)とし，\(X = M_{\operatorname {ind}}(Y, a, b),\  Y_{n-1} = Z\)とする． すなわち，以下が成り立っているとする： </p>
+<div class="equation" id="a0000000023">
+<p>
+  <div class="equation_content">
+    \begin{equation}  X =\left( \begin{array}{cccc|c}& & & &  0 \\ &  Y & & &  \vdots \\ & & & &  0 \\ & & & &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right) = \left( \begin{array}{ccc|c|c}& & & &  0 \\ &  Z & &  * &  \vdots \\ & & & &  0 \\ \hline &  * & &  * &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right). \end{equation}
+  </div>
+  <span class="equation_label">15</span>
+</p>
+</div>
+<p> このとき，以下の関係式が成り立つ： </p>
+<div class="equation" id="a0000000024">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \det X = 2 \det Y - ab \det Z. \end{equation}
+  </div>
+  <span class="equation_label">16</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000022">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>余因子展開すれば得られる． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CartanMatrix.A_leadingSubmatrix">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.4</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:CartanMatrix.A_leadingSubmatrix">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000025"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.A_leadingSubmatrix" class="lean_decl">CartanMatrix.A_leadingSubmatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  各Cartan行列\(X_n\)に対し，\(k {\lt} n\)次主小行列\((X_n)_k\)は表&#160;<a href="index.html#table:CartanMatrix.A_leadingSubmatrix">1</a>のようになる： </p>
+<div class="table"  id="table:CartanMatrix.A_leadingSubmatrix">
+   <div class="centered"><figcaption>
+  <span class="caption_title">Table</span> 
+  <span class="caption_ref">1</span> 
+  <span class="caption_text">Cartan行列の主小行列</span> 
+</figcaption>  <table class="tabular">
+  <tr>
+    <td  style="text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p> \(X_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(B_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(C_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(D_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\operatorname {rev}D_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(E_{n \le 8}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(F_4\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p>\((X_n)_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\operatorname {rev}D_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(E_k\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(B_3, A_{k \ne 3}\) </p>
+
+    </td>
+  </tr>
+</table> </div>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000025">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Lean内では各\((i, j)\)成分に関して，定義を展開して確かめている． 人が確かめるには，\(X_n\)の\(k\)次主小行列は，\(X_n\)のCoxeter-Dynkin図形から頂点\(k+1, \ldots , n\)を取り除いたグラフであるから，図&#160;<a href="index.html#fig:positive_definite_graph">1</a>を見ればよい． </p>
+
+  </div>
+</div>
+<h2 id="a0000000026">0.2.2 Cartan行列</h2>
+<p>Cartan行列\(A_n, B_n, \ldots , G_2\)の行列式を求める． これらの定義はMathlibに存在する： </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.A">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.5</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.A">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.A" class="lean_decl">CartanMatrix.A</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  Cartan行列\(A_n \in \operatorname {M}_n(\mathbb {Z})\)を次のように定義する(例えば\(A_n\))： </p>
+<div class="equation" id="a0000000027">
+<p>
+  <div class="equation_content">
+    \begin{equation}  A_n = \begin{pmatrix}  2 
+
+&  -1 
+
+&  0 
+
+&  0 
+
+&  \cdots 
+
+&  0 
+
+\\ -1 
+
+&  2 
+
+&  -1 
+
+&  0 
+
+&  \cdots 
+
+&  0 
+
+\\ 0 
+
+&  -1 
+
+&  2 
+
+&  -1 
+
+&  \cdots 
+
+&  0 
+
+\\ \vdots 
+
+&  \vdots 
+
+&  \vdots 
+
+&  \vdots 
+
+&  \ddots 
+
+&  \vdots 
+
+\\ 0 
+
+&  0 
+
+&  0 
+
+&  0 
+
+&  \cdots 
+
+&  2 
+
+\end{pmatrix} \end{equation}
+  </div>
+  <span class="equation_label">17</span>
+</p>
+</div>
+
+  </div>
+</div>
+<p>なお，各定義からCoxeter-Dynkin図形を描くと図&#160;<a href="index.html#fig:positive_definite_graph">1</a>のようになる． 特に，\(E_8\)の\(6, 7\)次主小行列はそれぞれ\(E_6, E_7\)と一致する． より一般に，\(E_n\)を定義しておく： </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.E">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.6</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.E">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.E" class="lean_decl">CartanMatrix.E</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(E_n\)と書き，\(E_8\)の\(n\)次主小行列を表す． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.det_A">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.2.7</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.det_A">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000028"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:CartanMatrix.ind_det">Lemma 0.2.3</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">Lemma 0.2.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.det_A" class="lean_decl">CartanMatrix.det_A</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   各Cartan行列\(X_n\  (n \ne 0)\)に対し，行列式は表&#160;<a href="index.html#table:CartanMatrix.det_A">2</a>のようになる： </p>
+<div class="table"  id="table:CartanMatrix.det_A">
+   <div class="centered"><figcaption>
+  <span class="caption_title">Table</span> 
+  <span class="caption_ref">2</span> 
+  <span class="caption_text">Cartan行列の行列式</span> 
+</figcaption>  <table class="tabular">
+  <tr>
+    <td  style="text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p> \(X_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(A_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(B_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(C_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(D_{n \ge 2}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(E_{n \ge 3}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(F_4\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(G_2\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p>\(\det X_n\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(n+1\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(2\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(2\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(4\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(9-n\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(1\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(1\) </p>
+
+    </td>
+  </tr>
+</table> </div>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000028">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>図&#160;<a href="index.html#fig:positive_definite_graph">1</a>を見ると，\(X_n \in \{ A_n, B_n, C_n, \operatorname {rev}D_n, E_5, \ldots , E_8, F_4, G_2\} \)の頂点\(n\)は頂点\(n-1\)以外と繋がっていないことがわかる． すなわち，\(X_n = M_{\operatorname {ind}}((X_n)_{n-1}, a, b)\)という形をしているから補題&#160;<a href="index.html#lem:CartanMatrix.ind_det">0.2.3</a>が使える． 例として，\(\det A_n\)を求める． </p>
+<p>\(A_n\)の\(n-1, n-2\)次主小行列はそれぞれ\(A_{n-1}, A_{n-2}\)であるから，\(X = A_n,\  Y = A_{n-1},\  Z = A_{n-2},\  a = b = -1\)とすれば補題&#160;<a href="index.html#lem:CartanMatrix.ind_det">0.2.3</a>の仮定を満たす． よって， </p>
+<div class="equation" id="a0000000029">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \det A_n = 2 \det A_{n-1} - (-1) (-1) \det A_{n-2} \end{equation}
+  </div>
+  <span class="equation_label">18</span>
+</p>
+</div>
+<p> である． これを解くと，\(\det A_n = n - 1\)が得られる． </p>
+
+  </div>
+</div>
+<h2 id="a0000000030">0.2.3 拡大Cartan行列</h2>
+<p>拡大Cartan行列\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)の行列式を求める． これらの定義はMathlibに存在しないため，自分で定義した(例えば\(\widetilde{A}_n\))： </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.A_tilda">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.8</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.A_tilda">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.A_tilda" class="lean_decl">CartanMatrix.A_tilda</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<div class="equation" id="a0000000031">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \widetilde{A}_n = \begin{pmatrix}  2 
+
+&  -1 
+
+&  0 
+
+&  0 
+
+&  \cdots 
+
+&  0 
+
+&  -1 
+
+\\ -1 
+
+&  2 
+
+&  -1 
+
+&  0 
+
+&  \cdots 
+
+&  0 
+
+&  0 
+
+\\ 0 
+
+&  -1 
+
+&  2 
+
+&  -1 
+
+&  \cdots 
+
+&  0 
+
+&  0 
+
+\\ \vdots 
+
+&  \vdots 
+
+&  \vdots 
+
+&  \vdots 
+
+&  \ddots 
+
+&  \vdots 
+
+&  \vdots 
+
+\\ 0 
+
+&  0 
+
+&  0 
+
+&  0 
+
+&  \cdots 
+
+&  2 
+
+&  -1 
+
+\\ -1 
+
+&  0 
+
+&  0 
+
+&  0 
+
+&  \cdots 
+
+&  -1 
+
+&  2 
+
+\end{pmatrix} \end{equation}
+  </div>
+  <span class="equation_label">19</span>
+</p>
+</div>
+
+  </div>
+</div>
+<p>なお，各定義からCoxeter-Dynkin図形を描くと図&#160;<a href="index.html#fig:non-positive_definite_graph">2</a>のようになる． </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.det_A_tilda">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.2.9</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.det_A_tilda">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000032"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:CartanMatrix.ind_det">Lemma 0.2.3</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">Lemma 0.2.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.det_A_tilda" class="lean_decl">CartanMatrix.det_A_tilda</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   各拡大Cartan行列\(\widetilde{X}_n\  (n \ne 0)\)に対し，行列式は表&#160;<a href="index.html#table:CartanMatrix.det_A_tilda">3</a>のようになる： </p>
+<div class="table"  id="table:CartanMatrix.det_A_tilda">
+   <div class="centered"><figcaption>
+  <span class="caption_title">Table</span> 
+  <span class="caption_ref">3</span> 
+  <span class="caption_text">Cartan行列の行列式</span> 
+</figcaption>  <table class="tabular">
+  <tr>
+    <td  style="text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{X}_n\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{A}_{n \ge 2}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{B}_{n \ge 3}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{C}_{n \ge 2}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{D}_{n \ge 5}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{E}_{n \ge 6}\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{F}_4\) </p>
+
+    </td>
+    <td  style="text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(\widetilde{G}_2\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center; border-right:1px solid black" 
+        rowspan=""
+        colspan="">
+      <p>\(\det \widetilde{X}_n\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+    <td  style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center" 
+        rowspan=""
+        colspan="">
+      <p> \(0\) </p>
+
+    </td>
+  </tr>
+</table> </div>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000032">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\widetilde{A}_n\)以外は，定理&#160;<a href="index.html#thm:CartanMatrix.det_A">0.2.7</a>と同様に\(M_{\operatorname {ind}}(\widetilde{X}_n, a, b)\)を用いて求められる． \(\widetilde{A}_n\)は，各\(i\)行目のすべての成分を足すと\(0\)であるから\(\det \widetilde{A}_n = 0\)がわかる． </p>
+<p>Leanでの求め方を簡単に述べる．\(i\)を固定する． \(i, j \le n\)に関しては\((\widetilde{A}_n)_{ij} = (A_n)_{ij}\)であるから </p>
+<div class="equation" id="a0000000033">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{j = 1}^{n + 1} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} + (\widetilde{A}_n)_{i\  n+1} \end{equation}
+  </div>
+  <span class="equation_label">20</span>
+</p>
+</div>
+<p> と分ける． </p>
+<p>\(2 \le i \le n-1\)のとき </p>
+<div class="equation" id="a0000000034">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 0, \qquad (\widetilde{A}_n)_{i\  n+1} = 0 \end{equation}
+  </div>
+  <span class="equation_label">21</span>
+</p>
+</div>
+<p> である． </p>
+<p>\(i = 1 \lor i = n\)のとき </p>
+<div class="equation" id="a0000000035">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 1, \qquad (\widetilde{A}_n)_{i\  n+1} = -1 \end{equation}
+  </div>
+  <span class="equation_label">22</span>
+</p>
+</div>
+<p> である． </p>
+<p>\(i = n + 1\)のとき </p>
+<div class="equation" id="a0000000036">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = -2, \qquad (\widetilde{A}_n)_{i\  n+1} = 2 \end{equation}
+  </div>
+  <span class="equation_label">23</span>
+</p>
+</div>
+<p> である． </p>
+
+  </div>
+</div>
+<h2 id="a0000000037">0.2.4 対称化行列</h2>
+<p>以下\(C \in \operatorname {M}_n(\mathbb {Z})\)とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SymmMatrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.10</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:SymmMatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/SymmMatrix" class="lean_decl">SymmMatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  次のような行列\(S(C)\)を定める： </p>
+<div class="equation" id="a0000000038">
+<p>
+  <div class="equation_content">
+    \begin{equation}  S(C)_{ij} = \begin{cases}  2, &  i = j, \\ -\sqrt{C_{ij} C_{ji}}, &  i \ne j. \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">24</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:Matrix.IsSimplyLaced">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.2.11</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:Matrix.IsSimplyLaced">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/Matrix.IsSimplyLaced" class="lean_decl">Matrix.IsSimplyLaced</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(C\)の任意の非対角成分が\(0\)か\(-1\)のとき，\(C\)は<b class="bfseries">simply laced</b>であるという． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SymmMatrix_eq_rfl">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.12</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:SymmMatrix_eq_rfl">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/SymmMatrix_eq_rfl" class="lean_decl">SymmMatrix_eq_rfl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(C\)はsimply laced，任意の対角成分は\(2\)，対称行列であるとする． このとき，次が成り立つ： </p>
+<div class="equation" id="a0000000039">
+<p>
+  <div class="equation_content">
+    \begin{equation}  S(C) = C. \end{equation}
+  </div>
+  <span class="equation_label">27</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:det_SymmMatrix_eq_rfl">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.13</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:det_SymmMatrix_eq_rfl">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:SymmMatrix_eq_rfl">Lemma 0.2.12</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/det_SymmMatrix_eq_rfl" class="lean_decl">det_SymmMatrix_eq_rfl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C\)が補題&#160;<a href="index.html#lem:SymmMatrix_eq_rfl">0.2.12</a>の仮定を満たすとき，次が成り立つ： </p>
+<div class="equation" id="a0000000040">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \det S(C) = \det C. \end{equation}
+  </div>
+  <span class="equation_label">28</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SymmMatrix_leadingSubmatrix_comm">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.14</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/SymmMatrix_leadingSubmatrix_comm" class="lean_decl">SymmMatrix_leadingSubmatrix_comm</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  対称化\(S(*)\)と\(k \le n\)次主小行列\(*_k\)をとる操作は可換である： </p>
+<div class="equation" id="a0000000041">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (S(C))_k = S(C_k). \end{equation}
+  </div>
+  <span class="equation_label">29</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CartanMatrix.SymmMatrix_A_isTopLeftBlock">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.2.15</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:CartanMatrix.SymmMatrix_A_isTopLeftBlock">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">Lemma 0.2.14</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">Lemma 0.2.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.SymmMatrix_A_isTopLeftBlock" class="lean_decl">CartanMatrix.SymmMatrix_A_isTopLeftBlock</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   対称化しても表&#160;<a href="index.html#table:CartanMatrix.A_leadingSubmatrix">1</a>の関係は変わらない． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.det_SymmMatrix_A">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.2.16</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.det_SymmMatrix_A">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000042"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:det_SymmMatrix_eq_rfl">Lemma 0.2.13</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.ind_det">Lemma 0.2.3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.det_SymmMatrix_A" class="lean_decl">CartanMatrix.det_SymmMatrix_A</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   表&#160;<a href="index.html#table:CartanMatrix.det_A">2</a>の各\(A_n, B_n, \ldots , G_2\)に対し，対称化しても行列式は変わらない． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000042">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(A_n, D_n, E_n\)に関しては，simply lacedであるから補題&#160;<a href="index.html#lem:det_SymmMatrix_eq_rfl">0.2.13</a>から従う． その他に関しては，補題&#160;<a href="index.html#lem:CartanMatrix.ind_det">0.2.3</a>を使って全く同様に帰納法で示せる． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.det_SymmMatrix_A_tilda">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.2.17</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.det_SymmMatrix_A_tilda">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000043"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:det_SymmMatrix_eq_rfl">Lemma 0.2.13</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.ind_det">Lemma 0.2.3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.det_SymmMatrix_A_tilda" class="lean_decl">CartanMatrix.det_SymmMatrix_A_tilda</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   表&#160;<a href="index.html#table:CartanMatrix.det_A_tilda">3</a>の各\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)に対し，対称化しても行列式は変わらない． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000043">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>上の定理&#160;<a href="index.html#thm:CartanMatrix.det_SymmMatrix_A">0.2.16</a>と全く同様である． </p>
+
+  </div>
+</div>
+<h1 id="a0000000044">0.3 正定値性</h1>
+<h2 id="a0000000045">0.3.1 Cartan行列の正定値性</h2>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.A_isPosDef">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.3.1</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.A_isPosDef">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000046"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#thm:sylvester_criterion">Theorem 0.1.1</a></li>
+          
+          <li><a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">Lemma 0.2.14</a></li>
+          
+          <li><a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">Lemma 0.2.4</a></li>
+          
+          <li><a href="index.html#thm:CartanMatrix.det_SymmMatrix_A">Theorem 0.2.16</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.A_isPosDef" class="lean_decl">CartanMatrix.A_isPosDef</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   表&#160;<a href="index.html#table:CartanMatrix.det_A">2</a>の各\(A_n, B_n, \ldots , G_2\)に対し，それを対称化した行列\(S(A_n), S(B_n), \ldots , S(G_2)\)はいずれも正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000046">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>例として\(A_n\)の場合を示す． 定理&#160;<a href="index.html#thm:sylvester_criterion">0.1.1</a> (Sylvesterの判定法)より，任意の主小行列式が正であることを言えば良い． 補題&#160;<a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">0.2.14</a>, <a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">0.2.4</a>と定理&#160;<a href="index.html#thm:CartanMatrix.det_SymmMatrix_A">0.2.16</a>より </p>
+<div class="equation" id="a0000000047">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \det (S(A_n))_k = \det S((A_n)_k) = \det S(A_k) = k + 1 {\gt} 0 \end{equation}
+  </div>
+  <span class="equation_label">30</span>
+</p>
+</div>
+<p> となる． 他も全く同様である． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CCartanMatrix.A_tilda_isNotPosDef">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.3.2</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CCartanMatrix.A_tilda_isNotPosDef">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000048"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#thm:sylvester_criterion">Theorem 0.1.1</a></li>
+          
+          <li><a href="index.html#thm:CartanMatrix.det_SymmMatrix_A_tilda">Theorem 0.2.17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.A_tilda_isNotPosDef" class="lean_decl">CartanMatrix.A_tilda_isNotPosDef</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   表&#160;<a href="index.html#table:CartanMatrix.det_A_tilda">3</a>の各\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)に対し，それを対称化した行列\(S(\widetilde{A}_n), S(\widetilde{B}_n), \ldots , S(\widetilde{G}_2)\)はいずれも正定値でない． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000048">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>例として\(\widetilde{A}_n\)の場合を示す． 定理&#160;<a href="index.html#thm:sylvester_criterion">0.1.1</a> (Sylvesterの判定法)より，\(k\)次主小行列式が非正となる\(k\)が\(1\)つでもあればよい． \(k = n + 1\)とすると，定理&#160;<a href="index.html#thm:CartanMatrix.det_SymmMatrix_A_tilda">0.2.17</a>より </p>
+<div class="equation" id="a0000000049">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \det (S(\widetilde{A}_n))_{n+1} = \det S(\widetilde{A}_n) = 0 \le 0 \end{equation}
+  </div>
+  <span class="equation_label">31</span>
+</p>
+</div>
+<p> となる． 他も全く同様である． </p>
+
+  </div>
+</div>
+<h2 id="a0000000050">0.3.2 部分グラフ</h2>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.LowerLabel">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.3.3</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanMatrix.LowerLabel">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.LowerLabel" class="lean_decl">CartanMatrix.LowerLabel</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  次のような行列\(C_L\)を定める： </p>
+<div class="equation" id="a0000000051">
+<p>
+  <div class="equation_content">
+    \begin{equation}  (C_L)_{ij} = \begin{cases}  2, &  i = j, \\ -1, &  C_{ij} = -1, \\ -1, &  C_{ij} = -2, \\ -2, &  C_{ij} = -3. \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">32</span>
+</p>
+</div>
+<p> \(*_L\)と\(*_k\)の操作を組み合わせてできる行列を<b class="bfseries">部分グラフ</b>という． Coxeter-Dynkin図形の言葉で言えば，辺の本数を減らす，頂点を減らす操作の組み合わせである． </p>
+
+  </div>
+</div>
+<p>正定値の部分グラフもまた正定値である． </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.sub_of_pos_def">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.3.4</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.sub_of_pos_def">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000052"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">Lemma 0.2.14</a></li>
+          
+          <li><a href="index.html#lem:PosDef.submatrix_injective">Lemma 0.1.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.sub_of_pos_def" class="lean_decl">CartanMatrix.sub_of_pos_def</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(S(C)\)が正定値ならば，\(S(C_k)\)も正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000052">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>補題&#160;<a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">0.2.14</a>より </p>
+<div class="equation" id="a0000000053">
+<p>
+  <div class="equation_content">
+    \begin{equation}  S(C_k) = (S(C))_k \end{equation}
+  </div>
+  <span class="equation_label">37</span>
+</p>
+</div>
+<p> であり，補題&#160;<a href="index.html#lem:PosDef.submatrix_injective">0.1.4</a>より正定値行列の部分行列は正定値であるから従う． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CartanMatrix.sub_of_pos_def'">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.3.5</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:CartanMatrix.sub_of_pos_def'">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000054"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanMatrix.sub_of_pos_def'" class="lean_decl">CartanMatrix.sub_of_pos_def'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(S(C)\)が正定値ならば，\(S(C_L)\)も正定値である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000054">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>対偶を示す． \(S(C_L)\)が正定値でないとき，\(y \in \mathbb {R}^n\)で </p>
+<div class="equation" id="a0000000055">
+<p>
+  <div class="equation_content">
+    \begin{equation}  y \ne 0, \qquad \sum _{i, j} y_i \cdot (S(C))_{ij} \cdot y_j \le 0 \end{equation}
+  </div>
+  <span class="equation_label">38</span>
+</p>
+</div>
+<p> なるものがあることを示せばよい． \(S(C_L)\)が正定値でないから\(0 \ne x \in \mathbb {R}^n\)で </p>
+<div class="equation" id="a0000000056">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \le 0 \end{equation}
+  </div>
+  <span class="equation_label">39</span>
+</p>
+</div>
+<p> なるものがある． </p>
+<div class="equation" id="a0000000057">
+<p>
+  <div class="equation_content">
+    \begin{equation}  y = {}^t\! (|x_1|, \ldots , |x_n|) \end{equation}
+  </div>
+  <span class="equation_label">40</span>
+</p>
+</div>
+<p> とする． </p>
+<p>\(y \ne 0\)を示す． \(y = 0\)とすると，任意の\(i\)に対し\(y_i = |x_i| = 0\)，すなわち\(x_i = 0\)であるが，これは矛盾する． </p>
+<p>また， </p>
+<div class="displaymath" id="a0000000058">
+  \begin{align}  \sum _{i, j} y_i \cdot (S(C))_{ij} \cdot y_j & = \sum _{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\ & \le \sum _{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\ & = \sum _{i, j} (S(C_L))_{ij} \cdot |x_i x_j| \\ & = \sum _{i, j} (S(C_L))_{ij} \cdot x_i x_j \\ & = \sum _{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \\ & \le 0. \end{align}
+</div>
+
+  </div>
+</div>
+<h1 id="a0000000059">0.4 Root pairing</h1>
+<p> この章では，\(\iota \)を(有限とは限らない)添え字集合，\(R\)を可換環, \(M, N\)を\(R\)-加群とする． </p>
+<h2 id="a0000000060">0.4.1 定義と性質</h2>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.4.1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:RootPairing">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing" class="lean_decl">RootPairing</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(M, N\)は\(R\)上のperfect pairingとする． すなわち，bilinear map \(B : M \times N \rightarrow R\)が与えられていて，片方の変数を固定して単にlinear mapと見たとき，それぞれがbijectiveであるとする． このとき，\(\Phi := \left\lbrace \alpha _i \in M \mathrel {} \middle | \mathrel {} i \in \iota  \right\rbrace ,\  \Phi ^\vee := \left\lbrace \alpha ^\vee _i \in N \mathrel {} \middle | \mathrel {} i \in \iota  \right\rbrace \)が次を満たすとき，\(P := (\Phi , \Phi ^\vee )\)を<b class="bfseries">root pairing</b>という： </p>
+<ol class="enumerate">
+  <li><p>任意の\(i\)に対し，\(\  B(\alpha _i, \alpha ^\vee _i) = 2\)である．  </p>
+</li>
+  <li><p>任意の\(i, j\)に対し，\(\alpha _j - B(\alpha _j, \alpha ^\vee _i) \alpha _i = \alpha _k\)を満たす\(k\)が存在する． </p>
+</li>
+  <li><p>任意の\(i, j\)に対し，\(\alpha ^\vee _j - B(\alpha _i, \alpha ^\vee _j) \alpha ^\vee _i = \alpha ^\vee _k\)を満たす\(k\)が存在する． </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="remark_thmwrapper theorem-style-plain" id="a0000000061">
+  <div class="remark_thmheading">
+    <span class="remark_thmcaption">
+    Remark
+    </span>
+    <span class="remark_thmlabel">0.4.2</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#a0000000061">#</a>
+    
+    
+    
+        </div>
+  </div>
+  <div class="remark_thmcontent">
+  <p>慣れ親しんだ実ベクトル空間でのルート系の定義における標準内積\(\left\langle \cdot , \cdot  \right\rangle \)は，root pairingの定義における\(B(\cdot , \cdot )\)に相当する． </p>
+<div class="equation" id="a0000000062">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \left\langle \alpha _j, \alpha _i^\vee  \right\rangle  = 2 \frac{\left\langle \alpha _i, \alpha _j \right\rangle }{\left\langle \alpha _i, \alpha _i \right\rangle },\qquad s_{\alpha _i}(\alpha _j) = \alpha _j - \left\langle \alpha _j, \alpha _i^\vee  \right\rangle  \alpha _i \end{equation}
+  </div>
+  <span class="equation_label">47</span>
+</p>
+</div>
+<p> であったから，確かに定義<a href="index.html#def:RootPairing">0.4.1</a>の条件はルート系の定義を一般化したものになっている． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing.IsCrystallographic">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.4.3</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:RootPairing.IsCrystallographic">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.IsCrystallographic" class="lean_decl">RootPairing.IsCrystallographic</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(P\)はroot pairingとする． 任意の\(i, j\)に対し，\(B(\alpha _i, \alpha ^\vee _j) \in \mathbb {Z}\)であるとき，\(P\)は<b class="bfseries">crystallographic</b>であるという． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing.IsIrreducible">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.4.4</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:RootPairing.IsIrreducible">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.IsIrreducible" class="lean_decl">RootPairing.IsIrreducible</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(R\)-加群\(M, N\)に関するroot pairing \(P\)が次を満たすとき，\(P\)は<b class="bfseries">irreducible</b>であるという： </p>
+<ol class="enumerate">
+  <li><p>\(M\)は非自明である，すなわち\(M \ne 0\)である． </p>
+</li>
+  <li><p>\(N\)は非自明である，すなわち\(N \ne 0\)である． </p>
+</li>
+  <li><p>\(M\)の部分加群\(q\)が，任意のreflectionで不変(i.e., \(s_i(q) \subseteq q\))で，\(q \ne 0\)であれば，\(q = M\)である． </p>
+</li>
+  <li><p>\(N\)の部分加群\(q\)が，任意のcoreflectionで不変で，\(q \ne 0\)であれば，\(q = N\)である． </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<h2 id="a0000000063">0.4.2 Root pairingから定まるCartan行列</h2>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing.Base">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.4.5</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:RootPairing.Base">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.Base" class="lean_decl">RootPairing.Base</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(P\)をroot pairingとする． \(b \subseteq \iota \)を有限部分集合とする． 次を満たすとき，\(b\)は\(P\)の<b class="bfseries">base</b>であるという： </p>
+<ol class="enumerate">
+  <li><p>\(\{ \alpha _i\} _{i \in b}\)は\(R\)上線型独立である． </p>
+</li>
+  <li><p>\(\{ \alpha ^\vee _i\} _{i \in b}\)は\(R\)上線型独立である． </p>
+</li>
+  <li><p>任意の\(i \in \iota \)に対し，\(\alpha _i\)は次のように表せる： </p>
+<div class="equation" id="a0000000064">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \alpha _i = \sum _{j \in b} c_j \alpha _j \quad \lor \quad -\alpha _i = \sum _{j \in b} c_j \alpha _j \qquad (c_j \in \mathbb {N}). \end{equation}
+  </div>
+  <span class="equation_label">48</span>
+</p>
+</div>
+</li>
+  <li><p>任意の\(i \in \iota \)に対し，\(\alpha ^\vee _i\)は次のように表せる： </p>
+<div class="equation" id="a0000000065">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \alpha ^\vee _i = \sum _{j \in b} c_j \alpha ^\vee _j \quad \lor \quad -\alpha ^\vee _i = \sum _{j \in b} c_j \alpha ^\vee _j \qquad (c_j \in \mathbb {N}). \end{equation}
+  </div>
+  <span class="equation_label">49</span>
+</p>
+</div>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing.Base.cartanMatrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.4.6</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:RootPairing.Base.cartanMatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.Base.cartanMatrix" class="lean_decl">RootPairing.Base.cartanMatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(P\)はroot pairingでcrystallographicであるとする． また，\(b\)は\(P\)のbaseとする． \(C \in \operatorname {M}_b(\mathbb {Z})\)を次のように定め，root pairing \(P\)から定まる<b class="bfseries">Cartan行列</b>という： </p>
+<div class="equation" id="a0000000066">
+<p>
+  <div class="equation_content">
+    \begin{equation}  C_{ij} = B(\alpha _i, \alpha ^\vee _j). \end{equation}
+  </div>
+  <span class="equation_label">50</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RootPairing.Base.cartanMatrix_mem_of_ne">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.4.7</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:RootPairing.Base.cartanMatrix_mem_of_ne">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.Base.cartanMatrix_mem_of_ne" class="lean_decl">RootPairing.Base.cartanMatrix_mem_of_ne</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  \(P\)はroot pairingでcrystallographicであるとする． また，\(b\)は\(P\)のbaseとする． \(\iota \)は有限で\(R\)は整域であるとする． 任意の\(i, j \in \iota \)に対し，\(i \ne j\)ならば\(C_{ij} \in \{ -3, -2, -1, 0\} \)である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.4.8</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm" class="lean_decl">RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(P\)はroot pairingでcrystallographicであるとする． また，\(b\)は\(P\)のbaseとする． \(R\)は整域であるとする． 任意の\(i, j \in \iota \)に対し，\(C_{ij} = 0\)と\(C_{ji} = 0\)は同値である． </p>
+
+  </div>
+</div>
+<h1 id="a0000000067">0.5 分類</h1>
+<p> 今までの具体的な行列たち(\(A_n, B_n, \ldots , G_2\))と一般のroot pairingから定まるCartan行列の理論は個別であった(互いに全く関連がない)． そこで，これらの架け橋となる議論をした後，root pairingから定まるCartan行列の分類を形式化する． </p>
+<h2 id="a0000000068">0.5.1 一般Cartan行列(GCM)</h2>
+<p>\(I, J\)を添字集合とし，\(C \in \operatorname {M}_I(\mathbb {Z}),\  C' \in \operatorname {M}_J(\mathbb {Z})\)とする(行と列がそれぞれ\(I, J\)で番号づけられている正方行列)． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IsGeneralizedCartanMatrix">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:IsGeneralizedCartanMatrix">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsGeneralizedCartanMatrix" class="lean_decl">IsGeneralizedCartanMatrix</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  以下を満たすとき，\(C\)は<b class="bfseries">一般Cartan行列(generalized Cartan matrix, GCM)</b>であるという： </p>
+<ol class="enumerate">
+  <li><p>任意の\(i\)に対し，\(C_{ii} = 2\)である． </p>
+</li>
+  <li><p>任意の\(i, j\)に対し，\(i \ne j\)ならば\(C_{ij} \le 0\)である． </p>
+</li>
+  <li><p>任意の\(i, j\)に対し，\(C_{ij} = 0\)と\(C_{ji} = 0\)は同値である． </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IsIndecomposable">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:IsIndecomposable">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsIndecomposable" class="lean_decl">IsIndecomposable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  任意の\(S \subseteq I\)に対し，\(S\)が空集合でも全体集合でもないとき，ある\(i \in S\)と\(j \notin S\)が存在して\(C_{ij} \ne 0\)であるとき，\(C\)は<b class="bfseries">indecomposable</b>であるという． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CartanEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.3</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:CartanEquiv">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/CartanEquiv" class="lean_decl">CartanEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(I\)と\(J\)が同型であるとき，\(C\)と\(C'\)は<b class="bfseries">CartanEquiv</b>であるという． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IsGeneralizedCartanMatrix.of_cartanEquiv">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.5.4</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:IsGeneralizedCartanMatrix.of_cartanEquiv">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000069"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsGeneralizedCartanMatrix.of_cartanEquiv" class="lean_decl">IsGeneralizedCartanMatrix.of_cartanEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(C\)はGCMで，\(C\)と\(C'\)はCartanEquivであるとき，\(C'\)もGCMである． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000069">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>仮定の同値性より，同型\(\sigma : I \simeq J\)があり，\(C'_{ij} = C_{\sigma (i), \sigma (j)}\)である． 定義通り確かめる． </p>
+<p>任意に\(i\)をとる． \(C'_{ii} = C_{\sigma (i), \sigma (i)} = 2\)である． </p>
+<p>任意に\(i \ne j\)となるよう\(i, j\)をとる． \(C'_{ij} = C_{\sigma (i), \sigma (j)} \le 0\)である． </p>
+<p>任意に\(i, j\)をとる． \(C'_{ij} = 0\)と\(C'_{ji} = 0\)は同値である． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IsIndecomposable.of_cartanEquiv">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.5.5</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:IsIndecomposable.of_cartanEquiv">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000070"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/IsIndecomposable.of_cartanEquiv" class="lean_decl">IsIndecomposable.of_cartanEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(C\)はindecomposableで，\(C\)と\(C'\)はCartanEquivであるとき，\(C'\)もindecomposableである． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000070">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>仮定の同値性より，同型\(\sigma : I \simeq J\)があり，\(C'_{ij} = C_{\sigma (i), \sigma (j)}\)である． \(S \ne \emptyset ,\  S \ne J\)となるよう\(S \subseteq J\)をとる． \(0 \ne C'_{ij} = C_{\sigma (i), \sigma (j)}\)を示せばよい． </p>
+<p>このとき，\(\sigma ^{-1}(S) \ne I\)である． なぜなら，もし\(\sigma ^{-1}(S) = I\)ならば，\(S = \sigma (I) = J\)となり矛盾するからである． </p>
+<p>また，\(\sigma ^{-1}(S) \ne \emptyset \)である． なぜなら，もし\(\sigma ^{-1}(S) = \emptyset \)ならば，\(S\)と\(\Im \sigma = J\)は交わらず，すなわち\(S = \emptyset \)となり矛盾するからである． </p>
+<p>よって，\(C\)のindeccomposable性より，ある\(i \in \sigma ^{-1}(S)\)と\(j \notin \sigma ^{-1}(S)\)が存在して\(C_{ij} \ne 0\)である． したがって，\(\sigma (i) \in S,\  \sigma (j) \notin S\)であり，\(C'_{\sigma (i), \sigma (j)} = C_{ij} \ne 0\)である． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:rootSystem_isGCM">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.5.6</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:rootSystem_isGCM">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000071"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:RootPairing.Base.cartanMatrix_mem_of_ne">Lemma 0.4.7</a></li>
+          
+          <li><a href="index.html#lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm">Lemma 0.4.8</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/rootSystem_isGCM" class="lean_decl">rootSystem_isGCM</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(\iota \)は有限添字集合，\(E, F\)は\(\mathbb {R}\)-内積空間とする． \(P\)は\(E, F\)に関するroot pairingでcrystallographicであるとする． \(b\)は\(P\)のbaseとする． \(C\)をroot pairing \(P\)から定まるCartan行列とする． このとき，\(C\)はGCMである． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000071">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>定義通り確かめる． </p>
+<p>任意に\(i\)をとる．Cartan行列の定義とroot pairingの定義より，\(C_{ii} = B(\alpha _i, \alpha ^\vee _i) = 2\)である． </p>
+<p>\(i \ne j\)となるよう\(i, j\)をとる．補題&#160;<a href="index.html#lem:RootPairing.Base.cartanMatrix_mem_of_ne">0.4.7</a>より\(C_{ij} \in \{ -3, -2, -1, 0\} \)である． よって，\(C_{ij} \le 0\)である． </p>
+<p>任意に\(i, j\)をとる．補題&#160;<a href="index.html#lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm">0.4.8</a>より，\(C_{ij} = 0\)と\(C_{ji} = 0\)は同値である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:edge_product_ge_one">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.5.7</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:edge_product_ge_one">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000072"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/edge_product_ge_one" class="lean_decl">edge_product_ge_one</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C \in \operatorname {M}_n(\mathbb {Z})\)はGCMでindecomposableであるとする． また，\(i \ne j\)かつ\(C_{ij} \ne 0\)となるよう\(i, j\)をとる． このとき，\(1 \le C_{ij} C_{ji}\)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000072">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(i \ne j\)であるから，GCMの定義より\(C_{ij} \le 0\)である． \(C_{ij} \ne 0\)であるから，GCMの定義より\(C_{ji} \ne 0\)である． よって，\(C_{ij} {\lt} 0\)かつ\(C_{ji} {\lt} 0\)である． したがって，\(1 \le C_{ij} C_{ji}\)である． </p>
+
+  </div>
+</div>
+<h2 id="a0000000073">0.5.2 Dynkin graph</h2>
+<p>ここでは\(C \in \operatorname {M}_n(\mathbb {Z}),\  I = \{ 1, 2, \ldots , n\} \)とする． </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:dynkinGraph">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.8</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:dynkinGraph">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/dynkinGraph" class="lean_decl">dynkinGraph</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(C\)はGCMであるとする． 頂点が\(V := I\)である無向単純グラフを考える(集合としては同じだが，添え字集合\(I\)を頂点集合として捉えている)． \(i \ne j\)かつ\(C_{ij} \ne 0\)ならば，頂点\(i\)と頂点\(j\)を辺で結ぶ． このグラフを\(C\)の<b class="bfseries">Dynkin graph</b>という． GCMの定義の\(C_{ij} = 0 \iff C_{ji} = 0\)より無向性が従う． また，辺があるのは\(i \ne j\)であるときなので，自己ループがないことも従う． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:dynkinGraph_preconnected">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.5.9</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:dynkinGraph_preconnected">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000074"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/dynkinGraph_preconnected" class="lean_decl">dynkinGraph_preconnected</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C\)はGCMでindecomposableであるとする． このとき，\(C\)のDynkin graphは連結である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000074">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>ある頂点\(u, v \in V\)があり，\(u\)から\(v\)への道がないとする． \(S\)は\(u\)から道がある頂点全体の集合とする． \(u\)から\(u\)へは道があるため，\(u \in S\)であり，\(S\)は空集合でない． </p>
+<p>\(S = V\)であることを示す． \(w \in V\)で\(w \notin S\)なるものがあるとする． すると，\(S \ne V\)である． \(S\)は空集合でも全体集合でもないため，indecomposableの定義からある\(i \in S\)と\(j \notin S\)が存在して\(C_{ij} \ne 0\)である． このとき，\(i \ne j\)であるから，\(i\)と\(j\)は辺で結ばれている． すると，\(u\)から\(i\)への道と\(i\)と\(j\)を結ぶ辺から，\(u\)から\(j\)への道がある． しかし，これは\(j \in S\)であることを意味し，矛盾する． </p>
+<p>したがって，\(S = V\)であるから無論\(v \in S\)である． しかし，これは\(u\)から\(v\)への道があることを意味し，矛盾する． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:degree">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.10</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:degree">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/degree" class="lean_decl">degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(\deg (C, i) \in \mathbb {N}\)を次のように定め，\(C\)の頂点\(i\)の<b class="bfseries">degree</b>という： </p>
+<div class="equation" id="a0000000075">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \deg (C, i) := \#  \left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j\  \land \  C_{ij} \ne 0 \right\rbrace . \end{equation}
+  </div>
+  <span class="equation_label">51</span>
+</p>
+</div>
+<p> つまり，\(C\)のDynkin graphにおいて頂点\(i\)に隣接している頂点の数である． </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:numOfBranch">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">0.5.11</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#def:numOfBranch">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/numOfBranch" class="lean_decl">numOfBranch</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>  \(N(C) \in \mathbb {N}\)を次のように定め，\(C\)の<b class="bfseries">branchの数</b>という： </p>
+<div class="equation" id="a0000000076">
+<p>
+  <div class="equation_content">
+    \begin{equation}  N(C) := \#  \left\lbrace i \mathrel {} \middle | \mathrel {} 3 \le \deg (C, i) \right\rbrace . \end{equation}
+  </div>
+  <span class="equation_label">52</span>
+</p>
+</div>
+<p> つまり，\(C\)のDynkin graphにおいてY字や十字以上に分岐している頂点の数である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exist_two_extra_neighbors">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.5.12</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:exist_two_extra_neighbors">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000077"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/exist_two_extra_neighbors" class="lean_decl">exist_two_extra_neighbors</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(i, w \in V\)で\(3 \le \deg (C, i)\)とする． このとき，\(a, b \in V\)で，以下すべてを満たすものが存在する： </p>
+<div class="equation" id="a0000000078">
+<p>
+  <div class="equation_content">
+    \begin{equation}  a \ne b,\  a \ne i,\  a \ne w,\  b \ne i,\  b \ne w,\quad C_{ia} \ne 0,\  C_{ib} \ne 0. \end{equation}
+  </div>
+  <span class="equation_label">53</span>
+</p>
+</div>
+<p> つまり，頂点\(i\)は頂点\(w\)の他に少なくとも\(2\)つの頂点\(a, b\)と繋がっている． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000077">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(S = \left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j\  \land \  C_{ij} \ne 0 \right\rbrace  \setminus \{ w\} \)とする． このとき， </p>
+<div class="displaymath" id="a0000000079">
+  \begin{align}  \#  S & = \#  \left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j\  \land \  C_{ij} \ne 0 \right\rbrace  - \#  \{ w\}  \\ & = \deg (C, i) - 1 \\ & \ge 3 - 1 \\ & = 2 \end{align}
+</div>
+<p> である． よって，\(a, b \in S\)で\(a \ne b\)となるようなものがとれる． </p>
+<p>また，任意の\(j \in S\)に対し， </p>
+<div class="equation" id="a0000000080">
+<p>
+  <div class="equation_content">
+    \begin{equation}  j \ne i,\  j \ne w,\  C_{ij} \ne 0 \end{equation}
+  </div>
+  <span class="equation_label">58</span>
+</p>
+</div>
+<p> はすべて成り立つ． もちろん，この\(j\)が\(a, b\)のときにも成り立つから主張をすべて満たす． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:symmMatrix_quadform_upper_bound">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.5.13</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:symmMatrix_quadform_upper_bound">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000081"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:edge_product_ge_one">Lemma 0.5.7</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/symmMatrix_quadform_upper_bound" class="lean_decl">symmMatrix_quadform_upper_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(x := {}^t\! x_1, x_2, \ldots , x_n \in \mathbb {R}^n\)とし，任意の\(i\)に対し\(0 \le x_i\)とする． また，\(E \subseteq I \times I\)とし，任意の\(p := (p_1, p_2) \in E\)に対し，\(p_1 \ne p_2\  \land \  C_{p_1 p_2} \ne 0\)と\((p_2, p_1) \notin E\)が成り立つとする． このとき，次が成り立つ： </p>
+<div class="equation" id="a0000000082">
+<p>
+  <div class="equation_content">
+    \begin{equation}  {}^t\! x S(C) x \le \sum _{i \in I} 2 x_i ^2 - 2 \sum _{p \in E} x_{p_1} x_{p_2}. \end{equation}
+  </div>
+  <span class="equation_label">59</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000081">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>定義通り展開する： </p>
+<div class="displaymath" id="a0000000083">
+  \begin{align}  {}^t\! x S(C) x & = \sum _{i \in I} x_i \left( \sum _{j \in I} S(C)_{ij} x_j \right) \\ & = \sum _{i \in I} x_i \left( \sum _{j = i} 2 x_j + \sum _{j \in I \setminus \{ i\} } -\sqrt{C_{ij} C_{ji}} x_j \right) \\ & = \sum _{i \in I} \sum _{j = i} 2 x_i x_j - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} 2 x_i ^2 - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} 2 x_i ^2 - \sum _{p \in I \times (I \setminus \{ i\} )} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2}. \end{align}
+</div>
+<p> ここで， </p>
+<div class="equation" id="a0000000084">
+<p>
+  <div class="equation_content">
+    \begin{equation}  B = \bigcup _{p \in E} \{ (p_1, p_2), (p_2, p_1)\}  \end{equation}
+  </div>
+  <span class="equation_label">65</span>
+</p>
+</div>
+<p> とおくと，\(B \subseteq I \times (I \setminus \{ i\} )\)である． 各\(x_i\)は非負であるから </p>
+<div class="displaymath" id="a0000000085">
+  \begin{align}  \sum _{p \in I \times (I \setminus \{ i\} )} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} & \ge \sum _{p \in B} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} \\ & = \sum _{p \in E} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sum _{p \in E} \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1} \\ & = \sum _{p \in E} (\sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1}) \end{align}
+</div>
+<p> となる． 各\(p \in E\)に対し，\(C_{p_1 p_2} \ne 0\)であるから補題&#160;<a href="index.html#lem:edge_product_ge_one">0.5.7</a>より\(C_{p_1 p_2} C_{p_2 p_1} \ge 1\)である． </p>
+
+  </div>
+</div>
+<p><br /></p>
+<h1 id="a0000000086">0.6 付録</h1>
+<figure id="fig:positive_definite_graph">
+  <div class="centered"> graphics/positive_definite_graph.pdf </div>
+<figcaption>
+  <span class="caption_title">Figure</span> 
+  <span class="caption_ref">1</span> 
+  <span class="caption_text">正定値グラフ</span> 
+</figcaption>
+
+</figure>
+<figure id="fig:non-positive_definite_graph">
+  <div class="centered"> graphics/non-positive_definite_graph.pdf </div>
+<figcaption>
+  <span class="caption_title">Figure</span> 
+  <span class="caption_ref">2</span> 
+  <span class="caption_text">非正定値グラフ</span> 
+</figcaption>
+
+</figure>
+
 </div> <!--main-text -->
 </div> <!-- content-wrapper -->
 </div> <!-- content -->

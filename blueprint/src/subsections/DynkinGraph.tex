@@ -1,0 +1,73 @@
+\subsection{Dynkin graph}
+
+ここでは$C \in \M_n(\Z),\ I = \{1, 2, \ldots, n\}$とする．
+
+\begin{definition}
+  \label{def:dynkinGraph}
+  \lean{dynkinGraph}
+  \leanok
+  $C$はGCMであるとする．
+  頂点が$V := I$である無向単純グラフを考える(集合としては同じだが，添え字集合$I$を頂点集合として捉えている)．
+  $C_{ij} \ne 0$かつ$i \ne j$ならば，頂点$i$と頂点$j$を辺で結ぶ．
+  このグラフを$C$の\textbf{Dynkin graph}という．
+  GCMの定義の$C_{ij} = 0 \iff C_{ji} = 0$より無向性が従う．
+  また，辺があるのは$i \ne j$であるときなので，自己ループがないことも従う．
+\end{definition}
+
+\begin{lemma}
+  \label{lem:dynkinGraph_preconnected}
+  \lean{dynkinGraph_preconnected}
+  \leanok
+  \uses{}
+  $C$はGCMでindecomposableであるとする．
+  このとき，$C$のDynkin graphは連結である．
+\end{lemma}
+
+\begin{proof}
+  ある頂点$u, v \in V$があり，$u$から$v$への道がないとする．
+  $S$は$u$から道がある頂点全体の集合とする．
+  $u$から$u$へは道があるため，$u \in S$であり，$S$は空集合でない．
+  
+  $S = V$であることを示す．
+  $w \in V$で$w \notin S$なるものがあるとする．
+  すると，$S \ne V$である．
+  $S$は空集合でも全体集合でもないため，indecomposableの定義からある$i \in S$と$j \notin S$が存在して$C_{ij} \ne 0$である．
+  このとき，$i \ne j$であるから，$i$と$j$は辺で結ばれている．
+  すると，$u$から$i$への道と$i$と$j$を結ぶ辺から，$u$から$j$への道がある．
+  しかし，これは$j \in S$であることを意味し，矛盾する．
+
+  したがって，$S = V$であるから無論$v \in S$である．
+  しかし，これは$u$から$v$への道があることを意味し，矛盾する．
+\end{proof}
+
+\begin{definition}
+  \label{def:neighbourhood}
+  集合$N(i)$を次で定める：
+  \begin{equation}
+    N(i) = N_C(i) := \set{j}{C_{ij} \ne 0\ \land\ i \ne j}.
+  \end{equation}
+  つまり，$i$に隣接している頂点全体の集合である．
+  Lean上に定義はないが，数学の言葉で書く際にわかりやすくするために定義した．グラフ理論の言葉で\textbf{近傍}という．
+\end{definition}
+
+\begin{definition}
+  \label{def:degree}
+  \lean{degree}
+  \leanok
+  $\deg(i) \in \N$を次のように定め，$C$の頂点$i$の\textbf{degree}という：
+  \begin{equation}
+    \deg_C(i) = \deg(i) := \# N(i).
+  \end{equation}
+  つまり，$C$のDynkin graphにおいて頂点$i$に隣接している頂点の数である．
+\end{definition}
+
+\begin{definition}
+  \label{def:numOfBranch}
+  \lean{numOfBranch}
+  \leanok
+  $n(C) \in \N$を次のように定め，$C$の\textbf{branchの数}という：
+  \begin{equation}
+    n(C) := \# \set{i}{3 \le \deg(i)}.
+  \end{equation}
+  つまり，$C$のDynkin graphにおいてY字や十字以上に分岐している頂点の数である．
+\end{definition}

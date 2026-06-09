@@ -1,0 +1,114 @@
+\subsection{一般Cartan行列(GCM)}
+
+$I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と列がそれぞれ$I, J$で番号づけられている正方行列)．
+
+\begin{definition}
+  \label{def:IsGeneralizedCartanMatrix}
+  \lean{IsGeneralizedCartanMatrix}
+  \leanok
+  以下を満たすとき，$C$は\textbf{一般Cartan行列(generalized Cartan matrix, GCM)}であるという：
+  \begin{enumerate}[label=(\roman*)]
+    \item 任意の$i$に対し，$C_{ii} = 2$である．
+    \item 任意の$i, j$に対し，$i \ne j$ならば$C_{ij} \le 0$である．
+    \item 任意の$i, j$に対し，$C_{ij} = 0$と$C_{ji} = 0$は同値である．
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{def:IsIndecomposable}
+  \lean{IsIndecomposable}
+  \leanok
+  任意の$S \subseteq I$に対し，$S$が空集合でも全体集合でもないとき，ある$i \in S$と$j \notin S$が存在して$C_{ij} \ne 0$であるとき，$C$は\textbf{indecomposable}であるという．
+\end{definition}
+
+\begin{definition}
+  \label{def:CartanEquiv}
+  \lean{CartanEquiv}
+  \leanok
+  同型$\sigma : I \simeq J$があり，$C'_{ij} = C_{\sigma(i), \sigma(j)}$となるとき，$C$と$C'$は\textbf{CartanEquiv}であるという．
+\end{definition}
+
+\begin{theorem}
+  \label{thm:IsGeneralizedCartanMatrix.of_cartanEquiv}
+  \lean{IsGeneralizedCartanMatrix.of_cartanEquiv}
+  \leanok
+  \uses{}
+  $C$はGCMで，$C$と$C'$はCartanEquivであるとき，$C'$もGCMである．
+\end{theorem}
+
+\begin{proof}
+  仮定の同値性より，同型$\sigma : I \simeq J$があり，$C'_{ij} = C_{\sigma(i), \sigma(j)}$である．
+  定義通り確かめる．
+
+  任意に$i$をとる．
+  $C'_{ii} = C_{\sigma(i), \sigma(i)} = 2$である．
+
+  任意に$i \ne j$となるよう$i, j$をとる．
+  $C'_{ij} = C_{\sigma(i), \sigma(j)} \le 0$である．
+
+  任意に$i, j$をとる．
+  $C'_{ij} = 0$と$C'_{ji} = 0$は同値である．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:IsIndecomposable.of_cartanEquiv}
+  \lean{IsIndecomposable.of_cartanEquiv}
+  \leanok
+  \uses{}
+  $C$はindecomposableで，$C$と$C'$はCartanEquivであるとき，$C'$もindecomposableである．
+\end{theorem}
+
+\begin{proof}
+  仮定の同値性より，同型$\sigma : I \simeq J$があり，$C'_{ij} = C_{\sigma(i), \sigma(j)}$である．
+  $S \ne \emptyset,\ S \ne J$となるよう$S \subseteq J$をとる．
+  $0 \ne C'_{ij} = C_{\sigma(i), \sigma(j)}$を示せばよい．
+  
+  このとき，$\sigma^{-1}(S) \ne I$である．
+  なぜなら，もし$\sigma^{-1}(S) = I$ならば，$S = \sigma(I) = J$となり矛盾するからである．
+
+  また，$\sigma^{-1}(S) \ne \emptyset$である．
+  なぜなら，もし$\sigma^{-1}(S) = \emptyset$ならば，$S$と$\Im \sigma = J$は交わらず，すなわち$S = \emptyset$となり矛盾するからである．
+
+  よって，$C$のindeccomposable性より，ある$i \in \sigma^{-1}(S)$と$j \notin \sigma^{-1}(S)$が存在して$C_{ij} \ne 0$である．
+  したがって，$\sigma(i) \in S,\ \sigma(j) \notin S$であり，$C'_{\sigma(i), \sigma(j)} = C_{ij} \ne 0$である．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:rootSystem_isGCM}
+  \lean{rootSystem_isGCM}
+  \leanok
+  \uses{lem:RootPairing.Base.cartanMatrix_mem_of_ne, lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}
+  $\iota$は有限添字集合，$E, F$は$\R$-内積空間とする．
+  $P$は$E, F$に関するroot pairingでcrystallographicであるとする．
+  $b$は$P$のbaseとする．
+  $C$をroot pairing $P$から定まるCartan行列とする．
+  このとき，$C$はGCMである．
+\end{theorem}
+
+\begin{proof}
+  定義通り確かめる．
+
+  任意に$i$をとる．Cartan行列の定義とroot pairingの定義より，$C_{ii} = B(\alpha_i, \alpha^\vee_i) = 2$である．
+
+  $i \ne j$となるよう$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_mem_of_ne}より$C_{ij} \in \{-3, -2, -1, 0\}$である．
+  よって，$C_{ij} \le 0$である．
+
+  任意に$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}より，$C_{ij} = 0$と$C_{ji} = 0$は同値である．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:edge_product_ge_one}
+  \lean{edge_product_ge_one}
+  \leanok
+  \uses{}
+  $C \in \M_n(\Z)$はGCMでindecomposableであるとする．
+  また，$i \ne j$かつ$C_{ij} \ne 0$となるよう$i, j$をとる．
+  このとき，$1 \le C_{ij} C_{ji}$である．
+\end{lemma}
+
+\begin{proof}
+  $i \ne j$であるから，GCMの定義より$C_{ij} \le 0$である．
+  $C_{ij} \ne 0$であるから，GCMの定義より$C_{ji} \ne 0$である．
+  よって，$C_{ij} < 0$かつ$C_{ji} < 0$である．
+  したがって，$1 \le C_{ij} C_{ji}$である．
+\end{proof}

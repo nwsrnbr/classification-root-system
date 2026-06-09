@@ -6,7 +6,7 @@
   \leanok
   \uses{thm:posDef_leading_minors_pos, thm:leading_minors_pos_implies_posDef}
   $R$上$n \times n$エルミート行列$M$に対し，次は同値である：
-  \begin{enumerate}
+  \begin{enumerate}[label=(\arabic*)]
     \item $M$は正定値行列である．\label{enu:Sylvester_posdef}
     \item 任意の$0 < k \le n$に対し，$M$の$k$次主小行列(左上$k \times k$をとった行列)の行列式は正である．\label{enu:Sylvester_det}
   \end{enumerate}
@@ -28,9 +28,22 @@
 \input{subsections/CartanPosDef.tex}
 \input{subsections/SubGraph.tex}
 
-\section{ルート系}
+\section{Root pairing}
+この章では，$\iota$を(有限とは限らない)添え字集合，$R$を可換環, $M, N$を$R$-加群とする．
 \input{subsections/RootPairing.tex}
 \input{subsections/RootPairingCartanPosDef.tex}
+
+\section{GCMとDynkin graph}
+今までの具体的な行列たち($A_n, B_n, \ldots, G_2$)と一般のroot pairingから定まるCartan行列の理論は個別であった(互いに全く関連がない)．
+そこで，これらの架け橋となる議論を行う．
+
+\input{subsections/GCM.tex}
+\input{subsections/DynkinGraph.tex}
+
+\section{分類}
+
+
+\input{subsections/NumOfBranchLeOne.tex}
 
 \newpage
 \section{付録}

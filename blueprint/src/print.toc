@@ -9,7 +9,12 @@
 \contentsline {section}{\numberline {3}正定値性}{7}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Cartan行列の正定値性}{7}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}部分グラフ}{7}{subsection.3.2}%
-\contentsline {section}{\numberline {4}ルート系}{8}{section.4}%
-\contentsline {subsection}{\numberline {4.1}定義と性質}{8}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}ルート系から定まるCartan行列}{9}{subsection.4.2}%
-\contentsline {section}{\numberline {5}付録}{10}{section.5}%
+\contentsline {section}{\numberline {4}Root pairing}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}定義と性質}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Root pairingから定まるCartan行列}{9}{subsection.4.2}%
+\contentsline {section}{\numberline {5}GCMとDynkin graph}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}一般Cartan行列(GCM)}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Dynkin graph}{11}{subsection.5.2}%
+\contentsline {section}{\numberline {6}分類}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}分岐は高々1つであること}{12}{subsection.6.1}%
+\contentsline {section}{\numberline {7}付録}{17}{section.7}%

@@ -326,16 +326,16 @@ def IsBranch (C : Matrix (Fin n) (Fin n) ℤ) (i : Fin n) : Prop :=
 instance IsBranch.decidable (C : Matrix (Fin n) (Fin n) ℤ) (i : Fin n) : Decidable (IsBranch C i) :=
   inferInstanceAs (Decidable (3 ≤ degree C i))
 
-def NumOfBranch (C : Matrix (Fin n) (Fin n) ℤ) : ℕ :=
+def numOfBranch (C : Matrix (Fin n) (Fin n) ℤ) : ℕ :=
   (Finset.univ.filter (fun i => IsBranch C i)).card
 
 /- The original statement below is false without an indecomposability hypothesis.
    Counterexample: the block-diagonal matrix D₄ ⊕ D₄ is an 8×8 GCM with positive
-   definite symmetrization and NumOfBranch = 2.
+   definite symmetrization and numOfBranch = 2.
    The corrected version adds `IsIndecomposable C`. -/
 -- lemma pos_branch_le_three (hn : 5 ≤ n) (C : Matrix (Fin n) (Fin n) ℤ)
 --     (hGCM : IsGeneralizedCartanMatrix C) (hP : (SymmMatrix' C).PosDef) :
---   NumOfBranch C ≤ 1 := by
+--   numOfBranch C ≤ 1 := by
 --     sorry
 
 /-! ### Graph infrastructure for the corrected proof -/
@@ -575,7 +575,7 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
             rw [ SimpleGraph.Walk.mem_support_iff_exists_getVert ] at h_path;
             obtain ⟨ k, hk₁, hk₂ ⟩ := h_path;
             refine' ⟨ k, lt_of_le_of_ne hk₂ _, hk₁ ⟩;
-            rintro rfl; simp_all +decide [ SimpleGraph.Walk.getVert ] ;
+            rintro rfl; simp_all +decide
           obtain ⟨ k, hk₁, hk₂ ⟩ := h_interior; use k; rcases k with ( _ | k ) <;> simp_all +decide ;
         -- Since $i$ is an interior vertex, it has at least two neighbors on the path.
         have h_neighbors : (path.val.getVert (k - 1)) ∈ pathVerts ∧ (path.val.getVert (k + 1)) ∈ pathVerts ∧ (path.val.getVert (k - 1)) ≠ i ∧ (path.val.getVert (k + 1)) ≠ i ∧ C i (path.val.getVert (k - 1)) ≠ 0 ∧ C i (path.val.getVert (k + 1)) ≠ 0 := by
@@ -638,12 +638,20 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
     construct a non-negative nonzero vector making the quadratic form ≤ 0,
     contradicting positive definiteness.
 -/
-lemma pos_branch_le_three (hn : 5 ≤ n) (C : Matrix (Fin n) (Fin n) ℤ)
+lemma pos_numOfBranch_le_one (hn : 5 ≤ n) (C : Matrix (Fin n) (Fin n) ℤ)
     (hGCM : IsGeneralizedCartanMatrix C) (hI : IsIndecomposable C)
     (hP : (SymmMatrix' C).PosDef) :
-    NumOfBranch C ≤ 1 := by
+    numOfBranch C ≤ 1 := by
   contrapose! hP;
   obtain ⟨ u, hu, v, hv, huv ⟩ := Finset.one_lt_card.mp hP;
   exact not_posDef_of_two_branches C hGCM hI u v huv ( by simpa using hu ) ( by simpa using hv )
+
+
+
+lemma pos_degree_le_three (hn : 5 ≤ n) (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C) (hI : IsIndecomposable C)
+    (hP : (SymmMatrix' C).PosDef) :
+    ∀ i, degree C i ≤ 3 := by
+  sorry
 
 end CartanClassification
