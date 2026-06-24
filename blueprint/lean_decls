@@ -23,6 +23,8 @@ CartanMatrix.det_A
 CartanMatrix.A_tilda
 CartanMatrix.det_A_tilda
 SymmMatrix
+SymmMatrix_isSymm
+symmMatrix_off_diag_nonpos
 Matrix.IsSimplyLaced
 SymmMatrix_eq_rfl
 det_SymmMatrix_eq_rfl
@@ -49,9 +51,17 @@ IsGeneralizedCartanMatrix.of_cartanEquiv
 IsIndecomposable.of_cartanEquiv
 rootSystem_isGCM
 edge_product_ge_one
+symmMatrix_adj_le_neg_one
 dynkinGraph
 dynkinGraph_preconnected
 degree
 numOfBranch
-exist_two_extra_neighbors
 symmMatrix_quadform_upper_bound
+quadform_nonpos_of_neighbor_bound
+no_cycle
+exist_two_extra_neighbors
+not_posDef_of_two_branches
+pos_numOfBranch_le_one
+pos_degree_le_three
+
+

@@ -1,3 +1,6 @@
+このPDFファイルでは，数学の文脈に合わせて添え字を$1$始まりとしているが，Leanファイル内では$0$始まり，すなわちこのファイルから$-1$されていることに注意されたい．
+特に，Leanファイル内で$\texttt{Fin n} = \{0, 1, \ldots, n-1\}$と書かれている場合でも，PDFでは$I = \{1, 2, \ldots, n\}$と書いている．
+
 \section{Sylvesterの判定法}
 
 \begin{theorem}[Sylvesterの判定法]
@@ -41,12 +44,17 @@
 \input{subsections/DynkinGraph.tex}
 
 \section{分類}
+引き続き$C \in \M_n(\Z),\ V = I = \{1, 2, \ldots, n\}$とする．
 
-
+\input{subsections/BoundLemma.tex}
+\input{subsections/NoSycle.tex}
 \input{subsections/NumOfBranchLeOne.tex}
+\input{subsections/DegreeLeThree.tex}
+\input{subsections/Size.tex}
 
 \newpage
 \section{付録}
+Mathlibや自作ファイルの定義通りに頂点に番号付けをしたDynkin graph:
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics{graphics/positive_definite_graph.pdf}

@@ -43,9 +43,12 @@ lemma dynkinGraph_preconnected (C : Matrix (Fin n) (Fin n) ℤ)
     exact hS_univ.symm.subset <| Set.mem_univ v
   exact h_not_reachable h_contra
 
+/-- The set of neighbors of vertex `u` in the Dynkin diagram. -/
+def neighborSet (C : Matrix (Fin n) (Fin n) ℤ) (i : Fin n) : Finset (Fin n) :=
+  Finset.univ.filter fun j => C i j ≠ 0 ∧ i ≠ j
 
 def degree (C : Matrix (Fin n) (Fin n) ℤ) (i : Fin n) : ℕ :=
-  ((Finset.univ.filter fun j => C i j ≠ 0 ∧ i ≠ j).card)
+  (neighborSet C i).card
 
 def IsBranch (C : Matrix (Fin n) (Fin n) ℤ) (i : Fin n) : Prop :=
   3 ≤ degree C i

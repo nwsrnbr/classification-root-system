@@ -101,7 +101,7 @@ $I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と
   \lean{edge_product_ge_one}
   \leanok
   \uses{}
-  $C \in \M_n(\Z)$はGCMでindecomposableであるとする．
+  $C \in \M_n(\Z)$はGCMであるとする．
   また，$i \ne j$かつ$C_{ij} \ne 0$となるよう$i, j$をとる．
   このとき，$1 \le C_{ij} C_{ji}$である．
 \end{lemma}
@@ -111,4 +111,25 @@ $I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と
   $C_{ij} \ne 0$であるから，GCMの定義より$C_{ji} \ne 0$である．
   よって，$C_{ij} < 0$かつ$C_{ji} < 0$である．
   したがって，$1 \le C_{ij} C_{ji}$である．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:symmMatrix_adj_le_neg_one}
+  \lean{symmMatrix_adj_le_neg_one }
+  \leanok
+  \uses{lem:edge_product_ge_one}
+  $C \in \M_n(\Z)$はGCMであるとする．
+  また，$i \ne j$かつ$C_{ij} \ne 0$となるよう$i, j$をとる．
+  このとき，$S(C)_{ij} \le -1$である．
+\end{lemma}
+
+\begin{proof}
+  補題~\ref{lem:edge_product_ge_one}より，$1 \le C_{ij} C_{ji}$である．
+  よって，$i \ne j$であるから
+  \begin{equation}
+    S(C)_{ij}
+    = -\sqrt{C_{ij} C_{ji}}
+    \le -1
+  \end{equation}
+  となる．
 \end{proof}

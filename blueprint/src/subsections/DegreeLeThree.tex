@@ -1,0 +1,67 @@
+\subsection{各頂点は3分岐以下であること}
+
+\begin{theorem}
+  \label{thm:pos_degree_le_three}
+  \lean{pos_degree_le_three}
+  \leanok
+  \uses{lem:symmMatrix_quadform_upper_bound}
+  $C$はGCMであるとする．
+  また，$S(C)$は正定値であるとする．
+  このとき，任意の頂点$i$に対し，$i$の分岐数(生えている辺の数)は高々$3$である：
+  \begin{equation}
+    \deg(i) \le 3.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  $\# N(i) = \deg(i) \ge 4$と仮定して矛盾を導く．
+  $x := \transpose{(x_1, x_2, \ldots, x_n)} \in \R^n$を以下で定める：
+  \begin{equation}
+    x_j = \begin{cases}
+      2, & j = i,\\
+      1, & j \in N(i),\\
+      0, & \textrm{otherwise}.
+    \end{cases}
+  \end{equation}
+  また，$E = \set{(i, a)}{a \in N(i)} \subseteq I \times I$と定める．
+
+  補題~\ref{lem:symmMatrix_quadform_upper_bound}が使いたい．
+  各条件を確認する．
+  定義から明らかに，任意の$i$に対し，$0 \le x_i$が成り立つ．
+  $(i, a) \in E$をとると，$E$の定め方から$a \in N(i)$である．
+  また，$(a, i) \in E$と仮定すると，$i = a$となり$a \in N(i)$に矛盾するから$(a, i) \notin E$である．
+
+  以上より補題~\ref{lem:symmMatrix_quadform_upper_bound}が使える．
+  よって，
+  \begin{align}
+    \transpose{x} S(C) x
+    &\le \sum_{i \in I} 2 x_i ^ 2 - 2 \sum_{p \in E} x_{p_1} x_{p_2} \\
+    &= \sum_{i \in I} 2 x_i ^ 2 - 2 \cdot (2 \cdot \# N(i)) \\
+    &= (8 + 2 \cdot \# N(i)) - 2 \cdot (2 \cdot \# N(i)) \\
+    &= 8 - 2 \cdot \# N(i) \\
+    &\le 0
+  \end{align}
+  となる．
+  ただし，1つ目の等号は，$E$の定義と$x_i x_a = 2$より
+  \begin{equation}
+    \sum_{p \in E} x_{p_1} x_{p_2}
+    = \sum_{a \in N(i)} x_{i} x_{a}
+    = 2 \cdot (2 \cdot \# N(i))
+  \end{equation}
+  から従う．
+  2つ目の等号は
+  \begin{align}
+    \sum_{i \in I} 2 x_i ^ 2
+    &= \sum_{j = i} 2 x_j ^ 2 + \sum_{\substack{j \ne i \\ j \in N(i)}} 2 x_j ^ 2 \\
+    &= \# \set{j}{j = i} \cdot (2 \cdot 2 ^ 2) + \# (\set{j}{i \ne j} \cap N(i)) \cdot (2 \cdot 1 ^ 2) \\
+    &= 8 + 2 \cdot \# N(i)
+  \end{align}
+  から従う．
+
+  一方，$S(C)$は正定値であり，$x \ne 0$であるから，
+  \begin{equation}
+    0 < \transpose{x} S(C) x
+  \end{equation}
+  である．
+  よって，矛盾が生じたから$\deg(i) \le 3$が示せた．
+\end{proof}

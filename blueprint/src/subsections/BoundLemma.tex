@@ -1,0 +1,99 @@
+\subsection{二次形式の上界}
+
+\begin{lemma}
+  \label{lem:symmMatrix_quadform_upper_bound}
+  \lean{symmMatrix_quadform_upper_bound}
+  \leanok
+  \uses{lem:edge_product_ge_one}
+  $C$はGCMであるとする．
+  $x := \transpose{(x_1, x_2, \ldots, x_n)} \in \R^n$とし，任意の$i$に対し，$0 \le x_i$とする．
+  また，$E \subseteq I \times I$とし，任意の$p := (p_1, p_2) \in E$に対し，$p_2 \in N(p_1)$と$(p_2, p_1) \notin E$が成り立つとする．
+  このとき，次が成り立つ：
+  \begin{equation}
+    \transpose{x} S(C) x
+    \le \sum_{i \in I} 2 x_i ^ 2 - 2 \sum_{p \in E} x_{p_1} x_{p_2}.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  定義通り展開する：
+  \begin{align}
+    \transpose{x} S(C) x
+    &= \sum_{i \in I} x_i \left( \sum_{j \in I} S(C)_{ij} x_j \right) \\
+    &= \sum_{i \in I} x_i \left( \sum_{j = i} 2 x_j + \sum_{j \in I \setminus \{i\}} -\sqrt{C_{ij} C_{ji}} x_j \right) \\
+    &= \sum_{i \in I} \sum_{j = i} 2 x_i x_j - \sum_{i \in I} \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_i x_j \\
+    &= \sum_{i \in I} 2 x_i ^ 2 - \sum_{i \in I} \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_i x_j \\
+    &= \sum_{i \in I} 2 x_i ^ 2 - \sum_{\substack{p \in I \times I \\ p_1 \ne p_2}} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2}.
+  \end{align}
+  2項目の評価をする．
+  \begin{equation}
+    B = \bigcup_{p \in E} \{(p_1, p_2), (p_2, p_1)\}
+  \end{equation}
+  とおくと，$B \subseteq \set{p \in I \times I}{p_1 \ne p_2}$である．
+  各$x_i$は非負であるから
+  \begin{align}
+    \sum_{\substack{p \in I \times I \\ p_1 \ne p_2}} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2}
+    &\ge \sum_{p \in B} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} \\
+    &= \sum_{p \in E} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sum_{p \in E} \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1} \\
+    &= \sum_{p \in E} (\sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1})
+  \end{align}
+  となる．
+  各$p \in E$に対し，$C_{p_1 p_2} \ne 0$であるから補題~\ref{lem:edge_product_ge_one}より$C_{p_1 p_2} C_{p_2 p_1} \ge 1$である．
+  よって，
+  \begin{equation}
+    \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1}
+    \ge 2 x_{p_1} x_{p_2}
+  \end{equation}
+  となる．
+  したがって，与えられた不等式は成り立つ．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:quadform_nonpos_of_neighbor_bound}
+  \lean{quadform_nonpos_of_neighbor_bound}
+  \leanok
+  \uses{lem:edge_product_ge_one}
+  $C$はGCMであるとする．
+  $x := \transpose{(x_1, x_2, \ldots, x_n)} \in \R^n$とし，任意の$i$に対し$0 \le x_i$とする．
+  また，$0 < x_i$を満たすすべての$i$に対し，
+  \begin{equation}
+    2 x_i
+    \le \sum_{j \in N(i)} x_j
+  \end{equation}
+  が成り立つとする．
+  このとき，次が成り立つ：
+  \begin{equation}
+    \transpose{x} S(C) x \le 0.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  定義通り展開する：
+  \begin{align}
+    \transpose{x} S(C) x
+    &= \sum_{i \in I} x_i \left( \sum_{j \in I} S(C)_{ij} x_j \right) \\
+    &= \sum_{i \in I} x_i \left( \sum_{j = i} 2 x_j + \sum_{j \in I \setminus \{i\}} -\sqrt{C_{ij} C_{ji}} x_j \right) \\
+    &= \sum_{i \in I} \sum_{j = i} 2 x_i x_j - \sum_{i \in I} \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_i x_j \\
+    &= \sum_{i \in I} 2 x_i ^ 2 - \sum_{i \in I} \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_i x_j \\
+    &= \sum_{i \in I} \left( 2 x_i ^ 2 - \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_i x_j \right).
+  \end{align}
+  最後の$\sum_{i \in I}$の中身を$R_i$とおく．
+  任意の$i$に対し，$R_i \le 0$を示せば良い．
+  $0 < x_i$とすると，
+  \begin{align}
+    R_i
+    &= 2 x_i ^ 2 - x_i  \sum_{j \in I \setminus \{i\}} \sqrt{C_{ij} C_{ji}} x_j \\
+    &\le 2 x_i ^ 2 - x_i \sum_{j \in N(i)} \sqrt{C_{ij} C_{ji}} x_j \\
+    &\le 2 x_i ^ 2 - x_i \sum_{j \in N(i)} x_j \\
+    &\le 2 x_i ^ 2 - x_i (2 x_i) \\
+    &= 0
+  \end{align}
+  となる．
+  1つ目の不等号は，$N(i) \subseteq \set{j}{i \ne j}$と$j \in \set{j}{i \ne j} \setminus N(i)$に対し，$0 \le \sqrt{C_{ij} C_{ji}} x_j$から従う．
+  2つ目の不等号は，補題~\ref{lem:edge_product_ge_one}より$1 \le \sqrt{C_{ij} C_{ji}}$であるから従う．
+  3つ目の不等号は，仮定から従う．
+
+  $0 \ge x_i$とする．
+  仮定より$0 \le x_i$であるから，$0 = x_i$である．
+  よって，$R_i \le 0$は成り立つ．
+\end{proof}

@@ -1,0 +1,62 @@
+\subsection{サイクルがないこと}
+
+\begin{theorem}
+  \label{thm:no_cycle}
+  \lean{no_cycle}
+  \leanok
+  \uses{}
+  $C$はGCMであるとする．
+  $k \in \N,\ 3 \le k$とし，$f : J := \{1, \ldots, k\} \hookrightarrow I$とする．
+  任意の$i \in J$に対し，$C_{f(i), f(i+1 \bmod k)} \ne 0$とする．
+  すなわち，頂点$f(1), \ldots, f(k)$がサイクルであるとする．
+  このとき，$S(C)$は正定値でない．
+\end{theorem}
+
+\begin{proof}
+  $x := \transpose{(x_1, x_2, \ldots, x_n)} \in \R^n$を以下で定める：
+  \begin{equation}
+    x_i = \begin{cases}
+      1, & \exists j \in J \st i = f(j),\\
+      0, & \textrm{otherwise}.
+    \end{cases}
+  \end{equation}
+  $x_{f(0)} = 1$であるから$x \ne 0$であり，定義から明らかに$0 \le x_i$である．
+
+  補題~\ref{lem:quadform_nonpos_of_neighbor_bound}が使いたい．
+  そこで，$0 < x_i$として，以下を示す：
+  \begin{equation}
+    2 x_i \le \sum_{j \in N(i)} x_j.
+  \end{equation}
+  今，$x_i \ne 0$であるから，$x$の定義より$i = f(r)$を満たす$r \in J$が取れる．
+  サイクル上にない頂点に関しては$x_* = 0$であるから，$i = f(r)$の近傍にあり，かつサイクル上にある頂点のみを考えれば良い．
+  すなわち，
+  \begin{equation}
+    2 x_i
+    = 2
+    \le \#\set{j \in N(f(r))}{\exists u \st j = f(u)}
+    = \sum_{j \in N(i)} x_j
+  \end{equation}
+  を示せばよい．
+  \begin{equation}
+    r_1 = r + 1 \bmod k,\quad r_2 = r + k - 1 \bmod k
+  \end{equation}
+  とする(サイクル上で$r$に隣接する2つの頂点である)．
+  \begin{equation}
+    r \ne r_1,\quad r \ne r_2,\quad r_1 \ne r_2
+  \end{equation}
+  である．
+  \begin{equation}
+    \{f(r_1), f(r_2)\} \subseteq \set{j \in N(f(r))}{\exists u \st j = f(u)}
+  \end{equation}
+  を示す．
+  $f(r_i) \in N(f(r))$，すなわち$C_{f(r), f(r_i)} \ne 0$かつ$r \ne r_i$を示せば十分である．
+  前者は定理の仮定と$r_i$の定め方からわかり，後者は先ほど示した通りである．
+  また，単射性から$f(r_1) \ne f(r_2)$であるので，$\#\{f(r_1), f(r_2)\} = 2$もわかる．
+  
+  以上より，補題~\ref{lem:quadform_nonpos_of_neighbor_bound}の仮定をすべて満たすから
+  \begin{equation}
+    \transpose{x} S(C) x \le 0
+  \end{equation}
+  が成り立つ．
+  ゆえに，$S(C)$は正定値でない．
+\end{proof}

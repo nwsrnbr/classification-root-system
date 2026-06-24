@@ -1,6 +1,7 @@
 import Mathlib.Data.Matrix.Cartan
 import Mathlib.LinearAlgebra.RootSystem.CartanMatrix
 import Mathlib.Tactic
+import RootSystem.SymmMatrix.Basic
 
 /-!
 # Classification of Irreducible Crystallographic Root Systems via Cartan Matrices
@@ -187,3 +188,16 @@ lemma edge_product_ge_one (C : Matrix (Fin n) (Fin n) ℤ)
     have := hGCM.vanish_symm j i
     omega
   nlinarith
+
+/-
+If C i j ≠ 0 and i ≠ j in a GCM, then SymmMatrix C i j ≤ -1.
+-/
+lemma symmMatrix_adj_le_neg_one (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C)
+    {i j : Fin n} (hij : i ≠ j) (hadj : C i j ≠ 0) :
+    SymmMatrix C i j ≤ -1 := by
+  have := edge_product_ge_one C hGCM i j hij hadj
+  -- Since $C i j \neq 0$ and $C i j \leq 0$, we have $C i j \leq -1$. By $hsym$, $C j i \neq 0$, and similarly $C j i \leq -1$. So $C i j * C j i = |C i j| * |C j i| \geq 1 * 1 = 1$.
+  unfold SymmMatrix
+  simp [hij]
+  exact_mod_cast this

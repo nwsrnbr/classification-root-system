@@ -17,6 +17,12 @@ lemma SymmMatrix_isSymm : (SymmMatrix C).IsSymm := by
   simp [SymmMatrix, mul_comm]
   aesop
 
+lemma symmMatrix_off_diag_nonpos (C : Matrix (Fin n) (Fin n) ℤ)
+    {i j : Fin n} (hij : i ≠ j) :
+    SymmMatrix C i j ≤ 0 := by
+  unfold SymmMatrix
+  simp [hij]
+
 lemma SymmMatrix_eq_rfl (hsymm : C.IsSymm) (hd : ∀ i, C i i = 2) (hsimp : C.IsSimplyLaced) :
     SymmMatrix C = (C.map (↑)) := by
   ext i j

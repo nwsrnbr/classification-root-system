@@ -1,18 +1,24 @@
-\contentsline {section}{\numberline {1}Sylvesterの判定法}{1}{section.1}%
+\contentsline {section}{\numberline {1}Sylvesterの判定法}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Sylvesterの判定法1}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Sylvesterの判定法2}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Sylvesterの判定法2}{3}{subsection.1.2}%
 \contentsline {section}{\numberline {2}行列式}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}帰納法の準備}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Cartan行列}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Cartan行列}{5}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}拡大Cartan行列}{5}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}対称化行列}{6}{subsection.2.4}%
 \contentsline {section}{\numberline {3}正定値性}{7}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Cartan行列の正定値性}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}部分グラフ}{7}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Root pairing}{8}{section.4}%
+\contentsline {subsection}{\numberline {3.2}部分グラフ}{8}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Root pairing}{9}{section.4}%
 \contentsline {subsection}{\numberline {4.1}定義と性質}{9}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Root pairingから定まるCartan行列}{9}{subsection.4.2}%
-\contentsline {section}{\numberline {5}分類}{10}{section.5}%
+\contentsline {section}{\numberline {5}GCMとDynkin graph}{10}{section.5}%
 \contentsline {subsection}{\numberline {5.1}一般Cartan行列(GCM)}{10}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Dynkin graph}{11}{subsection.5.2}%
-\contentsline {section}{\numberline {6}付録}{14}{section.6}%
+\contentsline {section}{\numberline {6}分類}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}二次形式の上界}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}サイクルがないこと}{14}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}分岐は高々1つであること}{15}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}各頂点は3分岐以下であること}{17}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}各枝のサイズ}{18}{subsection.6.5}%
+\contentsline {section}{\numberline {7}付録}{20}{section.7}%

@@ -1,4 +1,4 @@
-import RootSystem.Classification.DynkinGraph
+import RootSystem.Classification.BoundLemma
 
 variable {n : ℕ}
 
@@ -8,10 +8,10 @@ If vertex `i` has degree ≥ 3 and `w` is one specific neighbor, there exist
 -/
 lemma exist_two_extra_neighbors (C : Matrix (Fin n) (Fin n) ℤ)
     (i w : Fin n) (hdeg : 3 ≤ degree C i) :
-    ∃ a b : Fin n, a ≠ b ∧ a ≠ w ∧ b ≠ w ∧ a ≠ i ∧ b ≠ i ∧ C i a ≠ 0 ∧ C i b ≠ 0 := by
-  have h_card : ∃ S : Finset (Fin n), S.card ≥ 2 ∧ ∀ j ∈ S, j ≠ w ∧ j ≠ i ∧ C i j ≠ 0 := by
-    use Finset.univ.filter (fun j => C i j ≠ 0 ∧ i ≠ j) \ {w}
-    simp_all only [Finset.card_sdiff, degree]
+    ∃ a b : Fin n, a ≠ b ∧ a ≠ w ∧ b ≠ w ∧ a ∈ neighborSet C i ∧ b ∈ neighborSet C i := by
+  have h_card : ∃ S : Finset (Fin n), S.card ≥ 2 ∧ ∀ j ∈ S, j ≠ w ∧ j ∈ neighborSet C i := by
+    use neighborSet C i \ {w}
+    simp_all only [Finset.card_sdiff, degree, neighborSet]
     split_ands
     · apply Nat.le_sub_of_add_le
       apply le_trans' hdeg
@@ -23,113 +23,6 @@ lemma exist_two_extra_neighbors (C : Matrix (Fin n) (Fin n) ℤ)
   obtain ⟨ a, ha, b, hb, hab ⟩ := Finset.one_lt_card.mp hS₁
   use a, b
   aesop
-
-/-
-For a GCM and nonneg vector `x`, the quadratic form `xᵀ (SymmMatrix C) x`
-    is bounded above by `∑ i, 2 * (x i)^2 - 2 * ∑ edges, x i * x j`
-    (since √(Cᵢⱼ·Cⱼᵢ) ≥ 1 for each edge and all off-diagonal contributions are ≤ 0).
--/
-lemma symmMatrix_quadform_upper_bound (C : Matrix (Fin n) (Fin n) ℤ)
-    (hGCM : IsGeneralizedCartanMatrix C)
-    (x : Fin n → ℝ) (hx_nn : ∀ i, 0 ≤ x i)
-    (E : Finset (Fin n × Fin n))
-    (hE_adj : ∀ p ∈ E, C p.1 p.2 ≠ 0 ∧ p.1 ≠ p.2)
-    (hE_nodup : ∀ p ∈ E, (p.2, p.1) ∉ E) :
-    dotProduct x ((SymmMatrix C).mulVec x) ≤
-      ∑ i : Fin n, 2 * (x i) ^ 2 - 2 * ∑ p ∈ E, x p.1 * x p.2 := by
-  -- Expand the quadratic form using the definition of `SymmMatrix`.
-  calc
-    _ = ∑ i, 2 * (x i) ^ 2 - ∑ i, ∑ j ∈ Finset.univ.erase i, √((C i j) * (C j i)) * x i * x j := by
-      simp [SymmMatrix, Matrix.mulVec, dotProduct, Finset.sum_ite, Finset.filter_ne]
-      simp [mul_assoc, mul_comm, mul_left_comm, sq]
-      ring_nf
-      simp [Finset.sum_add_distrib, Finset.mul_sum _ _ _, mul_assoc, sq, hGCM.diag]
-      ring_nf
-      simp [Finset.sum_filter, sq]
-    _ = ∑ i, 2 * (x i) ^ 2
-        - ∑ p : ((Fin n) × (Fin n)) with p.1 ≠ p.2, √((C p.1 p.2) * (C p.2 p.1)) * x p.1 * x p.2 := by
-      congr 1
-      rw [Finset.sum_sigma']
-      apply (Finset.sum_bij ( fun p hp => ⟨ p.1, p.2 ⟩ ) _ _ _ _).symm
-      <;> simp
-      · exact fun a b hab => Ne.symm hab
-      · tauto
-      · exact fun p hp => ⟨ p.1, p.2, Ne.symm hp, rfl ⟩
-    _ ≤ ∑ i, 2 * (x i) ^ 2
-        - ∑ p ∈ E.biUnion fun p ↦ {(p.1, p.2), (p.2, p.1)},
-            √(↑(C p.1 p.2) * ↑(C p.2 p.1)) * x p.1 * x p.2 := by
-      rw [sub_le_sub_iff_left]
-      refine Finset.sum_le_sum_of_subset_of_nonneg ?_ ?_
-      <;> simp [Finset.subset_iff]
-      · grind +ring
-      · exact fun _ _ _ _ => mul_nonneg ( mul_nonneg ( Real.sqrt_nonneg _ ) ( hx_nn _ ) ) ( hx_nn _ )
-    _ = ∑ i, 2 * (x i) ^ 2
-        - (∑ p ∈ E, √((C p.1 p.2) * (C p.2 p.1)) * x p.1 * x p.2 + ∑ p ∈ E,
-            √((C p.2 p.1) * (C p.1 p.2)) * x p.2 * x p.1) := by
-      congr 1
-      rw [Finset.sum_biUnion]
-      · rw [← Finset.sum_add_distrib]
-        refine' Finset.sum_congr rfl fun p hp => _ ;
-        rw [Finset.sum_pair]
-        simp
-        grind
-      · intro p hp q hq hpq
-        simp_all [Finset.disjoint_left]
-        grind +splitImp
-    _ ≤ ∑ i : Fin n, 2 * (x i) ^ 2 - 2 * ∑ p ∈ E, x p.1 * x p.2 := by
-      rw [sub_le_sub_iff_left]
-      rw [← Finset.sum_add_distrib, Finset.mul_sum]
-      apply Finset.sum_le_sum
-      intro p hp
-      ring_nf
-      have : 1 ≤ √(↑(C p.1 p.2) * ↑(C p.2 p.1)) := by
-        exact Real.le_sqrt_of_sq_le (
-          mod_cast edge_product_ge_one C hGCM p.1 p.2 (hE_adj p hp |>.2) (hE_adj p hp |>.1)
-        )
-      have : 0 ≤ x p.1 * x p.2 := by
-        apply mul_nonneg
-        <;> apply hx_nn
-      nlinarith
-
-/-- Per-vertex bound: if for every vertex i with x i > 0, the sum of x-values
-    of its neighbors (in the GCM sense) is ≥ 2 * x i, then the quadratic form
-    `xᵀ (SymmMatrix C) x ≤ 0`. -/
-lemma quadform_nonpos_of_neighbor_bound (C : Matrix (Fin n) (Fin n) ℤ)
-    (hGCM : IsGeneralizedCartanMatrix C)
-    (x : Fin n → ℝ) (hx_nn : ∀ i, 0 ≤ x i)
-    (h_bound : ∀ i, 0 < x i → 2 * x i ≤ ∑ j with C i j ≠ 0 ∧ i ≠ j, x j) :
-    dotProduct x ((SymmMatrix C).mulVec x) ≤ 0 := by
-  apply Finset.sum_nonpos
-  intro i _
-  by_cases hi : 0 < x i
-  · calc
-      _ = 2 * (x i) ^ 2 - x i * ∑ j with i ≠ j, √(C i j * C j i) * x j := by
-        simp [SymmMatrix, Matrix.mulVec, dotProduct, Finset.sum_ite]
-        simp [Finset.filter_eq, Finset.filter_ne, hGCM.diag]
-        ring
-      _ ≤ 2 * (x i) ^ 2 - x i * ∑ j with C i j ≠ 0 ∧ i ≠ j, √(C i j * C j i) * x j := by
-        rw [sub_le_sub_iff_left, mul_le_mul_iff_of_pos_left hi]
-        apply Finset.sum_le_sum_of_subset_of_nonneg
-        · intro j hj
-          aesop
-        · intro j hj hnj
-          apply mul_nonneg (Real.sqrt_nonneg _) (hx_nn _)
-      _ ≤ 2 * (x i) ^ 2 - x i * ∑ j with C i j ≠ 0 ∧ i ≠ j, x j := by
-        rw [sub_le_sub_iff_left, mul_le_mul_iff_of_pos_left hi]
-        apply Finset.sum_le_sum
-        intro j inj
-        simp at inj
-        apply le_mul_of_one_le_left (hx_nn j)
-        rw [Real.one_le_sqrt]
-        exact (mod_cast edge_product_ge_one C hGCM i j (by aesop) (by aesop))
-      _ ≤ 2 * (x i) ^ 2 - x i * (2 * x i) := by
-        rw [sub_le_sub_iff_left, mul_le_mul_iff_of_pos_left hi]
-        apply h_bound i hi
-      _ = 0 := by
-        ring
-  · have hi : 0 = x i := by
-      apply eq_of_le_of_not_lt (hx_nn i) hi
-    simp [← hi]
 
 /-- For a GCM with positive-definite symmetrization, if there exist two branch
     vertices u ≠ v (each of degree ≥ 3), then there is a nonzero nonneg vector
@@ -157,14 +50,14 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
   have hadj_u_w1 : (dynkinGraph C hGCM).Adj u w₁ := by
     have := path.val.adj_getVert_succ (by omega : 0 < path.val.length)
     rwa [path.val.getVert_zero] at this
-  obtain ⟨a₁, a₂, ha_ne, ha1_ne_w1, ha2_ne_w1, ha1_ne_u, ha2_ne_u, hCa1, hCa2⟩ :=
+  obtain ⟨a₁, a₂, ha_ne, ha1_ne_w1, ha2_ne_w1, hCa1, hCa2⟩ :=
     exist_two_extra_neighbors C u w₁ hu_branch
   -- Step 3: Get the second-to-last vertex and extra neighbors of v
   let w₂ := path.val.getVert (path.val.length - 1)
   have hadj_w2_v : (dynkinGraph C hGCM).Adj w₂ v := by
     have h := path.val.adj_getVert_succ (show path.val.length - 1 < path.val.length by omega)
     rw [Nat.sub_one_add_one_eq_of_pos (by omega), path.val.getVert_length] at h; exact h
-  obtain ⟨b₁, b₂, hb_ne, hb1_ne_w2, hb2_ne_w2, hb1_ne_v, hb2_ne_v, hCb1, hCb2⟩ :=
+  obtain ⟨b₁, b₂, hb_ne, hb1_ne_w2, hb2_ne_w2, hCb1, hCb2⟩ :=
     exist_two_extra_neighbors C v w₂ hv_branch
   -- Step 4: Construct the vector x
   let pathVerts : Finset (Fin n) := path.val.support.toFinset
@@ -182,10 +75,11 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
   -- Step 6: Apply the per-vertex bound
   -- For each vertex i with x i > 0, show 2 * x i ≤ ∑ neighbors x j.
   -- Case analysis: i is on the path, or i is an extra neighbor.
-  have h_neighbor_bound : ∀ i, 0 < x i → 2 * x i ≤ ∑ j with C i j ≠ 0 ∧ i ≠ j, x j := by
+  have h_neighbor_bound : ∀ i, 0 < x i → 2 * x i ≤ ∑ j with j ∈ neighborSet C i, x j := by
     intro i hxi
     -- x i > 0 means i is on the path (x i = 2) or i is an extra (x i = 1)
     simp only [x] at hxi ⊢
+    simp_all only [neighborSet]
     split_ifs at hxi with h_path h_extra
     · -- i is on the path: x i = 2, need ∑ neighbors ≥ 4
       by_cases hi : i = u ∨ i = v
@@ -203,7 +97,6 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
               · simp +zetaDelta at *
             · exact ⟨ Ne.symm ha1_ne_w1, Ne.symm ha2_ne_w1 ⟩
           · simp_all +decide [ Finset.subset_iff, dynkinGraph ]
-            grind
           · exact fun _ _ _ => hx_nn _
         · refine' le_trans _ ( Finset.sum_le_sum_of_subset_of_nonneg _ _ )
           any_goals exact { w₂, b₁, b₂ }
@@ -277,17 +170,17 @@ lemma not_posDef_of_two_branches (C : Matrix (Fin n) (Fin n) ℤ)
         <;> simp_all +decide [ dynkinGraph ];
         · exact if_pos ( by exact List.mem_toFinset.mpr <| by simp ) |> fun h => h.symm ▸ by norm_num;
         · split_ifs <;> norm_num;
-        · exact fun h => hCa2 <| by simpa [ h ] using hGCM.vanish_symm i u |>.1 h;
+        · simpa [hGCM.vanish_symm, eq_comm]
       · refine' le_trans _ ( Finset.single_le_sum ( fun x _ => by positivity ) ( show v ∈ _ from _ ) )
         <;> simp +decide [ * ];
         · simp +zetaDelta at *;
-        · exact fun h => hCb1 <| by simpa [ h ] using hGCM.vanish_symm i v |>.1 h;
+        · simpa [hGCM.vanish_symm, eq_comm] using hCb1
       · refine' le_trans _ ( Finset.single_le_sum ( fun x _ => _ ) ( show v ∈ _ from _ ) )
         <;> simp_all +decide [ dynkinGraph ];
         · -- Since $v$ is in the pathVerts, the if statement evaluates to 2.
           simp [pathVerts];
         · split_ifs <;> norm_num;
-        · exact fun h => hCb2 <| by simpa [ h ] using hGCM.vanish_symm i v |>.1 h;
+        · simpa [hGCM.vanish_symm, eq_comm]
     · -- x i = 0, contradiction
       linarith
   -- Step 7: Apply quadform_nonpos_of_neighbor_bound

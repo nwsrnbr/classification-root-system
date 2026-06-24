@@ -1,0 +1,67 @@
+\subsection{各枝のサイズ}
+
+\begin{definition}
+  \label{def:branchSet}
+  \lean{}
+  \leanok
+  集合$B(u, v) \subseteq V$を以下で定める：
+  \begin{equation}
+    B(u, v) := \set{w}{\textrm{$w$は$u$を通らずに$v$に到達可能}}.
+  \end{equation}
+  つまり，頂点$u$を削除した後に$v$と繋がっている頂点たちの集合である．
+\end{definition}
+
+\begin{lemma}
+  \label{lem:branch_ge2_has_neighbor}
+  \lean{}
+  \leanok
+  \uses{}
+  $u, v \in V$で，$\# B(u, v) \ge 2$とする．
+  このとき，$z \in V$で，以下をすべて満たすものが存在する：
+  \begin{equation}
+    z \ne v,\ z \ne u,\ C_{vz} \ne 0,\ z \in B(u, v).
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  任意の$w \in B(u, v)$に対し，$w = v$ならば，$B(u, v) \subseteq \{v\}$であるので，
+  \begin{equation}
+    \# B(u, v) \le \# \{v\} < 2
+  \end{equation}
+  である．
+  今，$\# B(u, v) \ge 2$であるので，この対偶より$w \in B(u, v)$で$w \ne v$を満たすものが存在する．
+  よって，$u$を通らない$v$から$w$に至る道がある．
+  この道の$v$に隣接する頂点を$z$とする．
+  すると，この$z$は主張をすべて満たすことがわかる．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:smallest_branch_eq_one}
+  \lean{}
+  \leanok
+  \uses{}
+  $C$はGCMであるとする．
+  $S(C)$は正定値であるとする．
+  $u \in V$で，$\deg(u) = 3$とする．
+  $v_1, v_2, v_3 \in V$は相異なり，$v_1, v_2, v_3 \in N(u),\ \# B(u, v_1) \le \# B(u, v_2) \le \# B(u, v_3)$を満たすとする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \# B(u, v_1) = 1.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  $\# B(u, v_1) \ne 1$と仮定して矛盾を導く．
+
+  補題~\ref{lem:branch_ge2_has_neighbor}を$v = v_1, v_2, v_3$として使いたい．
+  そこで，各$v_i$に対し，$\# B(u, v_i) \ge 2$を示す．
+  $v_1 \in B(u, v_1)$であるから，$\# B(u, v_1) \ne 0$である．
+  さらに，仮定より$\# B(u, v_1) \ne 1$である．
+  よって，$\# B(u, v_1) \ge 2$が示せた．
+  また，$\# B(u, v_1) \le \# B(u, v_2) \le \# B(u, v_3)$であるから$v_2, v_3$についても成り立つ．
+
+  したがって，$w_i \in V$で，以下をすべて満たすものが存在する：
+  \begin{equation}
+    w_i \ne v_i,\ w_i \ne u,\ C_{v_i w_i} \ne 0,\ w_i \in B(u, v_i) \quad (i = 1, 2, 3).
+  \end{equation}
+\end{proof}
