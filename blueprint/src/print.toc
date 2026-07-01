@@ -20,5 +20,6 @@
 \contentsline {subsection}{\numberline {6.2}サイクルがないこと}{14}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}分岐は高々1つであること}{15}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}各頂点は3分岐以下であること}{17}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}各枝のサイズ}{18}{subsection.6.5}%
-\contentsline {section}{\numberline {7}付録}{20}{section.7}%
+\contentsline {subsection}{\numberline {6.5}枝の長さ}{18}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}各枝のサイズ}{20}{subsection.6.6}%
+\contentsline {section}{\numberline {7}付録}{22}{section.7}%

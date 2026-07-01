@@ -1,0 +1,171 @@
+\subsection{枝の長さ}
+
+\begin{definition}
+  \label{def:reachIn}
+  \lean{reachIn}
+  \leanok
+  $S \subseteq V,\ w, z \in V$とする．
+  $w$から$z$へ$S$内のみを通って到達可能なとき，以下のように書く：
+  \begin{equation}
+    w \reach{S} z.
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  \label{def:compIn}
+  \lean{compIn}
+  \leanok
+  $S \subseteq V,\ w \in V$とする．
+  集合$C_S(w)$で，$S$内での$w$の連結成分を表す：
+  \begin{equation}
+    C_S(w) := \set{z \in S}{w \reach{S} z}.
+  \end{equation}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:reachIn_refl}
+  \lean{reachIn_refl}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w \in S$とする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    w \reach{S} w.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:reachIn_symm}
+  \lean{reachIn_symm}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w, z \in S$とする．
+  $w \reach{S} z$であるとき，以下が成り立つ：
+  \begin{equation}
+    z \reach{S} w.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:reachIn_trans}
+  \lean{reachIn_trans}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ a, b, c \in S$とする．
+  $a \reach{S} b$かつ$b \reach{S} c$であるとき，以下が成り立つ：
+  \begin{equation}
+    a \reach{S} c.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:exists_components}
+  \lean{exists_components}
+  \leanok
+  \uses{lem:reachIn_refl, lem:reachIn_symm, lem:reachIn_trans}
+  有限グラフは連結成分に一意に分解される：
+  $S \subseteq V$とする．
+  このとき，$P \subseteq 2^V$で以下すべてを満たすものが存在する：
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\forall C \in P,\ C \subseteq S$.
+    \item $\forall C \in P,\ C \ne \emptyset$.
+    \item $S = \displaystyle \bigcup_{C \in P} C$.
+    \item $\forall C \in P,\ \forall D \in P,\ C \ne D \implies C \cap D = \emptyset$.
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in V,\ z \in C \iff (z \in S \land z \in C_S(w))$.
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in S,\ w \sim z \implies z \in C$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  以下の$P$が各条件を満たすことを示す：
+  \begin{equation}
+    P = \set{C_S(w)}{w \in S}.
+  \end{equation}
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\forall w \in S,\ \forall c \in V$に対し，$c \in C_S(w) \implies c \in S$を示せば良い．
+    $C_S(w)$の定義より，$c \in S$であるから従う．
+    
+    \item $\forall w \in S,\ C_S(w) \ne \emptyset$を示せば良い．
+    $w \in S$であり，補題~\ref{lem:reachIn_refl}より$w \reach{S} w$であるから，$w \in C_S(w)$である．
+    よって，$C_S(w)$は空でない．
+
+    \item $w \in S \iff w \in \displaystyle \bigcup_{C \in P} C \iff \exists a \in S \st w \in S \land a \reach{S} w$を示せば良い．
+    $a = w$とすれば，補題~\ref{lem:reachIn_refl}より従う．
+
+    \item $a, b \in S,\ C_S(a) \ne C_S(b)$として$C_S(a) \cap C_S(b) = \emptyset$を示せば良い．
+    $c \in C_S(a) \cap C_S(b)$を満たす$c$があると仮定する．
+    すると，$a \reach{S} c,\ b \reach{S} c$であり，補題~\ref{lem:reachIn_symm}, \ref{lem:reachIn_trans}より$a \reach{S} b$である．
+    よって，任意の$x \in S$に対し，$a \reach{S} x \iff b \reach{S} x$が成り立ち，これは$C_S(a) = C_S(b)$を意味するので矛盾する．
+
+    \item $a \in S,\ w \in C_S(a),\ z \in V$のとき，$z \in C_S(a) \iff (z \in S \land w \reach{S} z)$を示せば良い．
+    $C_S(a)$の定義より，$w \in S,\ a \reach{S} w$が成り立ち，示すべきことは$a \reach{S} z \iff w \reach{S} z$となる．
+    これは補題~\ref{lem:reachIn_symm}, \ref{lem:reachIn_trans}より成り立つ．
+
+    \item $a \in S,\ w \in C_S(a),\ z \in S$のとき，$w \sim z \implies z \in C_S(a)$を示せば良い．
+    $C_S(a)$の定義より，$w \in S,\ a \reach{S} w$が成り立ち，示すべきことは$w \sim z \implies (z \in S \land a \reach{S} z)$となる．
+    $w$と$z$は$S$内で隣接しているから，$w \reach{S} z$である．
+    よって，補題~\ref{lem:reachIn_trans}より成り立つ．
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{lem:reachIn_confine}
+  \lean{reachIn_confine}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w, z \in V$とし，$w \reach{S} z$とする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    w \reach{C_S(w)} z.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $w$から$z$への道の長さに関する帰納法による．
+
+  $z = w$のとき，$w \reach{C_S(w)} w$はよい．
+
+  $z = b$までは正しいとする．
+  $w \reach{S} b,\ b, c \in S,\ b \sim c$とする．
+  $w \reach{C_S(w)} b$のとき，$w \reach{C_S(w)} c$を示せば良い．
+  $b \in S,\ w \reach{S} b$であるから$b \in C_S(w)$である．
+  また，$b$と$c$は$S$内で隣接しているから$b \reach{S} c$である．
+  よって，$w \reach{S} c$であるから，$c \in S$と合わせて$c \in C_S(w)$がわかる．
+  したがって，$b$と$c$は$C_S(w)$内で隣接しているから$b \reach{C_S(w)} c$である．
+  帰納法の仮定と合わせれば，$w \reach{C_S(w)} c$が得られる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:exists_first_neighbor}
+  \lean{exists_first_neighbor}
+  \leanok
+  \uses{}
+  $K \subset V,\ r, w \in V,\ w \ne r$とし，$r \reach{K} w$とする．
+  このとき，$z \in V$で以下をすべて満たすものが存在する：
+  \begin{equation}
+    r \sim z,\quad z \in K \setminus\{r\},\quad z \reach{K \setminus \{r\}} w.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $r$から$w$への道の長さに関する帰納法による．
+
+  $w = r$のとき，$r \ne r$となり矛盾するから起こり得ない．
+
+  $w = b$までは正しいとする．
+  $r \reach{K} b,\ b, c \in K,\ b \sim c$とする．
+  $b \ne r$ならば，以下を満たす$z \in V$が存在するとする：
+  \begin{equation}
+    r \sim z,\quad z \in K \setminus\{r\},\quad z \reach{K \setminus \{r\}} b.
+  \end{equation}
+  このとき，$c \ne r$ならば，以下を満たす$z'$が存在することを示せば良い：
+  \begin{equation}
+    r \sim z',\quad z' \in K \setminus\{r\},\quad z' \reach{K \setminus \{r\}} c.
+  \end{equation}
+  
+  $b = r$のとき，$z' = c$とすればよい．
+  
+  $b \ne r$のとき，$z' = z$とすればよい．
+  $b, c \in K \setminus \{r\}$であるから，$b$と$c$は$K \setminus \{r\}$内で隣接している．
+  よって，$b \reach{K \setminus \{r\}} c$であるから$z \reach{K \setminus \{r\}} c$がわかる．
+\end{proof}
