@@ -1,6 +1,10 @@
-import RootSystem.Classification.Basic
 import RootSystem.Classification.Branch.DegreeLeThree
+import RootSystem.Classification.Branch.Energy
+import RootSystem.Classification.Branch.Inequality
 import RootSystem.Classification.Branch.NumOfBranchLeOne
+import RootSystem.Classification.Basic
+import RootSystem.Classification.BoundLemma
 import RootSystem.Classification.DynkinGraph
 import RootSystem.Classification.GCM
+import RootSystem.Classification.NoSycle
 import RootSystem.Classification.Subgraph

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  1 JUL 2026 13:08
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  15 JUL 2026 12:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -943,102 +943,110 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/n' will be
 (Font)              scaled to size 11.09656pt on input line 35.
 LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
 (Font)              scaled to size 13.31586pt on input line 35.
- (./print.toc)
-\tf@toc=\write6
-\openout6 = `print.toc'.
-
- (./content.tex
+ (./print.toc
 
 [1
 
-]
+])
+\tf@toc=\write6
+\openout6 = `print.toc'.
+
+ (./content.tex (./subsections/introduction.tex
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                
 (xeCJK)                Try to use `\setCJKmonofont[<...>]{<...>}' to define
 (xeCJK)                it.
 
+)
 
-LaTeX Font Warning: Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/it' undefined
-(Font)              using `TU/HaranoAjiMincho-Regular.otf(0)/m/n' instead on input line 11.
-
-(./subsections/SylvesterCriterion1.tex
+[2] (./subsections/SylvesterCriterion1.tex
 LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
 (Font)              scaled to size 11.09656pt on input line 1.
 ) (./subsections/SylvesterCriterion2.tex
 
-[2]
-
 [3]) (./subsections/InductionMatrix.tex
+
+[4]
 LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/n' will be
 (Font)              scaled to size 8.32242pt on input line 75.
+) (./subsections/Cartan.tex
 
+[5]) (./subsections/ExtendedCartan.tex
 
-[4]) (./subsections/Cartan.tex) (./subsections/ExtendedCartan.tex
+[6]) (./subsections/SymmMatrix.tex
 
-[5]) (./subsections/SymmMatrix.tex
+[7]) (./subsections/CartanPosDef.tex) (./subsections/SubGraph.tex
 
-[6]) (./subsections/CartanPosDef.tex) (./subsections/SubGraph.tex
-
-[7]
+[8]
 LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 (Font)              scaled to size 9.24713pt on input line 16.
 
 
-[8]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartanPosDef.tex
+[9]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartanPosDef.tex
 
-[9]) (./subsections/GCM.tex
+[10]) (./subsections/GCM.tex
 
-[10]) (./subsections/DynkinGraph.tex
+[11]) (./subsections/DynkinGraph.tex
 
-[11]) (./subsections/BoundLemma.tex
+[12]) (./subsections/BoundLemma.tex
 
-[12]
+[13]
 
-[13]) (./subsections/NoSycle.tex
+[14]) (./subsections/NoSycle.tex
 
-[14]) (./subsections/NumOfBranchLeOne.tex
+[15]) (./subsections/NumOfBranchLeOne.tex
 
-[15]
+[16]
 
-[16]) (./subsections/DegreeLeThree.tex
+[17]) (./subsections/DegreeLeThree.tex
 
-[17]) (./subsections/Length.tex
+[18]) (./subsections/Energy.tex
 
-[18]
+[19]
 
-[19]) (./subsections/Size.tex
-
-[20])
+[20]
 
 [21]
+
+[22]
+
+[23]
+
+[24]
+
+[25]) (./subsections/Inequality.tex
+
+[26]
+
+[27]
+
+[28]) (./subsections/Classification.tex)
+
+[29]
 File: graphics/positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/positive_definite_graph.pdf>
 File: graphics/non-positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/non-positive_definite_graph.pdf>
 )
 
-[22]
+[30]
 
-[23] (./print.aux)
+[31] (./print.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: 03C1B177ABFF3B624AFAE7EFFA034C21;2898.
+(rerunfilecheck)             Checksum: D1F93C4DD01738900027CF1833CD19B1;3034.
  ) 
 Here is how much of TeX's memory you used:
- 31365 strings out of 473832
- 667221 string characters out of 5729481
- 1086481 words of memory out of 5000000
- 53815 multiletter control sequences out of 15000+600000
- 575942 words of font info for 125 fonts, out of 8000000 for 9000
+ 31400 strings out of 473832
+ 666499 string characters out of 5729481
+ 1087690 words of memory out of 5000000
+ 53840 multiletter control sequences out of 15000+600000
+ 575966 words of font info for 128 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
- 116i,13n,121p,607b,928s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,21n,121p,607b,928s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on print.pdf (23 pages).
+Output written on print.pdf (31 pages).

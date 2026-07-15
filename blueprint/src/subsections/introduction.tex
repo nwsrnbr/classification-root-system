@@ -1,0 +1,33 @@
+本プロジェクトの目標は，既約結晶的ルート系の分類定理をLean 4を用いて形式化することである．
+結晶的ルート系とは特定の条件を満たすユークリッド空間内のベクトルからなる集合であり，$A_n, B_n, \ldots, G_2$型に分類される．
+数学の文脈では，Coxeter-Dynkin図形というグラフを定義し，その正定値性や部分グラフという概念を用いて分類できる．
+具体的には，以下の性質を用いる：
+\begin{enumerate}
+  \item ルート系のCoxeter-Dynkin図形は正定値
+  \item 正定値グラフの部分グラフは正定値
+  \item $A_n, B_n, \ldots, G_2$は正定値
+  \item $\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$は非正定値
+\end{enumerate}
+これらを用いて，ルート系のCoxeter-Dynkin図形$\Gamma$を以下のように分類できる：
+\begin{align}
+  \Gamma \textrm{は正定値}
+  &\implies \Gamma \textrm{の部分グラフは正定値} \\
+  &\implies \Gamma \textrm{は} \widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2 \textrm{を部分グラフに持たない} \\
+  &\implies \Gamma \textrm{は} A_n, B_n, \ldots, G_2 \textrm{のいずれか}
+\end{align}
+
+しかし，本プロジェクトのLeanのコードでは，Coxeter-Dynkin図形は登場しない．
+代わりに，一般Cartan行列というものを定義し分類を行う．
+一般Cartan行列からグラフを描くことができ，それはCoxeter-Dynkin図形とほぼ同じ情報を持っている．
+逆に，Coxeter-Dynkin図形から一般Cartan行列を定めることもできる．
+一般Cartan行列を用いた証明，すなわちLeanにおける証明は以下の流れで行われる：
+\begin{enumerate}
+  \item 行列から定まるグラフが木である(サイクルがない)ことを示す．
+  \item 分岐は高々1つであることを示す．
+  \item 各頂点は3分岐以下であることを示す．
+  \item 3分岐のとき，格枝の長さを制限する．
+\end{enumerate}
+これらは一般Cartan行列を対称化した行列の正定値性から従う．
+
+なお，この文書では，数学の文脈に合わせて添え字を$1$始まりとしているが，Leanファイル内では$0$始まり，すなわち各添え字はこの文書から$-1$されていることに注意されたい．
+特に，Leanファイル内で$\texttt{Fin n} = \{0, 1, \ldots, n-1\}$と書かれている場合でも，PDFでは$I = \{1, 2, \ldots, n\}$と書いている．

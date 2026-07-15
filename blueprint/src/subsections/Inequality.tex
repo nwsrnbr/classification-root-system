@@ -1,0 +1,281 @@
+\subsection{枝の長さ2}
+
+\begin{definition}
+  \label{def:adjExcl}
+  \lean{adjExcl}
+  \leanok
+  \uses{}
+  $a, b, u \in V$とする．
+  $u$を除いたグラフにおいて，$a$と$b$が隣接しているとき，$a \sim_u b$と書く：
+  \begin{equation}
+    a \sim_u b
+    :\iff a \ne b,\ a \ne u,\ b \ne u,\ C_{ab} \ne 0.
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  \label{def:reachExcl}
+  \lean{reachExcl}
+  \leanok
+  \uses{}
+  $u, v, w \in V$とする．
+  $u$を通らずに$v$から$w$まで到達可能なとき，$v \leadsto_u w$と書く．
+\end{definition}
+
+\begin{definition}
+  \label{def:branchSet}
+  \lean{branchSet}
+  \leanok
+  集合$B_u(v) \subseteq V$を以下で定める：
+  \begin{equation}
+    B_u(v) := \set{w}{v \leadsto_u w}.
+  \end{equation}
+  つまり，頂点$u$を削除した後に$v$と繋がっている頂点たちの集合である．
+\end{definition}
+
+\begin{lemma}
+  \label{lem:branch_connected}
+  \lean{branch_connected}
+  \leanok
+  \uses{}
+  $u, v \in V$とする．
+  このとき，任意の$w \in B_u(v)$に対し，$B_u(v)$内のみを通って$v$から$w$まで到達可能である：
+  \begin{equation}
+    v \reach{B_u(v)} w.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $v$から$w$への道の長さに関する帰納法による．
+
+  $w = v$のときはよい．
+
+  $w = a$までは正しい，すなわち$v \reach{B_u(v)} a$とする．
+  $v \leadsto_u a,\ a \sim_u b$とし，$v \reach{B_u(v)} b$を示す．
+  $v \leadsto_u a$より$a \in B_u(v)$である．
+  さらに，$a \sim_u b$であるから$b \in B_u(v)$である．
+  したがって，$a \reach{B_u(v)} b$であるから$v \reach{B_u(v)} b$である．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:branch_marking}
+  \lean{branch_marking}
+  \leanok
+  \uses{lem:branch_energy_strong, lem:branch_connected}
+  $C$はGCMとし，$u, v \in V$とする．
+  このとき，$y := \transpose{(y_1, \ldots, y_n)} \in \R^n$で以下を満たすものが存在する：
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\forall i \in V,\ 0 \le y_i$.
+    \item $\forall i \in V,\ i \notin B_u(v) \implies y_i = 0$.
+    \item[(4)] $\displaystyle \frac{\# B_u(v)}{\# B_u(v) + 1} \le 2 y_v - 2 \sum_{i \in B_u(v)} y_i ^ 2 + \sum_{i \in B_u(v)} \sum_{j \in B_u(v)} \bm{1}_{i \sim j}\ y_i y_j$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $v \in B_u(v)$である．
+  補題~\ref{lem:branch_connected}より，補題~\ref{lem:branch_energy_strong}の前提条件は，$K := B_u(v),\ r := v$とすれば満たされる．
+  このとき，補題~\ref{lem:branch_energy_strong}の主張は，まさに示したい(1), (2), (4)である．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:reachExcl_ne_u}
+  \lean{reachExcl_ne_u}
+  \leanok
+  \uses{}
+  $u, v, w \in V$とし，$v \leadsto_u w,\ v \ne u$とする．
+  このとき，$w \ne u$である．
+\end{lemma}
+
+\begin{proof}
+  $v$から$w$への道の長さに関する帰納法による．
+
+  $w = v$のときはよい．
+  $w = a$までは正しい，すなわち$a \ne u$とする．
+  $v \leadsto_u a,\ a \sim_u b$とし，$b \ne u$を示す．
+  $a \sim_u b$より従う．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:u_notMem_branch}
+  \lean{u_notMem_branch}
+  \leanok
+  \uses{lem:reachExcl_ne_u}
+  $u, v \in V$とし，$v \ne u$とする．
+  このとき，$u \notin B_u(v)$である．
+\end{lemma}
+
+\begin{proof}
+  $v \not \leadsto_u u$を示せばよい．
+  $v \leadsto_u u$と仮定すると，補題~\ref{lem:reachExcl_ne_u}より$u \ne u$となり，矛盾する．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:neighborSet_eq_triple}
+  \lean{neighborSet_eq_triple}
+  \leanok
+  \uses{}
+  $u \in V,\ \deg(u) = 3$とし，$v_1, v_2, v_3 \in N(u)$は相異なるとする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    N(u) = \{v_1, v_2, v_3\}.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $\{v_1, v_2, v_3\} \subseteq N(u)$であるから，$\# N(u) \le \# \{v_1, v_2, v_3\}$を示せばよい．
+  $\# \{v_1, v_2, v_3\} = 3$である．
+  また，$\# N(u) = \deg(u) = 3$であるから成り立つ．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:form_le_Gadj}
+  \lean{form_le_Gadj}
+  \leanok
+  \uses{}
+  $C$はGCMとする．
+  $x := \transpose{(x_1, \ldots, x_n)} \in \R^n$とし，任意の$i$に対し，$0 \le x_i$であるとする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \transpose{x} S(C) x
+    \le 2 \sum_{i \in I} x_i ^ 2 - \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ x_i x_j.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  二次形式を展開する：
+  \begin{equation}
+    \transpose{x} S(C) x
+    = \sum_{i \in I} x_i \left( \sum_{j \in I} S(C)_{ij} x_j \right).
+  \end{equation}
+  また，任意の$i, j$に対し，次が成り立つことは容易に確かめられる($i = j,\ i \sim j$かどうかの4パターンをそれぞれ調べる)：
+  \begin{equation}
+    x_i S(C)_{ij} x_j
+    \le \bm{1}_{i = j}\ 2 x_i x_j - \bm{1}_{i \sim j}\ x_i x_j.
+  \end{equation}
+  よって，各項ごとに成り立つので，和を取れば主張が従う．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:only_neighbor_in_branch}
+  \lean{only_neighbor_in_branch}
+  \leanok
+  \uses{}
+  $u, v_1, v_2, v_3 \in V$とし，$N(u) = \{v_1, v_2, v_3\}$とする．
+  $B_u(v_1) \cap B_u(v_2) = B_u(v_1) \cap B_u(v_3) = \emptyset$とする．
+  また，$i \in V$とし，$i \in B_u(v_1),\ u \sim i$とする．
+  このとき，$i = v_1$である．
+\end{lemma}
+
+\begin{proof}
+  $u \sim i$より$i \in N(u)$であるから，$i$は$v_1, v_2, v_3$のいずれかである．
+  また，$v_2 \in B_u(v_2),\ v_3 \in B_u(v_3)$である．
+  これらは$B_u(v_1)$と交わらないので，$i = v_1$がわかる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:branch_no_cross_edge}
+  \lean{branch_no_cross_edge}
+  \leanok
+  \uses{lem:reachExcl_ne_u}
+  $u, v, v' \in V$とし，$v \ne u,\ v' \ne u,\ B_u(v) \cap B_u(v') = \emptyset$であるとする．
+  また，$i \in B_u(v),\ j \in B_u(v')$とする．
+  このとき，$i \not \sim j$である．
+\end{lemma}
+
+\begin{proof}
+  背理法で示す．
+  $i \sim j$と仮定する．
+  補題の仮定より$v \leadsto_u i,\ v' \leadsto_u j$である．
+  よって，補題~\ref{lem:reachExcl_ne_u}より$i \ne u,\ j \ne u$である．
+  したがって，$v \leadsto_u j$である．
+  これは$j \in B_u(v)$を意味するが，$B_u(v) \cap B_u(v') = \emptyset$に矛盾する．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:assembly_sq}
+  \lean{assembly_sq}
+  \leanok
+  \uses{}
+  $u, v_1, v_2, v_3 \in V$とし，$u$は$B_u(v_1), B_u(v_2), B_u(v_3)$にいずれにも属さないとする．
+  また，$y_1, y_2, y_3 \in \R^n$とし，任意の$i \in I$に対し，$i \notin B_u(v_j)$ならば$(y_j)_i = 0$であるとする．
+  さらに，$B_u(v_1), B_u(v_2), B_u(v_3)$は互いに交わらないとする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \sum_{i \in I} g(i) ^ 2
+    = 1 + \sum_{i \in B_u(v_1)} (y_1)_i ^ 2 + \sum_{i \in B_u(v_2)} (y_2)_i ^ 2 + \sum_{i \in B_u(v_3)} (y_3)_i ^ 2.
+  \end{equation}
+  ただし，
+  \begin{equation}
+    g(i) = \begin{cases}
+      1, & i = u, \\
+      (y_1)_i + (y_2)_i + (y_3)_i, & \textrm{otherwise}.
+    \end{cases}
+  \end{equation}
+  である．
+\end{lemma}
+
+\begin{proof}
+  任意の$i$対し，以下が成り立つ：
+  \begin{equation}
+    [(y_1)_i + (y_2)_i + (y_3)_i] ^ 2 = (y_1)_i ^ 2 + (y_2)_i ^ 2 + (y_3)_i ^ 2.
+  \end{equation}
+  なぜなら，例えば$i \in B_u(v_1)$のとき，$i \notin B_u(v_2), B_u(v_3)$であるから，$(y_2)_i = (y_3)_i = 0$となるからである．
+  よって，
+  \begin{align}
+    \sum_{i \in I} g(i) ^ 2
+    &= 1 + \sum_{i \in I} [(y_1)_i + (y_2)_i + (y_3)_i] ^ 2 - [(y_1)_u + (y_2)_u + (y_3)_u] ^ 2 \\
+    &= 1 + \sum_{i \in I} [(y_1)_i ^ 2 + (y_2)_i ^ 2 + (y_3)_i ^ 2] - [(y_1)_u + (y_2)_u + (y_3)_u] ^ 2 \\
+  \end{align}
+  となる．
+  さらに，
+  \begin{equation}
+    \sum_{i \in I} (y_j)_i ^ 2 = \sum_{i \in B_u(v_j)} (y_j)_i ^ 2,\qquad (y_j)_u = 0
+  \end{equation}
+  であるから，補題の主張は成り立つ．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:assembly_cross}
+  \lean{assembly_cross}
+  \leanok
+  \uses{}
+  $C$はGCMであるとする．
+  補題~\ref{lem:assembly_sq}と同様の仮定をする：
+  $u, v_1, v_2, v_3 \in V$とし，$u$は$B_u(v_1), B_u(v_2), B_u(v_3)$にいずれにも属さないとする．
+  また，$y_1, y_2, y_3 \in \R^n$とし，任意の$i \in I$に対し，$i \notin B_u(v_j)$ならば$(y_j)_i = 0$であるとする．
+  さらに，$B_u(v_1), B_u(v_2), B_u(v_3)$は互いに交わらないとする．
+  加えて，$N(u) = \{v_1, v_2, v_3\}$とする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \begin{split}
+      \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ g(i) g(j)
+    {}={}\quad &\sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j \\
+    {}+{} &\sum_{i \in B_u(v_2)} \sum_{j \in B_u(v_2)} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j \\
+    {}+{} &\sum_{i \in B_u(v_3)} \sum_{j \in B_u(v_3)} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
+    {}+{} & 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}].
+    \end{split}
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  補題~\ref{lem:assembly_sq}の証明中と同様に，任意の$i, j$に対し，以下が成り立つ：
+  \begin{equation}
+    \begin{split}
+      &\bm{1}_{i \sim j}\ [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\
+    ={} &\bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+    + \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j
+    + \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j.
+    \end{split}
+  \end{equation}
+  よって，$g(i)$を展開した後これを適用すると
+  \begin{alignat}{2}
+    \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ g(i) g(j)
+    & = &&\sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\
+      &&& +{} \sum_{i \ne u} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+      + \sum_{j \ne u} \bm{1}_{j \sim u}\ [(y_1)_j + (y_2)_j + (y_3)_j] \\
+    & = &&\sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+      + \sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j
+      + \sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
+      &&& +{} 2 \sum_{i \ne u} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+  \end{alignat}
+\end{proof}

@@ -1,0 +1,538 @@
+\subsection{枝の長さ1}
+
+\begin{definition}
+  \label{def:reachIn}
+  \lean{reachIn}
+  \leanok
+  $S \subseteq V,\ w, z \in V$とする．
+  $w$から$z$へ$S$内のみを通って到達可能なとき，以下のように書く：
+  \begin{equation}
+    w \reach{S} z.
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  \label{def:compIn}
+  \lean{compIn}
+  \leanok
+  $S \subseteq V,\ w \in V$とする．
+  集合$C_S(w)$で，$S$内での$w$の連結成分を表す：
+  \begin{equation}
+    C_S(w) := \set{z \in S}{w \reach{S} z}.
+  \end{equation}
+\end{definition}
+
+\begin{lemma}
+  \label{lem:reachIn_refl}
+  \lean{reachIn_refl}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w \in S$とする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    w \reach{S} w.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:reachIn_symm}
+  \lean{reachIn_symm}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w, z \in S$とする．
+  $w \reach{S} z$であるとき，以下が成り立つ：
+  \begin{equation}
+    z \reach{S} w.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:reachIn_trans}
+  \lean{reachIn_trans}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ a, b, c \in S$とする．
+  $a \reach{S} b$かつ$b \reach{S} c$であるとき，以下が成り立つ：
+  \begin{equation}
+    a \reach{S} c.
+  \end{equation}
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:exists_components}
+  \lean{exists_components}
+  \leanok
+  \uses{lem:reachIn_refl, lem:reachIn_symm, lem:reachIn_trans}
+  有限グラフは連結成分に一意に分解される：
+  $S \subseteq V$とする．
+  このとき，$P \subseteq 2^V$で以下すべてを満たすものが存在する：
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\forall C \in P,\ C \subseteq S$.
+    \item $\forall C \in P,\ C \ne \emptyset$.
+    \item $S = \displaystyle \bigcup_{C \in P} C$.
+    \item $\forall C \in P,\ \forall D \in P,\ C \ne D \implies C \cap D = \emptyset$.
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in V,\ z \in C \iff (z \in S \land w \reach{S} z)$.
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in S,\ w \sim z \implies z \in C$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  以下の$P$が各条件を満たすことを示す：
+  \begin{equation}
+    P = \set{C_S(w)}{w \in S}.
+  \end{equation}
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\forall w \in S,\ \forall c \in V$に対し，$c \in C_S(w) \implies c \in S$を示せばよい．
+    $C_S(w)$の定義より，$c \in S$であるから従う．
+    
+    \item $\forall w \in S,\ C_S(w) \ne \emptyset$を示せばよい．
+    $w \in S$であり，補題~\ref{lem:reachIn_refl}より$w \reach{S} w$であるから，$w \in C_S(w)$である．
+    よって，$C_S(w)$は空でない．
+
+    \item $w \in S \iff w \in \displaystyle \bigcup_{C \in P} C \iff \exists a \in S \st w \in S \land a \reach{S} w$を示せばよい．
+    $a = w$とすれば，補題~\ref{lem:reachIn_refl}より従う．
+
+    \item $a, b \in S,\ C_S(a) \ne C_S(b)$として$C_S(a) \cap C_S(b) = \emptyset$を示せばよい．
+    $c \in C_S(a) \cap C_S(b)$を満たす$c$があると仮定する．
+    すると，$a \reach{S} c,\ b \reach{S} c$であり，補題~\ref{lem:reachIn_symm}, \ref{lem:reachIn_trans}より$a \reach{S} b$である．
+    よって，任意の$x \in S$に対し，$a \reach{S} x \iff b \reach{S} x$が成り立ち，これは$C_S(a) = C_S(b)$を意味するので矛盾する．
+
+    \item $a \in S,\ w \in C_S(a),\ z \in V$のとき，$z \in C_S(a) \iff (z \in S \land w \reach{S} z)$を示せばよい．
+    $C_S(a)$の定義より，$w \in S,\ a \reach{S} w$が成り立ち，示すべきことは$a \reach{S} z \iff w \reach{S} z$となる．
+    これは補題~\ref{lem:reachIn_symm}, \ref{lem:reachIn_trans}より成り立つ．
+
+    \item $a \in S,\ w \in C_S(a),\ z \in S$のとき，$w \sim z \implies z \in C_S(a)$を示せばよい．
+    $C_S(a)$の定義より，$w \in S,\ a \reach{S} w$が成り立ち，示すべきことは$w \sim z \implies (z \in S \land a \reach{S} z)$となる．
+    $w$と$z$は$S$内で隣接しているから，$w \reach{S} z$である．
+    よって，補題~\ref{lem:reachIn_trans}より成り立つ．
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{lem:reachIn_confine}
+  \lean{reachIn_confine}
+  \leanok
+  \uses{}
+  $S \subseteq V,\ w, z \in V$とし，$w \reach{S} z$とする．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    w \reach{C_S(w)} z.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $w$から$z$への道の長さに関する帰納法による．
+
+  $z = w$のとき，$w \reach{C_S(w)} w$はよい．
+
+  $z = b$までは正しいとする．
+  $w \reach{S} b,\ b, c \in S,\ b \sim c$とする．
+  $w \reach{C_S(w)} b$のとき，$w \reach{C_S(w)} c$を示せばよい．
+  $b \in S,\ w \reach{S} b$であるから$b \in C_S(w)$である．
+  また，$b$と$c$は$S$内で隣接しているから$b \reach{S} c$である．
+  よって，$w \reach{S} c$であるから，$c \in S$と合わせて$c \in C_S(w)$がわかる．
+  したがって，$b$と$c$は$C_S(w)$内で隣接しているから$b \reach{C_S(w)} c$である．
+  帰納法の仮定と合わせれば，$w \reach{C_S(w)} c$が得られる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:exists_first_neighbor}
+  \lean{exists_first_neighbor}
+  \leanok
+  \uses{}
+  $K \subset V,\ r, w \in V,\ w \ne r$とし，$r \reach{K} w$とする．
+  このとき，$z \in V$で以下をすべて満たすものが存在する：
+  \begin{equation}
+    r \sim z,\quad z \in K \setminus\{r\},\quad z \reach{K \setminus \{r\}} w.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $r$から$w$への道の長さに関する帰納法による．
+
+  $w = r$のとき，$r \ne r$となり矛盾するから起こり得ない．
+
+  $w = b$までは正しいとする．
+  $r \reach{K} b,\ b, c \in K,\ b \sim c$とする．
+  $b \ne r$ならば，以下を満たす$z \in V$が存在するとする：
+  \begin{equation}
+    r \sim z,\quad z \in K \setminus\{r\},\quad z \reach{K \setminus \{r\}} b.
+  \end{equation}
+  このとき，$c \ne r$ならば，以下を満たす$z'$が存在することを示せばよい：
+  \begin{equation}
+    r \sim z',\quad z' \in K \setminus\{r\},\quad z' \reach{K \setminus \{r\}} c.
+  \end{equation}
+  
+  $b = r$のとき，$z' = c$とすればよい．
+  
+  $b \ne r$のとき，$z' = z$とすればよい．
+  $b, c \in K \setminus \{r\}$であるから，$b$と$c$は$K \setminus \{r\}$内で隣接している．
+  よって，$b \reach{K \setminus \{r\}} c$であるから$z \reach{K \setminus \{r\}} c$がわかる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:combined_sq_sum}
+  \lean{combined_sq_sum}
+  \leanok
+  \uses{}
+  $P \subseteq 2 ^ V,\ S \subseteq V$とし，$S = \displaystyle \bigsqcup_{C \in P} C$であるとする．
+  また，$r \in V \setminus S,\ K := \{r\} \cup S = \{r\} \sqcup S$とする．
+  さらに，$a \in \R,\ f_C : \map{V}{\R}$とし，$g : \map{V}{\R}$を以下で定める：
+  \begin{equation}
+    g(i) = \begin{cases}
+      a, & i = r,\\
+      \displaystyle \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i), & \text{otherwise}.
+    \end{cases}
+  \end{equation}
+  ただし，$\bm{1}_{P}$は命題$P$が正のとき1，そうでないとき0である．
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \sum_{i \in K} g(i) ^ 2
+    = a ^ 2 + \sum_{C \in P} \sum_{i \in C} f_C(i) ^ 2.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $\sum$を分解する：
+  \begin{align}
+    \sum_{i \in K} g(i) ^ 2
+    &= \sum_{i \in \{r\} \sqcup \left( \bigsqcup_{C \in P} C \right)} g(i) ^ 2 \\
+    &= g(r) ^ 2 + \sum_{i \in \bigsqcup_{C \in P} C} g(i) ^ 2 \\
+    &= a ^ 2 + \sum_{i \in \bigsqcup_{C \in P} C} g(i) ^ 2 \\
+    &= a ^ 2 + \sum_{C \in P} \sum_{i \in C} g(i) ^ 2.
+  \end{align}
+  よって，$C \in P,\ i \in C$を固定して，$g(i) = f_C(i)$を示せばよい．
+  $i \in C \subseteq S$より$i \ne r$である．
+  したがって，
+  \begin{equation}
+    g(i)
+    = \displaystyle \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i)
+    = f_C(i)
+  \end{equation}
+  を示せばよい．
+  今，$P$の元たちは互いに素であるから，$i \in C$を満たす$C \in P$は1つしかない．
+  よって，$g(i) = f_C(i)$が成り立つ．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:combined_cross_sum}
+  \lean{combined_cross_sum}
+  \leanok
+  \uses{}
+  $P \subseteq 2 ^ V,\ S \subseteq V$とし，$S = \displaystyle \bigsqcup_{C \in P} C$であるとする．
+  また，$r \in V \setminus S,\ K := \{r\} \cup S = \{r\} \sqcup S$とする．
+  さらに，$a \in \R,\ f_C : \map{V}{\R}$とし，$g : \map{V}{\R}$を以下で定める：
+  \begin{equation}
+    g(i) = \begin{cases}
+      a, & i = r,\\
+      \displaystyle \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i), & \text{otherwise}.
+    \end{cases}
+  \end{equation}
+  ただし，$\bm{1}_{P}$は命題$P$が正のとき1，そうでないとき0である．
+  加えて，以下を仮定する：
+  \begin{enumerate}[label = (\roman*)]
+    \item $\forall C \in P,\ \forall i \in V,\ i \notin C \implies f_C(i) = 0$.
+    \item $\forall C \in P,\ \forall i \in C,\ \forall j \in S,\ i \sim j \implies j \in C$.
+  \end{enumerate}
+  このとき，以下が成り立つ：
+  \begin{equation} \label{eq:combined_cross_sum_statement}
+    \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ g(i) g(j)
+    = \sum_{C \in P} \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j}\ f_C(i) f_C(j)
+      + 2 a \sum_{C \in P} \sum_{i \in C} \bm{1}_{r \sim i}\ f_C(i).
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  まず，以下を示す：
+  \begin{equation} \label{eq:combined_cross_sum_expanded}
+    \begin{split}
+      \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ g(i) g(j)
+      = &\sum_{i \in S} \sum_{j \in S} \bm{1}_{i \sim j} \left( \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i) \sum_{D \in P} \bm{1}_{j \in D}\ f_D(j) \right) \\
+        &+ 2 a \sum_{i \in S} \bm{1}_{r \sim i} \left( \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i) \right).
+    \end{split}
+  \end{equation}
+  $K = \{r\} \sqcup S$より
+  \begin{equation}
+    \sum_{i \in K} \sum_{j \in K}
+    = \sum_{i \in S} \sum_{j \in S} + \sum_{i = r} \sum_{j \in S} + \sum_{i \in S} \sum_{j = r} + \sum_{i = r} \sum_{j = r}
+  \end{equation}
+  となる．
+  しかし，$r \not\sim r$であるから，最後の$\sum_{i = r} \sum_{j = r}$は$0$である($\bm{1}_{r \sim r} = 0$)．
+  よって，$\sum_{i = r} \sum_{j \in S}$と$\sum_{i \in S} \sum_{j = r}$をまとめれば成り立つ．
+
+  式\eqref{eq:combined_cross_sum_statement}と式\eqref{eq:combined_cross_sum_expanded}の右辺の各項が等しいことを示す．
+
+  1項目たちが等しいことを示す．
+  まず，以下を示す：
+  \begin{equation}
+    \sum_{i \in S} \sum_{j \in S} \bm{1}_{i \sim j} \left( \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i) \sum_{D \in P} \bm{1}_{j \in D}\ f_D(j) \right)
+    = \sum_{C \in P} \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j} \left( \sum_{D \in P} \bm{1}_{i \in D}\ f_D(i) \sum_{E \in P} \bm{1}_{j \in E}\ f_E(j) \right).
+  \end{equation}
+  $S = \displaystyle \bigsqcup_{C \in P} C$より
+  \begin{equation}
+    \sum_{i \in S} \sum_{j \in S}
+    = \sum_{i \in \bigsqcup_{C \in P} C} \sum_{j \in S}
+    = \sum_{C \in P} \sum_{i \in C} \sum_{j \in S}
+  \end{equation}
+  であるから，$C \in P,\ i \in C$を固定して，
+  \begin{equation}
+    \sum_{j \in S} \bm{1}_{i \sim j} \left( \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i) \sum_{D \in P} \bm{1}_{j \in D}\ f_D(j) \right)
+    = \sum_{j \in C} \bm{1}_{i \sim j} \left( \sum_{D \in P} \bm{1}_{i \in D}\ f_D(i) \sum_{E \in P} \bm{1}_{j \in E}\ f_E(j) \right)
+  \end{equation}
+  を示せばよい．
+  $C \subseteq S$であり，$k \in S \setminus C$に対しては，補題の仮定より$f_C(k) = 0$であるので，$\sum_{j \in S}$の中身は$0$である．
+  よって，$\sum_{j \in S} = \sum_{j \in C}$が成り立つ．
+  したがって，あと示すべきは以下である：
+  \begin{equation}
+    \sum_{C \in P} \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j}\ f_C(i) f_C(j)
+    = \sum_{C \in P} \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j} \left( \sum_{D \in P} \bm{1}_{i \in D}\ f_D(i) \sum_{E \in P} \bm{1}_{j \in E}\ f_E(j) \right).
+  \end{equation}
+  中身が等しいことを示せばよい．
+  そのためには，
+  \begin{equation}
+    f_C(i)
+    = \sum_{D \in P} \bm{1}_{i \in D}\ f_D(i)
+  \end{equation}
+  を示せばよい($E$についても同様)．
+  \begin{equation}
+    \sum_{D \in P} \bm{1}_{i \in D}\ f_D(i)
+    = \bm{1}_{i \in C}\ f_C(i) + \sum_{D \in P \setminus \{C\}} \bm{1}_{i \in D}\ f_D(i)
+  \end{equation}
+  と分ける．
+  今，$i \in C$であるから，右辺の2項目は消えて成り立つ．
+
+  式\eqref{eq:combined_cross_sum_statement}と式\eqref{eq:combined_cross_sum_expanded}の右辺の2項目たちが等しいことを示す．
+  \begin{equation}
+    \sum_{C \in P} \sum_{i \in C} \bm{1}_{r \sim i}\ f_C(i)
+    = \sum_{i \in S} \bm{1}_{r \sim i} \left( \sum_{C \in P} \bm{1}_{i \in C}\ f_C(i) \right)
+  \end{equation}
+  を示せばよい．
+  本質は$\sum_{C \in P}$と$\sum_{i \in C}$の順序を入れ替えることである．
+  Leanでは，
+  \begin{equation}
+    \sum_{C \in P} \sum_{i \in C}
+    = \sum_{\substack{(C, i) \\ i \in C}}
+    = \sum_{\substack{(i, C) \\ i \in C}}
+    = \sum_{i \in S} \sum_{\substack{C \in P \\ i \in C}}
+  \end{equation}
+  のように，組み合わせに変換してから順序を入れ替えることで，$\sum_{C \in P}$と$\sum_{i \in C}$の順序を入れ替えている．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:energy_scalar}
+  \lean{energy_scalar}
+  \leanok
+  \uses{}
+  $N$を自然数とし，$2 \le N$とする．
+  また，$I$を添字集合，$P \subseteq I,\ t : \map{I}{\N},\ Sq, Ad, R : \map{I}{\R}$とする．
+  さらに，以下が成り立つとする：
+  \begin{enumerate}[label = (\roman*)]
+    \item $\displaystyle \sum_{C \in P} t(C) = N - 1.$
+    \item $\forall C \in P,\ -\left(\dfrac{t(C)}{t(C) + 1}\right) \le Ad(C) - 2 Sq(C).$
+    \item $\forall C \in P,\ \dfrac{t(C)}{t(C) + 1} \le R(C).$
+  \end{enumerate}
+  このとき，以下が成り立つ：
+  \begin{equation}
+    \begin{split}
+      \frac{N}{N + 1}
+      \le{} & 2 \frac{N}{N + 1}
+      - 2 \left[ \left( \frac{N}{N + 1} \right) ^ 2 + \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Sq(C) \right] \\
+      & + \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Ad(C) + 2 \frac{N}{N + 1} \sum_{C \in P} \frac{t(C) + 1}{N + 1} R(C).
+    \end{split}
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  仮定から次が成り立つ：
+  \begin{equation}
+    \begin{split}
+      &\sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 (Ad(C) - 2 Sq(C))
+      + 2 \frac{N}{N + 1} \sum_{C \in P} \frac{t(C) + 1}{N + 1} R(C)\\
+    \ge{} &\sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 \left( -\frac{t(C)}{t(C) + 1} \right)
+      + 2 \frac{N}{N + 1} \sum_{C \in P} \frac{t(C) + 1}{N + 1} \frac{t(C)}{t(C) + 1}.
+    \end{split}
+  \end{equation}
+  この不等式の右辺を整理すると，
+  \begin{equation}
+    \frac{2 N \sum_{C \in P} t(C) - \sum_{C \in P} t(C) ^ 2 - \sum_{C \in P} t(C)}{(N + 1) ^ 2}
+  \end{equation}
+  となる．
+  また，任意の$i$に対し，$0 \le t(i)$であるから，
+  \begin{align}
+    t(i) &\le \sum_{C \in P} t(C) \\
+    t(i) ^ 2&\le t(i) \sum_{C \in P} t(C) \\
+    \sum_{C \in P} t(C) ^ 2 &\le \left( \sum_{C \in P} t(C) \right) ^ 2
+  \end{align}
+  である．
+  あとは，この不等式を用いて$\sum_{C \in P} t(C) ^ 2$を消して，$\sum_{C \in P} t(C) = N - 1$を代入すればよい．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:branch_energy_strong}
+  \lean{branch_energy_strong}
+  \leanok
+  \uses{lem:exists_components, lem:exists_first_neighbor, lem:energy_scalar, lem:combined_sq_sum, lem:combined_cross_sum}
+  $K \subseteq V,\ r \in K$とする．
+  また，任意の$w \in K$に対し，$r \reach{K} w$とする．
+  このとき，$y := \transpose{(y_1, \ldots, y_n)} \in \R^n$で以下を満たすものが存在する：
+  \begin{enumerate}[label = (y\arabic*)]
+    \item $\forall i \in V,\ 0 \le y_i$. \label{enum:y1}
+    \item $\forall i \in V,\ i \notin K \implies y_i = 0$. \label{enum:y2}
+    \item $y_r = \dfrac{\# K}{\# K + 1}$. \label{enum:y3}
+    \item $\displaystyle \frac{\# K}{\# K + 1} \le 2 y_r - 2 \sum_{i \in K} y_i ^ 2 + \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ y_i y_j$. \label{enum:y4}
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $N := \# K$に関する帰納法で示す．
+  
+  $N = 0$のとき，$r \in K$に矛盾するから良い．
+
+  $N = 1$のとき，
+  \begin{equation}
+    y_i = \begin{cases}
+      \dfrac{1}{2}, & i = r,\\
+      0, & \text{otherwise}.
+    \end{cases}
+  \end{equation}
+  とおくと，条件を満たす．
+
+  $N - 1$までは正しいとする．
+  補題~\ref{lem:exists_components}より，$K \setminus \{r\}$は以下を満たす連結成分$P \subseteq 2 ^ V$に分解される：
+  \begin{enumerate}[label = (p\arabic*)]
+    \item $\forall C \in P,\ C \subseteq K \setminus \{r\}$. \label{enum:p1}
+    \item $\forall C \in P,\ C \ne \emptyset$. \label{enum:p2}
+    \item $K \setminus \{r\} = \displaystyle \bigcup_{C \in P} C$. \label{enum:p3}
+    \item $\forall C \in P,\ \forall D \in P,\ C \ne D \implies C \cap D = \emptyset$. \label{enum:p4}
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in V,\ z \in C \iff (z \in K \setminus \{r\} \land w \reach{K \setminus \{r\}} z)$. \label{enum:p5}
+    \item $\forall C \in P,\ \forall w \in C,\ \forall z \in K \setminus \{r\},\ w \sim z \implies z \in C$. \label{enum:p6}
+  \end{enumerate}
+  
+  各連結成分$C \in P$に対し，$r_C \in C$で$r \sim r_C$となるものが取れる．
+  なぜなら，\ref{enum:p2}, \ref{enum:p1}より，$w \in C \subseteq K$が取れるから，補題の仮定より$r \reach{K} w$である．
+  ここで，補題~\ref{lem:exists_first_neighbor}より，$z \in V$で$r \sim z,\ z \in K \setminus \{r\},\ z \reach{K \setminus \{r\}} w$を満たすものが存在する．
+  よって，\ref{enum:p5}より$z \in C$であるから，$r_C := z$とおくとよい．
+
+  $\# C < N$であるから，帰納法の仮定より，各連結成分$C \in P$に対し，$y_C \in \R^n$で次を満たすものが存在する：
+  \begin{enumerate}[label = (i\arabic*)]
+    \item $\forall i \in V,\ 0 \le (y_C)_i$. \label{enum:i1}
+    \item $\forall i \in V,\ i \notin C \implies (y_C)_i = 0$. \label{enum:i2}
+    \item $(y_C)_{r_C} = \dfrac{\# C}{\# C + 1}$. \label{enum:i3}
+    \item $\displaystyle \frac{\# C}{\# C + 1} \le 2 (y_C)_{r_C} - 2 \sum_{i \in C} (y_C)_i ^ 2 + \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j}\ (y_C)_i (y_C)_j$. \label{enum:i4}
+  \end{enumerate}
+
+  \begin{equation}
+    y_i = \begin{cases}
+      \dfrac{N}{N + 1}, & i = r,\\
+      \displaystyle \sum_{C \in P} \bm{1}_{i \in C} \frac{\# C + 1}{N + 1} (y_C)_i, & \text{otherwise}.
+    \end{cases}
+  \end{equation}
+  とする．
+  この$y$が\ref{enum:y1}から\ref{enum:y4}を満たすことを示す．
+
+  \ref{enum:y1} $i = r$の場合はよい．
+  そうでない場合も，$\sum$の中身は非負であるから，$0 \le y_i$である．
+
+  \ref{enum:y2} $i \notin K$とする．
+  $i = r$のとき，$r \in K$に矛盾するから，$i \ne r$である．
+  \ref{enum:p1}より，$i \notin C$であるから，$\sum$の中身はすべて$0$である．
+  よって，$y_i = 0$である．
+
+  \ref{enum:y3} 定義より明らかである．
+
+  \ref{enum:y4} 補題~\ref{lem:energy_scalar}を
+  \begin{alignat}{2}
+    t(C) &:= \# C, & Sq(C) &:= \sum_{i \in C} (y_C)_i ^ 2, \\
+    Ad(C) &:= \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j}\ (y_C)_i (y_C)_j,\qquad & R(C) &:= \sum_{i \in C} \bm{1}_{r \sim i}\ (y_C)_i
+  \end{alignat}
+  として適用する(前提条件は後で確かめる)．
+  すると，以下を示せば十分である：
+  \begin{equation} \label{eq:y4_ETS}
+    \begin{split}
+      & 2 y_r - 2 \sum_{i \in K} y_i ^ 2 \\
+      & + \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ y_i y_j \\
+      ={} & 2 \frac{N}{N + 1}
+      - 2 \left[ \left( \frac{N}{N + 1} \right) ^ 2 + \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Sq(C) \right] \\
+      & + \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Ad(C) + 2 \frac{N}{N + 1} \sum_{C \in P} \frac{t(C) + 1}{N + 1} R(C).
+    \end{split}
+  \end{equation}
+  
+  式~\eqref{eq:y4_ETS}の両辺の前2項同士が等しいこと，すなわち次を示す：
+  \begin{equation}
+    2 y_r - 2 \sum_{i \in K} y_i ^ 2
+    = 2 \frac{N}{N + 1} - 2 \left[ \left( \frac{N}{N + 1} \right) ^ 2 + \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Sq(C) \right].
+  \end{equation}
+  補題~\ref{lem:combined_sq_sum}を
+  \begin{gather}
+    P := P,\quad S := K \setminus \{r\},\quad K := K,\quad r := r,\quad a = \frac{N}{N + 1}, \\
+    f_C(i) := \frac{\# C + 1}{N + 1} (y_C)_i
+  \end{gather}
+  として適用する(前提条件は後で確かめる)．
+  すると，$g(i) = y_i$であり，次を得る：
+  \begin{equation}
+    \sum_{i \in K} y_i ^ 2
+    = \left( \frac{N}{N + 1} \right) ^ 2 + \sum_{C \in P} \sum_{i \in C} \left( \frac{\# C + 1}{N + 1} (y_C)_i \right) ^ 2.
+  \end{equation}
+  よって，あと示すべきは
+  \begin{equation}
+    \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Sq(C)
+    = \sum_{C \in P} \sum_{i \in C} \left( \frac{\# C + 1}{N + 1} (y_C)_i \right) ^ 2
+  \end{equation}
+  である．
+  これは，$Sq(C)$を代入すればわかる．
+  補題~\ref{lem:combined_sq_sum}の前提条件を確かめる．
+  $r \in V \setminus S$は明らかである．
+  $K = \{r\} \cup S$も明らかである．
+  $S = \displaystyle \bigsqcup_{C \in P} C$は\ref{enum:p3}, \ref{enum:p4}からわかる．
+
+  式~\eqref{eq:y4_ETS}の左辺の3項目と右辺の(3項目 + 4項目)が等しいこと，すなわち以下を示す：
+  \begin{equation} \label{eq:y4_ETS'}
+    \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ y_i y_j
+    = \sum_{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^ 2 Ad(C) + 2 \frac{N}{N + 1} \sum_{C \in P} \frac{t(C) + 1}{N + 1} R(C).
+  \end{equation}
+  補題~\ref{lem:combined_cross_sum}を，先ほどと同様に
+  \begin{gather}
+    P := P,\quad S := K \setminus \{r\},\quad K := K,\quad r := r,\quad a = \frac{N}{N + 1}, \\
+    f_C(i) := \frac{\# C + 1}{N + 1} (y_C)_i
+  \end{gather}
+  として適用する(前提条件は後で確かめる)．
+  すると，$g(i) = y_i$であり，次を得る：
+  \begin{equation}
+    \begin{split}
+      \sum_{i \in K} \sum_{j \in K} \bm{1}_{i \sim j}\ y_i y_j
+    = & \sum_{C \in P} \sum_{i \in C} \sum_{j \in C} \bm{1}_{i \sim j}\ \left( \frac{\# C + 1}{N + 1} (y_C)_i \right) \left( \frac{\# C + 1}{N + 1} (y_C)_j \right) \\
+    & + 2 \frac{N}{N + 1} \sum_{C \in P} \sum_{i \in C} \bm{1}_{r \sim i}\ \left( \frac{\# C + 1}{N + 1} (y_C)_i \right).
+    \end{split}
+  \end{equation}
+  この式は，式~\eqref{eq:y4_ETS'}を表していることがわかる．
+  補題~\ref{lem:combined_cross_sum}の前提条件を確かめる．
+  先ほどと同様に，$r \in V \setminus S,\ K = \{r\} \cup S,\ S = \displaystyle \bigsqcup_{C \in P} C$がわかる．
+  $\forall C \in P,\ \forall i \in V,\ i \notin C \implies f_C(i) = 0$は，\ref{enum:i2}からわかる．
+  $\forall C \in P,\ \forall i \in C,\ \forall j \in S,\ i \sim j \implies j \in C$は，\ref{enum:p6}からわかる．
+
+  以上より，式~\eqref{eq:y4_ETS}が示せた．
+  最後に補題~\ref{lem:energy_scalar}の前提条件を確かめる．
+  $K \setminus \{r\} = S = \displaystyle \bigsqcup_{C \in P} C$であるから
+  \begin{equation}
+    \sum_{C \in P} t(C)
+    = \sum_{C \in P} \# C
+    = \# (K \setminus \{r\})
+    = N - 1
+  \end{equation}
+  が成り立つ．
+  \ref{enum:i4}より
+  \begin{equation}
+    \left(\dfrac{t(C)}{t(C) + 1}\right) \le Ad(C) - 2 Sq(C)
+  \end{equation}
+  が成り立つ．
+  \ref{enum:i3}, \ref{enum:i1}より
+  \begin{equation}
+    \frac{t(C)}{t(C) + 1}
+    = (y_C)_{r_C}
+    = \bm{1}_{r \sim r_C}\ (y_C)_{r_C}
+    \le \sum_{i \in C} \bm{1}_{r \sim i}\ (y_C)_i
+    = R(C)
+  \end{equation}
+  が成り立つ．
+  以上より，補題~\ref{lem:energy_scalar}の前提条件がすべて成り立つことが確かめられた．
+\end{proof}

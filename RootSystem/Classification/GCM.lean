@@ -149,28 +149,6 @@ theorem IsIndecomposable.of_cartanEquiv {m n : Type}
   simp at hij
   simpa
 
-
-
-/-! ### The root system Cartan matrix is a generalized Cartan matrix
-
-This shows that the Cartan matrix coming from a root system satisfies the abstract
-axioms, connecting the root system classification to the Cartan matrix classification. -/
-
-variable {ι E F : Type*} [Finite ι]
-  [SeminormedAddCommGroup E] [InnerProductSpace ℝ E]
-  [SeminormedAddCommGroup F] [InnerProductSpace ℝ F]
-  (P : RootPairing ι ℝ E F) [P.IsCrystallographic] (b : P.Base)
-
-/-- The Cartan matrix of a crystallographic root system is a generalized Cartan matrix. -/
-theorem rootSystem_isGCM [DecidableEq b.support] :
-    IsGeneralizedCartanMatrix b.cartanMatrix := by
-  constructor
-  · intro i; exact b.cartanMatrix_apply_same i
-  · intro i j hij
-    have h := b.cartanMatrix_mem_of_ne hij
-    simp at h; omega
-  · intro i j; exact b.cartanMatrix_apply_eq_zero_iff_symm
-
 variable {n : ℕ}
 
 /-
@@ -201,3 +179,23 @@ lemma symmMatrix_adj_le_neg_one (C : Matrix (Fin n) (Fin n) ℤ)
   unfold SymmMatrix
   simp [hij]
   exact_mod_cast this
+
+/-! ### The root system Cartan matrix is a generalized Cartan matrix
+
+This shows that the Cartan matrix coming from a root system satisfies the abstract
+axioms, connecting the root system classification to the Cartan matrix classification. -/
+
+variable {ι E F : Type*} [Finite ι]
+  [SeminormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [SeminormedAddCommGroup F] [InnerProductSpace ℝ F]
+  (P : RootPairing ι ℝ E F) [P.IsCrystallographic] (b : P.Base)
+
+/-- The Cartan matrix of a crystallographic root system is a generalized Cartan matrix. -/
+theorem rootSystem_isGCM [DecidableEq b.support] :
+    IsGeneralizedCartanMatrix b.cartanMatrix := by
+  constructor
+  · intro i; exact b.cartanMatrix_apply_same i
+  · intro i j hij
+    have h := b.cartanMatrix_mem_of_ne hij
+    simp at h; omega
+  · intro i j; exact b.cartanMatrix_apply_eq_zero_iff_symm

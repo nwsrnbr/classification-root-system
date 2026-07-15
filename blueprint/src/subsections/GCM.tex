@@ -25,7 +25,7 @@ $I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と
   \label{def:CartanEquiv}
   \lean{CartanEquiv}
   \leanok
-  同型$\sigma : I \simeq J$があり，$C'_{ij} = C_{\sigma(i), \sigma(j)}$となるとき，$C$と$C'$は\textbf{CartanEquiv}であるという．
+  同型$\sigma : I \simeq J$があり，$C'_{ij} = C_{\sigma(i), \sigma(j)}$となるとき，$C$と$C'$は\textbf{Cartan同値}であるという．
 \end{definition}
 
 \begin{theorem}
@@ -73,28 +73,6 @@ $I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と
   したがって，$\sigma(i) \in S,\ \sigma(j) \notin S$であり，$C'_{\sigma(i), \sigma(j)} = C_{ij} \ne 0$である．
 \end{proof}
 
-\begin{theorem}
-  \label{thm:rootSystem_isGCM}
-  \lean{rootSystem_isGCM}
-  \leanok
-  \uses{lem:RootPairing.Base.cartanMatrix_mem_of_ne, lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}
-  $\iota$は有限添字集合，$E, F$は$\R$-内積空間とする．
-  $P$は$E, F$に関するroot pairingでcrystallographicであるとする．
-  $b$は$P$のbaseとする．
-  $C$をroot pairing $P$から定まるCartan行列とする．
-  このとき，$C$はGCMである．
-\end{theorem}
-
-\begin{proof}
-  定義通り確かめる．
-
-  任意に$i$をとる．Cartan行列の定義とroot pairingの定義より，$C_{ii} = B(\alpha_i, \alpha^\vee_i) = 2$である．
-
-  $i \ne j$となるよう$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_mem_of_ne}より$C_{ij} \in \{-3, -2, -1, 0\}$である．
-  よって，$C_{ij} \le 0$である．
-
-  任意に$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}より，$C_{ij} = 0$と$C_{ji} = 0$は同値である．
-\end{proof}
 
 \begin{lemma}
   \label{lem:edge_product_ge_one}
@@ -132,4 +110,27 @@ $I, J$を添字集合とし，$C \in \M_I(\Z),\ C' \in \M_J(\Z)$とする(行と
     \le -1
   \end{equation}
   となる．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:rootSystem_isGCM}
+  \lean{rootSystem_isGCM}
+  \leanok
+  \uses{lem:RootPairing.Base.cartanMatrix_mem_of_ne, lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}
+  $\iota$は有限添字集合，$E, F$は$\R$-内積空間とする．
+  $P$は$E, F$に関するroot pairingでcrystallographicであるとする．
+  $b$は$P$のbaseとする．
+  $C$をroot pairing $P$から定まるCartan行列とする．
+  このとき，$C$はGCMである．
+\end{theorem}
+
+\begin{proof}
+  定義通り確かめる．
+
+  任意に$i$をとる．Cartan行列の定義とroot pairingの定義より，$C_{ii} = B(\alpha_i, \alpha^\vee_i) = 2$である．
+
+  $i \ne j$となるよう$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_mem_of_ne}より$C_{ij} \in \{-3, -2, -1, 0\}$である．
+  よって，$C_{ij} \le 0$である．
+
+  任意に$i, j$をとる．補題~\ref{lem:RootPairing.Base.cartanMatrix_apply_eq_zero_iff_symm}より，$C_{ij} = 0$と$C_{ji} = 0$は同値である．
 \end{proof}
