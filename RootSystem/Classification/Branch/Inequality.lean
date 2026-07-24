@@ -1,4 +1,5 @@
 import RootSystem.Classification.Branch.Energy
+import RootSystem.Classification.NoCycle
 
 variable {n : ℕ}
 
@@ -67,6 +68,11 @@ noncomputable def branchFinset (C : Matrix (Fin n) (Fin n) ℤ) (u v : Fin n) : 
 lemma branchSize_eq_card (C : Matrix (Fin n) (Fin n) ℤ) (u v : Fin n) :
     branchSize C u v = (branchFinset C u v).card := by
   rw [branchSize, branchFinset, Set.ncard_eq_toFinset_card']
+
+lemma branchFinset_refl (C : Matrix (Fin n) (Fin n) ℤ) (u v : Fin n) :
+    v ∈ branchFinset C u v := by
+  rw [mem_branchFinset]
+  apply Relation.ReflTransGen.refl
 
 /-- A within-branch reachability path is a within-`branchFinset` path for the
 simple-graph adjacency, hence the branch is connected from `v`. -/
@@ -223,7 +229,6 @@ lemma assembly_sq (C : Matrix (Fin n) (Fin n) ℤ) (u v₁ v₂ v₃ : Fin n)
 /-
 Cross (quadratic) term of the assembled test vector.
 -/
-set_option maxHeartbeats 4000000 in
 lemma assembly_cross (C : Matrix (Fin n) (Fin n) ℤ) (hGCM : IsGeneralizedCartanMatrix C)
     (u v₁ v₂ v₃ : Fin n) (y₁ y₂ y₃ : Fin n → ℝ)
     (htrip : neighborSet C u = {v₁, v₂, v₃})
@@ -275,9 +280,12 @@ lemma assembly_cross (C : Matrix (Fin n) (Fin n) ℤ) (hGCM : IsGeneralizedCarta
       · rw [Finset.sum_filter] ; congr ; ext ; aesop
       · rw [Finset.sum_filter] ; congr ; ext ; aesop
       · rw [Finset.sum_filter] ; congr ; ext ; aesop
-    _ = (∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₁ i * y₁ j else 0)
-        + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₂ i * y₂ j else 0)
-        + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₃ i * y₃ j else 0))
+    _ = (∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u,
+          (if Gadj C i j then y₁ i * y₁ j else 0)
+        + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u,
+          (if Gadj C i j then y₂ i * y₂ j else 0)
+        + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u,
+          (if Gadj C i j then y₃ i * y₃ j else 0))
         + 2 * (∑ i ∈ Finset.univ.erase u, if Gadj C u i then (y₁ i + y₂ i + y₃ i) else 0) := by
       rw [add_assoc]
       congr! 1
@@ -291,74 +299,228 @@ lemma assembly_cross (C : Matrix (Fin n) (Fin n) ℤ) (hGCM : IsGeneralizedCarta
         + (∑ i ∈ branchFinset C u v₃, ∑ j ∈ branchFinset C u v₃,
             if Gadj C i j then y₃ i * y₃ j else 0)
         + 2 * (y₁ v₁ + y₂ v₂ + y₃ v₃) := by
-      congr! 1
+      congr 1
       · congr 1
         congr 1
-        sorry
-        sorry
-        sorry
-      · sorry
+        · have : branchFinset C u v₁ ⊆ Finset.univ.erase u := by
+            intro x hx
+            apply Finset.mem_erase_of_ne_of_mem
+            · rintro rfl
+              exact hu1 hx
+            · apply Finset.mem_univ
+          rw [← Finset.sum_subset this]
+          · apply Finset.sum_congr rfl
+            intro i hi
+            rw [← Finset.sum_subset this]
+            grind
+          · simp +contextual [hs1]
+        · have : branchFinset C u v₂ ⊆ Finset.univ.erase u := by
+            intro x hx
+            apply Finset.mem_erase_of_ne_of_mem
+            · rintro rfl
+              exact hu2 hx
+            · apply Finset.mem_univ
+          rw [← Finset.sum_subset this]
+          · apply Finset.sum_congr rfl
+            intro i hi
+            rw [← Finset.sum_subset this]
+            grind
+          · simp +contextual [hs2]
+        · have : branchFinset C u v₃ ⊆ Finset.univ.erase u := by
+            intro x hx
+            apply Finset.mem_erase_of_ne_of_mem
+            · rintro rfl
+              exact hu3 hx
+            · apply Finset.mem_univ
+          rw [← Finset.sum_subset this]
+          · apply Finset.sum_congr rfl
+            intro i hi
+            rw [← Finset.sum_subset this]
+            grind
+          · simp +contextual [hs3]
+      · congr 1
+        have : {v₁, v₂, v₃} ⊆ Finset.univ.erase u := by grind +suggestions
+        rw [← Finset.sum_subset this]
+        · have hv1 := branchFinset_refl C u v₁
+          have hv2 := branchFinset_refl C u v₂
+          have hv3 := branchFinset_refl C u v₃
+          have hv12 := Finset.disjoint_left.mp hd12 hv1
+          have hv13 := Finset.disjoint_left.mp hd13 hv1
+          have hv21 := Finset.disjoint_right.mp hd12 hv2
+          have hv23 := Finset.disjoint_left.mp hd23 hv2
+          have hv31 := Finset.disjoint_right.mp hd13 hv3
+          have hv32 := Finset.disjoint_right.mp hd23 hv3
+          have h_distinct : v₁ ≠ v₂ ∧ v₁ ≠ v₃ ∧ v₂ ≠ v₃ := by
+            split_ands
+            <;> rintro rfl
+            <;> contradiction
+          simp [*, Finset.sum_singleton]
+          simp [← neighbor_iff_Gadj, htrip]
+          ring_nf
+        · simp +contextual [← htrip, neighbor_iff_Gadj]
 
-  -- have h_split : (∑ i, ∑ j, if Gadj C i j then
-  --     (if i = u then 1 else y₁ i + y₂ i + y₃ i) * (if j = u then 1 else y₁ j + y₂ j + y₃ j) else 0)
-  --     = (∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₁ i * y₁ j else 0)
-  --       + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₂ i * y₂ j else 0)
-  --       + ∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then y₃ i * y₃ j else 0))
-  --       + 2 * (∑ i ∈ Finset.univ.erase u, if Gadj C u i then (y₁ i + y₂ i + y₃ i) else 0) := by
-  --   have h_split : (∑ i, ∑ j, if Gadj C i j then
-  --       (if i = u then 1 else y₁ i + y₂ i + y₃ i) * (if j = u then 1 else y₁ j + y₂ j + y₃ j) else 0)
-  --       = (∑ i ∈ Finset.univ.erase u, ∑ j ∈ Finset.univ.erase u, (if Gadj C i j then
-  --           (y₁ i + y₂ i + y₃ i) * (y₁ j + y₂ j + y₃ j) else 0))
-  --         + (∑ i ∈ Finset.univ.erase u, if Gadj C u i then (y₁ i + y₂ i + y₃ i) else 0)
-  --         + (∑ j ∈ Finset.univ.erase u, if Gadj C j u then (y₁ j + y₂ j + y₃ j) else 0) := by
-  --     simp +decide [Finset.sum_ite, Finset.filter_ne', Finset.filter_eq', Finset.sum_add_distrib, add_assoc];
-  --     simp +decide [Finset.sum_ite, Finset.filter_erase, Gadj_irr] ; ring!;
-  --     rw [show (∑ x : Fin n, ↑ (if Gadj C x u then {u} else ∅ : Finset (Fin n)).card * y₁ x) = ∑ x ∈ Finset.filter (fun x => Gadj C x u) Finset.univ, y₁ x from ?_, show (∑ x : Fin n, ↑ (if Gadj C x u then {u} else ∅ : Finset (Fin n)).card * y₂ x) = ∑ x ∈ Finset.filter (fun x => Gadj C x u) Finset.univ, y₂ x from ?_, show (∑ x : Fin n, ↑ (if Gadj C x u then {u} else ∅ : Finset (Fin n)).card * y₃ x) = ∑ x ∈ Finset.filter (fun x => Gadj C x u) Finset.univ, y₃ x from ?_] ; ring!;
-  --     · rw [Finset.sum_filter] ; congr ; ext ; aesop;
-  --     · rw [Finset.sum_filter] ; congr ; ext ; aesop;
-  --     · rw [Finset.sum_filter] ; congr ; ext ; aesop;
-  --   rw [h_split];
-  --   rw [Finset.sum_congr rfl fun i hi => Finset.sum_congr rfl fun j hj => ‹∀ i : Fin n, i ≠ u → ∀ j : Fin n, j ≠ u → (if Gadj C i j then (y₁ i + y₂ i + y₃ i) * (y₁ j + y₂ j + y₃ j) else 0) = ((if Gadj C i j then y₁ i * y₁ j else 0) + if Gadj C i j then y₂ i * y₂ j else 0) + if Gadj C i j then y₃ i * y₃ j else 0› i (Finset.ne_of_mem_erase hi) j (Finset.ne_of_mem_erase hj)] ; norm_num [Finset.sum_add_distrib, two_mul] ; ring;
-  --   rw [show (∑ x : Fin n, if Gadj C x u then y₁ x + y₂ x + y₃ x else 0) = (∑ x : Fin n, if Gadj C u x then y₁ x + y₂ x + y₃ x else 0) from ?_] ; ring;
-  --   congr! 1;
-  --   grind +suggestions;
-  -- have h_split : (∑ i ∈ Finset.univ.erase u, if Gadj C u i then (y₁ i + y₂ i + y₃ i) else 0)
-  --   = (y₁ v₁ + y₂ v₂ + y₃ v₃) := by
-  --   rw [← Finset.sum_subset (show {v₁, v₂, v₃} ⊆ Finset.univ.erase u from ?_)];
-  --   · have h_distinct : v₁ ≠ v₂ ∧ v₁ ≠ v₃ ∧ v₂ ≠ v₃ := by
-  --       exact ⟨ by rintro rfl; exact Finset.disjoint_left.mp hd12 (mem_branchFinset C u v₁ v₁ |>.mpr Relation.ReflTransGen.refl) (mem_branchFinset C u v₁ v₁ |>.mpr Relation.ReflTransGen.refl), by rintro rfl; exact Finset.disjoint_left.mp hd13 (mem_branchFinset C u v₁ v₁ |>.mpr Relation.ReflTransGen.refl) (mem_branchFinset C u v₁ v₁ |>.mpr Relation.ReflTransGen.refl), by rintro rfl; exact Finset.disjoint_left.mp hd23 (mem_branchFinset C u v₂ v₂ |>.mpr Relation.ReflTransGen.refl) (mem_branchFinset C u v₂ v₂ |>.mpr Relation.ReflTransGen.refl) ⟩;
-  --     simp +decide [*, Finset.sum_pair, Finset.sum_singleton];
-  --     simp +decide [← neighbor_iff_Gadj, htrip];
-  --     rw [hs2 v₁, hs3 v₁, hs1 v₂, hs3 v₂, hs1 v₃, hs2 v₃] <;> norm_num;
-  --     grind +locals;
-  --     exact fun h => Finset.disjoint_left.mp hd23 ((mem_branchFinset C u v₂ v₃).mpr h) ((mem_branchFinset C u v₃ v₃).mpr Relation.ReflTransGen.refl);
-  --     · exact fun h => Finset.disjoint_left.mp hd13 ((mem_branchFinset C u v₁ v₃).mpr h) ((mem_branchFinset C u v₃ v₃).mpr Relation.ReflTransGen.refl);
-  --     · exact fun h => Finset.disjoint_left.mp hd23 ((mem_branchFinset C u v₂ v₂).mpr Relation.ReflTransGen.refl) ((mem_branchFinset C u v₃ v₂).mpr h);
-  --     · exact fun h => Finset.disjoint_left.mp hd12 ((mem_branchFinset C u v₁ v₂).mpr h) ((mem_branchFinset C u v₂ v₂).mpr Relation.ReflTransGen.refl);
-  --     · exact fun h => Finset.disjoint_left.mp hd13 ((mem_branchFinset C u v₁ v₁).mpr Relation.ReflTransGen.refl) ((mem_branchFinset C u v₃ v₁).mpr h);
-  --     · exact fun h => Finset.disjoint_left.mp hd12 ((mem_branchFinset C u v₁ v₁).mpr Relation.ReflTransGen.refl) ((mem_branchFinset C u v₂ v₁).mpr h);
-  --   · simp +contextual [← htrip, neighbor_iff_Gadj];
-  --   · grind +suggestions;
-  -- rw [← h_split, ‹ (∑ i : Fin n, ∑ j : Fin n, if Gadj C i j then (if i = u then 1 else y₁ i + y₂ i + y₃ i) * if j = u then 1 else y₁ j + y₂ j + y₃ j else 0) = _›];
-  -- congr! 2;
-  -- · congr! 1;
-  --   · rw [← Finset.sum_subset (show branchFinset C u v₁ ⊆ Finset.univ.erase u from fun x hx => Finset.mem_erase_of_ne_of_mem (by rintro rfl; exact hu1 hx) (Finset.mem_univ x))];
-  --     · refine' Finset.sum_congr rfl fun i hi => _;
-  --       rw [← Finset.sum_subset (show branchFinset C u v₁ ⊆ Finset.univ.erase u from fun x hx => Finset.mem_erase_of_ne_of_mem (by
-  --                                   exact fun h => hu1 <| h ▸ hx) (Finset.mem_univ x))];
-  --       grind;
-  --     · simp +contextual [hs1];
-  --   · rw [← Finset.sum_subset (show branchFinset C u v₂ ⊆ Finset.univ.erase u from ?_)];
-  --     · refine' Finset.sum_congr rfl fun i hi => _;
-  --       rw [← Finset.sum_subset (show branchFinset C u v₂ ⊆ Finset.univ.erase u from fun x hx => Finset.mem_erase_of_ne_of_mem (by
-  --                                   exact fun h => hu2 <| h ▸ hx) (Finset.mem_univ x))];
-  --       grind +suggestions;
-  --     · simp +contextual [hs2];
-  --     · exact fun x hx => Finset.mem_erase_of_ne_of_mem (by rintro rfl; exact hu2 hx) (Finset.mem_univ x);
-  -- · rw [← Finset.sum_subset (show branchFinset C u v₃ ⊆ Finset.univ.erase u from ?_)];
-  --   · refine' Finset.sum_congr rfl fun i hi => _;
-  --     rw [← Finset.sum_subset (show branchFinset C u v₃ ⊆ Finset.univ.erase u from ?_)];
-  --     · grind;
-  --     · exact fun x hx => Finset.mem_erase_of_ne_of_mem (by rintro rfl; exact hu3 hx) (Finset.mem_univ x);
-  --   · simp +contextual [hs3];
-  --   · exact fun x hx => Finset.mem_erase_of_ne_of_mem (by rintro rfl; exact hu3 hx) (Finset.mem_univ x)
+/-- If there is a path from `v` to `v'` avoiding `u` (`reachExcl C u v v'`), while
+`u` is adjacent to both `v` and `v'` and `v ≠ v'`, then closing the path through `u`
+yields a genuine cycle, contradicting positive-definiteness via `no_cycle`. -/
+lemma no_posDef_of_branch_path (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C) (u v v' : Fin n) (hvv : v ≠ v')
+    (hv : Gadj C u v) (hv' : Gadj C u v') (hpath : reachExcl C u v v') :
+    ¬(SymmMatrix C).PosDef := by
+  -- If $u$ and $v$ are adjacent, then by `reachExcl_ne_u`, $v \ne u$.
+  have hv_ne_u : v ≠ u := by
+    exact hv.1.symm
+  have hv'_ne_u : v' ≠ u := by
+    exact hv'.1.symm
+  obtain ⟨s, hs⟩ : ∃ s : List (Fin n),
+      s.head? = some v ∧
+      s.getLast? = some v' ∧
+      s.Nodup ∧
+      List.IsChain (fun i j => Gadj C i j ∧ i ≠ u ∧ j ≠ u) s := by
+    obtain ⟨p, hp⟩ : ∃ p : SimpleGraph.Walk
+        (SimpleGraph.fromRel (fun i j => Gadj C i j ∧ i ≠ u ∧ j ≠ u)) v v', p.IsPath := by
+      obtain ⟨p, hp⟩ : ∃ p : SimpleGraph.Walk
+          (SimpleGraph.fromRel (fun i j => Gadj C i j ∧ i ≠ u ∧ j ≠ u)) v v', True := by
+        have h_reachable : SimpleGraph.Reachable
+            (SimpleGraph.fromRel (fun i j => Gadj C i j ∧ i ≠ u ∧ j ≠ u)) v v' := by
+          have h_path : ∀ {i j : Fin n}, reachExcl C u i j → SimpleGraph.Reachable
+              (SimpleGraph.fromRel (fun i j => Gadj C i j ∧ i ≠ u ∧ j ≠ u)) i j := by
+            intro i j hij
+            induction hij
+            · aesop
+            · rename_i k hk₁ hk₂ hk₃
+              exact hk₃.trans (SimpleGraph.Adj.reachable <| by
+                unfold adjExcl at hk₂; unfold Gadj; aesop)
+          exact h_path hpath
+        exact ⟨h_reachable.some, trivial⟩;
+      exact ⟨p.toPath, p.toPath.isPath⟩;
+    refine' ⟨p.support, _, _, _, _⟩
+    <;> simp_all +decide [SimpleGraph.Walk.isPath_def];
+    · cases p <;> aesop;
+    · cases p <;> simp_all +decide [List.getLast?];
+    · simp_all +decide [List.isChain_iff_getElem];
+      intro i hi
+      have := p.adj_getVert_succ hi
+      simp_all +decide [SimpleGraph.fromRel_adj];
+      grind +suggestions;
+  -- Put `L := u :: s`. Then `L.length = s.length + 1 ≥ 3`,
+  -- and `L.Nodup` by `List.nodup_cons.mpr ⟨hnotu, hs.2.2.1⟩`.
+  set L : List (Fin n) := u :: s
+  have hL_len : 3 ≤ L.length := by
+    rcases s with (_ | ⟨x, _ | ⟨y, s⟩⟩)
+    <;> simp_all +decide; all_goals grind
+  have hL_nodup : L.Nodup := by
+    simp +zetaDelta at *
+    have := hs.2.2.2; simp_all +decide [List.isChain_iff_getElem]
+    intro hu
+    rcases List.mem_iff_get.mp hu with ⟨i, hi⟩
+    rcases i with ⟨_ | i, hi⟩
+    <;> simp_all +decide
+    cases s <;> aesop
+  have hL_cycle : ∀ i : Fin L.length,
+      C (L.get i) (L.get ⟨(i.val + 1) % L.length, Nat.mod_lt _ (by omega)⟩) ≠ 0 := by
+    intro i
+    by_cases hi : i.val = 0 ∨ i.val = L.length - 1
+    · rcases hi with (hi | hi)
+      <;> simp_all +decide;
+      · rcases s with (_ | ⟨x, _ | ⟨y, s⟩⟩)
+        <;> simp_all +decide [Gadj]
+        · grind;
+        · aesop;
+      · simp +zetaDelta at *;
+        convert hv'.2 using 1;
+        grind +splitIndPred;
+    · have := List.isChain_iff_getElem.mp hs.2.2.2
+      rcases i with ⟨_ | i, hi⟩ <;> simp_all +decide
+      have := this i (by grind)
+      generalize_proofs at *;
+      simp +zetaDelta at *;
+      simp_all +decide [Nat.mod_eq_of_lt (by linarith : i + 1 + 1 < s.length + 1), Gadj];
+  have hemb : Function.Injective L.get := List.nodup_iff_injective_get.mp hL_nodup
+  exact no_cycle C hGCM L.length hL_len ⟨L.get, hemb⟩ hL_cycle
+
+/-- **Distinctness of branches.**  At a degree-3 vertex of a positive-definite
+Dynkin graph, the three branches are pairwise disjoint (otherwise there is a cycle
+through `u`, contradicting acyclicity of positive-definite Dynkin diagrams). -/
+lemma branches_disjoint (C : Matrix (Fin n) (Fin n) ℤ) (hGCM : IsGeneralizedCartanMatrix C)
+    (hP : (SymmMatrix C).PosDef) (u : Fin n) (v v' : Fin n) (hvv : v ≠ v')
+    (hv : v ∈ neighborSet C u) (hv' : v' ∈ neighborSet C u) :
+    Disjoint (branchFinset C u v) (branchFinset C u v') := by
+  rw [Finset.disjoint_left]
+  intro w hw hw'
+  have hadjsymm : Symmetric (adjExcl C u) := by
+    rintro a b ⟨h1, h2, h3, h4⟩
+    exact ⟨h1.symm, h3, h2, fun h => h4 ((hGCM.vanish_symm b a).mp h)⟩
+  have hreach_w : reachExcl C u v w := (mem_branchFinset C u v w).mp hw
+  have hreach_w' : reachExcl C u v' w := (mem_branchFinset C u v' w).mp hw'
+  have hpath : reachExcl C u v v' :=
+    hreach_w.trans (Relation.ReflTransGen.symmetric hadjsymm hreach_w')
+  exact no_posDef_of_branch_path C hGCM u v v' hvv
+    ((neighbor_iff_Gadj C u v).mp hv) ((neighbor_iff_Gadj C u v').mp hv') hpath hP
+
+/-- The analytic core (Schur complement positivity): for a degree-3 vertex of a
+positive-definite Dynkin graph, the sum of `aᵢ/(aᵢ+1)` over the three branches is
+strictly below `2`. -/
+lemma schur_ineq (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C) (hP : (SymmMatrix C).PosDef)
+    (u : Fin n) (hu : degree C u = 3)
+    (v₁ v₂ v₃ : Fin n)
+    (hv₁ : v₁ ∈ neighborSet C u) (hv₂ : v₂ ∈ neighborSet C u)
+    (hv₃ : v₃ ∈ neighborSet C u)
+    (hdist : v₁ ≠ v₂ ∧ v₁ ≠ v₃ ∧ v₂ ≠ v₃) :
+    (branchSize C u v₁ : ℝ) / ((branchSize C u v₁ : ℝ) + 1) +
+    (branchSize C u v₂ : ℝ) / ((branchSize C u v₂ : ℝ) + 1) +
+    (branchSize C u v₃ : ℝ) / ((branchSize C u v₃ : ℝ) + 1) < 2 := by
+  by_contra hcon
+  push_neg at hcon
+  have htrip := neighborSet_eq_triple C u hu v₁ v₂ v₃ hv₁ hv₂ hv₃ hdist
+  have hv₁u : v₁ ≠ u := ((neighbor_iff_Gadj C u v₁).mp hv₁).1.symm
+  have hv₂u : v₂ ≠ u := ((neighbor_iff_Gadj C u v₂).mp hv₂).1.symm
+  have hv₃u : v₃ ≠ u := ((neighbor_iff_Gadj C u v₃).mp hv₃).1.symm
+  have hu1 := u_notMem_branch C u v₁ hv₁u
+  have hu2 := u_notMem_branch C u v₂ hv₂u
+  have hu3 := u_notMem_branch C u v₃ hv₃u
+  obtain ⟨y₁, hy₁nn, hy₁s, hy₁E⟩ := branch_marking C hGCM u v₁
+  obtain ⟨y₂, hy₂nn, hy₂s, hy₂E⟩ := branch_marking C hGCM u v₂
+  obtain ⟨y₃, hy₃nn, hy₃s, hy₃E⟩ := branch_marking C hGCM u v₃
+  have hd12 := branches_disjoint C hGCM hP u v₁ v₂ hdist.1 hv₁ hv₂
+  have hd13 := branches_disjoint C hGCM hP u v₁ v₃ hdist.2.1 hv₁ hv₃
+  have hd23 := branches_disjoint C hGCM hP u v₂ v₃ hdist.2.2 hv₂ hv₃
+  have hxnn : ∀ i, 0 ≤ (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) i := by
+    intro i; simp only; split_ifs
+    · norm_num
+    · exact add_nonneg (add_nonneg (hy₁nn i) (hy₂nn i)) (hy₃nn i)
+  have hxne : (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) ≠ 0 := by
+    intro h
+    have : (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) u = 0 := by rw [h]; rfl
+    simp at this
+  have hpos := hP.dotProduct_mulVec_pos hxne
+  have hle := form_le_Gadj C hGCM (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) hxnn
+  have hsq := assembly_sq C u v₁ v₂ v₃ y₁ y₂ y₃ hu1 hu2 hu3 hy₁s hy₂s hy₃s hd12 hd13 hd23
+  have hcr := assembly_cross C hGCM u v₁ v₂ v₃ y₁ y₂ y₃ htrip hu1 hu2 hu3 hy₁s hy₂s hy₃s
+    hd12 hd13 hd23
+  simp only at hle
+  rw [hsq, hcr] at hle
+  linarith [hpos, hle, hy₁E, hy₂E, hy₃E, hcon]
+
+theorem branchSize_inequality (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C) (hP : (SymmMatrix C).PosDef)
+    (u : Fin n) (hu : degree C u = 3)
+    (v₁ v₂ v₃ : Fin n)
+    (hv₁ : v₁ ∈ neighborSet C u) (hv₂ : v₂ ∈ neighborSet C u)
+    (hv₃ : v₃ ∈ neighborSet C u)
+    (hdist : v₁ ≠ v₂ ∧ v₁ ≠ v₃ ∧ v₂ ≠ v₃) :
+    (1 : ℝ) / ((branchSize C u v₁ : ℝ) + 1) +
+    (1 : ℝ) / ((branchSize C u v₂ : ℝ) + 1) +
+    (1 : ℝ) / ((branchSize C u v₃ : ℝ) + 1) > 1 := by
+  have key := schur_ineq C hGCM hP u hu v₁ v₂ v₃ hv₁ hv₂ hv₃ hdist
+  set a : ℝ := (branchSize C u v₁ : ℝ) with ha
+  set b : ℝ := (branchSize C u v₂ : ℝ) with hb
+  set c : ℝ := (branchSize C u v₃ : ℝ) with hc
+  have ha1 : (a:ℝ) + 1 ≠ 0 := by positivity
+  have hb1 : (b:ℝ) + 1 ≠ 0 := by positivity
+  have hc1 : (c:ℝ) + 1 ≠ 0 := by positivity
+  have e₁ : a / (a + 1) = 1 - 1 / (a + 1) := by field_simp; ring
+  have e₂ : b / (b + 1) = 1 - 1 / (b + 1) := by field_simp; ring
+  have e₃ : c / (c + 1) = 1 - 1 / (c + 1) := by field_simp; ring
+  rw [e₁, e₂, e₃] at key
+  linarith

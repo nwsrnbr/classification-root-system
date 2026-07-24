@@ -26,12 +26,22 @@
   \label{def:branchSet}
   \lean{branchSet}
   \leanok
+  $u, v \in V$とする．
   集合$B_u(v) \subseteq V$を以下で定める：
   \begin{equation}
     B_u(v) := \set{w}{v \leadsto_u w}.
   \end{equation}
   つまり，頂点$u$を削除した後に$v$と繋がっている頂点たちの集合である．
 \end{definition}
+
+\begin{lemma}
+  \label{lem:branchFinset_refl}
+  \lean{branchFinset_refl}
+  \leanok
+  \uses{}
+  $u, v \in V$とする．
+  このとき，$v \in B_u(v)$が成り立つ．
+\end{lemma}
 
 \begin{lemma}
   \label{lem:branch_connected}
@@ -46,7 +56,7 @@
 \end{lemma}
 
 \begin{proof}
-  $v$から$w$への道の長さに関する帰納法による．
+  頂点に関する帰納法で示す．
 
   $w = v$のときはよい．
 
@@ -238,9 +248,8 @@
   \label{lem:assembly_cross}
   \lean{assembly_cross}
   \leanok
-  \uses{}
+  \uses{lem:branchFinset_refl}
   $C$はGCMであるとする．
-  補題~\ref{lem:assembly_sq}と同様の仮定をする：
   $u, v_1, v_2, v_3 \in V$とし，$u$は$B_u(v_1), B_u(v_2), B_u(v_3)$にいずれにも属さないとする．
   また，$y_1, y_2, y_3 \in \R^n$とし，任意の$i \in I$に対し，$i \notin B_u(v_j)$ならば$(y_j)_i = 0$であるとする．
   さらに，$B_u(v_1), B_u(v_2), B_u(v_3)$は互いに交わらないとする．
@@ -255,6 +264,14 @@
     {}+{} & 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}].
     \end{split}
   \end{equation}
+  ただし，
+  \begin{equation}
+    g(i) = \begin{cases}
+      1, & i = u, \\
+      (y_1)_i + (y_2)_i + (y_3)_i, & \textrm{otherwise}.
+    \end{cases}
+  \end{equation}
+  である．
 \end{lemma}
 
 \begin{proof}
@@ -270,12 +287,99 @@
   よって，$g(i)$を展開した後これを適用すると
   \begin{alignat}{2}
     \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ g(i) g(j)
-    & = &&\sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\
-      &&& +{} \sum_{i \ne u} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
-      + \sum_{j \ne u} \bm{1}_{j \sim u}\ [(y_1)_j + (y_2)_j + (y_3)_j] \\
-    & = &&\sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
-      + \sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j
-      + \sum_{i \ne u} \sum_{j \ne u} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
-      &&& +{} 2 \sum_{i \ne u} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+    & = &&\sum_{i \in V \setminus \{u\}} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\
+      &&& +{} \sum_{i \in V \setminus \{u\}} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+      + \sum_{j \in V \setminus \{u\}} \bm{1}_{j \sim u}\ [(y_1)_j + (y_2)_j + (y_3)_j] \\
+    & = &&\sum_{i \in V \setminus \{u\}} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j \\
+      &&&+{} \sum_{i \in V \setminus \{u\}} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j \\
+      &&&+{} \sum_{i \in V \setminus \{u\}} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
+      &&&+{} 2 \sum_{i \in V \setminus \{u\}} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
   \end{alignat}
+  となる．
+  したがって，あとはこの式と補題の主張の各項が等しいことを示せばよい．
+  \begin{equation}
+    \sum_{i \in V \setminus \{u\}} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+    = \sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+  \end{equation}
+  を示す．
+  $x \in B_u(v_1)$をとる．
+  $x = u$と仮定すると，$x \in B_x(v_1)$であるが，補題の仮定より$x \notin B_x(v_1)$であるから矛盾する．
+  よって，$x \ne u$であるから$B_u(v_1) \subseteq V \setminus \{u\}$である．
+  したがって，以下の2つを示せばよい：
+  \begin{gather}
+    \sum_{i \in B_u(v_1)} \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+    = \sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j, \\
+    \forall x \in V \setminus \{u\},\ x \notin B_u(v_1) \implies \sum_{j \in V \setminus \{u\}} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j = 0.
+  \end{gather}
+  前者に再び$B_u(v_1) \subseteq V \setminus \{u\}$を適用すれば，示すべきは以下の3つになる：
+  \begin{gather}
+    \sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j
+    = \sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j, \\
+    \forall x \in V \setminus \{u\},\ x \notin B_u(v_1) \implies \sum_{j \in V \setminus \{u\}} \bm{1}_{x \sim j}\ (y_1)_x (y_1)_j = 0, \\
+    \forall x \in V \setminus \{u\},\ x \notin B_u(v_1) \implies \bm{1}_{i \sim x}\ (y_1)_i (y_1)_x = 0.
+  \end{gather}
+  1つ目は明らかである．
+  2, 3つ目は，補題の仮定より$x \notin B_u(v_1)$のとき，$(y_1)_x = 0$であるから成り立つ．
+  これで，$y_1$に関する項が等しいことが示せた．
+  $y_2, y_3$に関する項も全く同様に示せる．
+
+  最後に，
+  \begin{equation}
+    2 \sum_{i \in V \setminus \{u\}} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+    = 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}]
+  \end{equation}
+  を示す．
+  $\{v_1, v_2, v_3\} \subseteq V \setminus \{u\}$であるから，以下の2つを示せば良い：
+  \begin{gather}
+    \sum_{i \in \{v_1, v_2, v_3\}} \bm{1}_{u \sim i}\ [(y_1)_i + (y_2)_i + (y_3)_i]
+    = [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}], \\
+    \forall x \in V \setminus \{u\},\ x \notin \{v_1, v_2, v_3\} \implies \bm{1}_{u \sim x}\ [(y_1)_x + (y_2)_x + (y_3)_x] = 0.
+  \end{gather}
+  前者の等式を示す．
+  補題~\ref{lem:branchFinset_refl}と$B_u(v_1), B_u(v_2), B_u(v_3)$は互いに交わらないことより，$i \ne j$に関して以下がすべて成り立つ：
+  \begin{equation}
+    v_i \in B_u(v_i),\qquad v_i \notin B_u(v_j), \qquad v_i \ne v_j.
+  \end{equation}
+  よって，$(y_j)_{v_i} = 0$であるから，左辺の全9項のうち生き残るのは$(y_i)_{v_i}$の3項だけである．
+  後者は，$N(u) = \{v_1, v_2, v_3\}$より，$\bm{1}_{u \sim x} = 0$となるから成り立つ．
 \end{proof}
+
+\begin{lemma}
+  \label{lem:no_posDef_of_branch_path}
+  \lean{no_posDef_of_branch_path}
+  \leanok
+  \uses{lem:no_cycle}
+  $C$はGCMであるとする．
+  $u, v, v' \in V$とし，$v \ne v',\ u \sim v,\ u \sim v',\ v \leadsto_u v'$であるとする．
+  このとき，$S(C)$は正定値でない．
+\end{lemma}
+
+\begin{proof}
+  頂点の列$s := (s_1, s_2, \ldots, s_k)$で以下をすべて満たすものが存在することを示す($i \ne j$)：
+  \begin{equation}
+    s_1 = v,\quad s_k = v',\quad s_i \ne s_j,\quad s_i \sim s_{i+1},\quad s_i \ne u.
+  \end{equation}
+  $v \leadsto_u v'$であるから，$u$を通らない$v$から$v'$への道$p$が存在する．
+  もし$p$に同じ頂点が複数回現れるなら，その間にできる閉じた部分を除去すれば，$p$は単順路にできる．
+  $s$は，$p$を構成する頂点を順に並べたものとする．
+  すると，$s$が満たすべき上の5条件はすべて従う．
+
+  $L$を$s$の先頭に$u$を加えた列$L = (s_0 := u, s_1, s_2, \ldots, s_k)$とする．
+  $u, v, v'$は相異なるから，$3 \le |L|$である．
+  また，$s$に重複はなく，$u \notin s$であるから，$L$にも重複がない．
+
+  $L$は巡回的に隣接していること，すなわち任意の$i = 0, 1, \ldots, k$に対し，$j = i + 1 \mod |L|$として$C_{s_i s_j} \ne 0$であることを示す．
+  $i = 0, k$のとき，補題の仮定から$C_{uv} \ne 0,\ C_{v'u} \ne 0$が従う．
+  $i = 1, \ldots, k-1$のとき，$u$に関係しないので，$s$の性質から従う．
+
+  よって，グラフ内にサイクルがある．
+  したがって，定理~\ref{thm:no_cycle}より，$S(C)$は正定値でない．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:branches_disjoint}
+  \lean{branches_disjoint}
+  \leanok
+  \uses{}
+
+\end{lemma}

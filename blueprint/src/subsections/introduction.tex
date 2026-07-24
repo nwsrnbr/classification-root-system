@@ -1,12 +1,21 @@
-本プロジェクトの目標は，既約結晶的ルート系の分類定理をLean 4を用いて形式化することである．
+本プロジェクトの目標は，既約結晶的ルート系の分類定理をLean 4を用いて形式化することである：
+\begin{theorem*}
+  \label{thm:classification_root}
+  \lean{classification_root}
+  \leanok
+  \uses{}
+  $P$はcrystallographicなroot pairingであるとする．
+  $C$を$P$から定まるCartan行列とする．
+  このとき，$C$はCartan行列$A_n, B_n, C_n, D_n, E_6, E_7, E_8, F_4, G_2$のいずれか1つとCartan同値である．
+\end{theorem*}
 結晶的ルート系とは特定の条件を満たすユークリッド空間内のベクトルからなる集合であり，$A_n, B_n, \ldots, G_2$型に分類される．
 数学の文脈では，Coxeter-Dynkin図形というグラフを定義し，その正定値性や部分グラフという概念を用いて分類できる．
 具体的には，以下の性質を用いる：
 \begin{enumerate}
-  \item ルート系のCoxeter-Dynkin図形は正定値
-  \item 正定値グラフの部分グラフは正定値
-  \item $A_n, B_n, \ldots, G_2$は正定値
-  \item $\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$は非正定値
+  \item ルート系のCoxeter-Dynkin図形の正定値性
+  \item 正定値グラフの部分グラフの正定値性
+  \item $A_n, B_n, \ldots, G_2$の正定値性
+  \item $\widetilde{A}_n, \widetilde{B}_n, \ldots, \widetilde{G}_2$の非正定値性
 \end{enumerate}
 これらを用いて，ルート系のCoxeter-Dynkin図形$\Gamma$を以下のように分類できる：
 \begin{align}
@@ -16,18 +25,36 @@
   &\implies \Gamma \textrm{は} A_n, B_n, \ldots, G_2 \textrm{のいずれか}
 \end{align}
 
-しかし，本プロジェクトのLeanのコードでは，Coxeter-Dynkin図形は登場しない．
+しかし，本プロジェクトのLeanのコードでは，この流れで形式化していない．
+なぜなら，部分グラフを用いた分類がうまくいかなかったからである．
+上記性質の2, 3, 4は形式化できた．
+1もできたと仮定して(証明の中身は\texttt{sorry}として)分類を試みたが，型の違いや添え字の付け方による同一視が難しかった．
+
+そこで，Coxeter-Dynkin図形を登場させない方針に切り替えた．
 代わりに，一般Cartan行列というものを定義し分類を行う．
 一般Cartan行列からグラフを描くことができ，それはCoxeter-Dynkin図形とほぼ同じ情報を持っている．
 逆に，Coxeter-Dynkin図形から一般Cartan行列を定めることもできる．
 一般Cartan行列を用いた証明，すなわちLeanにおける証明は以下の流れで行われる：
+
+正定値対称化一般Cartan行列から定まるグラフに関して，
 \begin{enumerate}
-  \item 行列から定まるグラフが木である(サイクルがない)ことを示す．
+  \item 木である(サイクルがない)ことを示す．
   \item 分岐は高々1つであることを示す．
   \item 各頂点は3分岐以下であることを示す．
   \item 3分岐のとき，格枝の長さを制限する．
 \end{enumerate}
-これらは一般Cartan行列を対称化した行列の正定値性から従う．
+
+性質4の枝の長さについて，格枝の長さを$a, b, c$とすると，
+\begin{equation}
+  \frac{1}{a} + \frac{1}{b} + \frac{1}{c} > 1
+\end{equation}
+という不等式が成り立つ．
+Leanによる形式化でもこの不等式を証明している．
+この不等式を導出するには，Schur complementを用いる方法が最も簡潔である．
+その方針では$A_n^{-1}$の情報が必要であるが，これをLeanで求めるのは難しい．
+そのため，Schur complementは用いない．
+性質1, 2, 3, 4のいずれも，ベクトル$x$で，対称化一般Cartan行列$S(C)$に関する二次形式$\transpose{x} S(C) x$が非正になるものを構成することにより，矛盾を導くという方法を採っている．
+
 
 なお，この文書では，数学の文脈に合わせて添え字を$1$始まりとしているが，Leanファイル内では$0$始まり，すなわち各添え字はこの文書から$-1$されていることに注意されたい．
-特に，Leanファイル内で$\texttt{Fin n} = \{0, 1, \ldots, n-1\}$と書かれている場合でも，PDFでは$I = \{1, 2, \ldots, n\}$と書いている．
+つまり，Leanファイル内で$\texttt{Fin n} = \{0, 1, \ldots, n-1\}$と書かれている場合は，PDFファイルでは$I = \{1, 2, \ldots, n\}$と書いている．

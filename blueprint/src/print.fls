@@ -447,9 +447,9 @@ INPUT subsections/DynkinGraph.tex
 INPUT ./subsections/BoundLemma.tex
 INPUT ./subsections/BoundLemma.tex
 INPUT subsections/BoundLemma.tex
-INPUT ./subsections/NoSycle.tex
-INPUT ./subsections/NoSycle.tex
-INPUT subsections/NoSycle.tex
+INPUT ./subsections/NoCycle.tex
+INPUT ./subsections/NoCycle.tex
+INPUT subsections/NoCycle.tex
 INPUT ./subsections/NumOfBranchLeOne.tex
 INPUT ./subsections/NumOfBranchLeOne.tex
 INPUT subsections/NumOfBranchLeOne.tex

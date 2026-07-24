@@ -1,10 +1,10 @@
 \contentsline {section}{\numberline {1}序論}{2}{section.1}%
-\contentsline {section}{\numberline {2}Sylvesterの判定法}{2}{section.2}%
+\contentsline {section}{\numberline {2}Sylvesterの判定法}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Sylvesterの判定法1}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Sylvesterの判定法2}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Sylvesterの判定法2}{4}{subsection.2.2}%
 \contentsline {section}{\numberline {3}行列式}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}帰納法の準備}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Cartan行列}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Cartan行列}{6}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}拡大Cartan行列}{6}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}対称化行列}{7}{subsection.3.4}%
 \contentsline {section}{\numberline {4}正定値性}{8}{section.4}%
@@ -23,5 +23,5 @@
 \contentsline {subsection}{\numberline {7.4}各頂点は3分岐以下であること}{18}{subsection.7.4}%
 \contentsline {subsection}{\numberline {7.5}枝の長さ1}{19}{subsection.7.5}%
 \contentsline {subsection}{\numberline {7.6}枝の長さ2}{26}{subsection.7.6}%
-\contentsline {subsection}{\numberline {7.7}主定理}{29}{subsection.7.7}%
-\contentsline {section}{\numberline {8}付録}{30}{section.8}%
+\contentsline {subsection}{\numberline {7.7}主定理}{31}{subsection.7.7}%
+\contentsline {section}{\numberline {8}付録}{32}{section.8}%

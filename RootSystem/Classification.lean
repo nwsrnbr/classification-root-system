@@ -6,5 +6,5 @@ import RootSystem.Classification.Basic
 import RootSystem.Classification.BoundLemma
 import RootSystem.Classification.DynkinGraph
 import RootSystem.Classification.GCM
-import RootSystem.Classification.NoSycle
+import RootSystem.Classification.NoCycle
 import RootSystem.Classification.Subgraph

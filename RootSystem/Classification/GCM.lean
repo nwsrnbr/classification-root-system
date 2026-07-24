@@ -78,7 +78,7 @@ def IsIndecomposable {n : Type*} [DecidableEq n]
 /-- Two matrices are **Cartan-equivalent** if they are related by simultaneous
   permutation of rows and columns (i.e., reindexing).
   Here `σ : m ≃ n` gives `(reindex σ σ) C` with `((reindex σ σ) C) i j = C (σ⁻¹ i) (σ⁻¹ j)`. -/
-def CartanEquiv {m n : Type} (C : Matrix m m ℤ) (C' : Matrix n n ℤ) : Prop :=
+def CartanEquiv {m : Type u_1} {n : Type u_2} (C : Matrix m m ℤ) (C' : Matrix n n ℤ) : Prop :=
   ∃ σ : m ≃ n, C' = (Matrix.reindex σ σ) C
 
 /-! ### Properties of Cartan equivalence -/
