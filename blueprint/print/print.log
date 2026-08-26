@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  15 JUL 2026 15:01
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  26 AUG 2026 20:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -986,7 +986,11 @@ brarydecorations.pathreplacing.code.tex)) (./macros/common.tex
 \c@theorem=\count370
 )
 (./macros/print.tex)
-(/Users/noboru/Documents/classification-root-system/blueprint/print/print.aux)
+(/Users/noboru/Documents/classification-root-system/blueprint/print/print.aux
+
+LaTeX Warning: Label `thm:classification_root' multiply defined.
+
+)
 \openout1 = `print.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -1175,22 +1179,21 @@ Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                Try to use `\setCJKmonofont[<...>]{<...>}' to define
 (xeCJK)                it.
 
-)
 
-[2] (./subsections/SylvesterCriterion1.tex
+
+[2]) (./subsections/SylvesterCriterion1.tex
 LaTeX Font Info:    Font shape `TU/HaranoAjiGothic-Medium.otf(0)/m/n' will be
 (Font)              scaled to size 11.09656pt on input line 1.
-)
-(./subsections/SylvesterCriterion2.tex
 
-[3]) (./subsections/InductionMatrix.tex
 
-[4]
+[3]) (./subsections/SylvesterCriterion2.tex
+
+[4]) (./subsections/InductionMatrix.tex
 LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/m/n' will be
 (Font)              scaled to size 8.32242pt on input line 75.
-) (./subsections/Cartan.tex
 
-[5]) (./subsections/ExtendedCartan.tex
+
+[5]) (./subsections/Cartan.tex) (./subsections/ExtendedCartan.tex
 
 [6]) (./subsections/SymmMatrix.tex
 
@@ -1201,10 +1204,9 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 (Font)              scaled to size 9.24713pt on input line 16.
 
 
-[9]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartanPosDef.tex
+[9]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartan.tex
 
-
-[10]) (./subsections/GCM.tex
+[10]) (./subsections/RootPairingCartanPosDef.tex) (./subsections/GCM.tex
 
 [11]) (./subsections/DynkinGraph.tex
 
@@ -1212,7 +1214,7 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 
 [13]
 
-[14]) (./subsections/NoSycle.tex
+[14]) (./subsections/NoCycle.tex
 
 [15]) (./subsections/NumOfBranchLeOne.tex
 
@@ -1240,34 +1242,54 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 
 [27]
 
-[28]) (./subsections/Classification.tex)
+[28]
 
 [29]
+
+[30]
+
+LaTeX Warning: Reference `lem:no_cycle' on page 31 undefined on input line 352.
+
+
+
+
+[31]
+
+[32]) (./subsections/Classification.tex)
+
+[33]
 File: graphics/positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/positive_definite_graph.pdf>
 File: graphics/non-positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/non-positive_definite_graph.pdf>
 )
 
-[30]
+[34]
 
-[31]
+[35]
 (/Users/noboru/Documents/classification-root-system/blueprint/print/print.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: D1F93C4DD01738900027CF1833CD19B1;3034.
+(rerunfilecheck)             Checksum: 3B42446CD6026130CAB2E875A07069F6;3281.
  ) 
 Here is how much of TeX's memory you used:
- 31400 strings out of 473832
- 667167 string characters out of 5729481
- 1087690 words of memory out of 5000000
- 53840 multiletter control sequences out of 15000+600000
+ 31439 strings out of 473832
+ 667961 string characters out of 5729481
+ 1088619 words of memory out of 5000000
+ 53876 multiletter control sequences out of 15000+600000
  575966 words of font info for 128 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
  116i,21n,121p,542b,928s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/noboru/Documents/classification-root-system/blueprint/
-print/print.pdf (31 pages).
+print/print.pdf (35 pages).

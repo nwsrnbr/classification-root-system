@@ -479,26 +479,29 @@ lemma schur_ineq (C : Matrix (Fin n) (Fin n) ℤ)
   have hu1 := u_notMem_branch C u v₁ hv₁u
   have hu2 := u_notMem_branch C u v₂ hv₂u
   have hu3 := u_notMem_branch C u v₃ hv₃u
-  obtain ⟨y₁, hy₁nn, hy₁s, hy₁E⟩ := branch_marking C hGCM u v₁
-  obtain ⟨y₂, hy₂nn, hy₂s, hy₂E⟩ := branch_marking C hGCM u v₂
-  obtain ⟨y₃, hy₃nn, hy₃s, hy₃E⟩ := branch_marking C hGCM u v₃
   have hd12 := branches_disjoint C hGCM hP u v₁ v₂ hdist.1 hv₁ hv₂
   have hd13 := branches_disjoint C hGCM hP u v₁ v₃ hdist.2.1 hv₁ hv₃
   have hd23 := branches_disjoint C hGCM hP u v₂ v₃ hdist.2.2 hv₂ hv₃
-  have hxnn : ∀ i, 0 ≤ (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) i := by
-    intro i; simp only; split_ifs
-    · norm_num
-    · exact add_nonneg (add_nonneg (hy₁nn i) (hy₂nn i)) (hy₃nn i)
-  have hxne : (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) ≠ 0 := by
+  obtain ⟨y₁, hy₁nn, hy₁s, hy₁E⟩ := branch_marking C hGCM u v₁
+  obtain ⟨y₂, hy₂nn, hy₂s, hy₂E⟩ := branch_marking C hGCM u v₂
+  obtain ⟨y₃, hy₃nn, hy₃s, hy₃E⟩ := branch_marking C hGCM u v₃
+  have hxne : (fun i => if i = u then (1 : ℝ) else y₁ i + y₂ i + y₃ i) ≠ 0 := by
     intro h
-    have : (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) u = 0 := by rw [h]; rfl
+    have : (fun i => if i = u then (1 : ℝ) else y₁ i + y₂ i + y₃ i) u = 0 := by
+      rw [h]
+      rfl
     simp at this
   have hpos := hP.dotProduct_mulVec_pos hxne
+  have hxnn : ∀ i, 0 ≤ (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) i := by
+    intro i
+    simp only
+    split_ifs
+    · norm_num
+    · exact add_nonneg (add_nonneg (hy₁nn i) (hy₂nn i)) (hy₃nn i)
   have hle := form_le_Gadj C hGCM (fun i => if i = u then (1:ℝ) else y₁ i + y₂ i + y₃ i) hxnn
   have hsq := assembly_sq C u v₁ v₂ v₃ y₁ y₂ y₃ hu1 hu2 hu3 hy₁s hy₂s hy₃s hd12 hd13 hd23
   have hcr := assembly_cross C hGCM u v₁ v₂ v₃ y₁ y₂ y₃ htrip hu1 hu2 hu3 hy₁s hy₂s hy₃s
     hd12 hd13 hd23
-  simp only at hle
   rw [hsq, hcr] at hle
   linarith [hpos, hle, hy₁E, hy₂E, hy₃E, hcon]
 
@@ -524,3 +527,65 @@ theorem branchSize_inequality (C : Matrix (Fin n) (Fin n) ℤ)
   have e₃ : c / (c + 1) = 1 - 1 / (c + 1) := by field_simp; ring
   rw [e₁, e₂, e₃] at key
   linarith
+
+lemma reciprocal_sum_gt_one_bounds (a b c : ℕ) (ha : 0 < a) (hab : a ≤ b) (hbc : b ≤ c)
+    (h : 1 / ((a : ℝ) + 1) + 1 / ((b : ℝ) + 1) + 1 / ((c : ℝ) + 1) > 1) :
+    a = 1 ∧ (b = 1 ∨ b = 2 ∧ c ≤ 4) := by
+  have hab' : 1 / ((a : ℝ) + 1) ≥ 1 / ((b : ℝ) + 1) := by
+    apply one_div_le_one_div_of_le
+    · positivity
+    · norm_num [hab]
+  have hbc' : 1 / ((b : ℝ) + 1) ≥ 1 / ((c : ℝ) + 1) := by
+    apply one_div_le_one_div_of_le
+    · positivity
+    · norm_num [hbc]
+  have ha1 : a = 1 := by
+    by_contra
+    have ha1d3 : 1 / ((a : ℝ) + 1) ≤ 1 / 3 := by
+      apply one_div_le_one_div_of_le
+      · positivity
+      · norm_num [← tsub_le_iff_right]
+        omega
+    have hb1d3 : 1 / ((b : ℝ) + 1) ≤ 1 / 3 := by linarith
+    have hc1d3 : 1 / ((c : ℝ) + 1) ≤ 1 / 3 := by linarith
+    linarith
+  subst a
+  simp
+  by_cases hb1 : b = 1
+  · exact Or.inl hb1
+  · by_cases hb2 : b = 2
+    · subst b
+      simp
+      by_contra
+      have hc1d5 : 1 / ((c : ℝ) + 1) ≤ 1 / 6 := by
+        apply one_div_le_one_div_of_le
+        · positivity
+        · norm_num [← tsub_le_iff_right]
+          omega
+      linarith
+    · have hb1d4 : 1 / ((b : ℝ) + 1) ≤ 1 / 4 := by
+        apply one_div_le_one_div_of_le
+        · positivity
+        · norm_num [← tsub_le_iff_right]
+          omega
+      have hc1d4 : 1 / ((c : ℝ) + 1) ≤ 1 / 4 := by linarith
+      linarith
+
+theorem branchSize_bounds (C : Matrix (Fin n) (Fin n) ℤ)
+    (hGCM : IsGeneralizedCartanMatrix C) (hP : (SymmMatrix C).PosDef)
+    (u : Fin n) (hu : degree C u = 3)
+    (v₁ v₂ v₃ : Fin n)
+    (hv₁ : v₁ ∈ neighborSet C u) (hv₂ : v₂ ∈ neighborSet C u)
+    (hv₃ : v₃ ∈ neighborSet C u)
+    (hdist : v₁ ≠ v₂ ∧ v₁ ≠ v₃ ∧ v₂ ≠ v₃)
+    (h12 : branchSize C u v₁ ≤ branchSize C u v₂)
+    (h23 : branchSize C u v₂ ≤ branchSize C u v₃) :
+      branchSize C u v₁ = 1 ∧
+      (branchSize C u v₂ = 1 ∨ branchSize C u v₂ = 2 ∧ branchSize C u v₃ ≤ 4) := by
+  have hrecip := branchSize_inequality C hGCM hP u hu v₁ v₂ v₃ hv₁ hv₂ hv₃ hdist
+  have h1 : 0 < branchSize C u v₁ := by
+    rw [branchSize_eq_card, Finset.card_pos]
+    use v₁
+    apply branchFinset_refl
+  exact reciprocal_sum_gt_one_bounds (branchSize C u v₁) (branchSize C u v₂) (branchSize C u v₃)
+    h1 h12 h23 hrecip

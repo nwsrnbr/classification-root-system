@@ -435,6 +435,9 @@ INPUT subsections/SubGraph.tex
 INPUT ./subsections/RootPairing.tex
 INPUT ./subsections/RootPairing.tex
 INPUT subsections/RootPairing.tex
+INPUT ./subsections/RootPairingCartan.tex
+INPUT ./subsections/RootPairingCartan.tex
+INPUT subsections/RootPairingCartan.tex
 INPUT ./subsections/RootPairingCartanPosDef.tex
 INPUT ./subsections/RootPairingCartanPosDef.tex
 INPUT subsections/RootPairingCartanPosDef.tex

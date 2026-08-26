@@ -34,25 +34,68 @@
 <p class="authors">
 <span class="author">Noboru Nawashiro</span>
 </p>
-</div><h1 id="a0000000002">0.1 序論</h1>
-<p> 本プロジェクトの目標は，既約結晶的ルート系の分類定理をLean 4を用いて形式化することである． 結晶的ルート系とは特定の条件を満たすユークリッド空間内のベクトルからなる集合であり，\(A_n, B_n, \ldots , G_2\)型に分類される． 数学の文脈では，Coxeter-Dynkin図形というグラフを定義し，その正定値性や部分グラフという概念を用いて分類できる． 具体的には，以下の性質を用いる： </p>
+</div><h1 id="thm:classification_root">0.1 序論</h1>
+<p> 本プロジェクトの目標は，既約結晶的ルート系の分類定理をLean 4を用いて形式化することである： </p>
+<div class="theorem*_thmwrapper theorem-style-definition" id="a0000000002">
+  <div class="theorem*_thmheading">
+    <span class="theorem*_thmcaption">
+    Theorem
+    </span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#a0000000002">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem*_thmcontent">
+  <p>   \(P\)はcrystallographicなroot pairingであるとする． \(C\)を\(P\)から定まるCartan行列とする． このとき，\(C\)はCartan行列\(A_n, B_n, C_n, D_n, E_6, E_7, E_8, F_4, G_2\)のいずれか1つとCartan同値である． </p>
+
+  </div>
+</div>
+<p> 結晶的ルート系とは特定の条件を満たすユークリッド空間内のベクトルからなる集合であり，\(A_n, B_n, \ldots , G_2\)型に分類される． 数学の文脈では，Coxeter-Dynkin図形というグラフを定義し，その正定値性や部分グラフという概念を用いて分類できる． 具体的には，以下の性質を用いる： </p>
 <ol class="enumerate">
-  <li><p>ルート系のCoxeter-Dynkin図形は正定値 </p>
+  <li><p>ルート系のCoxeter-Dynkin図形の正定値性 </p>
 </li>
-  <li><p>正定値グラフの部分グラフは正定値 </p>
+  <li><p>正定値グラフの部分グラフの正定値性 </p>
 </li>
-  <li><p>\(A_n, B_n, \ldots , G_2\)は正定値 </p>
+  <li><p>\(A_n, B_n, \ldots , G_2\)の正定値性 </p>
 </li>
-  <li><p>\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)は非正定値 </p>
+  <li><p>\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)の非正定値性 </p>
 </li>
 </ol>
 <p> これらを用いて，ルート系のCoxeter-Dynkin図形\(\Gamma \)を以下のように分類できる： </p>
 <div class="displaymath" id="a0000000003">
   \begin{align}  \Gamma \textrm{は正定値} & \implies \Gamma \textrm{の部分グラフは正定値} \\ & \implies \Gamma \textrm{は} \widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2 \textrm{を部分グラフに持たない} \\ & \implies \Gamma \textrm{は} A_n, B_n, \ldots , G_2 \textrm{のいずれか} \end{align}
 </div>
-<p>しかし，本プロジェクトのLeanのコードでは，Coxeter-Dynkin図形は登場しない． 代わりに，一般Cartan行列というものを定義し分類を行う． 一般Cartan行列からグラフを描くことができ，それはCoxeter-Dynkin図形とほぼ同じ情報を持っている． 逆に，Coxeter-Dynkin図形から一般Cartan行列を定めることもできる． 一般Cartan行列を用いた証明，すなわちLeanにおける証明は以下の流れで行われる： </p>
+<p>しかし，本プロジェクトのLeanのコードでは，この流れで形式化していない． なぜなら，部分グラフを用いた分類がうまくいかなかったからである． 上記性質の2, 3, 4は形式化できた． 1もできたと仮定して(証明の中身は<span class="ttfamily">sorry</span>として)分類を試みたが，型の違いや添え字の付け方による同一視が難しかった． </p>
+<p>そこで，Coxeter-Dynkin図形を登場させない方針に切り替えた． 代わりに，一般Cartan行列というものを定義し分類を行う． 一般Cartan行列からグラフを描くことができ，それはCoxeter-Dynkin図形とほぼ同じ情報を持っている． 逆に，Coxeter-Dynkin図形から一般Cartan行列を定めることもできる． 一般Cartan行列を用いた証明，すなわちLeanにおける証明は以下の流れで行われる： </p>
+<p>正定値対称化一般Cartan行列から定まるグラフに関して， </p>
 <ol class="enumerate">
-  <li><p>行列から定まるグラフが木である(サイクルがない)ことを示す． </p>
+  <li><p>木である(サイクルがない)ことを示す． </p>
 </li>
   <li><p>分岐は高々1つであることを示す． </p>
 </li>
@@ -61,9 +104,18 @@
   <li><p>3分岐のとき，格枝の長さを制限する． </p>
 </li>
 </ol>
-<p> これらは一般Cartan行列を対称化した行列の正定値性から従う． </p>
-<p>なお，この文書では，数学の文脈に合わせて添え字を\(1\)始まりとしているが，Leanファイル内では\(0\)始まり，すなわち各添え字はこの文書から\(-1\)されていることに注意されたい． 特に，Leanファイル内で\(\texttt{Fin n} = \{ 0, 1, \ldots , n-1\} \)と書かれている場合でも，PDFでは\(I = \{ 1, 2, \ldots , n\} \)と書いている．  </p>
-<h1 id="a0000000004">0.2 Sylvesterの判定法</h1>
+<p>性質4の枝の長さについて，分岐点を含まない格枝の長さを\(a, b, c\)とすると， </p>
+<div class="equation" id="a0000000004">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \frac{1}{a + 1} + \frac{1}{b + 1} + \frac{1}{c + 1} {\gt} 1 \end{equation}
+  </div>
+  <span class="equation_label">4</span>
+</p>
+</div>
+<p> という不等式が成り立つ． Leanによる形式化でもこの不等式を証明している． この不等式を導出するには，Schur complementを用いる方法が最も簡潔である． その方針では\(A_n^{-1}\)の情報が必要であるが，これをLeanで求めるのは難しい． そのため，Schur complementは用いない． 性質1, 2, 3, 4のいずれも，ベクトル\(x\)で，対称化一般Cartan行列\(S(C)\)に関する二次形式\({}^t\! x S(C) x\)が非正になるものを構成することにより，矛盾を導くという方法を採っている． </p>
+<p>なお，この文書では，数学の文脈に合わせて添え字を\(1\)始まりとしているが，Leanファイル内では\(0\)始まり，すなわち各添え字はこの文書から\(-1\)されていることに注意されたい． つまり，Leanファイル内で\(\texttt{Fin n} = \{ 0, 1, \ldots , n-1\} \)と書かれている場合は，PDFファイルでは\(I = \{ 1, 2, \ldots , n\} \)と書いている．  </p>
+<h1 id="a0000000005">0.2 Sylvesterの判定法</h1>
 <div class="theorem_thmwrapper theorem-style-definition" id="thm:sylvester_criterion">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
@@ -137,7 +189,7 @@
   </div>
 </div>
 <p>以下，\(M \in \operatorname {M}_n(\mathbb {R})\)とし，\(I = \{ 1, 2, \ldots , n\} \)とする(Lean内では\(0, 1, \ldots , n - 1\)であることに注意)． これを示すために，いくつか定義と補題を用意する． </p>
-<h2 id="a0000000005">0.2.1 Sylvesterの判定法1</h2>
+<h2 id="a0000000006">0.2.1 Sylvesterの判定法1</h2>
 <div class="definition_thmwrapper theorem-style-definition" id="def:Matrix.leadingSubmatrix">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -182,12 +234,12 @@
   </div>
 </div>
 <p>\(X\)を任意の添字集合で\(|X| = m\)，\(e : X \rightarrow I\)を写像とする． 行列\(M_{e, e} \in \operatorname {M}_m(\mathbb {R})\)を </p>
-<div class="equation" id="a0000000006">
+<div class="equation" id="a0000000007">
 <p>
   <div class="equation_content">
     \begin{equation}  (M_{e, e})_{ij} := M_{e(i),\  e(j)} \end{equation}
   </div>
-  <span class="equation_label">4</span>
+  <span class="equation_label">5</span>
 </p>
 </div>
 <p> となるように定める． </p>
@@ -247,7 +299,7 @@
 
     <a class="icon proof" href="index.html#lem:PosDef.submatrix_injective">#</a>
     
-    <a class="icon proof" href="index.html#a0000000007"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000008"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -298,7 +350,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000007">
+<div class="proof_wrapper" id="a0000000008">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -308,21 +360,21 @@
   <div class="proof_content">
   <p>部分行列がエルミートであることは上の補題&#160;<a href="index.html#lem:IsHermitian.submatrix_injective">0.2.3</a>から従う． </p>
 <p>\( 0 \ne x := {}^t\! (x_1, \ldots , x_m) \in \mathbb {R}^m\)とする． </p>
-<div class="equation" id="a0000000008">
+<div class="equation" id="a0000000009">
 <p>
   <div class="equation_content">
     \begin{equation}  y_i = \begin{cases}  x_j, &  e(j) = i,\\ 0, &  \mathrm{otherwise} \end{cases} \end{equation}
   </div>
-  <span class="equation_label">5</span>
+  <span class="equation_label">6</span>
 </p>
 </div>
 <p> とし，ベクトル\(y \in \mathbb {R}^n\)を\(y := {}^t\! (y_1, \ldots , y_n)\)と定める． すると，それぞれの二次形式は一致する： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x10894c7d0>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x10bbc12b0>">
 <p>
   <div class="equation_content">
     \begin{equation}  x^* M_{e, e} x = y^* M y. \label{eq:quad_form_xy} \end{equation}
   </div>
-  <span class="equation_label">8</span>
+  <span class="equation_label">9</span>
 </p>
 </div>
 <p> \(y = 0\)ならば\(x = 0\)なので，対偶をとれば\(y \ne 0\)がわかる． \(M\)の正定値性より，式&#160;??は正であるから，\(M_{e,e}\)の正定値性が示せた． </p>
@@ -343,7 +395,7 @@
 
     <a class="icon proof" href="index.html#thm:posDef_leading_minors_pos">#</a>
     
-    <a class="icon proof" href="index.html#a0000000009"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000010"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -394,7 +446,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000009">
+<div class="proof_wrapper" id="a0000000010">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -406,7 +458,7 @@
 
   </div>
 </div>
-<h2 id="a0000000010">0.2.2 Sylvesterの判定法2</h2>
+<h2 id="a0000000011">0.2.2 Sylvesterの判定法2</h2>
 <p>このsubsectionでは\(M \in \operatorname {M}_{n+1}(\mathbb {R})\)とする． </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:lastCol">
   <div class="definition_thmheading">
@@ -495,12 +547,12 @@
   </div>
 </div>
 <p>これらの定義を踏まえて，以下 </p>
-<div class="equation" id="a0000000011">
+<div class="equation" id="a0000000012">
 <p>
   <div class="equation_content">
     \begin{equation}  M = \left( \begin{array}{ccc|c}&  A & &  b \\ \hline &  {}^t\! b & &  c \end{array} \right) \end{equation}
   </div>
-  <span class="equation_label">9</span>
+  <span class="equation_label">10</span>
 </p>
 </div>
 <p> とする． </p>
@@ -544,12 +596,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  次の定数\(s \in \mathbb {R}\)を\(M\)の<b class="bfseries">Schur complement</b>という： </p>
-<div class="equation" id="a0000000012">
+<div class="equation" id="a0000000013">
 <p>
   <div class="equation_content">
     \begin{equation}  s = c - {}^t\! b A^{-1} b. \end{equation}
   </div>
-  <span class="equation_label">10</span>
+  <span class="equation_label">11</span>
 </p>
 </div>
 
@@ -595,12 +647,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  \(M\)はエルミートであるとする． 任意のベクトル\(v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し， </p>
-<div class="equation" id="a0000000013">
+<div class="equation" id="a0000000014">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! v M v = {}^t\! x A x + 2t({}^t\! bx) + ct^2 \end{equation}
   </div>
-  <span class="equation_label">11</span>
+  <span class="equation_label">12</span>
 </p>
 </div>
 <p> が成り立つ． </p>
@@ -667,12 +719,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(M\)はエルミートであるとする． 上の補題&#160;<a href="index.html#lem:quadratic_form_decomp">0.2.9</a>を平方完成すると以下のようになる： </p>
-<div class="equation" id="a0000000014">
+<div class="equation" id="a0000000015">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
   </div>
-  <span class="equation_label">12</span>
+  <span class="equation_label">13</span>
 </p>
 </div>
 
@@ -691,7 +743,7 @@
 
     <a class="icon proof" href="index.html#lem:schur_complement_pos">#</a>
     
-    <a class="icon proof" href="index.html#a0000000015"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000016"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -719,18 +771,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  \(M\)はエルミートであるとする． また，\(A\)は正定値，\(\det M {\gt} 0\)であるとする． このとき，\(M\)のSchur complement \(s\)は正である： </p>
-<div class="equation" id="a0000000016">
+<div class="equation" id="a0000000017">
 <p>
   <div class="equation_content">
     \begin{equation}  0 {\lt} s = c - {}^t\! b A^{-1} b. \end{equation}
   </div>
-  <span class="equation_label">13</span>
+  <span class="equation_label">14</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000015">
+<div class="proof_wrapper" id="a0000000016">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -798,7 +850,7 @@
 
     <a class="icon proof" href="index.html#thm:posDef_of_leading_submatrix_posDef_and_det_pos">#</a>
     
-    <a class="icon proof" href="index.html#a0000000017"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000018"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -851,7 +903,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000017">
+<div class="proof_wrapper" id="a0000000018">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -861,22 +913,22 @@
   <div class="proof_content">
   <p>任意の\(0 \ne v := (x_1, \ldots , x_n, t) \in \mathbb {R}^{n+1}\)に対し，\({}^t\! v M v {\gt} 0\)を示す． </p>
 <p>\(t = 0\)のとき，\(A\)の正定値性から </p>
-<div class="equation" id="a0000000018">
+<div class="equation" id="a0000000019">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! v M v = {}^t\! x A x {\gt} 0 \end{equation}
   </div>
-  <span class="equation_label">14</span>
+  <span class="equation_label">15</span>
 </p>
 </div>
 <p> であるからよい． </p>
 <p>\(t \ne 0\)のとき，補題&#160;<a href="index.html#lem:quadratic_form_complete_square">0.2.10</a>より </p>
-<div class="equation" id="a0000000019">
+<div class="equation" id="a0000000020">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! v M v = {}^t\! (x + t A^{-1} b) A (x + t A^{-1} b) + st^2 \end{equation}
   </div>
-  <span class="equation_label">15</span>
+  <span class="equation_label">16</span>
 </p>
 </div>
 <p> である． 右辺の第1項目は\(A\)の正定値性より非負，第2項目は補題&#160;<a href="index.html#lem:schur_complement_pos">0.2.11</a>より\(s {\gt} 0\)であるから正である． よって，この場合でも\({}^t\! v M v {\gt} 0\)である． </p>
@@ -923,12 +975,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  \(j \le k \le n\)とする． \(M\)の\(k\)次主小行列の\(j\)次主小行列は，\(M\)の\(j\)次主小行列である： </p>
-<div class="equation" id="a0000000020">
+<div class="equation" id="a0000000021">
 <p>
   <div class="equation_content">
     \begin{equation}  (M_k)_j = M_j. \end{equation}
   </div>
-  <span class="equation_label">16</span>
+  <span class="equation_label">17</span>
 </p>
 </div>
 
@@ -1001,8 +1053,8 @@
 
   </div>
 </div>
-<h1 id="a0000000021">0.3 行列式</h1>
-<h2 id="a0000000022">0.3.1 帰納法の準備</h2>
+<h1 id="a0000000022">0.3 行列式</h1>
+<h2 id="a0000000023">0.3.1 帰納法の準備</h2>
 <p>\(R\)は可換環とする． </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.rev">
   <div class="definition_thmheading">
@@ -1087,12 +1139,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(Y \in \operatorname {M}_n(R),\  a, b \in R\)に対し，\(M_{\operatorname {ind}}(Y, a, b) \in \operatorname {M}_{n+1}(R)\)を以下のように定める： </p>
-<div class="equation" id="a0000000023">
+<div class="equation" id="a0000000024">
 <p>
   <div class="equation_content">
     \begin{equation}  M_{\operatorname {ind}}(Y, a, b) = \left( \begin{array}{cccc|c}& & & &  0 \\ &  Y & & &  \vdots \\ & & & &  0 \\ & & & &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right). \end{equation}
   </div>
-  <span class="equation_label">17</span>
+  <span class="equation_label">18</span>
 </p>
 </div>
 
@@ -1111,7 +1163,7 @@
 
     <a class="icon proof" href="index.html#lem:CartanMatrix.ind_det">#</a>
     
-    <a class="icon proof" href="index.html#a0000000024"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000025"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -1139,27 +1191,27 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  \(X \in \operatorname {M}_{n+2}(R),\  Y \in \operatorname {M}_{n+1}(R),\  Z \in \operatorname {M}_n(R),\  a, b \in R\)とし，\(X = M_{\operatorname {ind}}(Y, a, b),\  Y_{n-1} = Z\)とする． すなわち，以下が成り立っているとする： </p>
-<div class="equation" id="a0000000025">
+<div class="equation" id="a0000000026">
 <p>
   <div class="equation_content">
     \begin{equation}  X =\left( \begin{array}{cccc|c}& & & &  0 \\ &  Y & & &  \vdots \\ & & & &  0 \\ & & & &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right) = \left( \begin{array}{ccc|c|c}& & & &  0 \\ &  Z & &  * &  \vdots \\ & & & &  0 \\ \hline &  * & &  * &  b \\ \hline 0 &  \cdots &  0 &  a &  2 \end{array} \right). \end{equation}
   </div>
-  <span class="equation_label">18</span>
+  <span class="equation_label">19</span>
 </p>
 </div>
 <p> このとき，以下の関係式が成り立つ： </p>
-<div class="equation" id="a0000000026">
+<div class="equation" id="a0000000027">
 <p>
   <div class="equation_content">
     \begin{equation}  \det X = 2 \det Y - ab \det Z. \end{equation}
   </div>
-  <span class="equation_label">19</span>
+  <span class="equation_label">20</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000024">
+<div class="proof_wrapper" id="a0000000025">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -1184,7 +1236,7 @@
 
     <a class="icon proof" href="index.html#lem:CartanMatrix.A_leadingSubmatrix">#</a>
     
-    <a class="icon proof" href="index.html#a0000000027"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000028"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -1323,7 +1375,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000027">
+<div class="proof_wrapper" id="a0000000028">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -1335,7 +1387,7 @@
 
   </div>
 </div>
-<h2 id="a0000000028">0.3.2 Cartan行列</h2>
+<h2 id="a0000000029">0.3.2 Cartan行列</h2>
 <p>Cartan行列\(A_n, B_n, \ldots , G_2\)の行列式を求める． これらの定義はMathlibに存在する： </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.A">
   <div class="definition_thmheading">
@@ -1377,7 +1429,7 @@
   </div>
   <div class="definition_thmcontent">
   <p>  Cartan行列\(A_n \in \operatorname {M}_n(\mathbb {Z})\)を次のように定義する(例えば\(A_n\))： </p>
-<div class="equation" id="a0000000029">
+<div class="equation" id="a0000000030">
 <p>
   <div class="equation_content">
     \begin{equation}  A_n = \begin{pmatrix}  2 
@@ -1442,7 +1494,7 @@
 
 \end{pmatrix} \end{equation}
   </div>
-  <span class="equation_label">20</span>
+  <span class="equation_label">21</span>
 </p>
 </div>
 
@@ -1505,7 +1557,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.det_A">#</a>
     
-    <a class="icon proof" href="index.html#a0000000030"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000031"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -1666,7 +1718,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000030">
+<div class="proof_wrapper" id="a0000000031">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -1676,19 +1728,19 @@
   <div class="proof_content">
   <p>図&#160;<a href="index.html#fig:positive_definite_graph">1</a>を見ると，\(X_n \in \{ A_n, B_n, C_n, \operatorname {rev}D_n, E_5, \ldots , E_8, F_4, G_2\} \)の頂点\(n\)は頂点\(n-1\)以外と繋がっていないことがわかる． すなわち，\(X_n = M_{\operatorname {ind}}((X_n)_{n-1}, a, b)\)という形をしているから補題&#160;<a href="index.html#lem:CartanMatrix.ind_det">0.3.3</a>が使える． 例として，\(\det A_n\)を求める． </p>
 <p>\(A_n\)の\(n-1, n-2\)次主小行列はそれぞれ\(A_{n-1}, A_{n-2}\)であるから，\(X = A_n,\  Y = A_{n-1},\  Z = A_{n-2},\  a = b = -1\)とすれば補題&#160;<a href="index.html#lem:CartanMatrix.ind_det">0.3.3</a>の仮定を満たす． よって， </p>
-<div class="equation" id="a0000000031">
+<div class="equation" id="a0000000032">
 <p>
   <div class="equation_content">
     \begin{equation}  \det A_n = 2 \det A_{n-1} - (-1) (-1) \det A_{n-2} \end{equation}
   </div>
-  <span class="equation_label">21</span>
+  <span class="equation_label">22</span>
 </p>
 </div>
 <p> である． これを解くと，\(\det A_n = n - 1\)が得られる． </p>
 
   </div>
 </div>
-<h2 id="a0000000032">0.3.3 拡大Cartan行列</h2>
+<h2 id="a0000000033">0.3.3 拡大Cartan行列</h2>
 <p>拡大Cartan行列\(\widetilde{A}_n, \widetilde{B}_n, \ldots , \widetilde{G}_2\)の行列式を求める． これらの定義はMathlibに存在しないため，自分で定義した(例えば\(\widetilde{A}_n\))： </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.A_tilda">
   <div class="definition_thmheading">
@@ -1730,7 +1782,7 @@
   </div>
   <div class="definition_thmcontent">
   <p>  </p>
-<div class="equation" id="a0000000033">
+<div class="equation" id="a0000000034">
 <p>
   <div class="equation_content">
     \begin{equation}  \widetilde{A}_n = \begin{pmatrix}  2 
@@ -1819,7 +1871,7 @@
 
 \end{pmatrix} \end{equation}
   </div>
-  <span class="equation_label">22</span>
+  <span class="equation_label">23</span>
 </p>
 </div>
 
@@ -1839,7 +1891,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.det_A_tilda">#</a>
     
-    <a class="icon proof" href="index.html#a0000000034"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000035"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2000,7 +2052,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000034">
+<div class="proof_wrapper" id="a0000000035">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2010,49 +2062,49 @@
   <div class="proof_content">
   <p>\(\widetilde{A}_n\)以外は，定理&#160;<a href="index.html#thm:CartanMatrix.det_A">0.3.7</a>と同様に\(M_{\operatorname {ind}}(\widetilde{X}_n, a, b)\)を用いて求められる． \(\widetilde{A}_n\)は，各\(i\)行目のすべての成分を足すと\(0\)であるから\(\det \widetilde{A}_n = 0\)がわかる． </p>
 <p>Leanでの求め方を簡単に述べる．\(i\)を固定する． \(i, j \le n\)に関しては\((\widetilde{A}_n)_{ij} = (A_n)_{ij}\)であるから </p>
-<div class="equation" id="a0000000035">
+<div class="equation" id="a0000000036">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{j = 1}^{n + 1} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} + (\widetilde{A}_n)_{i\  n+1} \end{equation}
   </div>
-  <span class="equation_label">23</span>
+  <span class="equation_label">24</span>
 </p>
 </div>
 <p> と分ける． </p>
 <p>\(2 \le i \le n-1\)のとき </p>
-<div class="equation" id="a0000000036">
-<p>
-  <div class="equation_content">
-    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 0, \qquad (\widetilde{A}_n)_{i\  n+1} = 0 \end{equation}
-  </div>
-  <span class="equation_label">24</span>
-</p>
-</div>
-<p> である． </p>
-<p>\(i = 1 \lor i = n\)のとき </p>
 <div class="equation" id="a0000000037">
 <p>
   <div class="equation_content">
-    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 1, \qquad (\widetilde{A}_n)_{i\  n+1} = -1 \end{equation}
+    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 0, \qquad (\widetilde{A}_n)_{i\  n+1} = 0 \end{equation}
   </div>
   <span class="equation_label">25</span>
 </p>
 </div>
 <p> である． </p>
-<p>\(i = n + 1\)のとき </p>
+<p>\(i = 1 \lor i = n\)のとき </p>
 <div class="equation" id="a0000000038">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = \sum _{j = 1}^{n} (A_n)_{ij} = 1, \qquad (\widetilde{A}_n)_{i\  n+1} = -1 \end{equation}
+  </div>
+  <span class="equation_label">26</span>
+</p>
+</div>
+<p> である． </p>
+<p>\(i = n + 1\)のとき </p>
+<div class="equation" id="a0000000039">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{j = 1}^{n} (\widetilde{A}_n)_{ij} = -2, \qquad (\widetilde{A}_n)_{i\  n+1} = 2 \end{equation}
   </div>
-  <span class="equation_label">26</span>
+  <span class="equation_label">27</span>
 </p>
 </div>
 <p> である． </p>
 
   </div>
 </div>
-<h2 id="a0000000039">0.3.4 対称化行列</h2>
+<h2 id="a0000000040">0.3.4 対称化行列</h2>
 <p>以下\(C \in \operatorname {M}_n(\mathbb {Z})\)とする． </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:SymmMatrix">
   <div class="definition_thmheading">
@@ -2094,12 +2146,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  次のような行列\(S(C)\)を定める： </p>
-<div class="equation" id="a0000000040">
+<div class="equation" id="a0000000041">
 <p>
   <div class="equation_content">
     \begin{equation}  S(C)_{ij} = \begin{cases}  2, &  i = j, \\ -\sqrt{C_{ij} C_{ji}}, &  i \ne j. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">27</span>
+  <span class="equation_label">28</span>
 </p>
 </div>
 
@@ -2274,12 +2326,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  \(C\)はsimply laced，任意の対角成分は\(2\)，対称行列であるとする． このとき，次が成り立つ： </p>
-<div class="equation" id="a0000000041">
+<div class="equation" id="a0000000042">
 <p>
   <div class="equation_content">
     \begin{equation}  S(C) = C. \end{equation}
   </div>
-  <span class="equation_label">30</span>
+  <span class="equation_label">31</span>
 </p>
 </div>
 
@@ -2345,12 +2397,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(C\)が補題&#160;<a href="index.html#lem:SymmMatrix_eq_rfl">0.3.14</a>の仮定を満たすとき，次が成り立つ： </p>
-<div class="equation" id="a0000000042">
+<div class="equation" id="a0000000043">
 <p>
   <div class="equation_content">
     \begin{equation}  \det S(C) = \det C. \end{equation}
   </div>
-  <span class="equation_label">31</span>
+  <span class="equation_label">32</span>
 </p>
 </div>
 
@@ -2396,12 +2448,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>  対称化\(S(*)\)と\(k \le n\)次主小行列\(*_k\)をとる操作は可換である： </p>
-<div class="equation" id="a0000000043">
+<div class="equation" id="a0000000044">
 <p>
   <div class="equation_content">
     \begin{equation}  (S(C))_k = S(C_k). \end{equation}
   </div>
-  <span class="equation_label">32</span>
+  <span class="equation_label">33</span>
 </p>
 </div>
 
@@ -2485,7 +2537,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.det_SymmMatrix_A">#</a>
     
-    <a class="icon proof" href="index.html#a0000000044"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000045"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2538,7 +2590,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000044">
+<div class="proof_wrapper" id="a0000000045">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2563,7 +2615,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.det_SymmMatrix_A_tilda">#</a>
     
-    <a class="icon proof" href="index.html#a0000000045"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000046"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2616,7 +2668,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000045">
+<div class="proof_wrapper" id="a0000000046">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2628,8 +2680,8 @@
 
   </div>
 </div>
-<h1 id="a0000000046">0.4 正定値性</h1>
-<h2 id="a0000000047">0.4.1 Cartan行列の正定値性</h2>
+<h1 id="a0000000047">0.4 正定値性</h1>
+<h2 id="a0000000048">0.4.1 Cartan行列の正定値性</h2>
 <div class="theorem_thmwrapper theorem-style-definition" id="thm:CartanMatrix.A_isPosDef">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
@@ -2643,7 +2695,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.A_isPosDef">#</a>
     
-    <a class="icon proof" href="index.html#a0000000048"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000049"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2700,7 +2752,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000048">
+<div class="proof_wrapper" id="a0000000049">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2709,12 +2761,12 @@
   </div>
   <div class="proof_content">
   <p>例として\(A_n\)の場合を示す． 定理&#160;<a href="index.html#thm:sylvester_criterion">0.2.1</a> (Sylvesterの判定法)より，任意の主小行列式が正であることを言えば良い． 補題&#160;<a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">0.3.16</a>, <a href="index.html#lem:CartanMatrix.A_leadingSubmatrix">0.3.4</a>と定理&#160;<a href="index.html#thm:CartanMatrix.det_SymmMatrix_A">0.3.18</a>より </p>
-<div class="equation" id="a0000000049">
+<div class="equation" id="a0000000050">
 <p>
   <div class="equation_content">
     \begin{equation}  \det (S(A_n))_k = \det S((A_n)_k) = \det S(A_k) = k + 1 {\gt} 0 \end{equation}
   </div>
-  <span class="equation_label">33</span>
+  <span class="equation_label">34</span>
 </p>
 </div>
 <p> となる． 他も全く同様である． </p>
@@ -2734,7 +2786,7 @@
 
     <a class="icon proof" href="index.html#thm:CCartanMatrix.A_tilda_isNotPosDef">#</a>
     
-    <a class="icon proof" href="index.html#a0000000050"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000051"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2787,7 +2839,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000050">
+<div class="proof_wrapper" id="a0000000051">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2796,19 +2848,19 @@
   </div>
   <div class="proof_content">
   <p>例として\(\widetilde{A}_n\)の場合を示す． 定理&#160;<a href="index.html#thm:sylvester_criterion">0.2.1</a> (Sylvesterの判定法)より，\(k\)次主小行列式が非正となる\(k\)が\(1\)つでもあればよい． \(k = n + 1\)とすると，定理&#160;<a href="index.html#thm:CartanMatrix.det_SymmMatrix_A_tilda">0.3.19</a>より </p>
-<div class="equation" id="a0000000051">
+<div class="equation" id="a0000000052">
 <p>
   <div class="equation_content">
     \begin{equation}  \det (S(\widetilde{A}_n))_{n+1} = \det S(\widetilde{A}_n) = 0 \le 0 \end{equation}
   </div>
-  <span class="equation_label">34</span>
+  <span class="equation_label">35</span>
 </p>
 </div>
 <p> となる． 他も全く同様である． </p>
 
   </div>
 </div>
-<h2 id="a0000000052">0.4.2 部分グラフ</h2>
+<h2 id="a0000000053">0.4.2 部分グラフ</h2>
 <div class="definition_thmwrapper theorem-style-definition" id="def:CartanMatrix.LowerLabel">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -2849,12 +2901,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  次のような行列\(C_L\)を定める： </p>
-<div class="equation" id="a0000000053">
+<div class="equation" id="a0000000054">
 <p>
   <div class="equation_content">
     \begin{equation}  (C_L)_{ij} = \begin{cases}  2, &  i = j, \\ -1, &  C_{ij} = -1, \\ -1, &  C_{ij} = -2, \\ -2, &  C_{ij} = -3. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">35</span>
+  <span class="equation_label">36</span>
 </p>
 </div>
 <p> \(*_L\)と\(*_k\)の操作を組み合わせてできる行列を<b class="bfseries">部分グラフ</b>という． Coxeter-Dynkin図形の言葉で言えば，辺の本数を減らす，頂点を減らす操作の組み合わせである． </p>
@@ -2875,7 +2927,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.sub_of_pos_def">#</a>
     
-    <a class="icon proof" href="index.html#a0000000054"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000055"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2928,7 +2980,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000054">
+<div class="proof_wrapper" id="a0000000055">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -2937,12 +2989,12 @@
   </div>
   <div class="proof_content">
   <p>補題&#160;<a href="index.html#lem:SymmMatrix_leadingSubmatrix_comm">0.3.16</a>より </p>
-<div class="equation" id="a0000000055">
+<div class="equation" id="a0000000056">
 <p>
   <div class="equation_content">
     \begin{equation}  S(C_k) = (S(C))_k \end{equation}
   </div>
-  <span class="equation_label">40</span>
+  <span class="equation_label">41</span>
 </p>
 </div>
 <p> であり，補題&#160;<a href="index.html#lem:PosDef.submatrix_injective">0.2.4</a>より正定値行列の部分行列は正定値であるから従う． </p>
@@ -2962,7 +3014,7 @@
 
     <a class="icon proof" href="index.html#thm:CartanMatrix.sub_of_pos_def'">#</a>
     
-    <a class="icon proof" href="index.html#a0000000056"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000057"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -2993,7 +3045,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000056">
+<div class="proof_wrapper" id="a0000000057">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3002,45 +3054,46 @@
   </div>
   <div class="proof_content">
   <p>対偶を示す． \(S(C_L)\)が正定値でないとき，\(y \in \mathbb {R}^n\)で </p>
-<div class="equation" id="a0000000057">
+<div class="equation" id="a0000000058">
 <p>
   <div class="equation_content">
     \begin{equation}  y \ne 0, \qquad \sum _{i, j} y_i \cdot (S(C))_{ij} \cdot y_j \le 0 \end{equation}
   </div>
-  <span class="equation_label">41</span>
+  <span class="equation_label">42</span>
 </p>
 </div>
 <p> なるものがあることを示せばよい． \(S(C_L)\)が正定値でないから\(0 \ne x \in \mathbb {R}^n\)で </p>
-<div class="equation" id="a0000000058">
+<div class="equation" id="a0000000059">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \le 0 \end{equation}
   </div>
-  <span class="equation_label">42</span>
+  <span class="equation_label">43</span>
 </p>
 </div>
 <p> なるものがある． </p>
-<div class="equation" id="a0000000059">
+<div class="equation" id="a0000000060">
 <p>
   <div class="equation_content">
     \begin{equation}  y = {}^t\! (|x_1|, \ldots , |x_n|) \end{equation}
   </div>
-  <span class="equation_label">43</span>
+  <span class="equation_label">44</span>
 </p>
 </div>
 <p> とする． </p>
 <p>\(y \ne 0\)を示す． \(y = 0\)とすると，任意の\(i\)に対し\(y_i = |x_i| = 0\)，すなわち\(x_i = 0\)であるが，これは矛盾する． </p>
 <p>また， </p>
-<div class="displaymath" id="a0000000060">
+<div class="displaymath" id="a0000000061">
   \begin{align}  \sum _{i, j} y_i \cdot (S(C))_{ij} \cdot y_j & = \sum _{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\ & \le \sum _{i, j} |x_i| \cdot (S(C))_{ij} \cdot |x_j| \\ & = \sum _{i, j} (S(C_L))_{ij} \cdot |x_i x_j| \\ & = \sum _{i, j} (S(C_L))_{ij} \cdot x_i x_j \\ & = \sum _{i, j} x_i \cdot (S(C_L))_{ij} \cdot x_j \\ & \le 0. \end{align}
 </div>
 
   </div>
 </div>
-<h1 id="a0000000061">0.5 Root pairing</h1>
-<p> この節は，2026年7月時点ですでにMathlibに実装されているルート系に関する定義・補題などをまとめたものである． 筆者オリジナルの結果は一切ない． </p>
+<h1 id="a0000000062">0.5 Root pairing</h1>
+<p> 節&#160;<a href="index.html#sec:def_and_properties_of_RootPairing">0.5.1</a>, <a href="index.html#sec:Cartan_defined_by_RootPairing">0.5.2</a>は，2026年7月時点ですでにMathlibに実装されているルート系に関する定義・補題などをまとめたものである． 節&#160;<a href="index.html#sec:PosDef_of_Cartan_defined_by_RootPairing">0.5.3</a>は，筆者オリジナルの結果である． </p>
 <p>この節では，\(\iota \)を(有限とは限らない)添え字集合，\(R\)を可換環, \(M, N\)を\(R\)-加群とする． </p>
-<h2 id="a0000000062">0.5.1 定義と性質</h2>
+<h2 id="sec:def_and_properties_of_RootPairing">0.5.1 定義と性質</h2>
+<p>  </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -3116,7 +3169,7 @@
   <div class="equation_content">
     \begin{equation}  \left\langle \alpha _j, \alpha _i^\vee  \right\rangle  = 2 \frac{\left\langle \alpha _i, \alpha _j \right\rangle }{\left\langle \alpha _i, \alpha _i \right\rangle },\qquad s_{\alpha _i}(\alpha _j) = \alpha _j - \left\langle \alpha _j, \alpha _i^\vee  \right\rangle  \alpha _i \end{equation}
   </div>
-  <span class="equation_label">50</span>
+  <span class="equation_label">51</span>
 </p>
 </div>
 <p> であったから，確かに定義<a href="index.html#def:RootPairing">0.5.1</a>の条件はルート系の定義を一般化したものになっている． </p>
@@ -3219,7 +3272,8 @@
 
   </div>
 </div>
-<h2 id="a0000000065">0.5.2 Root pairingから定まるCartan行列</h2>
+<h2 id="sec:Cartan_defined_by_RootPairing">0.5.2 Root pairingから定まるCartan行列</h2>
+<p>  </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:RootPairing.Base">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -3266,22 +3320,22 @@
   <li><p>\(\{ \alpha ^\vee _i\} _{i \in b}\)は\(R\)上線型独立である． </p>
 </li>
   <li><p>任意の\(i \in \iota \)に対し，\(\alpha _i\)は次のように表せる： </p>
-<div class="equation" id="a0000000066">
+<div class="equation" id="a0000000065">
 <p>
   <div class="equation_content">
     \begin{equation}  \alpha _i = \sum _{j \in b} c_j \alpha _j \quad \lor \quad -\alpha _i = \sum _{j \in b} c_j \alpha _j \qquad (c_j \in \mathbb {N}). \end{equation}
   </div>
-  <span class="equation_label">51</span>
+  <span class="equation_label">52</span>
 </p>
 </div>
 </li>
   <li><p>任意の\(i \in \iota \)に対し，\(\alpha ^\vee _i\)は次のように表せる： </p>
-<div class="equation" id="a0000000067">
+<div class="equation" id="a0000000066">
 <p>
   <div class="equation_content">
     \begin{equation}  \alpha ^\vee _i = \sum _{j \in b} c_j \alpha ^\vee _j \quad \lor \quad -\alpha ^\vee _i = \sum _{j \in b} c_j \alpha ^\vee _j \qquad (c_j \in \mathbb {N}). \end{equation}
   </div>
-  <span class="equation_label">52</span>
+  <span class="equation_label">53</span>
 </p>
 </div>
 </li>
@@ -3329,12 +3383,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(P\)はroot pairingでcrystallographicであるとする． また，\(b\)は\(P\)のbaseとする． \(C \in \operatorname {M}_b(\mathbb {Z})\)を次のように定め，root pairing \(P\)から定まる<b class="bfseries">Cartan行列</b>という： </p>
-<div class="equation" id="a0000000068">
+<div class="equation" id="a0000000067">
 <p>
   <div class="equation_content">
     \begin{equation}  C_{ij} = B(\alpha _i, \alpha ^\vee _j). \end{equation}
   </div>
-  <span class="equation_label">53</span>
+  <span class="equation_label">54</span>
 </p>
 </div>
 
@@ -3426,9 +3480,12 @@
 
   </div>
 </div>
-<h1 id="a0000000069">0.6 GCMとDynkin graph</h1>
+<h2 id="sec:PosDef_of_Cartan_defined_by_RootPairing">0.5.3 Root pairingから定まるCartan行列の正定値性</h2>
+<p>  </p>
+<p>a </p>
+<h1 id="a0000000068">0.6 GCMとDynkin graph</h1>
 <p> 今までの具体的な行列たち(\(A_n, B_n, \ldots , G_2\))と一般のroot pairingから定まるCartan行列の理論は個別であった(互いに全く関連がない)． そこで，これらの架け橋となる議論を行う． </p>
-<h2 id="a0000000070">0.6.1 一般Cartan行列(GCM)</h2>
+<h2 id="a0000000069">0.6.1 一般Cartan行列(GCM)</h2>
 <p>\(I, J\)を添字集合とし，\(C \in \operatorname {M}_I(\mathbb {Z}),\  C' \in \operatorname {M}_J(\mathbb {Z})\)とする(行と列がそれぞれ\(I, J\)で番号づけられている正方行列)． </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:IsGeneralizedCartanMatrix">
   <div class="definition_thmheading">
@@ -3580,7 +3637,7 @@
 
     <a class="icon proof" href="index.html#thm:IsGeneralizedCartanMatrix.of_cartanEquiv">#</a>
     
-    <a class="icon proof" href="index.html#a0000000071"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000070"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3611,7 +3668,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000071">
+<div class="proof_wrapper" id="a0000000070">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3639,7 +3696,7 @@
 
     <a class="icon proof" href="index.html#thm:IsIndecomposable.of_cartanEquiv">#</a>
     
-    <a class="icon proof" href="index.html#a0000000072"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000071"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3670,7 +3727,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000072">
+<div class="proof_wrapper" id="a0000000071">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3698,7 +3755,7 @@
 
     <a class="icon proof" href="index.html#lem:edge_product_ge_one">#</a>
     
-    <a class="icon proof" href="index.html#a0000000073"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000072"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3729,7 +3786,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000073">
+<div class="proof_wrapper" id="a0000000072">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3754,7 +3811,7 @@
 
     <a class="icon proof" href="index.html#lem:symmMatrix_adj_le_neg_one">#</a>
     
-    <a class="icon proof" href="index.html#a0000000074"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000073"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3805,7 +3862,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000074">
+<div class="proof_wrapper" id="a0000000073">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3814,12 +3871,12 @@
   </div>
   <div class="proof_content">
   <p>補題&#160;<a href="index.html#lem:edge_product_ge_one">0.6.6</a>より，\(1 \le C_{ij} C_{ji}\)である． よって，\(i \ne j\)であるから </p>
-<div class="equation" id="a0000000075">
+<div class="equation" id="a0000000074">
 <p>
   <div class="equation_content">
     \begin{equation}  S(C)_{ij} = -\sqrt{C_{ij} C_{ji}} \le -1 \end{equation}
   </div>
-  <span class="equation_label">54</span>
+  <span class="equation_label">55</span>
 </p>
 </div>
 <p> となる． </p>
@@ -3839,7 +3896,7 @@
 
     <a class="icon proof" href="index.html#thm:rootSystem_isGCM">#</a>
     
-    <a class="icon proof" href="index.html#a0000000076"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000075"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3892,7 +3949,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000076">
+<div class="proof_wrapper" id="a0000000075">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -3907,7 +3964,7 @@
 
   </div>
 </div>
-<h2 id="a0000000077">0.6.2 Dynkin graph</h2>
+<h2 id="a0000000076">0.6.2 Dynkin graph</h2>
 <p>ここでは\(C \in \operatorname {M}_n(\mathbb {Z}),\  I = \{ 1, 2, \ldots , n\} \)とする． </p>
 <div class="definition_thmwrapper theorem-style-definition" id="def:dynkinGraph">
   <div class="definition_thmheading">
@@ -3965,7 +4022,7 @@
 
     <a class="icon proof" href="index.html#lem:dynkinGraph_preconnected">#</a>
     
-    <a class="icon proof" href="index.html#a0000000078"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000077"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -3996,7 +4053,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000078">
+<div class="proof_wrapper" id="a0000000077">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4010,7 +4067,7 @@
 
   </div>
 </div>
-<div class="definition_thmwrapper theorem-style-definition" id="def:neighbourhood">
+<div class="definition_thmwrapper theorem-style-definition" id="def:neighborSet">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
     Definition
@@ -4018,23 +4075,44 @@
     <span class="definition_thmlabel">0.6.11</span>
     <div class="thm_header_extras">
 
+    
+    ✓
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="index.html#def:neighbourhood">#</a>
+    <a class="icon proof" href="index.html#def:neighborSet">#</a>
     
     
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/neighborSet" class="lean_decl">neighborSet</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
     
         </div>
   </div>
   <div class="definition_thmcontent">
-  <p> 集合\(N(i)\)を次で定める： </p>
-<div class="equation" id="a0000000079">
+  <p>  集合\(N(i)\)を次で定める： </p>
+<div class="equation" id="a0000000078">
 <p>
   <div class="equation_content">
     \begin{equation}  N(i) = N_C(i) := \left\lbrace j \mathrel {} \middle | \mathrel {} C_{ij} \ne 0\  \land \  i \ne j \right\rbrace . \end{equation}
   </div>
-  <span class="equation_label">55</span>
+  <span class="equation_label">56</span>
 </p>
 </div>
 <p> つまり，\(i\)に隣接している頂点全体の集合である． グラフ理論の言葉で<b class="bfseries">近傍</b>という． 今後，\(i\)と\(j\)が隣接しているとき，\(i \sim j\)と書くこともある． </p>
@@ -4081,12 +4159,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(\deg (i) \in \mathbb {N}\)を次のように定め，\(C\)の頂点\(i\)の<b class="bfseries">degree</b>という： </p>
-<div class="equation" id="a0000000080">
+<div class="equation" id="a0000000079">
 <p>
   <div class="equation_content">
     \begin{equation}  \deg _C(i) = \deg (i) := \#  N(i). \end{equation}
   </div>
-  <span class="equation_label">56</span>
+  <span class="equation_label">57</span>
 </p>
 </div>
 <p> つまり，\(C\)のDynkin graphにおいて頂点\(i\)に隣接している頂点の数である． </p>
@@ -4133,21 +4211,21 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(n(C) \in \mathbb {N}\)を次のように定め，\(C\)の<b class="bfseries">branchの数</b>という： </p>
-<div class="equation" id="a0000000081">
+<div class="equation" id="a0000000080">
 <p>
   <div class="equation_content">
     \begin{equation}  n(C) := \#  \left\lbrace i \mathrel {} \middle | \mathrel {} 3 \le \deg (i) \right\rbrace . \end{equation}
   </div>
-  <span class="equation_label">57</span>
+  <span class="equation_label">58</span>
 </p>
 </div>
 <p> つまり，\(C\)のDynkin graphにおいてY字や十字以上に分岐している頂点の数である． </p>
 
   </div>
 </div>
-<h1 id="a0000000082">0.7 分類</h1>
+<h1 id="a0000000081">0.7 分類</h1>
 <p> 引き続き\(C \in \operatorname {M}_n(\mathbb {Z}),\  V = I = \{ 1, 2, \ldots , n\} \)とする． </p>
-<h2 id="a0000000083">0.7.1 二次形式の上界</h2>
+<h2 id="a0000000082">0.7.1 二次形式の上界</h2>
 <div class="lemma_thmwrapper theorem-style-definition" id="lem:symmMatrix_quadform_upper_bound">
   <div class="lemma_thmheading">
     <span class="lemma_thmcaption">
@@ -4161,7 +4239,7 @@
 
     <a class="icon proof" href="index.html#lem:symmMatrix_quadform_upper_bound">#</a>
     
-    <a class="icon proof" href="index.html#a0000000084"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000083"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4209,18 +4287,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(C\)はGCMであるとする． \(x := {}^t\! (x_1, x_2, \ldots , x_n) \in \mathbb {R}^n\)とし，任意の\(i\)に対し，\(0 \le x_i\)とする． また，\(E \subseteq I \times I\)とし，任意の\(p := (p_1, p_2) \in E\)に対し，\(p_2 \in N(p_1)\)と\((p_2, p_1) \notin E\)が成り立つとする． このとき，次が成り立つ： </p>
-<div class="equation" id="a0000000085">
+<div class="equation" id="a0000000084">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x \le \sum _{i \in I} 2 x_i ^2 - 2 \sum _{p \in E} x_{p_1} x_{p_2}. \end{equation}
   </div>
-  <span class="equation_label">58</span>
+  <span class="equation_label">59</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000084">
+<div class="proof_wrapper" id="a0000000083">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4229,33 +4307,33 @@
   </div>
   <div class="proof_content">
   <p>定義通り展開する： </p>
-<div class="displaymath" id="a0000000086">
+<div class="displaymath" id="a0000000085">
   \begin{align}  {}^t\! x S(C) x & = \sum _{i \in I} x_i \left( \sum _{j \in I} S(C)_{ij} x_j \right) \\ & = \sum _{i \in I} x_i \left( \sum _{j = i} 2 x_j + \sum _{j \in I \setminus \{ i\} } -\sqrt{C_{ij} C_{ji}} x_j \right) \\ & = \sum _{i \in I} \sum _{j = i} 2 x_i x_j - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} 2 x_i ^2 - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} 2 x_i ^2 - \sum _{\substack {p \in I \times I \\ \begin{bgroup} p_1 \ne p_2
 
 \end{bgroup}}} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2}. \end{align}
 </div>
 <p> 2項目の評価をする． </p>
-<div class="equation" id="a0000000087">
+<div class="equation" id="a0000000086">
 <p>
   <div class="equation_content">
     \begin{equation}  B = \bigcup _{p \in E} \{ (p_1, p_2), (p_2, p_1)\}  \end{equation}
   </div>
-  <span class="equation_label">65</span>
+  <span class="equation_label">66</span>
 </p>
 </div>
 <p> とおくと，\(B \subseteq \left\lbrace p \in I \times I \mathrel {} \middle | \mathrel {} p_1 \ne p_2 \right\rbrace \)である． 各\(x_i\)は非負であるから </p>
-<div class="displaymath" id="a0000000088">
+<div class="displaymath" id="a0000000087">
   \begin{align}  \sum _{\substack {p \in I \times I \\ \begin{bgroup} p_1 \ne p_2
 
 \end{bgroup}}} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} & \ge \sum _{p \in B} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} \\ & = \sum _{p \in E} \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sum _{p \in E} \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1} \\ & = \sum _{p \in E} (\sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1}) \end{align}
 </div>
 <p> となる． 各\(p \in E\)に対し，\(C_{p_1 p_2} \ne 0\)であるから補題&#160;<a href="index.html#lem:edge_product_ge_one">0.6.6</a>より\(C_{p_1 p_2} C_{p_2 p_1} \ge 1\)である． よって， </p>
-<div class="equation" id="a0000000089">
+<div class="equation" id="a0000000088">
 <p>
   <div class="equation_content">
     \begin{equation}  \sqrt{C_{p_1 p_2} C_{p_2 p_1}} x_{p_1} x_{p_2} + \sqrt{C_{p_2 p_1} C_{p_1 p_2}} x_{p_2} x_{p_1} \ge 2 x_{p_1} x_{p_2} \end{equation}
   </div>
-  <span class="equation_label">70</span>
+  <span class="equation_label">71</span>
 </p>
 </div>
 <p> となる． したがって，与えられた不等式は成り立つ． </p>
@@ -4275,7 +4353,7 @@
 
     <a class="icon proof" href="index.html#lem:quadform_nonpos_of_neighbor_bound">#</a>
     
-    <a class="icon proof" href="index.html#a0000000090"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000089"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4323,27 +4401,27 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(C\)はGCMであるとする． \(x := {}^t\! (x_1, x_2, \ldots , x_n) \in \mathbb {R}^n\)とし，任意の\(i\)に対し\(0 \le x_i\)とする． また，\(0 {\lt} x_i\)を満たすすべての\(i\)に対し， </p>
-<div class="equation" id="a0000000091">
+<div class="equation" id="a0000000090">
 <p>
   <div class="equation_content">
     \begin{equation}  2 x_i \le \sum _{j \in N(i)} x_j \end{equation}
   </div>
-  <span class="equation_label">71</span>
+  <span class="equation_label">72</span>
 </p>
 </div>
 <p> が成り立つとする． このとき，次が成り立つ： </p>
-<div class="equation" id="a0000000092">
+<div class="equation" id="a0000000091">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x \le 0. \end{equation}
   </div>
-  <span class="equation_label">72</span>
+  <span class="equation_label">73</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000090">
+<div class="proof_wrapper" id="a0000000089">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4352,11 +4430,11 @@
   </div>
   <div class="proof_content">
   <p>定義通り展開する： </p>
-<div class="displaymath" id="a0000000093">
+<div class="displaymath" id="a0000000092">
   \begin{align}  {}^t\! x S(C) x & = \sum _{i \in I} x_i \left( \sum _{j \in I} S(C)_{ij} x_j \right) \\ & = \sum _{i \in I} x_i \left( \sum _{j = i} 2 x_j + \sum _{j \in I \setminus \{ i\} } -\sqrt{C_{ij} C_{ji}} x_j \right) \\ & = \sum _{i \in I} \sum _{j = i} 2 x_i x_j - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} 2 x_i ^2 - \sum _{i \in I} \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \\ & = \sum _{i \in I} \left( 2 x_i ^2 - \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_i x_j \right). \end{align}
 </div>
 <p> 最後の\(\sum _{i \in I}\)の中身を\(R_i\)とおく． 任意の\(i\)に対し，\(R_i \le 0\)を示せば良い． \(0 {\lt} x_i\)とすると， </p>
-<div class="displaymath" id="a0000000094">
+<div class="displaymath" id="a0000000093">
   \begin{align}  R_i & = 2 x_i ^2 - x_i \sum _{j \in I \setminus \{ i\} } \sqrt{C_{ij} C_{ji}} x_j \\ & \le 2 x_i ^2 - x_i \sum _{j \in N(i)} \sqrt{C_{ij} C_{ji}} x_j \\ & \le 2 x_i ^2 - x_i \sum _{j \in N(i)} x_j \\ & \le 2 x_i ^2 - x_i (2 x_i) \\ & = 0 \end{align}
 </div>
 <p> となる． 1つ目の不等号は，\(N(i) \subseteq \left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j \right\rbrace \)と\(j \in \left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j \right\rbrace  \setminus N(i)\)に対し，\(0 \le \sqrt{C_{ij} C_{ji}} x_j\)から従う． 2つ目の不等号は，補題&#160;<a href="index.html#lem:edge_product_ge_one">0.6.6</a>より\(1 \le \sqrt{C_{ij} C_{ji}}\)であるから従う． 3つ目の不等号は，仮定から従う． </p>
@@ -4364,7 +4442,7 @@
 
   </div>
 </div>
-<h2 id="a0000000095">0.7.2 サイクルがないこと</h2>
+<h2 id="a0000000094">0.7.2 サイクルがないこと</h2>
 <div class="theorem_thmwrapper theorem-style-definition" id="thm:no_cycle">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
@@ -4378,7 +4456,7 @@
 
     <a class="icon proof" href="index.html#thm:no_cycle">#</a>
     
-    <a class="icon proof" href="index.html#a0000000096"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000095"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4409,7 +4487,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000096">
+<div class="proof_wrapper" id="a0000000095">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4418,75 +4496,75 @@
   </div>
   <div class="proof_content">
   <p>\(x := {}^t\! (x_1, x_2, \ldots , x_n) \in \mathbb {R}^n\)を以下で定める： </p>
-<div class="equation" id="a0000000097">
+<div class="equation" id="a0000000096">
 <p>
   <div class="equation_content">
     \begin{equation}  x_i = \begin{cases}  1, &  \exists j \in J \  \text{s.t.}\  i = f(j),\\ 0, &  \textrm{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">83</span>
+  <span class="equation_label">84</span>
 </p>
 </div>
 <p> \(x_{f(0)} = 1\)であるから\(x \ne 0\)であり，定義から明らかに\(0 \le x_i\)である． </p>
 <p>補題&#160;<a href="index.html#lem:quadform_nonpos_of_neighbor_bound">0.7.2</a>が使いたい． そこで，\(0 {\lt} x_i\)として，以下を示す： </p>
-<div class="equation" id="a0000000098">
+<div class="equation" id="a0000000097">
 <p>
   <div class="equation_content">
     \begin{equation}  2 x_i \le \sum _{j \in N(i)} x_j. \end{equation}
   </div>
-  <span class="equation_label">86</span>
+  <span class="equation_label">87</span>
 </p>
 </div>
 <p> 今，\(x_i \ne 0\)であるから，\(x\)の定義より\(i = f(r)\)を満たす\(r \in J\)が取れる． サイクル上にない頂点に関しては\(x_* = 0\)であるから，\(i = f(r)\)の近傍にあり，かつサイクル上にある頂点のみを考えれば良い． すなわち， </p>
-<div class="equation" id="a0000000099">
+<div class="equation" id="a0000000098">
 <p>
   <div class="equation_content">
     \begin{equation}  2 x_i = 2 \le \# \left\lbrace j \in N(f(r)) \mathrel {} \middle | \mathrel {} \exists u \  \text{s.t.}\  j = f(u) \right\rbrace  = \sum _{j \in N(i)} x_j \end{equation}
   </div>
-  <span class="equation_label">87</span>
+  <span class="equation_label">88</span>
 </p>
 </div>
 <p> を示せばよい． </p>
-<div class="equation" id="a0000000100">
+<div class="equation" id="a0000000099">
 <p>
   <div class="equation_content">
     \begin{equation}  r_1 = r + 1 \bmod k,\quad r_2 = r + k - 1 \bmod k \end{equation}
   </div>
-  <span class="equation_label">88</span>
+  <span class="equation_label">89</span>
 </p>
 </div>
 <p> とする(サイクル上で\(r\)に隣接する2つの頂点である)． </p>
-<div class="equation" id="a0000000101">
+<div class="equation" id="a0000000100">
 <p>
   <div class="equation_content">
     \begin{equation}  r \ne r_1,\quad r \ne r_2,\quad r_1 \ne r_2 \end{equation}
   </div>
-  <span class="equation_label">89</span>
+  <span class="equation_label">90</span>
 </p>
 </div>
 <p> である． </p>
-<div class="equation" id="a0000000102">
+<div class="equation" id="a0000000101">
 <p>
   <div class="equation_content">
     \begin{equation}  \{ f(r_1), f(r_2)\}  \subseteq \left\lbrace j \in N(f(r)) \mathrel {} \middle | \mathrel {} \exists u \  \text{s.t.}\  j = f(u) \right\rbrace  \end{equation}
   </div>
-  <span class="equation_label">90</span>
+  <span class="equation_label">91</span>
 </p>
 </div>
 <p> を示す． \(f(r_i) \in N(f(r))\)，すなわち\(C_{f(r), f(r_i)} \ne 0\)かつ\(r \ne r_i\)を示せば十分である． 前者は定理の仮定と\(r_i\)の定め方からわかり，後者は先ほど示した通りである． また，単射性から\(f(r_1) \ne f(r_2)\)であるので，\(\# \{ f(r_1), f(r_2)\}  = 2\)もわかる． </p>
 <p>以上より，補題&#160;<a href="index.html#lem:quadform_nonpos_of_neighbor_bound">0.7.2</a>の仮定をすべて満たすから </p>
-<div class="equation" id="a0000000103">
+<div class="equation" id="a0000000102">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x \le 0 \end{equation}
   </div>
-  <span class="equation_label">91</span>
+  <span class="equation_label">92</span>
 </p>
 </div>
 <p> が成り立つ． ゆえに，\(S(C)\)は正定値でない． </p>
 
   </div>
 </div>
-<h2 id="a0000000104">0.7.3 分岐は高々1つであること</h2>
+<h2 id="a0000000103">0.7.3 分岐は高々1つであること</h2>
 <div class="lemma_thmwrapper theorem-style-definition" id="lem:exist_two_extra_neighbors">
   <div class="lemma_thmheading">
     <span class="lemma_thmcaption">
@@ -4500,7 +4578,7 @@
 
     <a class="icon proof" href="index.html#lem:exist_two_extra_neighbors">#</a>
     
-    <a class="icon proof" href="index.html#a0000000105"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000104"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4528,19 +4606,19 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(i, w \in V\)で\(3 \le \deg (i)\)とする． このとき，\(a, b \in V\)で，以下すべてを満たすものが存在する： </p>
-<div class="equation" id="a0000000106">
+<div class="equation" id="a0000000105">
 <p>
   <div class="equation_content">
     \begin{equation}  a \ne b,\  a \ne w,\  b \ne w,\quad a \in N(i),\  b \in N(i). \end{equation}
   </div>
-  <span class="equation_label">92</span>
+  <span class="equation_label">93</span>
 </p>
 </div>
 <p> つまり，頂点\(i\)は頂点\(w\)の他に少なくとも\(2\)つの頂点\(a, b\)と隣接している． </p>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000105">
+<div class="proof_wrapper" id="a0000000104">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4549,7 +4627,7 @@
   </div>
   <div class="proof_content">
   <p>\(S = N(i) \setminus \{ w\} \)とする． このとき， </p>
-<div class="displaymath" id="a0000000107">
+<div class="displaymath" id="a0000000106">
   \begin{align}  \#  S & = \#  N(i) - \#  \{ w\}  \\ & = \deg (i) - 1 \\ & \ge 3 - 1 \\ & = 2 \end{align}
 </div>
 <p> である． よって，\(a, b \in S\)で\(a \ne b\)となるようなものがとれる． したがって，\(S\)の定め方より\(a \ne b\)以外の主張もすべて満たす． </p>
@@ -4569,7 +4647,7 @@
 
     <a class="icon proof" href="index.html#lem:not_posDef_of_two_branches">#</a>
     
-    <a class="icon proof" href="index.html#a0000000108"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000107"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4622,7 +4700,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000108">
+<div class="proof_wrapper" id="a0000000107">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4631,84 +4709,84 @@
   </div>
   <div class="proof_content">
   <p>補題&#160;<a href="index.html#lem:dynkinGraph_preconnected">0.6.10</a>より，\(C\)のDynkin graphは連結であるから\(u\)と\(v\)を結ぶ単純道\(P = (u = p_0, p_1, \ldots , p_\ell = v)\)がある． \(u \ne v\)であるから\(1 \le \ell \)である． \(w_1 = p_1\)とする． すると，\(u\)と\(w_1\)は隣接している． \(3 \le \deg (u)\)であるから補題&#160;<a href="index.html#lem:exist_two_extra_neighbors">0.7.4</a>より，以下を満たす\(a_1, a_2 \in V\)がとれる： </p>
-<div class="equation" id="a0000000109">
+<div class="equation" id="a0000000108">
 <p>
   <div class="equation_content">
     \begin{equation}  a_1 \ne a_2,\  a_1 \ne w_1,\  a_2 \ne w_1,\  a_1 \ne u,\  a_2 \ne u,\quad C_{u a_1} \ne 0,\  C_{u a_2} \ne 0. \end{equation}
   </div>
-  <span class="equation_label">97</span>
+  <span class="equation_label">98</span>
 </p>
 </div>
 <p> すなわち，\(u\)は\(3\)つ以上の頂点と隣接しているから，そのうち\(w_1, a_1, a_2\)を相異なるようにとれる． 全く同様に，\(w_2 := p_{\ell - 1}, b_1, b_2\)をとる： </p>
-<div class="equation" id="a0000000110">
+<div class="equation" id="a0000000109">
 <p>
   <div class="equation_content">
     \begin{equation}  b_1 \ne b_2,\  b_1 \ne w_2,\  b_2 \ne w_2,\  b_1 \ne u,\  b_2 \ne u,\quad C_{u b_1} \ne 0,\  C_{u b_2} \ne 0. \end{equation}
   </div>
-  <span class="equation_label">98</span>
+  <span class="equation_label">99</span>
 </p>
 </div>
 <p> 今，以下のような状況である： </p>
 <figure >
-  <div class="centered"> <div class="tikzpicture" id="a0000000111">
+  <div class="centered"> <div class="tikzpicture" id="a0000000110">
     <img src="images/img-0001.svg" alt="\begin{tikzpicture} \end{tikzpicture}" />
-</div>[scale=1] ıin 2,3,5,6 [circle, draw, fill=white, inner sep=1.5pt] (ı) at (ı,-5.5) ; ıin 2,5 (ı) – (???ı+1); [dashed] (3) – (5); [circle, draw, fill=white, inner sep=1.5pt] (0) at (1,-5) ; [circle, draw, fill=white, inner sep=1.5pt] (1) at (1,-6) ; [circle, draw, fill=white, inner sep=1.5pt] (7) at (7,-5) ; [circle, draw, fill=white, inner sep=1.5pt] (8) at (7,-6) ; ıin 0,1 (ı) – (2); ıin 7,8 (ı) – (6); [below] at (0) <small class="footnotesize">\(a_1\)</small>; [below] at (1) <small class="footnotesize">\(a_2\)</small>; [below] at (2) <small class="footnotesize">\(u\)</small>; [below] at (3) <small class="footnotesize">\(w_1\)</small>; [below] at (5) <small class="footnotesize">\(w_2\)</small>; [below] at (6) <small class="footnotesize">\(v\)</small>; [below] at (7) <small class="footnotesize">\(b_1\)</small>; [below] at (8) <small class="footnotesize">\(b_2\)</small>; [decorate,decoration=brace,amplitude=10pt, raise=4pt] (2) – (6) node[above, midway, yshift=15pt] \(P\); <div class="tikzpicture" id="a0000000112">
+</div>[scale=1] ıin 2,3,5,6 [circle, draw, fill=white, inner sep=1.5pt] (ı) at (ı,-5.5) ; ıin 2,5 (ı) – (???ı+1); [dashed] (3) – (5); [circle, draw, fill=white, inner sep=1.5pt] (0) at (1,-5) ; [circle, draw, fill=white, inner sep=1.5pt] (1) at (1,-6) ; [circle, draw, fill=white, inner sep=1.5pt] (7) at (7,-5) ; [circle, draw, fill=white, inner sep=1.5pt] (8) at (7,-6) ; ıin 0,1 (ı) – (2); ıin 7,8 (ı) – (6); [below] at (0) <small class="footnotesize">\(a_1\)</small>; [below] at (1) <small class="footnotesize">\(a_2\)</small>; [below] at (2) <small class="footnotesize">\(u\)</small>; [below] at (3) <small class="footnotesize">\(w_1\)</small>; [below] at (5) <small class="footnotesize">\(w_2\)</small>; [below] at (6) <small class="footnotesize">\(v\)</small>; [below] at (7) <small class="footnotesize">\(b_1\)</small>; [below] at (8) <small class="footnotesize">\(b_2\)</small>; [decorate,decoration=brace,amplitude=10pt, raise=4pt] (2) – (6) node[above, midway, yshift=15pt] \(P\); <div class="tikzpicture" id="a0000000111">
     <img src="images/img-0002.svg" alt="\end{tikzpicture}" />
 </div> </div>
 
 </figure>
 <p>\(x := {}^t\! (x_1, x_2, \ldots , x_n) \in \mathbb {R}^n\)を以下で定める： </p>
-<div class="equation" id="a0000000113">
+<div class="equation" id="a0000000112">
 <p>
   <div class="equation_content">
     \begin{equation}  x_i = \begin{cases}  2, &  i \in P,\\ 1, &  i \in \{ a_1, a_2, b_1, b_2\} ,\\ 0, &  \textrm{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">99</span>
+  <span class="equation_label">100</span>
 </p>
 </div>
 <p> \(x_u = 2\)であるから\(x \ne 0\)であり，定義から明らかに\(0 \le x_i\)である． </p>
 <p>補題&#160;<a href="index.html#lem:quadform_nonpos_of_neighbor_bound">0.7.2</a>が使いたい． そこで，\(0 {\lt} x_i\)として，以下を示す： </p>
-<div class="equation" id="a0000000114">
+<div class="equation" id="a0000000113">
 <p>
   <div class="equation_content">
     \begin{equation}  2 x_i \le \sum _{j \in N(i)} x_j. \end{equation}
   </div>
-  <span class="equation_label">103</span>
+  <span class="equation_label">104</span>
 </p>
 </div>
 <p>\(i = u\)のとき， </p>
-<div class="displaymath" id="a0000000115">
+<div class="displaymath" id="a0000000114">
   \begin{align}  2 x_u & = 2 \cdot 2 \\ & = 2 + 1 + 1 \\ & = \sum _{j \in \{ w_1, a_1, a_2\} } x_j \\ & \le \sum _{j \in N(u)} x_j \end{align}
 </div>
 <p> である． 最後の等号は，\(w_1, a_1, a_2\)が相異なることから従う． 最後の不等号は，\(\{ w_1, a_1, a_2\}  \subseteq N(u)\)と，\(j \in N(u) \setminus \{ w_1, a_1, a_2\} \)に対し，\(0 \le x_j\)であることから従う． </p>
 <p>\(i = v\)のときも，\(\{ w_2, b_1, b_2\} \)で考えれば全く同様にしてわかる． </p>
 <p>\(i \in P \setminus \{ u, v\} \)のとき，\(i \in P\)であるから，\(k \in I\)を用いて\(i = p_k\)と表せる． \(i \ne u = p_0,\  i \ne v = p_\ell \)であるから，\(0 {\lt} k {\lt} \ell \)である． このとき，以下が成り立つことを示す： </p>
-<div class="equation" id="a0000000116">
+<div class="equation" id="a0000000115">
 <p>
   <div class="equation_content">
     \begin{equation}  p_{k-1}, p_{k+1} \in P,\qquad p_{k-1}, p_{k+1} \ne i,\qquad C_{i p_{k-1}}, C_{i p_{k+1}} \ne 0. \end{equation}
   </div>
-  <span class="equation_label">108</span>
+  <span class="equation_label">109</span>
 </p>
 </div>
 <p> \(p_{k-1}, p_{k+1} \in P\)は明らかである． 今，\(i = p_k\)であるから\(p_k\)と\(p_{k \pm 1}\)との関係を調べれば良い． \(k \pm 1, k {\lt} \ell \)であるから\(p_k\)と\(p_{k\pm 1}\)は隣接している． よって，後の2つも成り立つ． したがって， </p>
-<div class="displaymath" id="a0000000117">
+<div class="displaymath" id="a0000000116">
   \begin{align}  2 x_i & = 2 \cdot 2 \\ & = 2 + 2 \\ & = \sum _{j \in \{ p_{k-1}, p_{k+1}\} } x_j \\ & \le \sum _{j \in N(i)} x_j \end{align}
 </div>
 <p> である． 最後の不等号は，\(\{ p_{k-1}, p_{k+1}\}  \subseteq N(i)\)と，\(j \in N(i) \setminus \{ p_{k-1}, p_{k+1}\} \)に対し，\(0 \le x_j\)であることから従う． 最後の等号は，\(p_{k-1} \ne p_{k+1}\)が成り立てば従う． \(p_{k-1} = p_{k+1}\)と仮定すると，\(k-1, k+1 \le \ell \)であり，\(P\)は単純道であったから\(k-1 = k+1\)となるが，これは矛盾する． </p>
 <p>\(i \in \{ a_1, a_2, b_1, b_2\} \)のとき，例として\(i = a_1\)の場合を示す． 他の場合も全く同様である． </p>
-<div class="displaymath" id="a0000000118">
+<div class="displaymath" id="a0000000117">
   \begin{align}  2 x_{a_1} & = 2 \cdot 1 \\ & = x_u \\ & \le \sum _{j \in N(a_1)} x_j \end{align}
 </div>
 <p> である． 最後の不等号は，\(u \in N(a_1)\)と，任意の\(j\)に対し，\(0 \le x_j\)であることから従う． </p>
 <p>その他の場合，\(x_i = 0\)となり，\(0 {\lt} x_i\)に矛盾する． </p>
 <p>以上より，補題&#160;<a href="index.html#lem:quadform_nonpos_of_neighbor_bound">0.7.2</a>の仮定をすべて満たすから </p>
-<div class="equation" id="a0000000119">
+<div class="equation" id="a0000000118">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x \le 0 \end{equation}
   </div>
-  <span class="equation_label">116</span>
+  <span class="equation_label">117</span>
 </p>
 </div>
 <p> が成り立つ． ゆえに，\(S(C)\)は正定値でない． </p>
@@ -4728,7 +4806,7 @@
 
     <a class="icon proof" href="index.html#thm:pos_numOfBranch_le_one">#</a>
     
-    <a class="icon proof" href="index.html#a0000000120"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000119"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4776,18 +4854,18 @@
   </div>
   <div class="theorem_thmcontent">
   <p>   \(C\)はGCMでindecomposableであるとする． また，\(S(C)\)は正定値であるとする． このとき，\(C\)のDynkin graphにおいて，分岐している頂点の数は高々\(1\)つである： </p>
-<div class="equation" id="a0000000121">
+<div class="equation" id="a0000000120">
 <p>
   <div class="equation_content">
     \begin{equation}  n(C) \le 1. \end{equation}
   </div>
-  <span class="equation_label">117</span>
+  <span class="equation_label">118</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000120">
+<div class="proof_wrapper" id="a0000000119">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4799,7 +4877,7 @@
 
   </div>
 </div>
-<h2 id="a0000000122">0.7.4 各頂点は3分岐以下であること</h2>
+<h2 id="a0000000121">0.7.4 各頂点は3分岐以下であること</h2>
 <div class="theorem_thmwrapper theorem-style-definition" id="thm:pos_degree_le_three">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
@@ -4813,7 +4891,7 @@
 
     <a class="icon proof" href="index.html#thm:pos_degree_le_three">#</a>
     
-    <a class="icon proof" href="index.html#a0000000123"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000122"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -4861,18 +4939,18 @@
   </div>
   <div class="theorem_thmcontent">
   <p>   \(C\)はGCMであるとする． また，\(S(C)\)は正定値であるとする． このとき，任意の頂点\(i\)に対し，\(i\)の分岐数(生えている辺の数)は高々\(3\)である： </p>
-<div class="equation" id="a0000000124">
+<div class="equation" id="a0000000123">
 <p>
   <div class="equation_content">
     \begin{equation}  \deg (i) \le 3. \end{equation}
   </div>
-  <span class="equation_label">118</span>
+  <span class="equation_label">119</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000123">
+<div class="proof_wrapper" id="a0000000122">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -4881,50 +4959,50 @@
   </div>
   <div class="proof_content">
   <p>\(\#  N(i) = \deg (i) \ge 4\)と仮定して矛盾を導く． \(x := {}^t\! (x_1, x_2, \ldots , x_n) \in \mathbb {R}^n\)を以下で定める： </p>
-<div class="equation" id="a0000000125">
+<div class="equation" id="a0000000124">
 <p>
   <div class="equation_content">
     \begin{equation}  x_j = \begin{cases}  2, &  j = i,\\ 1, &  j \in N(i),\\ 0, &  \textrm{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">119</span>
+  <span class="equation_label">120</span>
 </p>
 </div>
 <p> また，\(E = \left\lbrace (i, a) \mathrel {} \middle | \mathrel {} a \in N(i) \right\rbrace  \subseteq I \times I\)と定める． </p>
 <p>補題&#160;<a href="index.html#lem:symmMatrix_quadform_upper_bound">0.7.1</a>が使いたい． 各条件を確認する． 定義から明らかに，任意の\(i\)に対し，\(0 \le x_i\)が成り立つ． \((i, a) \in E\)をとると，\(E\)の定め方から\(a \in N(i)\)である． また，\((a, i) \in E\)と仮定すると，\(i = a\)となり\(a \in N(i)\)に矛盾するから\((a, i) \notin E\)である． </p>
 <p>以上より補題&#160;<a href="index.html#lem:symmMatrix_quadform_upper_bound">0.7.1</a>が使える． よって， </p>
-<div class="displaymath" id="a0000000126">
+<div class="displaymath" id="a0000000125">
   \begin{align}  {}^t\! x S(C) x & \le \sum _{i \in I} 2 x_i ^2 - 2 \sum _{p \in E} x_{p_1} x_{p_2} \\ & = \sum _{i \in I} 2 x_i ^2 - 2 \cdot (2 \cdot \#  N(i)) \\ & = (8 + 2 \cdot \#  N(i)) - 2 \cdot (2 \cdot \#  N(i)) \\ & = 8 - 2 \cdot \#  N(i) \\ & \le 0 \end{align}
 </div>
 <p> となる． ただし，1つ目の等号は，\(E\)の定義と\(x_i x_a = 2\)より </p>
-<div class="equation" id="a0000000127">
+<div class="equation" id="a0000000126">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{p \in E} x_{p_1} x_{p_2} = \sum _{a \in N(i)} x_{i} x_{a} = 2 \cdot (2 \cdot \#  N(i)) \end{equation}
   </div>
-  <span class="equation_label">128</span>
+  <span class="equation_label">129</span>
 </p>
 </div>
 <p> から従う． 2つ目の等号は </p>
-<div class="displaymath" id="a0000000128">
+<div class="displaymath" id="a0000000127">
   \begin{align}  \sum _{i \in I} 2 x_i ^2 & = \sum _{j = i} 2 x_j ^2 + \sum _{\substack {j \ne i \\ \begin{bgroup} j \in N(i)
 
 \end{bgroup}}} 2 x_j ^2 \\ & = \#  \left\lbrace j \mathrel {} \middle | \mathrel {} j = i \right\rbrace  \cdot (2 \cdot 2 ^2) + \#  (\left\lbrace j \mathrel {} \middle | \mathrel {} i \ne j \right\rbrace  \cap N(i)) \cdot (2 \cdot 1 ^2) \\ & = 8 + 2 \cdot \#  N(i) \end{align}
 </div>
 <p> から従う． </p>
 <p>一方，\(S(C)\)は正定値であり，\(x \ne 0\)であるから， </p>
-<div class="equation" id="a0000000129">
+<div class="equation" id="a0000000128">
 <p>
   <div class="equation_content">
     \begin{equation}  0 {\lt} {}^t\! x S(C) x \end{equation}
   </div>
-  <span class="equation_label">133</span>
+  <span class="equation_label">134</span>
 </p>
 </div>
 <p> である． よって，矛盾が生じたから\(\deg (i) \le 3\)が示せた． </p>
 
   </div>
 </div>
-<h2 id="a0000000130">0.7.5 枝の長さ1</h2>
+<h2 id="a0000000129">0.7.5 枝の長さ1</h2>
 <div class="definition_thmwrapper theorem-style-definition" id="def:reachIn">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -4965,12 +5043,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(S \subseteq V,\  w, z \in V\)とする． \(w\)から\(z\)へ\(S\)内のみを通って到達可能なとき，以下のように書く： </p>
-<div class="equation" id="a0000000131">
+<div class="equation" id="a0000000130">
 <p>
   <div class="equation_content">
     \begin{equation}  w \mathrel {\xlongleftrightarrow {S}} z. \end{equation}
   </div>
-  <span class="equation_label">134</span>
+  <span class="equation_label">135</span>
 </p>
 </div>
 
@@ -5016,12 +5094,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>  \(S \subseteq V,\  w \in V\)とする． 集合\(C_S(w)\)で，\(S\)内での\(w\)の連結成分を表す： </p>
-<div class="equation" id="a0000000132">
+<div class="equation" id="a0000000131">
 <p>
   <div class="equation_content">
     \begin{equation}  C_S(w) := \left\lbrace z \in S \mathrel {} \middle | \mathrel {} w \mathrel {\xlongleftrightarrow {S}} z \right\rbrace . \end{equation}
   </div>
-  <span class="equation_label">135</span>
+  <span class="equation_label">136</span>
 </p>
 </div>
 
@@ -5067,12 +5145,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(S \subseteq V,\  w \in S\)とする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000133">
+<div class="equation" id="a0000000132">
 <p>
   <div class="equation_content">
     \begin{equation}  w \mathrel {\xlongleftrightarrow {S}} w. \end{equation}
   </div>
-  <span class="equation_label">136</span>
+  <span class="equation_label">137</span>
 </p>
 </div>
 
@@ -5118,12 +5196,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(S \subseteq V,\  w, z \in S\)とする． \(w \mathrel {\xlongleftrightarrow {S}} z\)であるとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000134">
+<div class="equation" id="a0000000133">
 <p>
   <div class="equation_content">
     \begin{equation}  z \mathrel {\xlongleftrightarrow {S}} w. \end{equation}
   </div>
-  <span class="equation_label">137</span>
+  <span class="equation_label">138</span>
 </p>
 </div>
 
@@ -5169,12 +5247,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(S \subseteq V,\  a, b, c \in S\)とする． \(a \mathrel {\xlongleftrightarrow {S}} b\)かつ\(b \mathrel {\xlongleftrightarrow {S}} c\)であるとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000135">
+<div class="equation" id="a0000000134">
 <p>
   <div class="equation_content">
     \begin{equation}  a \mathrel {\xlongleftrightarrow {S}} c. \end{equation}
   </div>
-  <span class="equation_label">138</span>
+  <span class="equation_label">139</span>
 </p>
 </div>
 
@@ -5193,7 +5271,7 @@
 
     <a class="icon proof" href="index.html#lem:exists_components">#</a>
     
-    <a class="icon proof" href="index.html#a0000000136"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000135"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5262,7 +5340,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000136">
+<div class="proof_wrapper" id="a0000000135">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5271,12 +5349,12 @@
   </div>
   <div class="proof_content">
   <p>以下の\(P\)が各条件を満たすことを示す： </p>
-<div class="equation" id="a0000000137">
+<div class="equation" id="a0000000136">
 <p>
   <div class="equation_content">
     \begin{equation}  P = \left\lbrace C_S(w) \mathrel {} \middle | \mathrel {} w \in S \right\rbrace . \end{equation}
   </div>
-  <span class="equation_label">139</span>
+  <span class="equation_label">140</span>
 </p>
 </div>
 <ol class="enumerate">
@@ -5309,7 +5387,7 @@
 
     <a class="icon proof" href="index.html#lem:reachIn_confine">#</a>
     
-    <a class="icon proof" href="index.html#a0000000138"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000137"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5337,18 +5415,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(S \subseteq V,\  w, z \in V\)とし，\(w \mathrel {\xlongleftrightarrow {S}} z\)とする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000139">
+<div class="equation" id="a0000000138">
 <p>
   <div class="equation_content">
     \begin{equation}  w \mathrel {\xlongleftrightarrow {C_S(w)}} z. \end{equation}
   </div>
-  <span class="equation_label">140</span>
+  <span class="equation_label">141</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000138">
+<div class="proof_wrapper" id="a0000000137">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5375,7 +5453,7 @@
 
     <a class="icon proof" href="index.html#lem:exists_first_neighbor">#</a>
     
-    <a class="icon proof" href="index.html#a0000000140"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000139"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5403,18 +5481,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(K \subset V,\  r, w \in V,\  w \ne r\)とし，\(r \mathrel {\xlongleftrightarrow {K}} w\)とする． このとき，\(z \in V\)で以下をすべて満たすものが存在する： </p>
-<div class="equation" id="a0000000141">
+<div class="equation" id="a0000000140">
 <p>
   <div class="equation_content">
     \begin{equation}  r \sim z,\quad z \in K \setminus \{ r\} ,\quad z \mathrel {\xlongleftrightarrow {K \setminus \{ r\} }} w. \end{equation}
   </div>
-  <span class="equation_label">141</span>
+  <span class="equation_label">142</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000140">
+<div class="proof_wrapper" id="a0000000139">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5425,21 +5503,21 @@
   <p>\(r\)から\(w\)への道の長さに関する帰納法による． </p>
 <p>\(w = r\)のとき，\(r \ne r\)となり矛盾するから起こり得ない． </p>
 <p>\(w = b\)までは正しいとする． \(r \mathrel {\xlongleftrightarrow {K}} b,\  b, c \in K,\  b \sim c\)とする． \(b \ne r\)ならば，以下を満たす\(z \in V\)が存在するとする： </p>
-<div class="equation" id="a0000000142">
+<div class="equation" id="a0000000141">
 <p>
   <div class="equation_content">
     \begin{equation}  r \sim z,\quad z \in K \setminus \{ r\} ,\quad z \mathrel {\xlongleftrightarrow {K \setminus \{ r\} }} b. \end{equation}
   </div>
-  <span class="equation_label">142</span>
+  <span class="equation_label">143</span>
 </p>
 </div>
 <p> このとき，\(c \ne r\)ならば，以下を満たす\(z'\)が存在することを示せばよい： </p>
-<div class="equation" id="a0000000143">
+<div class="equation" id="a0000000142">
 <p>
   <div class="equation_content">
     \begin{equation}  r \sim z',\quad z' \in K \setminus \{ r\} ,\quad z' \mathrel {\xlongleftrightarrow {K \setminus \{ r\} }} c. \end{equation}
   </div>
-  <span class="equation_label">143</span>
+  <span class="equation_label">144</span>
 </p>
 </div>
 <p>\(b = r\)のとき，\(z' = c\)とすればよい． </p>
@@ -5460,7 +5538,7 @@
 
     <a class="icon proof" href="index.html#lem:combined_sq_sum">#</a>
     
-    <a class="icon proof" href="index.html#a0000000144"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000143"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5488,27 +5566,27 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(P \subseteq 2 ^V,\  S \subseteq V\)とし，\(S = \displaystyle \bigsqcup _{C \in P} C\)であるとする． また，\(r \in V \setminus S,\  K := \{ r\}  \cup S = \{ r\}  \sqcup S\)とする． さらに，\(a \in \mathbb {R},\  f_C : V \rightarrow \mathbb {R}\)とし，\(g : V \rightarrow \mathbb {R}\)を以下で定める： </p>
-<div class="equation" id="a0000000145">
+<div class="equation" id="a0000000144">
 <p>
   <div class="equation_content">
     \begin{equation}  g(i) = \begin{cases}  a, &  i = r,\\ \displaystyle \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i), &  \text{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">144</span>
+  <span class="equation_label">145</span>
 </p>
 </div>
 <p> ただし，\(\bm {1}_{P}\)は命題\(P\)が正のとき1，そうでないとき0である． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000146">
+<div class="equation" id="a0000000145">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in K} g(i) ^2 = a ^2 + \sum _{C \in P} \sum _{i \in C} f_C(i) ^2. \end{equation}
   </div>
-  <span class="equation_label">147</span>
+  <span class="equation_label">148</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000144">
+<div class="proof_wrapper" id="a0000000143">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5517,16 +5595,16 @@
   </div>
   <div class="proof_content">
   <p>\(\sum \)を分解する： </p>
-<div class="displaymath" id="a0000000147">
+<div class="displaymath" id="a0000000146">
   \begin{align}  \sum _{i \in K} g(i) ^2 & = \sum _{i \in \{ r\}  \sqcup \left( \bigsqcup _{C \in P} C \right)} g(i) ^2 \\ & = g(r) ^2 + \sum _{i \in \bigsqcup _{C \in P} C} g(i) ^2 \\ & = a ^2 + \sum _{i \in \bigsqcup _{C \in P} C} g(i) ^2 \\ & = a ^2 + \sum _{C \in P} \sum _{i \in C} g(i) ^2. \end{align}
 </div>
 <p> よって，\(C \in P,\  i \in C\)を固定して，\(g(i) = f_C(i)\)を示せばよい． \(i \in C \subseteq S\)より\(i \ne r\)である． したがって， </p>
-<div class="equation" id="a0000000148">
+<div class="equation" id="a0000000147">
 <p>
   <div class="equation_content">
     \begin{equation}  g(i) = \displaystyle \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) = f_C(i) \end{equation}
   </div>
-  <span class="equation_label">152</span>
+  <span class="equation_label">153</span>
 </p>
 </div>
 <p> を示せばよい． 今，\(P\)の元たちは互いに素であるから，\(i \in C\)を満たす\(C \in P\)は1つしかない． よって，\(g(i) = f_C(i)\)が成り立つ． </p>
@@ -5546,7 +5624,7 @@
 
     <a class="icon proof" href="index.html#lem:combined_cross_sum">#</a>
     
-    <a class="icon proof" href="index.html#a0000000149"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000148"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5574,12 +5652,12 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(P \subseteq 2 ^V,\  S \subseteq V\)とし，\(S = \displaystyle \bigsqcup _{C \in P} C\)であるとする． また，\(r \in V \setminus S,\  K := \{ r\}  \cup S = \{ r\}  \sqcup S\)とする． さらに，\(a \in \mathbb {R},\  f_C : V \rightarrow \mathbb {R}\)とし，\(g : V \rightarrow \mathbb {R}\)を以下で定める： </p>
-<div class="equation" id="a0000000150">
+<div class="equation" id="a0000000149">
 <p>
   <div class="equation_content">
     \begin{equation}  g(i) = \begin{cases}  a, &  i = r,\\ \displaystyle \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i), &  \text{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">153</span>
+  <span class="equation_label">154</span>
 </p>
 </div>
 <p> ただし，\(\bm {1}_{P}\)は命題\(P\)が正のとき1，そうでないとき0である． 加えて，以下を仮定する： </p>
@@ -5590,18 +5668,18 @@
 </li>
 </ol>
 <p> このとき，以下が成り立つ： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x108e0e990>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x10e9ef050>">
 <p>
   <div class="equation_content">
     \begin{equation}  \label{eq:combined_cross_sum_statement} \sum _{i \in K} \sum _{j \in K} \bm {1}_{i \sim j}\  g(i) g(j) = \sum _{C \in P} \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j}\  f_C(i) f_C(j) + 2 a \sum _{C \in P} \sum _{i \in C} \bm {1}_{r \sim i}\  f_C(i). \end{equation}
   </div>
-  <span class="equation_label">156</span>
+  <span class="equation_label">157</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000149">
+<div class="proof_wrapper" id="a0000000148">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5610,96 +5688,96 @@
   </div>
   <div class="proof_content">
   <p>まず，以下を示す： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x108e0eed0>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x10e9ef5f0>">
 <p>
   <div class="equation_content">
     \begin{equation}  \label{eq:combined_cross_sum_expanded} \begin{split}  \sum _{i \in K} \sum _{j \in K} \bm {1}_{i \sim j}\  g(i) g(j) = & \sum _{i \in S} \sum _{j \in S} \bm {1}_{i \sim j} \left( \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) \sum _{D \in P} \bm {1}_{j \in D}\  f_D(j) \right) \\ & + 2 a \sum _{i \in S} \bm {1}_{r \sim i} \left( \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) \right). \end{split} \end{equation}
   </div>
-  <span class="equation_label">157</span>
+  <span class="equation_label">158</span>
 </p>
 </div>
 <p> \(K = \{ r\}  \sqcup S\)より </p>
-<div class="equation" id="a0000000151">
+<div class="equation" id="a0000000150">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in K} \sum _{j \in K} = \sum _{i \in S} \sum _{j \in S} + \sum _{i = r} \sum _{j \in S} + \sum _{i \in S} \sum _{j = r} + \sum _{i = r} \sum _{j = r} \end{equation}
   </div>
-  <span class="equation_label">160</span>
+  <span class="equation_label">161</span>
 </p>
 </div>
 <p> となる． しかし，\(r \not\sim r\)であるから，最後の\(\sum _{i = r} \sum _{j = r}\)は\(0\)である(\(\bm {1}_{r \sim r} = 0\))． よって，\(\sum _{i = r} \sum _{j \in S}\)と\(\sum _{i \in S} \sum _{j = r}\)をまとめれば成り立つ． </p>
 <p>式??と式??の右辺の各項が等しいことを示す． </p>
 <p>1項目たちが等しいことを示す． まず，以下を示す： </p>
-<div class="equation" id="a0000000152">
+<div class="equation" id="a0000000151">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in S} \sum _{j \in S} \bm {1}_{i \sim j} \left( \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) \sum _{D \in P} \bm {1}_{j \in D}\  f_D(j) \right) = \sum _{C \in P} \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j} \left( \sum _{D \in P} \bm {1}_{i \in D}\  f_D(i) \sum _{E \in P} \bm {1}_{j \in E}\  f_E(j) \right). \end{equation}
   </div>
-  <span class="equation_label">161</span>
+  <span class="equation_label">162</span>
 </p>
 </div>
 <p> \(S = \displaystyle \bigsqcup _{C \in P} C\)より </p>
-<div class="equation" id="a0000000153">
+<div class="equation" id="a0000000152">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in S} \sum _{j \in S} = \sum _{i \in \bigsqcup _{C \in P} C} \sum _{j \in S} = \sum _{C \in P} \sum _{i \in C} \sum _{j \in S} \end{equation}
   </div>
-  <span class="equation_label">162</span>
+  <span class="equation_label">163</span>
 </p>
 </div>
 <p> であるから，\(C \in P,\  i \in C\)を固定して， </p>
-<div class="equation" id="a0000000154">
+<div class="equation" id="a0000000153">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{j \in S} \bm {1}_{i \sim j} \left( \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) \sum _{D \in P} \bm {1}_{j \in D}\  f_D(j) \right) = \sum _{j \in C} \bm {1}_{i \sim j} \left( \sum _{D \in P} \bm {1}_{i \in D}\  f_D(i) \sum _{E \in P} \bm {1}_{j \in E}\  f_E(j) \right) \end{equation}
   </div>
-  <span class="equation_label">163</span>
+  <span class="equation_label">164</span>
 </p>
 </div>
 <p> を示せばよい． \(C \subseteq S\)であり，\(k \in S \setminus C\)に対しては，補題の仮定より\(f_C(k) = 0\)であるので，\(\sum _{j \in S}\)の中身は\(0\)である． よって，\(\sum _{j \in S} = \sum _{j \in C}\)が成り立つ． したがって，あと示すべきは以下である： </p>
-<div class="equation" id="a0000000155">
+<div class="equation" id="a0000000154">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{C \in P} \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j}\  f_C(i) f_C(j) = \sum _{C \in P} \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j} \left( \sum _{D \in P} \bm {1}_{i \in D}\  f_D(i) \sum _{E \in P} \bm {1}_{j \in E}\  f_E(j) \right). \end{equation}
   </div>
-  <span class="equation_label">164</span>
+  <span class="equation_label">165</span>
 </p>
 </div>
 <p> 中身が等しいことを示せばよい． そのためには， </p>
-<div class="equation" id="a0000000156">
+<div class="equation" id="a0000000155">
 <p>
   <div class="equation_content">
     \begin{equation}  f_C(i) = \sum _{D \in P} \bm {1}_{i \in D}\  f_D(i) \end{equation}
   </div>
-  <span class="equation_label">165</span>
+  <span class="equation_label">166</span>
 </p>
 </div>
 <p> を示せばよい(\(E\)についても同様)． </p>
-<div class="equation" id="a0000000157">
+<div class="equation" id="a0000000156">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{D \in P} \bm {1}_{i \in D}\  f_D(i) = \bm {1}_{i \in C}\  f_C(i) + \sum _{D \in P \setminus \{ C\} } \bm {1}_{i \in D}\  f_D(i) \end{equation}
   </div>
-  <span class="equation_label">166</span>
+  <span class="equation_label">167</span>
 </p>
 </div>
 <p> と分ける． 今，\(i \in C\)であるから，右辺の2項目は消えて成り立つ． </p>
 <p>式??と式??の右辺の2項目たちが等しいことを示す． </p>
-<div class="equation" id="a0000000158">
+<div class="equation" id="a0000000157">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{C \in P} \sum _{i \in C} \bm {1}_{r \sim i}\  f_C(i) = \sum _{i \in S} \bm {1}_{r \sim i} \left( \sum _{C \in P} \bm {1}_{i \in C}\  f_C(i) \right) \end{equation}
   </div>
-  <span class="equation_label">167</span>
+  <span class="equation_label">168</span>
 </p>
 </div>
 <p> を示せばよい． 本質は\(\sum _{C \in P}\)と\(\sum _{i \in C}\)の順序を入れ替えることである． Leanでは， </p>
-<div class="equation" id="a0000000159">
+<div class="equation" id="a0000000158">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{C \in P} \sum _{i \in C} = \sum _{\substack {(C, i) \\ i \in C}} = \sum _{\substack {(i, C) \\ i \in C}} = \sum _{i \in S} \sum _{\substack {C \in P \\ i \in C}} \end{equation}
   </div>
-  <span class="equation_label">168</span>
+  <span class="equation_label">169</span>
 </p>
 </div>
 <p> のように，組み合わせに変換してから順序を入れ替えることで，\(\sum _{C \in P}\)と\(\sum _{i \in C}\)の順序を入れ替えている． </p>
@@ -5719,7 +5797,7 @@
 
     <a class="icon proof" href="index.html#lem:energy_scalar">#</a>
     
-    <a class="icon proof" href="index.html#a0000000160"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000159"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5756,18 +5834,18 @@
 </li>
 </ol>
 <p> このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000161">
+<div class="equation" id="a0000000160">
 <p>
   <div class="equation_content">
     \begin{equation}  \begin{split}  \frac{N}{N + 1} \le {} &  2 \frac{N}{N + 1} - 2 \left[ \left( \frac{N}{N + 1} \right) ^2 + \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Sq(C) \right] \\ &  + \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Ad(C) + 2 \frac{N}{N + 1} \sum _{C \in P} \frac{t(C) + 1}{N + 1} R(C). \end{split} \end{equation}
   </div>
-  <span class="equation_label">169</span>
+  <span class="equation_label">170</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000160">
+<div class="proof_wrapper" id="a0000000159">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5776,25 +5854,25 @@
   </div>
   <div class="proof_content">
   <p>仮定から次が成り立つ： </p>
-<div class="equation" id="a0000000162">
+<div class="equation" id="a0000000161">
 <p>
   <div class="equation_content">
     \begin{equation}  \begin{split} & \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 (Ad(C) - 2 Sq(C)) + 2 \frac{N}{N + 1} \sum _{C \in P} \frac{t(C) + 1}{N + 1} R(C)\\ \ge {} & \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 \left( -\frac{t(C)}{t(C) + 1} \right) + 2 \frac{N}{N + 1} \sum _{C \in P} \frac{t(C) + 1}{N + 1} \frac{t(C)}{t(C) + 1}. \end{split} \end{equation}
   </div>
-  <span class="equation_label">172</span>
+  <span class="equation_label">173</span>
 </p>
 </div>
 <p> この不等式の右辺を整理すると， </p>
-<div class="equation" id="a0000000163">
+<div class="equation" id="a0000000162">
 <p>
   <div class="equation_content">
     \begin{equation}  \frac{2 N \sum _{C \in P} t(C) - \sum _{C \in P} t(C) ^2 - \sum _{C \in P} t(C)}{(N + 1) ^2} \end{equation}
   </div>
-  <span class="equation_label">175</span>
+  <span class="equation_label">176</span>
 </p>
 </div>
 <p> となる． また，任意の\(i\)に対し，\(0 \le t(i)\)であるから， </p>
-<div class="displaymath" id="a0000000164">
+<div class="displaymath" id="a0000000163">
   \begin{align}  t(i) & \le \sum _{C \in P} t(C) \\ t(i) ^2& \le t(i) \sum _{C \in P} t(C) \\ \sum _{C \in P} t(C) ^2 & \le \left( \sum _{C \in P} t(C) \right) ^2 \end{align}
 </div>
 <p> である． あとは，この不等式を用いて\(\sum _{C \in P} t(C) ^2\)を消して，\(\sum _{C \in P} t(C) = N - 1\)を代入すればよい． </p>
@@ -5814,7 +5892,7 @@
 
     <a class="icon proof" href="index.html#lem:branch_energy_strong">#</a>
     
-    <a class="icon proof" href="index.html#a0000000165"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000164"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -5883,7 +5961,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000165">
+<div class="proof_wrapper" id="a0000000164">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -5894,12 +5972,12 @@
   <p>\(N := \#  K\)に関する帰納法で示す． </p>
 <p>\(N = 0\)のとき，\(r \in K\)に矛盾するから良い． </p>
 <p>\(N = 1\)のとき， </p>
-<div class="equation" id="a0000000166">
+<div class="equation" id="a0000000165">
 <p>
   <div class="equation_content">
     \begin{equation}  y_i = \begin{cases}  \dfrac {1}{2}, &  i = r,\\ 0, &  \text{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">179</span>
+  <span class="equation_label">180</span>
 </p>
 </div>
 <p> とおくと，条件を満たす． </p>
@@ -5930,12 +6008,12 @@
   <li><p>\(\displaystyle \frac{\#  C}{\#  C + 1} \le 2 (y_C)_{r_C} - 2 \sum _{i \in C} (y_C)_i ^2 + \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j}\  (y_C)_i (y_C)_j\).  </p>
 </li>
 </ol>
-<div class="equation" id="a0000000167">
+<div class="equation" id="a0000000166">
 <p>
   <div class="equation_content">
     \begin{equation}  y_i = \begin{cases}  \dfrac {N}{N + 1}, &  i = r,\\ \displaystyle \sum _{C \in P} \bm {1}_{i \in C} \frac{\#  C + 1}{N + 1} (y_C)_i, &  \text{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">182</span>
+  <span class="equation_label">183</span>
 </p>
 </div>
 <p> とする． この\(y\)が<a href="index.html#enum:y1">1</a>から<a href="index.html#enum:y4">4</a>を満たすことを示す． </p>
@@ -5943,105 +6021,105 @@
 <p><a href="index.html#enum:y2">2</a> \(i \notin K\)とする． \(i = r\)のとき，\(r \in K\)に矛盾するから，\(i \ne r\)である． <a href="index.html#enum:p1">1</a>より，\(i \notin C\)であるから，\(\sum \)の中身はすべて\(0\)である． よって，\(y_i = 0\)である． </p>
 <p><a href="index.html#enum:y3">3</a> 定義より明らかである． </p>
 <p><a href="index.html#enum:y4">4</a> 補題&#160;<a href="index.html#lem:energy_scalar">0.7.18</a>を </p>
-<div class="displaymath" id="a0000000168">
+<div class="displaymath" id="a0000000167">
   \begin{alignat}{2} t(C) & := \#  C, &  Sq(C) & := \sum _{i \in C} (y_C)_i ^2, \\ Ad(C) & := \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j}\  (y_C)_i (y_C)_j,\qquad &  R(C) & := \sum _{i \in C} \bm {1}_{r \sim i}\  (y_C)_i \end{alignat}
 </div>
 <p> として適用する(前提条件は後で確かめる)． すると，以下を示せば十分である： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x108f40650>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x10eb3d370>">
 <p>
   <div class="equation_content">
     \begin{equation}  \label{eq:y4_ETS} \begin{split} &  2 y_r - 2 \sum _{i \in K} y_i ^2 \\ &  + \sum _{i \in K} \sum _{j \in K} \bm {1}_{i \sim j}\  y_i y_j \\ ={} &  2 \frac{N}{N + 1} - 2 \left[ \left( \frac{N}{N + 1} \right) ^2 + \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Sq(C) \right] \\ &  + \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Ad(C) + 2 \frac{N}{N + 1} \sum _{C \in P} \frac{t(C) + 1}{N + 1} R(C). \end{split} \end{equation}
   </div>
-  <span class="equation_label">187</span>
+  <span class="equation_label">188</span>
 </p>
 </div>
 <p>式&#160;??の両辺の前2項同士が等しいこと，すなわち次を示す： </p>
-<div class="equation" id="a0000000169">
+<div class="equation" id="a0000000168">
 <p>
   <div class="equation_content">
     \begin{equation}  2 y_r - 2 \sum _{i \in K} y_i ^2 = 2 \frac{N}{N + 1} - 2 \left[ \left( \frac{N}{N + 1} \right) ^2 + \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Sq(C) \right]. \end{equation}
   </div>
-  <span class="equation_label">192</span>
+  <span class="equation_label">193</span>
 </p>
 </div>
 <p> 補題&#160;<a href="index.html#lem:combined_sq_sum">0.7.16</a>を </p>
-<div class="displaymath" id="a0000000170">
+<div class="displaymath" id="a0000000169">
   \begin{gather}  P := P,\quad S := K \setminus \{ r\} ,\quad K := K,\quad r := r,\quad a = \frac{N}{N + 1}, \\ f_C(i) := \frac{\#  C + 1}{N + 1} (y_C)_i \end{gather}
 </div>
 <p> として適用する(前提条件は後で確かめる)． すると，\(g(i) = y_i\)であり，次を得る： </p>
-<div class="equation" id="a0000000171">
+<div class="equation" id="a0000000170">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in K} y_i ^2 = \left( \frac{N}{N + 1} \right) ^2 + \sum _{C \in P} \sum _{i \in C} \left( \frac{\#  C + 1}{N + 1} (y_C)_i \right) ^2. \end{equation}
   </div>
-  <span class="equation_label">195</span>
+  <span class="equation_label">196</span>
 </p>
 </div>
 <p> よって，あと示すべきは </p>
-<div class="equation" id="a0000000172">
+<div class="equation" id="a0000000171">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Sq(C) = \sum _{C \in P} \sum _{i \in C} \left( \frac{\#  C + 1}{N + 1} (y_C)_i \right) ^2 \end{equation}
   </div>
-  <span class="equation_label">196</span>
+  <span class="equation_label">197</span>
 </p>
 </div>
 <p> である． これは，\(Sq(C)\)を代入すればわかる． 補題&#160;<a href="index.html#lem:combined_sq_sum">0.7.16</a>の前提条件を確かめる． \(r \in V \setminus S\)は明らかである． \(K = \{ r\}  \cup S\)も明らかである． \(S = \displaystyle \bigsqcup _{C \in P} C\)は<a href="index.html#enum:p3">3</a>, <a href="index.html#enum:p4">4</a>からわかる． </p>
 <p>式&#160;??の左辺の3項目と右辺の(3項目 + 4項目)が等しいこと，すなわち以下を示す： </p>
-<div class="equation" id="<plasTeX.TeXFragment object at 0x108f42bd0>">
+<div class="equation" id="<plasTeX.TeXFragment object at 0x10eb8c350>">
 <p>
   <div class="equation_content">
     \begin{equation}  \label{eq:y4_ETS'} \sum _{i \in K} \sum _{j \in K} \bm {1}_{i \sim j}\  y_i y_j = \sum _{C \in P} \left( \frac{t(C) + 1}{N + 1} \right) ^2 Ad(C) + 2 \frac{N}{N + 1} \sum _{C \in P} \frac{t(C) + 1}{N + 1} R(C). \end{equation}
   </div>
-  <span class="equation_label">197</span>
+  <span class="equation_label">198</span>
 </p>
 </div>
 <p> 補題&#160;<a href="index.html#lem:combined_cross_sum">0.7.17</a>を，先ほどと同様に </p>
-<div class="displaymath" id="a0000000173">
+<div class="displaymath" id="a0000000172">
   \begin{gather}  P := P,\quad S := K \setminus \{ r\} ,\quad K := K,\quad r := r,\quad a = \frac{N}{N + 1}, \\ f_C(i) := \frac{\#  C + 1}{N + 1} (y_C)_i \end{gather}
 </div>
 <p> として適用する(前提条件は後で確かめる)． すると，\(g(i) = y_i\)であり，次を得る： </p>
-<div class="equation" id="a0000000174">
+<div class="equation" id="a0000000173">
 <p>
   <div class="equation_content">
     \begin{equation}  \begin{split}  \sum _{i \in K} \sum _{j \in K} \bm {1}_{i \sim j}\  y_i y_j = &  \sum _{C \in P} \sum _{i \in C} \sum _{j \in C} \bm {1}_{i \sim j}\  \left( \frac{\#  C + 1}{N + 1} (y_C)_i \right) \left( \frac{\#  C + 1}{N + 1} (y_C)_j \right) \\ &  + 2 \frac{N}{N + 1} \sum _{C \in P} \sum _{i \in C} \bm {1}_{r \sim i}\  \left( \frac{\#  C + 1}{N + 1} (y_C)_i \right). \end{split} \end{equation}
   </div>
-  <span class="equation_label">200</span>
+  <span class="equation_label">201</span>
 </p>
 </div>
 <p> この式は，式&#160;??を表していることがわかる． 補題&#160;<a href="index.html#lem:combined_cross_sum">0.7.17</a>の前提条件を確かめる． 先ほどと同様に，\(r \in V \setminus S,\  K = \{ r\}  \cup S,\  S = \displaystyle \bigsqcup _{C \in P} C\)がわかる． \(\forall C \in P,\  \forall i \in V,\  i \notin C \implies f_C(i) = 0\)は，<a href="index.html#enum:i2">2</a>からわかる． \(\forall C \in P,\  \forall i \in C,\  \forall j \in S,\  i \sim j \implies j \in C\)は，<a href="index.html#enum:p6">6</a>からわかる． </p>
 <p>以上より，式&#160;??が示せた． 最後に補題&#160;<a href="index.html#lem:energy_scalar">0.7.18</a>の前提条件を確かめる． \(K \setminus \{ r\}  = S = \displaystyle \bigsqcup _{C \in P} C\)であるから </p>
-<div class="equation" id="a0000000175">
+<div class="equation" id="a0000000174">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{C \in P} t(C) = \sum _{C \in P} \#  C = \#  (K \setminus \{ r\} ) = N - 1 \end{equation}
   </div>
-  <span class="equation_label">203</span>
+  <span class="equation_label">204</span>
 </p>
 </div>
 <p> が成り立つ． <a href="index.html#enum:i4">4</a>より </p>
-<div class="equation" id="a0000000176">
+<div class="equation" id="a0000000175">
 <p>
   <div class="equation_content">
     \begin{equation}  \left(\dfrac {t(C)}{t(C) + 1}\right) \le Ad(C) - 2 Sq(C) \end{equation}
   </div>
-  <span class="equation_label">204</span>
+  <span class="equation_label">205</span>
 </p>
 </div>
 <p> が成り立つ． <a href="index.html#enum:i3">3</a>, <a href="index.html#enum:i1">1</a>より </p>
-<div class="equation" id="a0000000177">
+<div class="equation" id="a0000000176">
 <p>
   <div class="equation_content">
     \begin{equation}  \frac{t(C)}{t(C) + 1} = (y_C)_{r_C} = \bm {1}_{r \sim r_C}\  (y_C)_{r_C} \le \sum _{i \in C} \bm {1}_{r \sim i}\  (y_C)_i = R(C) \end{equation}
   </div>
-  <span class="equation_label">205</span>
+  <span class="equation_label">206</span>
 </p>
 </div>
 <p> が成り立つ． 以上より，補題&#160;<a href="index.html#lem:energy_scalar">0.7.18</a>の前提条件がすべて成り立つことが確かめられた． </p>
 
   </div>
 </div>
-<h2 id="a0000000178">0.7.6 枝の長さ2</h2>
+<h2 id="a0000000177">0.7.6 枝の長さ2</h2>
 <div class="definition_thmwrapper theorem-style-definition" id="def:adjExcl">
   <div class="definition_thmheading">
     <span class="definition_thmcaption">
@@ -6082,12 +6160,12 @@
   </div>
   <div class="definition_thmcontent">
   <p>   \(a, b, u \in V\)とする． \(u\)を除いたグラフにおいて，\(a\)と\(b\)が隣接しているとき，\(a \sim _u b\)と書く： </p>
-<div class="equation" id="a0000000179">
+<div class="equation" id="a0000000178">
 <p>
   <div class="equation_content">
     \begin{equation}  a \sim _u b :\iff a \ne b,\  a \ne u,\  b \ne u,\  C_{ab} \ne 0. \end{equation}
   </div>
-  <span class="equation_label">206</span>
+  <span class="equation_label">207</span>
 </p>
 </div>
 
@@ -6175,16 +6253,59 @@
         </div>
   </div>
   <div class="definition_thmcontent">
-  <p>  集合\(B_u(v) \subseteq V\)を以下で定める： </p>
-<div class="equation" id="a0000000180">
+  <p>  \(u, v \in V\)とする． 集合\(B_u(v) \subseteq V\)を以下で定める： </p>
+<div class="equation" id="a0000000179">
 <p>
   <div class="equation_content">
     \begin{equation}  B_u(v) := \left\lbrace w \mathrel {} \middle | \mathrel {} v \leadsto _u w \right\rbrace . \end{equation}
   </div>
-  <span class="equation_label">207</span>
+  <span class="equation_label">208</span>
 </p>
 </div>
 <p> つまり，頂点\(u\)を削除した後に\(v\)と繋がっている頂点たちの集合である． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-definition" id="lem:branchFinset_refl">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.7.23</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:branchFinset_refl">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/branchFinset_refl" class="lean_decl">branchFinset_refl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(u, v \in V\)とする． このとき，\(v \in B_u(v)\)が成り立つ． </p>
 
   </div>
 </div>
@@ -6193,7 +6314,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.23</span>
+    <span class="lemma_thmlabel">0.7.24</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6201,7 +6322,7 @@
 
     <a class="icon proof" href="index.html#lem:branch_connected">#</a>
     
-    <a class="icon proof" href="index.html#a0000000181"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000180"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6229,18 +6350,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(u, v \in V\)とする． このとき，任意の\(w \in B_u(v)\)に対し，\(B_u(v)\)内のみを通って\(v\)から\(w\)まで到達可能である： </p>
-<div class="equation" id="a0000000182">
+<div class="equation" id="a0000000181">
 <p>
   <div class="equation_content">
     \begin{equation}  v \mathrel {\xlongleftrightarrow {B_u(v)}} w. \end{equation}
   </div>
-  <span class="equation_label">208</span>
+  <span class="equation_label">209</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000181">
+<div class="proof_wrapper" id="a0000000180">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6248,7 +6369,7 @@
     <span class="expand-proof">▶</span>
   </div>
   <div class="proof_content">
-  <p>\(v\)から\(w\)への道の長さに関する帰納法による． </p>
+  <p>頂点に関する帰納法で示す． </p>
 <p>\(w = v\)のときはよい． </p>
 <p>\(w = a\)までは正しい，すなわち\(v \mathrel {\xlongleftrightarrow {B_u(v)}} a\)とする． \(v \leadsto _u a,\  a \sim _u b\)とし，\(v \mathrel {\xlongleftrightarrow {B_u(v)}} b\)を示す． \(v \leadsto _u a\)より\(a \in B_u(v)\)である． さらに，\(a \sim _u b\)であるから\(b \in B_u(v)\)である． したがって，\(a \mathrel {\xlongleftrightarrow {B_u(v)}} b\)であるから\(v \mathrel {\xlongleftrightarrow {B_u(v)}} b\)である． </p>
 
@@ -6259,7 +6380,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.24</span>
+    <span class="lemma_thmlabel">0.7.25</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6267,7 +6388,7 @@
 
     <a class="icon proof" href="index.html#lem:branch_marking">#</a>
     
-    <a class="icon proof" href="index.html#a0000000183"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000182"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6285,7 +6406,7 @@
           
           <li><a href="index.html#lem:branch_energy_strong">Lemma 0.7.19</a></li>
           
-          <li><a href="index.html#lem:branch_connected">Lemma 0.7.23</a></li>
+          <li><a href="index.html#lem:branch_connected">Lemma 0.7.24</a></li>
           
         </ul>
     
@@ -6320,7 +6441,7 @@
 <ol class="enumerate">
   <li><p>\(\forall i \in V,\  0 \le y_i\). </p>
 </li>
-  <li><p>\(\forall i \in V,\  i \notin B_u(v) \implies y_i = 0\). </p>
+  <li><p>\(\forall i \in V,\  i \notin B_u(v) \implies y_i = 0\).  </p>
 </li>
   <li><p>\(\displaystyle \frac{\#  B_u(v)}{\#  B_u(v) + 1} \le 2 y_v - 2 \sum _{i \in B_u(v)} y_i ^2 + \sum _{i \in B_u(v)} \sum _{j \in B_u(v)} \bm {1}_{i \sim j}\  y_i y_j\). </p>
 </li>
@@ -6328,7 +6449,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000183">
+<div class="proof_wrapper" id="a0000000182">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6336,7 +6457,7 @@
     <span class="expand-proof">▶</span>
   </div>
   <div class="proof_content">
-  <p>\(v \in B_u(v)\)である． 補題&#160;<a href="index.html#lem:branch_connected">0.7.23</a>より，補題&#160;<a href="index.html#lem:branch_energy_strong">0.7.19</a>の前提条件は，\(K := B_u(v),\  r := v\)とすれば満たされる． このとき，補題&#160;<a href="index.html#lem:branch_energy_strong">0.7.19</a>の主張は，まさに示したい(1), (2), (4)である． </p>
+  <p>\(v \in B_u(v)\)である． 補題&#160;<a href="index.html#lem:branch_connected">0.7.24</a>より，補題&#160;<a href="index.html#lem:branch_energy_strong">0.7.19</a>の前提条件は，\(K := B_u(v),\  r := v\)とすれば満たされる． このとき，補題&#160;<a href="index.html#lem:branch_energy_strong">0.7.19</a>の主張は，まさに示したい(1), (2), (4)である． </p>
 
   </div>
 </div>
@@ -6345,7 +6466,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.25</span>
+    <span class="lemma_thmlabel">0.7.26</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6353,7 +6474,7 @@
 
     <a class="icon proof" href="index.html#lem:reachExcl_ne_u">#</a>
     
-    <a class="icon proof" href="index.html#a0000000184"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000183"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6384,7 +6505,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000184">
+<div class="proof_wrapper" id="a0000000183">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6402,7 +6523,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.26</span>
+    <span class="lemma_thmlabel">0.7.27</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6410,7 +6531,7 @@
 
     <a class="icon proof" href="index.html#lem:u_notMem_branch">#</a>
     
-    <a class="icon proof" href="index.html#a0000000185"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000184"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6426,7 +6547,7 @@
         
         <ul class="uses">
           
-          <li><a href="index.html#lem:reachExcl_ne_u">Lemma 0.7.25</a></li>
+          <li><a href="index.html#lem:reachExcl_ne_u">Lemma 0.7.26</a></li>
           
         </ul>
     
@@ -6461,7 +6582,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000185">
+<div class="proof_wrapper" id="a0000000184">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6469,7 +6590,7 @@
     <span class="expand-proof">▶</span>
   </div>
   <div class="proof_content">
-  <p>\(v \not\leadsto _u u\)を示せばよい． \(v \leadsto _u u\)と仮定すると，補題&#160;<a href="index.html#lem:reachExcl_ne_u">0.7.25</a>より\(u \ne u\)となり，矛盾する． </p>
+  <p>\(v \not\leadsto _u u\)を示せばよい． \(v \leadsto _u u\)と仮定すると，補題&#160;<a href="index.html#lem:reachExcl_ne_u">0.7.26</a>より\(u \ne u\)となり，矛盾する． </p>
 
   </div>
 </div>
@@ -6478,7 +6599,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.27</span>
+    <span class="lemma_thmlabel">0.7.28</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6486,7 +6607,7 @@
 
     <a class="icon proof" href="index.html#lem:neighborSet_eq_triple">#</a>
     
-    <a class="icon proof" href="index.html#a0000000186"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000185"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6514,18 +6635,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(u \in V,\  \deg (u) = 3\)とし，\(v_1, v_2, v_3 \in N(u)\)は相異なるとする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000187">
+<div class="equation" id="a0000000186">
 <p>
   <div class="equation_content">
     \begin{equation}  N(u) = \{ v_1, v_2, v_3\} . \end{equation}
   </div>
-  <span class="equation_label">209</span>
+  <span class="equation_label">210</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000186">
+<div class="proof_wrapper" id="a0000000185">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6542,7 +6663,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.28</span>
+    <span class="lemma_thmlabel">0.7.29</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6550,7 +6671,7 @@
 
     <a class="icon proof" href="index.html#lem:form_le_Gadj">#</a>
     
-    <a class="icon proof" href="index.html#a0000000188"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000187"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6578,18 +6699,18 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(C\)はGCMとする． \(x := {}^t\! (x_1, \ldots , x_n) \in \mathbb {R}^n\)とし，任意の\(i\)に対し，\(0 \le x_i\)であるとする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000189">
+<div class="equation" id="a0000000188">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x \le 2 \sum _{i \in I} x_i ^2 - \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  x_i x_j. \end{equation}
   </div>
-  <span class="equation_label">210</span>
+  <span class="equation_label">211</span>
 </p>
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000188">
+<div class="proof_wrapper" id="a0000000187">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6598,21 +6719,21 @@
   </div>
   <div class="proof_content">
   <p>二次形式を展開する： </p>
-<div class="equation" id="a0000000190">
+<div class="equation" id="a0000000189">
 <p>
   <div class="equation_content">
     \begin{equation}  {}^t\! x S(C) x = \sum _{i \in I} x_i \left( \sum _{j \in I} S(C)_{ij} x_j \right). \end{equation}
   </div>
-  <span class="equation_label">211</span>
+  <span class="equation_label">212</span>
 </p>
 </div>
 <p> また，任意の\(i, j\)に対し，次が成り立つことは容易に確かめられる(\(i = j,\  i \sim j\)かどうかの4パターンをそれぞれ調べる)： </p>
-<div class="equation" id="a0000000191">
+<div class="equation" id="a0000000190">
 <p>
   <div class="equation_content">
     \begin{equation}  x_i S(C)_{ij} x_j \le \bm {1}_{i = j}\  2 x_i x_j - \bm {1}_{i \sim j}\  x_i x_j. \end{equation}
   </div>
-  <span class="equation_label">212</span>
+  <span class="equation_label">213</span>
 </p>
 </div>
 <p> よって，各項ごとに成り立つので，和を取れば主張が従う． </p>
@@ -6624,7 +6745,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.29</span>
+    <span class="lemma_thmlabel">0.7.30</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6632,7 +6753,7 @@
 
     <a class="icon proof" href="index.html#lem:only_neighbor_in_branch">#</a>
     
-    <a class="icon proof" href="index.html#a0000000192"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000191"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6663,7 +6784,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000192">
+<div class="proof_wrapper" id="a0000000191">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6680,7 +6801,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.30</span>
+    <span class="lemma_thmlabel">0.7.31</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6688,7 +6809,7 @@
 
     <a class="icon proof" href="index.html#lem:branch_no_cross_edge">#</a>
     
-    <a class="icon proof" href="index.html#a0000000193"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000192"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6704,7 +6825,7 @@
         
         <ul class="uses">
           
-          <li><a href="index.html#lem:reachExcl_ne_u">Lemma 0.7.25</a></li>
+          <li><a href="index.html#lem:reachExcl_ne_u">Lemma 0.7.26</a></li>
           
         </ul>
     
@@ -6739,7 +6860,7 @@
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000193">
+<div class="proof_wrapper" id="a0000000192">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6747,7 +6868,7 @@
     <span class="expand-proof">▶</span>
   </div>
   <div class="proof_content">
-  <p>背理法で示す． \(i \sim j\)と仮定する． 補題の仮定より\(v \leadsto _u i,\  v' \leadsto _u j\)である． よって，補題&#160;<a href="index.html#lem:reachExcl_ne_u">0.7.25</a>より\(i \ne u,\  j \ne u\)である． したがって，\(v \leadsto _u j\)である． これは\(j \in B_u(v)\)を意味するが，\(B_u(v) \cap B_u(v') = \emptyset \)に矛盾する． </p>
+  <p>背理法で示す． \(i \sim j\)と仮定する． 補題の仮定より\(v \leadsto _u i,\  v' \leadsto _u j\)である． よって，補題&#160;<a href="index.html#lem:reachExcl_ne_u">0.7.26</a>より\(i \ne u,\  j \ne u\)である． したがって，\(v \leadsto _u j\)である． これは\(j \in B_u(v)\)を意味するが，\(B_u(v) \cap B_u(v') = \emptyset \)に矛盾する． </p>
 
   </div>
 </div>
@@ -6756,7 +6877,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.31</span>
+    <span class="lemma_thmlabel">0.7.32</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6764,7 +6885,7 @@
 
     <a class="icon proof" href="index.html#lem:assembly_sq">#</a>
     
-    <a class="icon proof" href="index.html#a0000000194"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000193"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -6792,28 +6913,28 @@
   </div>
   <div class="lemma_thmcontent">
   <p>   \(u, v_1, v_2, v_3 \in V\)とし，\(u\)は\(B_u(v_1), B_u(v_2), B_u(v_3)\)にいずれにも属さないとする． また，\(y_1, y_2, y_3 \in \mathbb {R}^n\)とし，任意の\(i \in I\)に対し，\(i \notin B_u(v_j)\)ならば\((y_j)_i = 0\)であるとする． さらに，\(B_u(v_1), B_u(v_2), B_u(v_3)\)は互いに交わらないとする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000195">
+<div class="equation" id="a0000000194">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in I} g(i) ^2 = 1 + \sum _{i \in B_u(v_1)} (y_1)_i ^2 + \sum _{i \in B_u(v_2)} (y_2)_i ^2 + \sum _{i \in B_u(v_3)} (y_3)_i ^2. \end{equation}
   </div>
-  <span class="equation_label">213</span>
+  <span class="equation_label">214</span>
 </p>
 </div>
 <p> ただし， </p>
-<div class="equation" id="a0000000196">
+<div class="equation" id="a0000000195">
 <p>
   <div class="equation_content">
     \begin{equation}  g(i) = \begin{cases}  1, &  i = u, \\ (y_1)_i + (y_2)_i + (y_3)_i, &  \textrm{otherwise}. \end{cases} \end{equation}
   </div>
-  <span class="equation_label">214</span>
+  <span class="equation_label">215</span>
 </p>
 </div>
 <p> である． </p>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000194">
+<div class="proof_wrapper" id="a0000000193">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6822,25 +6943,25 @@
   </div>
   <div class="proof_content">
   <p>任意の\(i\)対し，以下が成り立つ： </p>
-<div class="equation" id="a0000000197">
+<div class="equation" id="a0000000196">
 <p>
   <div class="equation_content">
     \begin{equation}  [(y_1)_i + (y_2)_i + (y_3)_i] ^2 = (y_1)_i ^2 + (y_2)_i ^2 + (y_3)_i ^2. \end{equation}
   </div>
-  <span class="equation_label">217</span>
+  <span class="equation_label">218</span>
 </p>
 </div>
 <p> なぜなら，例えば\(i \in B_u(v_1)\)のとき，\(i \notin B_u(v_2), B_u(v_3)\)であるから，\((y_2)_i = (y_3)_i = 0\)となるからである． よって， </p>
-<div class="displaymath" id="a0000000198">
+<div class="displaymath" id="a0000000197">
   \begin{align}  \sum _{i \in I} g(i) ^2 & = 1 + \sum _{i \in I} [(y_1)_i + (y_2)_i + (y_3)_i] ^2 - [(y_1)_u + (y_2)_u + (y_3)_u] ^2 \\ & = 1 + \sum _{i \in I} [(y_1)_i ^2 + (y_2)_i ^2 + (y_3)_i ^2] - [(y_1)_u + (y_2)_u + (y_3)_u] ^2 \\ \end{align}
 </div>
 <p> となる． さらに， </p>
-<div class="equation" id="a0000000199">
+<div class="equation" id="a0000000198">
 <p>
   <div class="equation_content">
     \begin{equation}  \sum _{i \in I} (y_j)_i ^2 = \sum _{i \in B_u(v_j)} (y_j)_i ^2,\qquad (y_j)_u = 0 \end{equation}
   </div>
-  <span class="equation_label">221</span>
+  <span class="equation_label">222</span>
 </p>
 </div>
 <p> であるから，補題の主張は成り立つ． </p>
@@ -6852,7 +6973,7 @@
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">0.7.32</span>
+    <span class="lemma_thmlabel">0.7.33</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6860,9 +6981,29 @@
 
     <a class="icon proof" href="index.html#lem:assembly_cross">#</a>
     
-    <a class="icon proof" href="index.html#a0000000200"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    <a class="icon proof" href="index.html#a0000000199"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:branchFinset_refl">Lemma 0.7.23</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
     
     
     <button class="modal lean">L∃∀N</button>
@@ -6887,19 +7028,29 @@
         </div>
   </div>
   <div class="lemma_thmcontent">
-  <p>   \(C\)はGCMであるとする． 補題&#160;<a href="index.html#lem:assembly_sq">0.7.31</a>と同様の仮定をする： \(u, v_1, v_2, v_3 \in V\)とし，\(u\)は\(B_u(v_1), B_u(v_2), B_u(v_3)\)にいずれにも属さないとする． また，\(y_1, y_2, y_3 \in \mathbb {R}^n\)とし，任意の\(i \in I\)に対し，\(i \notin B_u(v_j)\)ならば\((y_j)_i = 0\)であるとする． さらに，\(B_u(v_1), B_u(v_2), B_u(v_3)\)は互いに交わらないとする． 加えて，\(N(u) = \{ v_1, v_2, v_3\} \)とする． このとき，以下が成り立つ： </p>
-<div class="equation" id="a0000000201">
+  <p>   \(C\)はGCMであるとする． \(u, v_1, v_2, v_3 \in V\)とし，\(u\)は\(B_u(v_1), B_u(v_2), B_u(v_3)\)にいずれにも属さないとする． また，\(y_1, y_2, y_3 \in \mathbb {R}^n\)とし，任意の\(i \in I\)に対し，\(i \notin B_u(v_j)\)ならば\((y_j)_i = 0\)であるとする． さらに，\(B_u(v_1), B_u(v_2), B_u(v_3)\)は互いに交わらないとする． 加えて，\(N(u) = \{ v_1, v_2, v_3\} \)とする． このとき，以下が成り立つ： </p>
+<div class="equation" id="a0000000200">
 <p>
   <div class="equation_content">
     \begin{equation}  \begin{split}  \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  g(i) g(j) {}={}\quad & \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j \\ {}+{} & \sum _{i \in B_u(v_2)} \sum _{j \in B_u(v_2)} \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j \\ {}+{} & \sum _{i \in B_u(v_3)} \sum _{j \in B_u(v_3)} \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j \\ {}+{} &  2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}]. \end{split} \end{equation}
   </div>
-  <span class="equation_label">222</span>
+  <span class="equation_label">223</span>
 </p>
 </div>
+<p> ただし， </p>
+<div class="equation" id="a0000000201">
+<p>
+  <div class="equation_content">
+    \begin{equation}  g(i) = \begin{cases}  1, &  i = u, \\ (y_1)_i + (y_2)_i + (y_3)_i, &  \textrm{otherwise}. \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">228</span>
+</p>
+</div>
+<p> である． </p>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000200">
+<div class="proof_wrapper" id="a0000000199">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -6907,29 +7058,614 @@
     <span class="expand-proof">▶</span>
   </div>
   <div class="proof_content">
-  <p>補題&#160;<a href="index.html#lem:assembly_sq">0.7.31</a>の証明中と同様に，任意の\(i, j\)に対し，以下が成り立つ： </p>
+  <p>補題&#160;<a href="index.html#lem:assembly_sq">0.7.32</a>の証明中と同様に，任意の\(i, j\)に対し，以下が成り立つ： </p>
 <div class="equation" id="a0000000202">
 <p>
   <div class="equation_content">
     \begin{equation}  \begin{split} & \bm {1}_{i \sim j}\  [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\ ={} & \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j + \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j + \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j. \end{split} \end{equation}
   </div>
-  <span class="equation_label">227</span>
+  <span class="equation_label">231</span>
 </p>
 </div>
 <p> よって，\(g(i)\)を展開した後これを適用すると </p>
 <div class="displaymath" id="a0000000203">
-  \begin{alignat}{2} \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  g(i) g(j) &  = & & \sum _{i \ne u} \sum _{j \ne u} \bm {1}_{i \sim j}\  [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\ & & &  +{} \sum _{i \ne u} \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] + \sum _{j \ne u} \bm {1}_{j \sim u}\  [(y_1)_j + (y_2)_j + (y_3)_j] \\ &  = & & \sum _{i \ne u} \sum _{j \ne u} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j + \sum _{i \ne u} \sum _{j \ne u} \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j + \sum _{i \ne u} \sum _{j \ne u} \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j \\ & & &  +{} 2 \sum _{i \ne u} \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] \end{alignat}
+  \begin{alignat}{2} \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  g(i) g(j) &  = & & \sum _{i \in V \setminus \{ u\} } \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  [(y_1)_i + (y_2)_i + (y_3)_i] [(y_1)_j + (y_2)_j + (y_3)_j] \\ & & &  +{} \sum _{i \in V \setminus \{ u\} } \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] + \sum _{j \in V \setminus \{ u\} } \bm {1}_{j \sim u}\  [(y_1)_j + (y_2)_j + (y_3)_j] \\ &  = & & \sum _{i \in V \setminus \{ u\} } \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j \\ & & & +{} \sum _{i \in V \setminus \{ u\} } \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j \\ & & & +{} \sum _{i \in V \setminus \{ u\} } \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j \\ & & & +{} 2 \sum _{i \in V \setminus \{ u\} } \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] \end{alignat}
+</div>
+<p> となる． したがって，あとはこの式と補題の主張の各項が等しいことを示せばよい． </p>
+<div class="equation" id="a0000000204">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \sum _{i \in V \setminus \{ u\} } \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j = \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j \end{equation}
+  </div>
+  <span class="equation_label">240</span>
+</p>
+</div>
+<p> を示す． \(x \in B_u(v_1)\)をとる． \(x = u\)と仮定すると，\(x \in B_x(v_1)\)であるが，補題の仮定より\(x \notin B_x(v_1)\)であるから矛盾する． よって，\(x \ne u\)であるから\(B_u(v_1) \subseteq V \setminus \{ u\} \)である． したがって，以下の2つを示せばよい： </p>
+<div class="displaymath" id="a0000000205">
+  \begin{gather}  \sum _{i \in B_u(v_1)} \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j = \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j, \\ \forall x \in V \setminus \{ u\} ,\  x \notin B_u(v_1) \implies \sum _{j \in V \setminus \{ u\} } \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j = 0. \end{gather}
+</div>
+<p> 前者に再び\(B_u(v_1) \subseteq V \setminus \{ u\} \)を適用すれば，示すべきは以下の3つになる： </p>
+<div class="displaymath" id="a0000000206">
+  \begin{gather}  \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j = \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j, \\ \forall x \in V \setminus \{ u\} ,\  x \notin B_u(v_1) \implies \sum _{j \in V \setminus \{ u\} } \bm {1}_{x \sim j}\  (y_1)_x (y_1)_j = 0, \\ \forall x \in V \setminus \{ u\} ,\  x \notin B_u(v_1) \implies \bm {1}_{i \sim x}\  (y_1)_i (y_1)_x = 0. \end{gather}
+</div>
+<p> 1つ目は明らかである． 2, 3つ目は，補題の仮定より\(x \notin B_u(v_1)\)のとき，\((y_1)_x = 0\)であるから成り立つ． これで，\(y_1\)に関する項が等しいことが示せた． \(y_2, y_3\)に関する項も全く同様に示せる． </p>
+<p>最後に， </p>
+<div class="equation" id="a0000000207">
+<p>
+  <div class="equation_content">
+    \begin{equation}  2 \sum _{i \in V \setminus \{ u\} } \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] = 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}] \end{equation}
+  </div>
+  <span class="equation_label">246</span>
+</p>
+</div>
+<p> を示す． \(\{ v_1, v_2, v_3\}  \subseteq V \setminus \{ u\} \)であるから，以下の2つを示せば良い： </p>
+<div class="displaymath" id="a0000000208">
+  \begin{gather}  \sum _{i \in \{ v_1, v_2, v_3\} } \bm {1}_{u \sim i}\  [(y_1)_i + (y_2)_i + (y_3)_i] = [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}], \\ \forall x \in V \setminus \{ u\} ,\  x \notin \{ v_1, v_2, v_3\}  \implies \bm {1}_{u \sim x}\  [(y_1)_x + (y_2)_x + (y_3)_x] = 0. \end{gather}
+</div>
+<p> 前者の等式を示す． 補題&#160;<a href="index.html#lem:branchFinset_refl">0.7.23</a>と\(B_u(v_1), B_u(v_2), B_u(v_3)\)は互いに交わらないことより，\(i \ne j\)に関して以下がすべて成り立つ： </p>
+<div class="equation" id="a0000000209">
+<p>
+  <div class="equation_content">
+    \begin{equation}  v_i \in B_u(v_i),\qquad v_i \notin B_u(v_j), \qquad v_i \ne v_j. \end{equation}
+  </div>
+  <span class="equation_label">249</span>
+</p>
+</div>
+<p> よって，\((y_j)_{v_i} = 0\)であるから，左辺の全9項のうち生き残るのは\((y_i)_{v_i}\)の3項だけである． 後者は，\(N(u) = \{ v_1, v_2, v_3\} \)より，\(\bm {1}_{u \sim x} = 0\)となるから成り立つ． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-definition" id="lem:no_posDef_of_branch_path">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.7.34</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:no_posDef_of_branch_path">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000210"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/no_posDef_of_branch_path" class="lean_decl">no_posDef_of_branch_path</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C\)はGCMであるとする． \(u, v, v' \in V\)とし，\(v \ne v',\  u \sim v,\  u \sim v',\  v \leadsto _u v'\)であるとする． このとき，\(S(C)\)は正定値でない． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000210">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>頂点の列\(s := (s_1, s_2, \ldots , s_k)\)で以下をすべて満たすものが存在することを示す(\(i \ne j\))： </p>
+<div class="equation" id="a0000000211">
+<p>
+  <div class="equation_content">
+    \begin{equation}  s_1 = v,\quad s_k = v',\quad s_i \ne s_j,\quad s_i \sim s_{i+1},\quad s_i \ne u. \end{equation}
+  </div>
+  <span class="equation_label">250</span>
+</p>
+</div>
+<p> \(v \leadsto _u v'\)であるから，\(u\)を通らない\(v\)から\(v'\)への道\(p\)が存在する． もし\(p\)に同じ頂点が複数回現れるなら，その間にできる閉じた部分を除去すれば，\(p\)は単順路にできる． \(s\)は，\(p\)を構成する頂点を順に並べたものとする． すると，\(s\)が満たすべき上の5条件はすべて従う． </p>
+<p>\(L\)を\(s\)の先頭に\(u\)を加えた列\(L = (s_0 := u, s_1, s_2, \ldots , s_k)\)とする． \(u, v, v'\)は相異なるから，\(3 \le |L|\)である． また，\(s\)に重複はなく，\(u \notin s\)であるから，\(L\)にも重複がない． </p>
+<p>\(L\)は巡回的に隣接していること，すなわち任意の\(i = 0, 1, \ldots , k\)に対し，\(j = i + 1 \mod |L|\)として\(C_{s_i s_j} \ne 0\)であることを示す． \(i = 0, k\)のとき，補題の仮定から\(C_{uv} \ne 0,\  C_{v'u} \ne 0\)が従う． \(i = 1, \ldots , k-1\)のとき，\(u\)に関係しないので，\(s\)の性質から従う． </p>
+<p>よって，グラフ内にサイクルがある． したがって，定理&#160;<a href="index.html#thm:no_cycle">0.7.3</a>より，\(S(C)\)は正定値でない． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-definition" id="lem:branches_disjoint">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.7.35</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:branches_disjoint">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000212"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:no_posDef_of_branch_path">Lemma 0.7.34</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/branches_disjoint" class="lean_decl">branches_disjoint</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C\)はGCMで，\(S(C)\)は正定値であるとする． \(u, v, v' \in V\)とし，\(v \ne v'\)で\(v, v' \in N(u)\)とする． このとき，\(B_u(v) \cap B_u(v') = \emptyset \)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000212">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(w \in B_u(v) \cap B_u(v')\)として矛盾を導く． \(v \leadsto _u w\)かつ\(v' \leadsto _u w\)であるから\(v \leadsto _u v'\)である． すると，補題&#160;<a href="index.html#lem:no_posDef_of_branch_path">0.7.34</a>より\(S(C)\)は正定値でないが，これは矛盾する． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-definition" id="lem:schur_ineq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.7.36</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:schur_ineq">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000213"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:neighborSet_eq_triple">Lemma 0.7.28</a></li>
+          
+          <li><a href="index.html#lem:branch_marking">Lemma 0.7.25</a></li>
+          
+          <li><a href="index.html#lem:u_notMem_branch">Lemma 0.7.27</a></li>
+          
+          <li><a href="index.html#lem:branches_disjoint">Lemma 0.7.35</a></li>
+          
+          <li><a href="index.html#lem:form_le_Gadj">Lemma 0.7.29</a></li>
+          
+          <li><a href="index.html#lem:assembly_sq">Lemma 0.7.32</a></li>
+          
+          <li><a href="index.html#lem:assembly_cross">Lemma 0.7.33</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/schur_ineq" class="lean_decl">schur_ineq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(C\)はGCMで，\(S(C)\)は正定値であるとする． \(u \in V\)とし，\(\deg (u) = 3\)とする． \(v_1, v_2, v_3 \in N(u)\)は相異なるとする． このとき，次の不等式が成り立つ： </p>
+<div class="equation" id="a0000000214">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \frac{\#  B_u(v_1)}{\#  B_u(v_1) + 1} + \frac{\#  B_u(v_2)}{\#  B_u(v_2) + 1} + \frac{\#  B_u(v_3)}{\#  B_u(v_3) + 1} {\lt} 2. \end{equation}
+  </div>
+  <span class="equation_label">251</span>
+</p>
 </div>
 
   </div>
 </div>
-<h2 id="a0000000204">0.7.7 主定理</h2>
+<div class="proof_wrapper" id="a0000000213">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\textrm{(左辺)} \ge 2\)として矛盾を導く． </p>
+<p>補題&#160;<a href="index.html#lem:neighborSet_eq_triple">0.7.28</a>より，\(N(u) = \{ v_1, v_2, v_3\} \)である． 隣接の定義より，\(v_1, v_2, v_3 \ne u\)である． 補題&#160;<a href="index.html#lem:u_notMem_branch">0.7.27</a>より，\(u \notin B_u(v_1), B_u(v_2), B_u(v_3)\)である． 補題&#160;<a href="index.html#lem:branches_disjoint">0.7.35</a>より，\(B_u(v_1), B_u(v_2), B_u(v_3)\)は互いに交わらない． </p>
+<p>補題&#160;<a href="index.html#lem:branch_marking">0.7.25</a>より，\(y_k \in \mathbb {R}^n\)で以下を満たすものがとれる(\(k = 1, 2, 3\))： </p>
+<ol class="enumerate">
+  <li><p>\(\forall i \in V,\  0 \le (y_k)_i\). </p>
+</li>
+  <li><p>\(\forall i \in V,\  i \notin B_u(v_k) \implies (y_k)_i = 0\).  </p>
+</li>
+  <li><p>\(\displaystyle \frac{\#  B_u(v_k)}{\#  B_u(v_k) + 1} \le 2 (y_k)_{v_k} - 2 \sum _{i \in B_u(v_k)} (y_k)_i ^2 + \sum _{i \in B_u(v_k)} \sum _{j \in B_u(v_k)} \bm {1}_{i \sim j}\  (y_k)_i (y_k)_j\).  </p>
+</li>
+</ol>
+<div class="equation" id="a0000000215">
+<p>
+  <div class="equation_content">
+    \begin{equation}  g(i) = \begin{cases}  1, &  i = u, \\ (y_1)_i + (y_2)_i + (y_3)_i, &  \textrm{otherwise}. \end{cases} \end{equation}
+  </div>
+  <span class="equation_label">252</span>
+</p>
+</div>
+<p> とする． \(g(u) \ne 0\)であるから，\(g \ne 0\)である． よって，この\(g\)は\(\bm {0}\)でない\(\mathbb {R}^n\)のベクトルだと思えるので，\(S(C)\)の正定値性より </p>
+<div class="equation" id="a0000000216">
+<p>
+  <div class="equation_content">
+    \begin{equation}  0 {\lt} {}^t\! g S(C) g \end{equation}
+  </div>
+  <span class="equation_label">255</span>
+</p>
+</div>
+<p> である． また，任意の\(i \in I\)に対して， </p>
+<div class="equation" id="a0000000217">
+<p>
+  <div class="equation_content">
+    \begin{equation}  0 \le g(i) \end{equation}
+  </div>
+  <span class="equation_label">256</span>
+</p>
+</div>
+<p> であることは簡単にわかる． したがって，補題&#160;<a href="index.html#lem:form_le_Gadj">0.7.29</a>より， </p>
+<div class="equation" id="eq:hle">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \label{eq:hle} {}^t\! g S(C) g \le 2 \sum _{i \in I} g_i ^2 - \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  g_i g_j. \end{equation}
+  </div>
+  <span class="equation_label">257</span>
+</p>
+</div>
+<p> である． </p>
+<p>補題&#160;<a href="index.html#lem:assembly_sq">0.7.32</a>より， </p>
+<div class="equation" id="eq:hsq">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \label{eq:hsq} \sum _{i \in I} g(i) ^2 = 1 + \sum _{i \in B_u(v_1)} (y_1)_i ^2 + \sum _{i \in B_u(v_2)} (y_2)_i ^2 + \sum _{i \in B_u(v_3)} (y_3)_i ^2. \end{equation}
+  </div>
+  <span class="equation_label">258</span>
+</p>
+</div>
+<p> である． さらに，補題&#160;<a href="index.html#lem:assembly_cross">0.7.33</a>より， </p>
+<div class="equation" id="eq:hcr">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \label{eq:hcr} \begin{split}  \sum _{i \in I} \sum _{j \in I} \bm {1}_{i \sim j}\  g(i) g(j) {}={}\quad & \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j \\ {}+{} & \sum _{i \in B_u(v_2)} \sum _{j \in B_u(v_2)} \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j \\ {}+{} & \sum _{i \in B_u(v_3)} \sum _{j \in B_u(v_3)} \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j \\ {}+{} &  2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}]. \end{split} \end{equation}
+  </div>
+  <span class="equation_label">259</span>
+</p>
+</div>
+<p> である． </p>
+<p>式&#160;<a href="index.html#eq:hsq" class="eqref">258</a>, <a href="index.html#eq:hcr" class="eqref">259</a>を式<a href="index.html#eq:hle" class="eqref">257</a>に代入し，<a href="index.html#enum:y4'">4</a>を適用すると， </p>
+<div class="equation" id="a0000000218">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \begin{split}  {}^t\! g S(C) g {}\le {} & 2 \left( 1 + \sum _{i \in B_u(v_1)} (y_1)_i ^2 + \sum _{i \in B_u(v_2)} (y_2)_i ^2 + \sum _{i \in B_u(v_3)} (y_3)_i ^2 \right) \\ & {}-{} \sum _{i \in B_u(v_1)} \sum _{j \in B_u(v_1)} \bm {1}_{i \sim j}\  (y_1)_i (y_1)_j \\ & {}-{} \sum _{i \in B_u(v_2)} \sum _{j \in B_u(v_2)} \bm {1}_{i \sim j}\  (y_2)_i (y_2)_j \\ & {}-{} \sum _{i \in B_u(v_3)} \sum _{j \in B_u(v_3)} \bm {1}_{i \sim j}\  (y_3)_i (y_3)_j \\ & {}-{} 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}]. \\ {}={}&  2 - \sum _{k = 1}^3 \left( 2 (y_k)_{v_k} - 2 \sum _{i \in B_u(v_k)} (y_k)_i ^2 + \sum _{i \in B_u(v_k)} \sum _{j \in B_u(v_k)} \bm {1}_{i \sim j}\  (y_k)_i (y_k)_j \right) \\ {}\le {}&  2 - \sum _{k = 1}^3 \frac{\#  B_u(v_k)}{\#  B_u(v_k) + 1} \end{split} \end{equation}
+  </div>
+  <span class="equation_label">264</span>
+</p>
+</div>
+<p> となる． 背理法の仮定より，\(\displaystyle \sum _{k = 1}^3 \frac{\#  B_u(v_k)}{\#  B_u(v_k) + 1} \ge 2\)であるから，結局\({}^t\! g S(C) g \le 0\)を得る． しかし，これは\(S(C)\)が正定値であることに矛盾する． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-definition" id="thm:branchSize_inequality">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.7.37</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:branchSize_inequality">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000219"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#lem:schur_ineq">Lemma 0.7.36</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/branchSize_inequality" class="lean_decl">branchSize_inequality</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(C\)はGCMで，\(S(C)\)は正定値であるとする． \(u \in V\)とし，\(\deg (u) = 3\)とする． \(v_1, v_2, v_3 \in N(u)\)は相異なるとする． このとき，次の不等式が成り立つ： </p>
+<div class="equation" id="a0000000220">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \frac{1}{\#  B_u(v_1) + 1} + \frac{1}{\#  B_u(v_2) + 1} + \frac{1}{\#  B_u(v_3) + 1} {\gt} 1. \end{equation}
+  </div>
+  <span class="equation_label">272</span>
+</p>
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000219">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>補題&#160;<a href="index.html#lem:schur_ineq">0.7.36</a>の結果を整理すれば得られる． </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-definition" id="lem:reciprocal_sum_gt_one_bounds">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">0.7.38</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#lem:reciprocal_sum_gt_one_bounds">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000221"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/reciprocal_sum_gt_one_bounds" class="lean_decl">reciprocal_sum_gt_one_bounds</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   \(a, b, c \in \mathbb {N}\)とし，\(0 {\lt} a,\  a \le b \le c\)であるとする． また，次の不等式が成り立つとする： </p>
+<div class="equation" id="a0000000222">
+<p>
+  <div class="equation_content">
+    \begin{equation}  \frac{1}{a + 1} + \frac{1}{b + 1} + \frac{1}{c + 1} {\gt} 1. \end{equation}
+  </div>
+  <span class="equation_label">273</span>
+</p>
+</div>
+<p> このとき，\(a = 1\)であり，\(b = 1\)または\(b = 2\)かつ\(c \le 4\)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000221">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>丁寧に場合分けすればわかる． </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-definition" id="thm:branchSize_bounds">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.7.39</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:branchSize_bounds">#</a>
+    
+    <a class="icon proof" href="index.html#a0000000223"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="index.html#thm:branchSize_inequality">Theorem 0.7.37</a></li>
+          
+          <li><a href="index.html#lem:branchFinset_refl">Lemma 0.7.23</a></li>
+          
+          <li><a href="index.html#lem:reciprocal_sum_gt_one_bounds">Lemma 0.7.38</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/branchSize_bounds" class="lean_decl">branchSize_bounds</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(C\)はGCMで，\(S(C)\)は正定値であるとする． \(u \in V\)とし，\(\deg (u) = 3\)とする． \(v_1, v_2, v_3 \in N(u)\)は相異なるとする． また，\(\#  B_u(v_1) \le \#  B_u(v_2) \le \#  B_u(v_3)\)とする． このとき，\(\#  B_u(v_1) = 1\)であり，\(\#  B_u(v_2) = 1\)または\(\#  B_u(v_2) = 2\)かつ\(\#  B_u(v_3) \le 4\)である． </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000223">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>定理&#160;<a href="index.html#thm:branchSize_inequality">0.7.37</a>の不等式が成り立つ． また，補題&#160;<a href="index.html#lem:branchFinset_refl">0.7.23</a>より，\(v_1 \in B_u(v_1)\)であるから\(0 {\lt} \#  B_u(v_1)\)である． よって，補題&#160;<a href="index.html#lem:reciprocal_sum_gt_one_bounds">0.7.38</a>が適用でき，主張が従う． </p>
+
+  </div>
+</div>
+<h2 id="a0000000224">0.7.7 主定理</h2>
 <div class="theorem_thmwrapper theorem-style-definition" id="thm:classification_cartan">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
     Theorem
     </span>
-    <span class="theorem_thmlabel">0.7.33</span>
+    <span class="theorem_thmlabel">0.7.40</span>
     <div class="thm_header_extras">
 
         </div>
@@ -6965,8 +7701,51 @@
 
   </div>
 </div>
+<div class="theorem_thmwrapper theorem-style-definition" id="thm:classification_root">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">0.7.41</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="index.html#thm:classification_root">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://nwsrnbr.github.io/classification-root-system/docs/find/#doc/classification_root" class="lean_decl">classification_root</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   \(P\)はcrystallographicなroot pairingであるとする． \(C\)を\(P\)から定まるCartan行列とする． このとき，\(C\)はCartan行列\(A_n, B_n, C_n, D_n, E_6, E_7, E_8, F_4, G_2\)のいずれか1つとCartan同値である． </p>
+
+  </div>
+</div>
 <p><br /></p>
-<h1 id="a0000000205">0.8 付録</h1>
+<h1 id="a0000000225">0.8 付録</h1>
 <p> Mathlibや自作ファイルの定義通りに頂点に番号付けをしたDynkin graph: </p>
 <figure id="fig:positive_definite_graph">
   <div class="centered"> graphics/positive_definite_graph.pdf </div>

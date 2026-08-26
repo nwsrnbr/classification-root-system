@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  24 JUL 2026 15:24
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.14)  26 AUG 2026 16:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -987,9 +987,9 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 (Font)              scaled to size 9.24713pt on input line 16.
 
 
-[9]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartanPosDef.tex
+[9]) (./subsections/RootPairing.tex) (./subsections/RootPairingCartan.tex
 
-[10]) (./subsections/GCM.tex
+[10]) (./subsections/RootPairingCartanPosDef.tex) (./subsections/GCM.tex
 
 [11]) (./subsections/DynkinGraph.tex
 
@@ -1031,20 +1031,24 @@ LaTeX Font Info:    Font shape `TU/HaranoAjiMincho-Regular.otf(0)/b/n' will be
 
 [30]
 
-LaTeX Warning: Reference `lem:no_cycle' on page 31 undefined on input line 351.
+LaTeX Warning: Reference `lem:no_cycle' on page 31 undefined on input line 352.
 
-) (./subsections/Classification.tex)
+
 
 [31]
+
+[32]) (./subsections/Classification.tex)
+
+[33]
 File: graphics/positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/positive_definite_graph.pdf>
 File: graphics/non-positive_definite_graph.pdf Graphic file (type pdf)
 <use graphics/non-positive_definite_graph.pdf>
 )
 
-[32]
+[34]
 
-[33] (./print.aux)
+[35] (./print.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1057,15 +1061,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: D1F93C4DD01738900027CF1833CD19B1;3034.
+(rerunfilecheck)             Checksum: 3B42446CD6026130CAB2E875A07069F6;3281.
  ) 
 Here is how much of TeX's memory you used:
- 31419 strings out of 473832
- 666800 string characters out of 5729481
- 1087958 words of memory out of 5000000
- 53859 multiletter control sequences out of 15000+600000
+ 31439 strings out of 473832
+ 667293 string characters out of 5729481
+ 1088619 words of memory out of 5000000
+ 53876 multiletter control sequences out of 15000+600000
  575966 words of font info for 128 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
  116i,21n,121p,607b,928s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on print.pdf (33 pages).
+Output written on print.pdf (35 pages).

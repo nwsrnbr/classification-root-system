@@ -74,10 +74,11 @@
   \uses{lem:branch_energy_strong, lem:branch_connected}
   $C$はGCMとし，$u, v \in V$とする．
   このとき，$y := \transpose{(y_1, \ldots, y_n)} \in \R^n$で以下を満たすものが存在する：
-  \begin{enumerate}[label = (\arabic*)]
+  \begin{enumerate}[label = (y\arabic*)]
     \item $\forall i \in V,\ 0 \le y_i$.
     \item $\forall i \in V,\ i \notin B_u(v) \implies y_i = 0$.
-    \item[(4)] $\displaystyle \frac{\# B_u(v)}{\# B_u(v) + 1} \le 2 y_v - 2 \sum_{i \in B_u(v)} y_i ^ 2 + \sum_{i \in B_u(v)} \sum_{j \in B_u(v)} \bm{1}_{i \sim j}\ y_i y_j$.
+    \setcounter{enumi}{3}
+    \item $\displaystyle \frac{\# B_u(v)}{\# B_u(v) + 1} \le 2 y_v - 2 \sum_{i \in B_u(v)} y_i ^ 2 + \sum_{i \in B_u(v)} \sum_{j \in B_u(v)} \bm{1}_{i \sim j}\ y_i y_j$.
   \end{enumerate}
 \end{lemma}
 
@@ -380,6 +381,160 @@
   \label{lem:branches_disjoint}
   \lean{branches_disjoint}
   \leanok
-  \uses{}
-
+  \uses{lem:no_posDef_of_branch_path}
+  $C$はGCMで，$S(C)$は正定値であるとする．
+  $u, v, v' \in V$とし，$v \ne v'$で$v, v' \in N(u)$とする．
+  このとき，$B_u(v) \cap B_u(v') = \emptyset$である．
 \end{lemma}
+
+\begin{proof}
+  $w \in B_u(v) \cap B_u(v')$として矛盾を導く．
+  $v \leadsto_u w$かつ$v' \leadsto_u w$であるから$v \leadsto_u v'$である．
+  すると，補題~\ref{lem:no_posDef_of_branch_path}より$S(C)$は正定値でないが，これは矛盾する．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:schur_ineq}
+  \lean{schur_ineq}
+  \leanok
+  \uses{lem:neighborSet_eq_triple, lem:branch_marking, lem:u_notMem_branch, lem:branches_disjoint, lem:form_le_Gadj, lem:assembly_sq, lem:assembly_cross}
+  $C$はGCMで，$S(C)$は正定値であるとする．
+  $u \in V$とし，$\deg(u) = 3$とする．
+  $v_1, v_2, v_3 \in N(u)$は相異なるとする．
+  このとき，次の不等式が成り立つ：
+  \begin{equation}
+    \frac{\# B_u(v_1)}{\# B_u(v_1) + 1} + \frac{\# B_u(v_2)}{\# B_u(v_2) + 1} + \frac{\# B_u(v_3)}{\# B_u(v_3) + 1}
+    < 2.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  $\textrm{(左辺)} \ge 2$として矛盾を導く．
+
+  補題~\ref{lem:neighborSet_eq_triple}より，$N(u) = \{v_1, v_2, v_3\}$である．
+  隣接の定義より，$v_1, v_2, v_3 \ne u$である．
+  補題~\ref{lem:u_notMem_branch}より，$u \notin B_u(v_1), B_u(v_2), B_u(v_3)$である．
+  補題~\ref{lem:branches_disjoint}より，$B_u(v_1), B_u(v_2), B_u(v_3)$は互いに交わらない．
+
+  補題~\ref{lem:branch_marking}より，$y_k \in \R^n$で以下を満たすものがとれる($k = 1, 2, 3$)：
+  \begin{enumerate}[label = (y\arabic*)]
+    \item $\forall i \in V,\ 0 \le (y_k)_i$.
+    \item $\forall i \in V,\ i \notin B_u(v_k) \implies (y_k)_i = 0$.
+    \setcounter{enumi}{3}
+    \item $\displaystyle \frac{\# B_u(v_k)}{\# B_u(v_k) + 1} \le 2 (y_k)_{v_k} - 2 \sum_{i \in B_u(v_k)} (y_k)_i ^ 2 + \sum_{i \in B_u(v_k)} \sum_{j \in B_u(v_k)} \bm{1}_{i \sim j}\ (y_k)_i (y_k)_j$. \label{enum:y4'}
+  \end{enumerate}
+
+  \begin{equation}
+    g(i) = \begin{cases}
+      1, & i = u, \\
+      (y_1)_i + (y_2)_i + (y_3)_i, & \textrm{otherwise}.
+    \end{cases}
+  \end{equation}
+  とする．
+  $g(u) \ne 0$であるから，$g \ne 0$である．
+  よって，この$g$は$\bm{0}$でない$\R^n$のベクトルだと思えるので，$S(C)$の正定値性より
+  \begin{equation}
+    0 < \transpose{g} S(C) g
+  \end{equation}
+  である．
+  また，任意の$i \in I$に対して，
+  \begin{equation}
+    0 \le g(i)
+  \end{equation}
+  であることは簡単にわかる．
+  したがって，補題~\ref{lem:form_le_Gadj}より，
+  \begin{equation} \label{eq:hle}
+    \transpose{g} S(C) g
+    \le 2 \sum_{i \in I} g_i ^ 2 - \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ g_i g_j.
+  \end{equation}
+  である．
+
+  補題~\ref{lem:assembly_sq}より，
+  \begin{equation} \label{eq:hsq}
+    \sum_{i \in I} g(i) ^ 2
+    = 1 + \sum_{i \in B_u(v_1)} (y_1)_i ^ 2 + \sum_{i \in B_u(v_2)} (y_2)_i ^ 2 + \sum_{i \in B_u(v_3)} (y_3)_i ^ 2.
+  \end{equation}
+  である．
+  さらに，補題~\ref{lem:assembly_cross}より，
+  \begin{equation} \label{eq:hcr}
+    \begin{split}
+      \sum_{i \in I} \sum_{j \in I} \bm{1}_{i \sim j}\ g(i) g(j)
+    {}={}\quad &\sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j \\
+    {}+{} &\sum_{i \in B_u(v_2)} \sum_{j \in B_u(v_2)} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j \\
+    {}+{} &\sum_{i \in B_u(v_3)} \sum_{j \in B_u(v_3)} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
+    {}+{} & 2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}].
+    \end{split}
+  \end{equation}
+  である．
+
+  式~\eqref{eq:hsq}, \eqref{eq:hcr}を式\eqref{eq:hle}に代入し，\ref{enum:y4'}を適用すると，
+  \begin{equation}
+    \begin{split}
+      \transpose{g} S(C) g
+    {}\le{} &2 \left( 1 + \sum_{i \in B_u(v_1)} (y_1)_i ^ 2 + \sum_{i \in B_u(v_2)} (y_2)_i ^ 2 + \sum_{i \in B_u(v_3)} (y_3)_i ^ 2 \right) \\
+    &{}-{} \sum_{i \in B_u(v_1)} \sum_{j \in B_u(v_1)} \bm{1}_{i \sim j}\ (y_1)_i (y_1)_j \\
+    &{}-{} \sum_{i \in B_u(v_2)} \sum_{j \in B_u(v_2)} \bm{1}_{i \sim j}\ (y_2)_i (y_2)_j \\
+    &{}-{} \sum_{i \in B_u(v_3)} \sum_{j \in B_u(v_3)} \bm{1}_{i \sim j}\ (y_3)_i (y_3)_j \\
+    &{}-{}  2 [(y_1)_{v_1} + (y_2)_{v_2} + (y_3)_{v_3}]. \\
+    {}={}& 2 - \sum_{k = 1}^3 \left( 2 (y_k)_{v_k} - 2 \sum_{i \in B_u(v_k)} (y_k)_i ^ 2 + \sum_{i \in B_u(v_k)} \sum_{j \in B_u(v_k)} \bm{1}_{i \sim j}\ (y_k)_i (y_k)_j \right) \\
+    {}\le{}& 2 - \sum_{k = 1}^3 \frac{\# B_u(v_k)}{\# B_u(v_k) + 1}
+    \end{split}
+  \end{equation}
+  となる．
+  背理法の仮定より，$\dsum_{k = 1}^3 \frac{\# B_u(v_k)}{\# B_u(v_k) + 1} \ge 2$であるから，結局$\transpose{g} S(C) g \le 0$を得る．
+  しかし，これは$S(C)$が正定値であることに矛盾する．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:branchSize_inequality}
+  \lean{branchSize_inequality}
+  \leanok
+  \uses{lem:schur_ineq}
+  $C$はGCMで，$S(C)$は正定値であるとする．
+  $u \in V$とし，$\deg(u) = 3$とする．
+  $v_1, v_2, v_3 \in N(u)$は相異なるとする．
+  このとき，次の不等式が成り立つ：
+  \begin{equation}
+    \frac{1}{\# B_u(v_1) + 1} + \frac{1}{\# B_u(v_2) + 1} + \frac{1}{\# B_u(v_3) + 1}
+    > 1.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  補題~\ref{lem:schur_ineq}の結果を整理すれば得られる．
+\end{proof}
+
+\begin{lemma}
+  \label{lem:reciprocal_sum_gt_one_bounds}
+  \lean{reciprocal_sum_gt_one_bounds}
+  \leanok
+  \uses{}
+  $a, b, c \in \N$とし，$0 < a,\ a \le b \le c$であるとする．
+  また，次の不等式が成り立つとする：
+  \begin{equation}
+    \frac{1}{a + 1} + \frac{1}{b + 1} + \frac{1}{c + 1} > 1.
+  \end{equation}
+  このとき，$a = 1$であり，$b = 1$または$b = 2$かつ$c \le 4$である．
+\end{lemma}
+
+\begin{proof}
+  丁寧に場合分けすればわかる．
+\end{proof}
+
+\begin{theorem}
+  \label{thm:branchSize_bounds}
+  \lean{branchSize_bounds}
+  \leanok
+  \uses{thm:branchSize_inequality, lem:branchFinset_refl, lem:reciprocal_sum_gt_one_bounds}
+  $C$はGCMで，$S(C)$は正定値であるとする．
+  $u \in V$とし，$\deg(u) = 3$とする．
+  $v_1, v_2, v_3 \in N(u)$は相異なるとする．
+  また，$\# B_u(v_1) \le \# B_u(v_2) \le \# B_u(v_3)$とする．
+  このとき，$\# B_u(v_1) = 1$であり，$\# B_u(v_2) = 1$または$\# B_u(v_2) = 2$かつ$\# B_u(v_3) \le 4$である．
+\end{theorem}
+
+\begin{proof}
+  定理~\ref{thm:branchSize_inequality}の不等式が成り立つ．
+  また，補題~\ref{lem:branchFinset_refl}より，$v_1 \in B_u(v_1)$であるから$0 < \# B_u(v_1)$である．
+  よって，補題~\ref{lem:reciprocal_sum_gt_one_bounds}が適用でき，主張が従う．
+\end{proof}

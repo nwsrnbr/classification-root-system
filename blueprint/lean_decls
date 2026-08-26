@@ -1,3 +1,4 @@
+classification_root
 sylvester_criterion
 Matrix.leadingSubmatrix
 IsHermitian.submatrix_injective
@@ -54,6 +55,7 @@ symmMatrix_adj_le_neg_one
 rootSystem_isGCM
 dynkinGraph
 dynkinGraph_preconnected
+neighborSet
 degree
 numOfBranch
 symmMatrix_quadform_upper_bound
@@ -78,6 +80,7 @@ branch_energy_strong
 adjExcl
 reachExcl
 branchSet
+branchFinset_refl
 branch_connected
 branch_marking
 reachExcl_ne_u
@@ -88,4 +91,11 @@ only_neighbor_in_branch
 branch_no_cross_edge
 assembly_sq
 assembly_cross
+no_posDef_of_branch_path
+branches_disjoint
+schur_ineq
+branchSize_inequality
+reciprocal_sum_gt_one_bounds
+branchSize_bounds
 classification_cartan
+classification_root
